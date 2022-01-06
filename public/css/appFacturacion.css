@@ -1,0 +1,21 @@
+
+ /* estilos nuevos bz */
+    .bz-info {
+        background-color: #2cb5bf61!important;
+    }
+    .bz-warning {
+        background-color: #ffc10766!important;
+    }
+    .bz-success {
+        background-color: #28a74559!important;
+    }
+    .bz-success1{
+        background-color: #4db199!important;
+    }
+    .bz-danger {
+        background-color: #dc354552!important;
+    }
+    /*.sidebar{
+        background: #fff; !important;
+    }
+*/
