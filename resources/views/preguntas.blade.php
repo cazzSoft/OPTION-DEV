@@ -71,7 +71,6 @@
                 <div class="col-xs-12 col-sm-12  col-md-8 ">
                     <p class="text-muted m-4 text-justify h4" >
                       ¡Bienvenido/a! a Option2health está diseñada para educar e informar. No pretende dar consejos médicos, y menos aún diagnosticar enfermedades o prescribir medicinas. Consulte siempre a su médico respecto a su salud o antes de comenzar cualquier tratamiento.
-                    
                     </p>
                 </div>
             </div>
