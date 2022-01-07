@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Http\Request;
-
 use App\ArticuloModel;
-use App\LikeUsersModel;
 use App\CoinsultDetalleModel;
 use App\CoinsultModel;
+use App\Inters_userModel;
+use App\LikeUsersModel;
+use App\User;
 use Carbon\Carbon;
-
-
- use Illuminate\Support\Collection;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
-
-
 use Str;
 class HomeController extends Controller
 {
@@ -44,30 +40,50 @@ class HomeController extends Controller
     public function index()
     {
        $url='http://'.$_SERVER['HTTP_HOST'];
+        
         //datos iniciales del paciente para mostrar posibles enfermedades
+            //paciente identificador
+            $id=auth()->user()->id;
             //Edad del paciente
             $fecha_nacimiento = Carbon::createFromDate(auth()->user()->fecha_nacimiento)->age;
-             $fecha_nacimiento=30;
+             // $fecha_nacimiento=30;
             //sexo del paciente
             $sexo=auth()->user()->genero;
             //tienes hijos
             $tiene_hijos=auth()->user()->tine_hijo;
 
             if($sexo){
-                $sexo='Hombres'; $sexohm='hombresymujeres'; $sexos='hombreshombres'; 
+                $sexop1='hombres';  $sexop2='hombreshombresymujeres'; $sexop3='hombresymujeres'; 
             }else{ 
-                $sexo= 'Mujeres'; $sexos='mujeresmujeres';  $sexohm='mujeresyhombres'; 
+                $sexop1= 'mujeres'; $sexop2='mujeresmujeresyhombres'; $sexop3='mujeresyhombres'; 
             }
 
+            
+
+            //consultar sus temas elegidos
+            $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
+            if(isset($temas['temas'])){
+                $tema=  $temas['temas']['area_desc'];
+
+            }
+            
+            
+
+            $splay = Str::slug($tema,", ");
+            $array_temas= explode(', ', $splay );
+            
+            //verificar si no tiene hijo pero el tema si
             //si tiene hijos
             if($tiene_hijos){
                 $tiene_hijos= rand(1,18);
+            }else{
+                if(Str::contains('pediatria, infantil', $array_temas)){ 
+                    $tiene_hijos= rand(1,18);
+                }
             }
-
+            
            
-            //likes del paciente
-            $id=auth()->user()->id;
-
+          
         //lista de enfermedades
         $enfermedades=ArticuloModel::withCount(['like'])
                 ->with(['like'=>function($q){
@@ -75,11 +91,10 @@ class HomeController extends Controller
                     }])->where('tipo','N')
                 ->where('publicar','1')
                 ->where('estado','1')
-                 // ->where('edad_inicial','<=',$fecha_nacimiento)
-                ->Where('afecta_desc','like',$sexo.'%')
+                ->Where('afecta_desc','like','%'.$sexop1.'%')
                 ->orderBy('idarticulo','desc')
                 ->get();
-      
+        
         //array principales
         $array1=[];
         $array2=[];
@@ -90,80 +105,277 @@ class HomeController extends Controller
         $array2ax=[];
         $array3ax=[];
         $array4ax=[];
+        //array axiliares 2
+        $array1t=[];
+        $array2t=[];
+        $array3t=[];
+        $array4t=[];
+        //array axiliares 3
+        $array1r=[];
+        $array2r=[];
+        $array3r=[];
+        $array4r=[];
         
-       
+        
+        
         foreach ($enfermedades as $key => $value) {
            
             //trasnformamos a texto plano
-            $titulo = Str::slug($value->afecta_desc, "");
-               
-            if(strlen($titulo)<=7){ //obtenemos sexo prioritario (H o M)
-                
-                //si tienes hijo encontramos posibles rangos del hijo
-                if ($tiene_hijos) {
-                   if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
-                        // array_push($array1ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.']');
-                        array_push($array1ax,$value);
-                   } 
-                }
-                //encontramos posibles rango de acuerdo a la edad del usuario paciente
-                if(in_array($fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
-                        // array_push($array1,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.']');
-                        array_push($array1,$value);
-                }
-                
+            $titulo = Str::slug($value->afecta_desc, ""); //sexo
+            $vartx = Str::slug($value['area_desc'],", "); //areas
+            //verificamos si tiene hijos para mostrar posibles enfermedades
+            if ($tiene_hijos) {
 
-            }else if (Str::startsWith($titulo, $sexos)) { //obtenemos sexo prioritario (Hh o Mm)
-               
-                //si tienes hijo encontramos posibles rangos del hijo
-                if ($tiene_hijos) {
-                   if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
-                        // array_push($array2ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.']');
-                         array_push($array2ax,$value);
-                   } 
+                if( Str::contains( $vartx, $array_temas) ){//filtrado de tema
+                    
+                    ///////////obtenemos sexo prioritario (H o M) par su hji@s
+                    if(Str::startsWith($titulo, 'mujeresyhombres') || Str::startsWith($titulo, 'hombresymujeres')){ 
+                        if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){ 
+                            // array_push($array1t,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.'] | '.$vartx);
+                                 array_push($array1t,$value);
+                         } 
+                    }else if(Str::startsWith($titulo, 'mujeresmujeresyhombres') || Str::startsWith($titulo, 'hombreshombresymujeres')){
+                        if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
+                            // array_push($array2t,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.'] | '.$vartx.'|');
+                                 array_push($array2t,$value);
+                         } 
+                    }else{
+                        if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
+                            // array_push($array3t,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.'] | '.$vartx.'|');
+                                 array_push($array3t,$value);
+                         } 
+                    }
+
+                }else{
+                    //posibles enfermedades de interes del paciente
+
+                    //prioridad 1
+                    if(strlen($titulo)==15 || strlen($titulo)==14){
+                        //hijos hm edad hijo
+                        if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
+                            // array_push($array1,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.'] | '.$vartx.'|');
+                                 array_push($array1,$value);
+                         }else if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                            //paciente hm edad paciente
+                            if(Str::startsWith($titulo, $sexop3)){ //
+                                // array_push($array1ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx.'|'); 
+                                 array_push($array1ax,$value);
+                            }else{
+                                // array_push($array1r,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx.'|'); 
+                                 array_push($array1r,$value);
+                            }
+                         }
+                         
+                    }else if(strlen($titulo)==22){ //hhym mmyh
+                        //de acuerdo ala edad hijo
+                        if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
+                            // array_push($array2,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.'] | '.$vartx.'|');
+                             array_push($array2,$value);
+                        }else if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                        //de acuerdo ala edad paciente
+                            if(Str::contains($titulo, $sexop2)){ //
+
+                                // array_push($array2ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx.'|'); 
+                                  array_push($array2ax,$value);
+
+                            }else{
+                                // array_push($array2r,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx.'|'); 
+                                  array_push($array2r,$value);
+                            }
+                            
+                        } 
+                       
+                    }else {
+                        if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
+                            // array_push($array3,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.'] | '.$vartx.'|');
+                             array_push($array3,$value);
+                        }else if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                            // array_push($array3ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx.'|');
+                            array_push($array3ax,$value);
+                        }else{
+                             // array_push($array4,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx.'|');
+                        }
+                       
+                    }
+                    
                 }
 
-               if(in_array($fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
-                 // array_push($array2,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.']');
-                  array_push($array2,$value);
-                }
-            }else if (Str::startsWith($titulo, $sexohm)) {
-                 //si tienes hijo encontramos posibles rangos del hijo
-                if ($tiene_hijos) {
-                   if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
-                        // array_push($array3ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.']');
-                     array_push($array3ax,$value);
-                   } 
-                }
-
-               if(in_array($fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
-                  // array_push($array3,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.']');
-                   array_push($array3,$value);
-                 }
             }else{
+                //no tiene hijos pero si selecciono un tema
+                if( Str::contains( $vartx, $array_temas) ){
+                  //separamos de acuerdo al sexo y prioridad
+                    if(strlen($titulo)==7){
+                       //separamos del genero myh
+                        if( Str::startsWith($titulo, $sexop1)){
+                            //encagamos al rango de edad
+                             if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                // array_push($array1,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                 array_push($array1,$value);
+                             }
+                            
+                        }else{
+                            //encagamos al rango de edad
+                             if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                // array_push($array1ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                 array_push($array1ax,$value);
+                             }
+                            
+                        }
+                    }else if(strlen($titulo)==22) {
+                        //separamos del genero mmh o hhm
+                         if( Str::startsWith($titulo, $sexop2)){
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array2,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array2,$value);
+                              }
+                             
+                         }else{
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array2ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array2ax,$value);
+                              }
+                             
+                         }
+                        // array_push($array2,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
 
-                 //si tienes hijo encontramos posibles rangos del hijo
-                if ($tiene_hijos) {
-                   if(in_array( $tiene_hijos, range($value->edad_inicial, $value->edad_final), true)){
-                        // array_push($array4ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$tiene_hijos.' - '.$value->edad_final.']');
-                         array_push($array4ax,$value);
-                   } 
+                    }else if(strlen($titulo)==15){
+
+                        //separamos del genero myh o hym
+                         if( Str::startsWith($titulo, $sexop2)){
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array3,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array3,$value);
+                              }
+                             
+                         }else{
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array3ax,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array3ax,$value);
+                              }
+                             
+                         }
+                    }
+                        
+                }else{
+                    //separamos de acuerdo al sexo y prioridad
+                    if(strlen($titulo)==7){
+                       //separamos del genero myh
+                        if( Str::startsWith($titulo, $sexop1)){
+                            //encagamos al rango de edad
+                             if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                // array_push($array1r,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                 array_push($array1r,$value);
+                             }
+                            
+                        }else{
+                            //encagamos al rango de edad
+                             if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                // array_push($array1t,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                 array_push($array1t,$value);
+                             }
+                            
+                        }
+                    }else if(strlen($titulo)==22) {
+                        //separamos del genero mmh o hhm
+                         if( Str::startsWith($titulo, $sexop2)){
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array2r,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array2r,$value);
+                              }
+                             
+                         }else{
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array2t,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array2t,$value);
+                              }
+                             
+                         }
+                        // array_push($array2,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+
+                    }else if(strlen($titulo)==15){
+
+                        //separamos del genero myh o hym
+                         if( Str::startsWith($titulo, $sexop2)){
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array3r,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array3r,$value);
+                              }
+                             
+                         }else{
+                             //encagamos al rango de edad
+                              if(in_array( $fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
+                                 // array_push($array3t,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
+                                  array_push($array3t,$value);
+                              }
+                             
+                         }
+                    }
+                     // array_push($array4,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
                 }
-                if(in_array($fecha_nacimiento, range($value->edad_inicial, $value->edad_final), true)){
-                  // array_push($array4,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.']');
-                   array_push($array4,$value);
-                 }
             }
-              
+
+        }
+
+        if($tiene_hijos){
+           
+            $enfermedades= array_merge($array1t,$array2t,$array3t,$array1,$array2,$array3,$array3ax,$array2ax,$array1ax,$array1r,$array2r);
+          
+        }else{
+           
+            $enfermedades= array_merge($array1,$array2,$array3,$array3ax,$array1ax,$array2ax,$array1r,$array2r,$array3r,$array3t,$array1t,$array2t);
         }
         
-        $enfermedades= array_merge($array1ax,$array1,$array2ax,$array2,$array3ax, $array3,$array4ax,$array4);  
+        // if($tiene_hijos){
+        
+        //     return ['Tema de interes seleccionado'=>$temas['temas']['descripcion'],
+        //             'Areas del tema '=>$array_temas,
+        //             'Tiene hijos'=>[ 'hijos sexo MYH o HYM'=>$array1t,
+        //                              'hijos sexo MMYH o HHYM'=>$array2t,
+        //                              'hijos sexo HoM'=>$array3t,
+                                     
+        //                           ],
+        //             'otras posibles enfermedades hijos'=>[
+        //                             'otras posibles enfermedades HM'=>$array1,
+        //                             'otras posibles enfermedades HHMM'=>$array2,
+        //                             'otras posibles enfermedades H'=>$array3
+        //             ],
+        //             'Paciente'=>auth()->user()->name,
+        //             'Pte h'=>$array3ax,
+        //             'Pte HHM o MMH'=>$array2ax,
+        //             'Pte  HyM '=>$array1ax,
+                    
+        //             'Pte  HyM s'=>$array1r,
+        //             'Pte HHM o MMH s'=>$array2r,    
+                   
+        //             ];
+        // }else{
+        //     return['Tema de interes seleccionado'=>$temas['temas']['descripcion'],
+        //             'Areas del tema '=>$array_temas,
+        //             'con tema'=>[  
+        //                             'result'=>array_merge($array1,$array2,$array3,$array3ax,$array1ax,$array2ax),
+        //                         ],
+        //             'posivilidades'=>[  
+        //                             'result'=>array_merge($array1r,$array2r,$array3r,$array3t,$array1t,$array2t),   
+        //                         ],
+        //             ];
+        // }
+        
+        
+
+        // $enfermedades= array_merge($array1ax,$array1,$array2ax,$array2,$array3ax, $array3,$array4ax,$array4);  
         
         $myCollectionObj=collect($enfermedades);
         
         $data=$this->paginate($myCollectionObj);
         $data->setPath($url.'/home/');
-         $data;
+        
         // return $units = Paginator::make($array1ax, count($array1ax), 10);
 
         return view('home',['articulos'=>$data]);
