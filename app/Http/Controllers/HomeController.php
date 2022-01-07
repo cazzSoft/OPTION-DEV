@@ -381,7 +381,7 @@ class HomeController extends Controller
             $id=auth()->user()->id;
             //Edad del paciente
             $fecha_nacimiento = Carbon::createFromDate(auth()->user()->fecha_nacimiento)->age;
-            $fecha_nacimiento=30;
+            // $fecha_nacimiento=30;
             //sexo del paciente
             $sexo=auth()->user()->genero;
             //tienes hijos
