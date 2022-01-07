@@ -15,7 +15,7 @@ class Inters_userController extends Controller
      */
     public function index()
     {
-        $lista_temas=TemasModel::all();
+        $lista_temas=TemasModel::all()->random(6);
         return view('preguntas',['lista_temas'=>$lista_temas]);
     }
 
