@@ -34,6 +34,8 @@ use Illuminate\Support\Facades\Auth;
 
         //ruta del home page 
         Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/algoritmo', 'HomeController@prueba')->name('home');
+
 
         //GESTION USER EDIT
         Route::prefix('profile')->group(function () {
