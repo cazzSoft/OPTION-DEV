@@ -50,22 +50,24 @@
                   <div class="card d-flex flex-fill card card-outline card-info mt-5 mr-4">
                     <div class="card-header text-muted border-bottom-0">
                       <h1 class="card-title"> Option2Health </h1>
-                        <a href="{{url('medico/info/'.encrypt($art->iduser))}}">
+                     
+                        <a href="{{url('medico/info/'.encrypt($art['iduser']))}}">
                           <div class="medico" style="cursor: pointer;" >
                             <img src="https://option2health.com/assets/img/logo.png" class="rounded mx-auto d-block img2">
                             <small> <b>Dr. O2H</b> </small>
                           </div>
                         </a>
+
                     </div>
                     <div class="card-body pt-0 ">
                       <div class="row">
                         <div class="col-lg-12">
-                          <h2 class="lead"><b>{{$art->titulo}}</b></h2>
+                          <h2 class="lead"><b>{{$art['titulo']}}</b></h2>
                           <p class="text-muted text-sm text-justify">
-                            {{$art->descripcion}} <a href="{{$art->vinculo_art}}" target="_blank">Ver más... </a></p> 
+                            {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank">Ver más... </a></p> 
                         </div>
                         <div class="embed-responsive embed-responsive-16by9">
-                          <iframe width="560" height="315" src="{{$art->url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                          <iframe width="560" height="315" src="{{$art['url_video']}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         
                         </div>
                       </div>
@@ -74,8 +76,8 @@
                     <div class="card-footer">
                       <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-2 card-outline ">
-                          <button type="button"  onclick="putLike_poin('{{encrypt($art->idarticulo)}}',this )" class="@if(isset($art->like[0])) btn btn-block bg-gradient-info  @else btn btn-outline-info btn-block @endif "><i class=" fa fa-heartbeat"></i>
-                            <span class="badge ">{{$art->like_count}}</span>
+                          <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class="@if(isset($art['like'][0])) btn btn-block bg-gradient-info  @else btn btn-outline-info btn-block @endif "><i class=" fa fa-heartbeat"></i>
+                            <span class="badge ">{{$art['like_count']}}</span>
                             Me gusta 
                           </button>
 
@@ -97,7 +99,7 @@
                             <i class="fa fa-info-circle"></i> Ver más
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                              <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art->idarticulo)}}')"> <i class="fa fa-save"></i> Guardar</button>
+                              <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
                               <button class="dropdown-item" type="button"><i class="fa fa-phone"></i> Contacto Online</button>
                               <button class="dropdown-item" type="button"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
                             </div>

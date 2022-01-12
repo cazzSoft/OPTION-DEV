@@ -59,12 +59,11 @@ class HomeController extends Controller
             }
 
             
-
+            
             //consultar sus temas elegidos
             $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
             if(isset($temas['temas'])){
                 $tema=  $temas['temas']['area_desc'];
-
             }
             
             
@@ -322,45 +321,7 @@ class HomeController extends Controller
            
             $enfermedades= array_merge($array1,$array2,$array3,$array3ax,$array1ax,$array2ax,$array1r,$array2r,$array3r,$array3t,$array1t,$array2t);
         }
-        
-        // if($tiene_hijos){
-        
-        //     return ['Tema de interes seleccionado'=>$temas['temas']['descripcion'],
-        //             'Areas del tema '=>$array_temas,
-        //             'Tiene hijos'=>[ 'hijos sexo MYH o HYM'=>$array1t,
-        //                              'hijos sexo MMYH o HHYM'=>$array2t,
-        //                              'hijos sexo HoM'=>$array3t,
-                                     
-        //                           ],
-        //             'otras posibles enfermedades hijos'=>[
-        //                             'otras posibles enfermedades HM'=>$array1,
-        //                             'otras posibles enfermedades HHMM'=>$array2,
-        //                             'otras posibles enfermedades H'=>$array3
-        //             ],
-        //             'Paciente'=>auth()->user()->name,
-        //             'Pte h'=>$array3ax,
-        //             'Pte HHM o MMH'=>$array2ax,
-        //             'Pte  HyM '=>$array1ax,
-                    
-        //             'Pte  HyM s'=>$array1r,
-        //             'Pte HHM o MMH s'=>$array2r,    
-                   
-        //             ];
-        // }else{
-        //     return['Tema de interes seleccionado'=>$temas['temas']['descripcion'],
-        //             'Areas del tema '=>$array_temas,
-        //             'con tema'=>[  
-        //                             'result'=>array_merge($array1,$array2,$array3,$array3ax,$array1ax,$array2ax),
-        //                         ],
-        //             'posivilidades'=>[  
-        //                             'result'=>array_merge($array1r,$array2r,$array3r,$array3t,$array1t,$array2t),   
-        //                         ],
-        //             ];
-        // }
-        
-        
-
-        // $enfermedades= array_merge($array1ax,$array1,$array2ax,$array2,$array3ax, $array3,$array4ax,$array4);  
+         
         
         $myCollectionObj=collect($enfermedades);
         
