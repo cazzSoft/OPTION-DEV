@@ -16,12 +16,12 @@ class PrincipalController extends Controller
 
     public function index()
     {
-        $articulo=ArticuloModel::withCount(['like'])
+        $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->simplePaginate(12);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->paginate(16);
 
-        return view('home',['articulos'=>$articulo,'activeM'=>1]);
+        return view('home',['articulos'=>$articulo,'activeM'=>1]); 
     }
 
 
