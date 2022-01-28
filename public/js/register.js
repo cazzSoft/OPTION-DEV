@@ -76,3 +76,22 @@ $('#btn_sig').click(function (e) {
   		});
 	}
 });
+
+
+/////REGISTRO DE EVENTO HISTORIAL USER//////////////
+
+$('#btnOmitir').click(function (e) {
+		//se llama para insertar el evento de Ver mas
+    $.get("/actividades/Preguntasomitir/", function (data) {
+        	window.location.href = "/home";
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+		
+});
+
+
+function acctionVermasdd(idar) {
+    
+}

@@ -21,7 +21,7 @@ class PrincipalController extends Controller
                             $q->select(['*'])->get();
                     }])->where('tipo','N')->where('publicar','1')->where('estado','1')->paginate(16);
 
-        return view('home',['articulos'=>$articulo,'activeM'=>1]); 
+        return view('home',['articulos'=>$articulo,'activeM'=>0]); 
     }
 
 

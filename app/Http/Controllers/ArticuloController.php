@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Actividad_userModel;
 use App\ArticuloModel;
+use App\Events\HomeEventSearch;
 use App\Inters_userModel;
+use App\Registro_ActividadModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
 use Str;
-use Carbon\Carbon;
 
 class ArticuloController extends Controller
 {
@@ -132,8 +134,10 @@ class ArticuloController extends Controller
 
     public function getArticulos(Request $request)
     {
-        
+       //activamos la varible session para controlar las acciones de la busquedad
        
+        
+    
         //consultar sus temas elegidos
         $id=auth()->user()->id;
         $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
@@ -151,14 +155,15 @@ class ArticuloController extends Controller
                 ->where('tipo','N')
                 ->where('publicar','1')
                 ->where('estado','1')
-                ->where("titulo",'like','%'.$request->q.'%')
+                ->where("titulo",'like',$request->q.'%')
+                
                 ->orWhere("descripcion", 'like', '%'.$request->q.'%')
                 ->orderBy('idarticulo','desc')
                 ->get();
 
         $enfermedades2= ArticuloModel::withCount(['like'])
                 ->where('tipo','N')->where('publicar','1')->where('estado','1')
-                ->where("titulo",'like','%'.$request->q.'%')
+                ->orwhere("titulo",'like','%'.$request->q)
                 ->orWhere("descripcion", 'like', '%'.$request->q.'%')
                 ->orWhere("area_desc", 'like', '%'.$request->q.'%')
                 ->orWhere("terminos", 'like', '%'.$request->q.'%')
@@ -170,29 +175,19 @@ class ArticuloController extends Controller
                 ->orderBy('idarticulo','desc')
                 ->get();
         $enfermedades=[];
-        if(isset($enfermedades1) || isset($enfermedades2) ){
-            $enfermedades= array_merge($enfermedades1->toArray(),$enfermedades2->toArray());
 
-        }else{
-             $enfermedades= ArticuloModel::withCount(['like'])
-                ->where('tipo','N')->where('publicar','1')->where('estado','1')
-                ->orwhere("titulo",'like','%'.$request->q.'%')
-                ->orWhere("descripcion", 'like', $request->q.'%')
-                ->orWhere("area_desc", 'like', $temas.'%')
-                ->orWhere("causas", 'like', $request->q.'%')
-                ->orWhere("sintoma", 'like', $request->q.'%')
-                ->orWhere("afecta_desc", 'like', $request->q.'%')
-                ->orWhere("enfermedades", 'like', $request->q.'%')
-                ->orderBy('idarticulo','desc')
-                ->get(); 
-                $enfermedades=$this->ordenarSearchPrioridad($enfermedades, $array_temas); 
-                 
+        if(isset($enfermedades1)  ){
+            $enfermedades= array_merge($enfermedades1->toArray());
+
+        }else if(isset($enfermedades2)){
+            
+               $enfermedades= array_merge($enfermedades2->toArray());   
         }
 
-        if($enfermedades==null ){
-            
-           $value = Str::limit($request->q, 3);
-            $enfermedades= ArticuloModel::withCount(['like'])
+        
+            //siempre dede ir esta informacion adicional
+            $value = Str::limit($request->q, 3);
+            $enfermedadesRes= ArticuloModel::withCount(['like'])
                 ->where('tipo','N')->where('publicar','1')->where('estado','1')
                 ->orwhere("titulo",'like','%'.$value.'%')
                 ->orWhere("descripcion", 'like', '%'.$value.'%')
@@ -203,20 +198,19 @@ class ArticuloController extends Controller
                 ->orWhere("enfermedades", 'like', '%'.$value.'%')
                 ->orderBy('idarticulo','desc')
                 ->get(); 
-            $enfermedades=$this->ordenarSearchPrioridad($enfermedades, $array_temas); 
-        }
+            $enfermedadesAx=$this->ordenarSearchPrioridad($enfermedadesRes, $array_temas);
+            $enfermedades= array_merge($enfermedades,$enfermedadesAx);
+        
         
         $myCollectionObj=collect($enfermedades);
         $data=$this->paginate($myCollectionObj); 
         
         $url='http://'.$_SERVER['HTTP_HOST'];
         $data->setPath($url.'/home/');    
-        // $aux=[];   
-        //    foreach ($data as $key => $value) {
-        //      return $value['iduser'];
-        //        array_push($aux,$value->iduser);
-        //     } 
-        //     return $aux;
+        
+        //Registro evento search
+        event(new HomeEventSearch(['txt_search'=>$request->q,'iduser'=>auth()->user()->id,'seccion'=>'INI']));
+        
         return view('home',['articulos'=>$data,'valor'=>$request->q]);
     }
 
@@ -475,12 +469,10 @@ class ArticuloController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    
+    
+
     public function edit($id)
     {
         try {

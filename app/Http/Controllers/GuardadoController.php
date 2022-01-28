@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Events\HomeEventGuardar;
+use App\Events\HomeEventPerfilUser;
+use App\Events\HomeEventSearch;
 use App\GuardadoModel;
+use Illuminate\Http\Request;
 
 class GuardadoController extends Controller
 {
@@ -21,7 +24,11 @@ class GuardadoController extends Controller
        {
            $q->where('tipo','N')->where('publicar','1')->where('estado','1');
        }])->where('iduser',auth()->user()->id)->orderBy('idguardado','desc')
-       ->get();
+       ->get(); 
+
+       //registro de evento view page
+        event(new HomeEventPerfilUser(['page'=>'Guardados','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'GUR'])]));
+        
         return view('guardado',['listaGuar'=>$guardado]);
     }
 
@@ -44,7 +51,7 @@ class GuardadoController extends Controller
         $idart=decrypt($request->idart);
         $exitArtisave=GuardadoModel::where('idarticulo',$idart)->where('iduser',auth()->user()->id)->first();
         if(isset($exitArtisave)){
-            
+           
             return response()->json([
                     'jsontxt'=>['msm'=>'Este artículo ya fue guardado','estado'=>'info']
                 ],200);
@@ -55,6 +62,8 @@ class GuardadoController extends Controller
             $saveArt->idarticulo=$idart;
             
             if( $saveArt->save()){
+                //registro de eventos
+                event(new HomeEventGuardar(['idarticulo'=>$idart,'iduser'=>auth()->user()->id,'descripcion'=>' "guardo" ']));
                 return response()->json([
                         'jsontxt'=>['msm'=>'Artículo guardado..','estado'=>'success']
                     ],200);
@@ -64,23 +73,31 @@ class GuardadoController extends Controller
 
     public function search_art(Request $request)
     {
+        
+
         $value=$request->search_user;
         $articulo=GuardadoModel::with(['articulo_user'=>function ($q) use($value)
         {
             $q->where('titulo','like','%'.$value.'%')->orwhere('descripcion', 'like', '%'.$value.'%');
         }])->where('iduser',auth()->user()->id)->get();
        
-        return view('guardado',['listaGuar'=>$articulo]); 
+        //Registro evento search
+        event(new HomeEventSearch(['txt_search'=>$value,'iduser'=>auth()->user()->id,'seccion'=>'GUR']));
+
+        return view('guardado',['listaGuar'=>$articulo,'search_user'=>$value]); 
     }
 
+    //evento para quitar articulo de guardado de user
     public function show($id)
     {
         $id=decrypt($id);
 
         if(GuardadoModel::where('idarticulo',$id)->where('iduser',auth()->user()->id)->delete() ){
-                return response()->json([
-                        'jsontxt'=>['msm'=>'Artículo removido','estado'=>'success']
-                    ],200);
+            //registro de eventos
+            event(new HomeEventGuardar(['idarticulo'=>$id,'iduser'=>auth()->user()->id,'descripcion'=>' "removió" ']));
+            return response()->json([
+                    'jsontxt'=>['msm'=>'Artículo removido','estado'=>'success']
+                ],200);
         }else{
             return response()->json([
                         'jsontxt'=>['msm'=>'No se permite..','estado'=>'warning']

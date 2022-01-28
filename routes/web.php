@@ -18,7 +18,12 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/login', function () {
         return view('auth.login'); 
     });
+
     Route::get('/', 'PrincipalController@index')->middleware('web2');
+   
+    //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
+    Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
+
 
    // No utilizar las rutas para registro que están incluidas
     Auth::routes(['register' => false]);
@@ -84,13 +89,37 @@ use Illuminate\Support\Facades\Auth;
 
         //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
          Route::resource('/interes', 'Inters_userController');
+
+         //RUTA BIBLIOTECA VIRTUAL
+         Route::resource('/repositorio', 'DocumentRepository');
+        
+
+        //HISTORIAL DE USUARIO 
+        Route::prefix('actividades')->group(function () {
+
+            Route::get('/createEventInicial', 'Registro_ActividadController@EventInicial');
+            Route::resource('/historial', 'Registro_ActividadController');
+            Route::get('/historialDetail/{id}', 'Registro_ActividadController@getDetail'); 
+            Route::get('/vermas/{id}', 'Registro_ActividadController@EventVerMas'); 
+            Route::get('/shareF/{id}', 'Registro_ActividadController@EventShareF'); 
+            Route::get('/shareW/{id}', 'Registro_ActividadController@EventShareW'); 
+            Route::get('/contactOnline/{id}', 'Registro_ActividadController@ContactOnline'); 
+            Route::get('/contactW/{id}', 'Registro_ActividadController@ContactW'); 
+            Route::get('/conoceme/{id}', 'Registro_ActividadController@EventConoceme'); 
+            Route::get('/publicaciones/{id}', 'Registro_ActividadController@Eventpublicaciones'); 
+            Route::get('/redessociales/{id}/{des?}', 'Registro_ActividadController@EventSociales'); 
+            Route::get('/Preguntasomitir', 'Registro_ActividadController@EventOmitir');
+
+
+
+        });
+           
     });
+
+    Route::get('/colas', 'Registro_ActividadController@colas');
 
   
 
   // Auth::routes();
    
-
-//el modulo de los Medicos ayuda a ayudar es solo para los medicos son aportaciones 
-    //se puede configurar el total de los aportes que se quieran
 

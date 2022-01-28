@@ -9,7 +9,7 @@
     <div class="row ">
         <div class="col-md-12 mt-1">
             <div class="register-logo">       
-                <img class=" img-responsive  " src="{{asset('option2h.png')}}" height="300px">
+                <img class=" img-responsive  " src="{{asset('option2h.png')}}" height="150px">
                 <h4><b>Bienvenido</b></h4>  
             </div>
 

@@ -40,7 +40,7 @@
 	            </div>
 	            <div class="row mt-4">
 	            	<div class="col-xs-6 col-sm-6 col-md-3 ">
-	            		<button type="button" class="btn btn-warning  btn-lg btn-block">Omitir</button>
+	            		<button type="button" class="btn btn-warning  btn-lg btn-block" id="btnOmitir">Omitir</button>
 	            	</div>
 	            	<div class="col-xs-6 col-sm-6 col-md-3 float-left ">
 	            		<button type="button" class="btn btn-info  btn-lg  btn-block" id="btn_sig">Siguiente</button>

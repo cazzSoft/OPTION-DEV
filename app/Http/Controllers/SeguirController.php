@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Events\MedicoEventSeguir;
 use App\SeguirModel;
+use Illuminate\Http\Request;
 
 class SeguirController extends Controller
 {
@@ -37,12 +38,14 @@ class SeguirController extends Controller
     public function store(Request $request)
     {
         $idmedico=decrypt($request->idmedico);
-         auth()->user()->id;
+        
         //validamos si ya lo sigue este usuario
         $buscarUser=SeguirModel::where('iduser_medico',$idmedico)->where('iduser',auth()->user()->id)->first();
         if($buscarUser){
             // dejar de seguir
             if($buscarUser->delete()){
+                //registro de evento
+                event(new MedicoEventSeguir(['idmedico'=>$idmedico,'iduser'=>auth()->user()->id,'descripcion'=>'dejo de seguir a']));
                 return response()->json([
                              'jsontxt'=>['msm'=>'Ha dejado de seguirlo..','estado'=>'info']
                          ],200);
@@ -54,6 +57,8 @@ class SeguirController extends Controller
             $saveSeguir->iduser=auth()->user()->id;
             $saveSeguir->iduser_medico=decrypt($request->idmedico);
             if( $saveSeguir->save()){
+                //registro de evento
+                 event(new MedicoEventSeguir(['idmedico'=>$idmedico,'iduser'=>auth()->user()->id,'descripcion'=>'acaba de seguir a']));
                 return response()->json([
                                 'jsontxt'=>['msm'=>'Gracias por seguirme..','estado'=>'success']
                             ],200);

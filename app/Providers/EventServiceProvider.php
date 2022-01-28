@@ -19,7 +19,83 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            // SendEmailVerificationNotification::class,
+             'App\Listeners\ListenerRegistered',
+        ],
+
+        \App\Events\userRegistro::class=>[
+            
+             'App\Listeners\ActividadRegistro',
+        ],
+
+
+         'Illuminate\Auth\Events\Registered ' => [
+            'App\Listeners\ListenerRegistered',
+        ],
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\SuccessfulLogin',
+        ],
+        
+         'Illuminate\Auth\Events\Logout' => [
+            'App\Listeners\UpdateLastLoggedAtOnLogout',
+        ],
+
+        \App\Events\HomeEventInfoMedico::class=>[
+             'App\Listeners\HomeListenerInfoMedico',
+        ],
+
+         \App\Events\HomeEvenMasInfo::class=>[
+             'App\Listeners\HomeListenerMasInfo',
+        ],
+
+        \App\Events\HomeEventLike::class=>[
+             'App\Listeners\HomeListenerLike',
+        ],
+
+        \App\Events\HomeEventShare::class=>[
+             'App\Listeners\HomeListenerShare',
+        ],
+
+        \App\Events\HomeEventGuardar::class=>[
+             'App\Listeners\HomeListenerGuardar',
+        ],
+
+        \App\Events\HomeEventContact::class=>[
+             'App\Listeners\HomeListenerContact',
+        ],
+
+         \App\Events\HomeEventSearch::class=>[
+             'App\Listeners\HomeListenerSearch',
+        ],
+        \App\Events\SearchEventResul::class=>[
+             'App\Listeners\SearchListenerResul',
+        ],
+
+         \App\Events\HomeEventPerfilUser::class=>[
+             'App\Listeners\HomeListenerPerfilUser',
+        ],
+
+        \App\Events\MedicoEventSeguir::class=>[
+             'App\Listeners\MedicoListenerSeguir',
+        ],
+        \App\Events\MedicoEventSeguirSociales::class=>[
+             'App\Listeners\MedicoListenerSeguirSociales',
+        ],
+        \App\Events\MedicoEventTabsChange::class=>[
+             'App\Listeners\MedicoListenerTabsChange',
+        ],
+
+        \App\Events\PerfilUserEventUsuario::class=>[
+             'App\Listeners\PerfilUserListenerUsuario',
+        ],
+        \App\Events\PerfilUserEventUsuarioEdit::class=>[
+             'App\Listeners\PerfilUserListenerUsuarioEdit',
+        ],
+        \App\Events\PerfilUserEventUsuarioSeguido::class=>[
+             'App\Listeners\PerfilUserListenerUsuarioSeguido',
+        ],
+        \App\Events\UserEventPreguntaIntere::class=>[
+             'App\Listeners\UserListenerPreguntaIntere',
         ],
     ];
 
@@ -68,6 +144,22 @@ class EventServiceProvider extends ServiceProvider
                                 'label_color' => 'secondary',
                                 'active' => ['gestion/search_user_art']
 
+                            ],
+                            [
+                                'text' => 'Historial',
+                                'url'  => 'actividades/historial',
+                                'icon' => 'fas fa-fw fa-history ',
+                                'label'       => 'nuevo',
+                                'label_color' => 'success',
+                                'active' => ['actividades/historial']
+                            ],
+                            [
+                                'text' => 'Biblioteca virtual',
+                                'url'  => 'repositorio',
+                                'icon' => 'fas fa-book-reader ',
+                                'label'       => 'in process',
+                                'label_color' => 'danger',
+                                // 'active' => ['actividades/historial']
                             ],
                             
                             ['header' => 'Publicidad'],

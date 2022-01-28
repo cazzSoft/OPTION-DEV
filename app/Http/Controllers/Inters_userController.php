@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ArticuloModel;
+use App\Events\UserEventPreguntaIntere;
 use App\Inters_userModel;
 use App\TemasModel;
 use Illuminate\Http\Request;
@@ -19,11 +21,18 @@ class Inters_userController extends Controller
         return view('preguntas',['lista_temas'=>$lista_temas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    //funcion para compartir informacion al usuario
+    public function shareUserInfo($id)
+    {
+      
+      $id=decrypt($id);
+
+      $articulo=ArticuloModel::find($id);
+      return view('share.share_articulo',['data'=>$articulo]);      
+    }
+
+
     public function create()
     {
         //
@@ -43,7 +52,8 @@ class Inters_userController extends Controller
         $interes_user->idtemas=decrypt($request->idtemas);
 
         if($interes_user->save()){
-            
+            //registro de evento pregunta de interes del usuario
+             event(new UserEventPreguntaIntere(['iduser'=>auth()->user()->id,'descripcion'=>'" ha seleccionado  el tema de interes"','idtemas'=>decrypt($request->idtemas)]));
              return response()->json([
                 'jsontxt'=> ['msm'=>'Success','estado'=>'success'],
                

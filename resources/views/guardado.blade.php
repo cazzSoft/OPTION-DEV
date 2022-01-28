@@ -8,7 +8,7 @@
 
 
 {{-- cuerpo de la pagina --}}
-@section('contenido')
+@section('contenido') 
 
     @section('content_header')
         <h1 ><b>Artículos Guardados</b> <i class="fa fa-save"></i> </h1>
@@ -22,7 +22,7 @@
                   {{ csrf_field() }}
                   <input id="method_" type="hidden" name="_method" value="POST"> 
                   <div class="input-group ">
-                    <input type="Search" class="form-control" name="search_user">
+                    <input type="Search" class="form-control" name="search_user" value="@if(isset($search_user)) {{$search_user}} @endif">
                     <div class="input-group-append">
                        <button class="input-group-text " type="submit"> <i class="fas fa-search"></i> </button>
                     </div>
@@ -56,7 +56,10 @@
                           <div class="col-lg-12">
                             <h2 class="lead mt-3"><b>{{$art->articulo_user[0]['titulo']}}</b></h2>
                             <p class="text-muted text-sm text-justify">
-                              {{$art->articulo_user[0]->descripcion}} <a href="{{$art->articulo_user[0]->vinculo_art}}" target="_blank">Ver más... </a></p> 
+                              {{$art->articulo_user[0]->descripcion}} 
+                              <a href="{{$art->articulo_user[0]->vinculo_art}}" target="_blank"  onclick="acctionVermas('{{encrypt($art->articulo_user[0]['idarticulo'])}}')">Ver más... 
+                              </a>
+                            </p> 
                           </div>
                           <div class="embed-responsive embed-responsive-16by9">
                             <iframe width="560" height="315" src="{{$art->articulo_user[0]->url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -80,8 +83,12 @@
                               <i class="fa fa-share-alt"></i> Compartir
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <button class="dropdown-item" type="button"> <i class="fab fa-facebook"></i> Facebook</button>
-                                <button class="dropdown-item" type="button"><i class="fab fa-whatsapp"></i> Whatsapp</button>
+                                <a onclick="acctionCompartirF('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art->articulo_user[0]['url_video']}}" target="_blank">
+                                  <i class="fab fa-facebook" ></i> Facebook
+                                </a>
+                                 <a onclick="acctionCompartirW('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://api.whatsapp.com/send/?phone&text=Hola!.%20Te%20acabo%20de%20compartir%20*{{$art->articulo_user[0]['titulo']}}*%20creo%20que%20te%20podria%20interesar.%20Rev%C3%ADsala:%20https://option2health.com/share.html?prodId={{$art->articulo_user[0]['idarticulo']}}%20%20*Option2health*.&app_absent=0" target="_blank">
+                                  <i class="fab fa-whatsapp"></i> Whatsapp 
+                                </a>
                               </div>
                             </div>
                           </div>
@@ -92,8 +99,8 @@
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <button class="dropdown-item" type="button" onclick="quitarArt('{{encrypt($art->articulo_user[0]->idarticulo)}}',this)"> <i class="fa fa-eraser"></i> Quitar</button>
-                                <button class="dropdown-item" type="button"><i class="fa fa-phone"></i> Contacto Online</button>
-                                <button class="dropdown-item" type="button"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
+                                <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
+                                <button class="dropdown-item" type="button"  onclick="acctionContactW('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
                               </div>
                             </div>
                           </div>

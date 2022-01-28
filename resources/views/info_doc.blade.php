@@ -16,7 +16,7 @@
                       <img class="profile-user-img img-fluid img-circle"
                            src="https://option2health.com/assets/img/logo.png"
                            alt="User profile picture">
-                    </div>
+                    </div> 
 
                     <h3 class="widget-user-username text-center text-info">{{$datos_p->name}}</h3>
                     <h5 class="widget-user-desc text-center text-muted">{{$datos_p->titulo['descripcion']}}</h5>
@@ -32,16 +32,16 @@
                       <p class="text-muted text-center">Sígueme en:</p>
                       <div class="text-center mb-3">
                       
-                        <a href="{{$datos_p->link_fb}}" target="”_blank”" class="btn btn-social-icon mr-1 btn-facebook ng-scope bg-indigo" ng-if="doctorsee.Facebook!==''">
+                        <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn btn-social-icon mr-1 btn-facebook ng-scope bg-indigo" ng-if="doctorsee.Facebook!==''">
                           <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="{{$datos_p->link_tw}}" target="”_blank”" class="btn btn-social-icon mr-1 btn-instagram ng-scope bg-lightblue " ng-if="doctorsee.Instagram!==''">
+                        <a href="{{$datos_p->link_tw}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Instagram')" target="”_blank”" class="btn btn-social-icon mr-1 btn-instagram ng-scope bg-lightblue " ng-if="doctorsee.Instagram!==''">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="{{$datos_p->link_stg}}" target="”_blank”" class="btn btn-social-icon mr-1 btn-twitter ng-scope btn-primary" ng-if="doctorsee.Twitter!==''">
+                        <a href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn btn-social-icon mr-1 btn-twitter ng-scope btn-primary" ng-if="doctorsee.Twitter!==''">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="{{$datos_p->link_lkd}}" target="”_blank”" class="btn btn-social-icon mr-1 btn-linkedin ng-scope bg-info" ng-if="doctorsee.Linkedin!==''">
+                        <a href="{{$datos_p->link_lkd}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Linkedin')" target="”_blank”" class="btn btn-social-icon mr-1 btn-linkedin ng-scope bg-info" ng-if="doctorsee.Linkedin!==''">
                             <i class="fab fa-linkedin"></i>
                         </a>
                       </div>
@@ -92,10 +92,10 @@
               <div class="card-header p-0 pt-1 border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Publicaciones</a>
+                    <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true" onclick="acctionPublicaciones('{{encrypt($datos_p['id'])}}')">Publicaciones</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">Conóceme</a>
+                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false" onclick="acctionConoceme('{{encrypt($datos_p['id'])}}')">Conóceme</a>
                   </li>
                   
                 </ul>
@@ -111,7 +111,7 @@
                                  <div class="card d-flex flex-fill card card-outline card-primary mt-4 mr-4 mb-4">
                                    <div class="card-header text-muted border-bottom-0">
                                      <h1 class="card-title"> Option2Health </h1>
-                                       <a href="{{url('medico/info/'.encrypt($art->iduser))}}">
+                                       <a href="#">
                                          <div class="medico" style="cursor: pointer;" >
                                            <img src="https://option2health.com/assets/img/logo.png" class="rounded mx-auto d-block img2">
                                            <small> <b>Dr. O2H</b> </small>
@@ -123,7 +123,7 @@
                                        <div class="col-lg-12">
                                          <h2 class="lead"><b>{{$art->titulo}}</b></h2>
                                          <p class="text-muted text-sm text-justify">
-                                           {{$art->descripcion}} <a href="{{$art->vinculo_art}}" target="_blank">Ver más... </a></p> 
+                                           {{$art->descripcion}} <a href="{{$art->vinculo_art}}" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')" target="_blank">Ver más... </a></p> 
                                        </div>
                                        <div class="embed-responsive embed-responsive-16by9">
                                          <iframe width="560" height="315" src="{{$art->url_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -147,8 +147,13 @@
                                            <i class="fa fa-share-alt"></i> Compartir
                                            </button>
                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                             <button class="dropdown-item" type="button"> <i class="fab fa-facebook"></i> Facebook</button>
-                                             <button class="dropdown-item" type="button"><i class="fab fa-whatsapp"></i> Whatsapp</button>
+                                             <a onclick="acctionCompartirF('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art['url_video']}}" target="_blank">
+                                               <i class="fab fa-facebook" ></i> Facebook
+                                             </a>
+                                              <a onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://api.whatsapp.com/send/?phone&text=Hola!.%20Te%20acabo%20de%20compartir%20*{{$art['titulo']}}*%20creo%20que%20te%20podria%20interesar.%20Rev%C3%ADsala:%20https://option2health.com/share.html?prodId={{$art['idarticulo']}}%20%20*Option2health*.&app_absent=0" target="_blank">
+                                               <i class="fab fa-whatsapp"></i> Whatsapp 
+                                             </a>
+                                             {{-- <button class="dropdown-item" type="button" onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Whatsapp</button> --}}
                                            </div>
                                          </div>
                                        </div>
@@ -157,11 +162,17 @@
                                            <button class="btn  btn-outline-info dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                            <i class="fa fa-info-circle"></i> Ver más
                                            </button>
-                                           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                           {{-- <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                              <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art->idarticulo)}}')"> <i class="fa fa-save"></i> Guardar</button>
                                              <button class="dropdown-item" type="button"><i class="fa fa-phone"></i> Contacto Online</button>
                                              <button class="dropdown-item" type="button"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
+                                           </div> --}}
+                                           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                             <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
+                                             <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
+                                             <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
                                            </div>
+
                                          </div>
                                        </div>
                                      </div>
@@ -243,6 +254,7 @@
     @section('include_js')
       <script src="{{ asset('/js/controlLike.js') }}"></script>
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
+      
     @stop
 
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Actividad_userModel;
 use App\AportacionesModel;
 use App\ArticuloModel;
 use App\CiudadModel;
 use App\EspecialidadesModel;
+use App\Events\HomeEventInfoMedico;
 use App\GuardadoModel;
+use App\Registro_ActividadModel;
 use App\SeguirModel;
 use App\TipoUserModel;
 use App\TituloModel;
@@ -58,7 +61,7 @@ class DoctoresController extends Controller
     //obtener datos del medico
     public function getInfo()
     {
-
+        
         $datosPersonales=User::with('ciudad')->find(auth()->user()->id);
         $especialidad=UsuarioEspecialidadModel::with('especialidades')->where('iduser',auth()->user()->id)->get();
         $listaEspeci=EspecialidadesModel::all();
@@ -71,6 +74,8 @@ class DoctoresController extends Controller
 
     public function show_info($id)
     {
+
+        //informacion del perfil del medico
        $id=decrypt($id);
        $listaArt=ArticuloModel::withCount(['like'])
                 ->with(['like'=>function($q){
@@ -80,20 +85,20 @@ class DoctoresController extends Controller
         $datosPersonales=User::with('ciudad')->with('titulo')->find($id);
         $siguiendo=SeguirModel::where('iduser_medico',$id)->where('iduser',auth()->user()->id)->first();
         $tipo=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
+       
+        //registro de actividad iformacion perfil medico
+        event(new HomeEventInfoMedico(['idmedico'=>$id,'iduser'=>auth()->user()->id,'tipo_S'=>'']));
+       
+       
         return view('info_doc',['listaArt'=>$listaArt,'datos_p'=>$datosPersonales,'sigue'=>$siguiendo,'user'=>$tipo]);
     }
     public function edit($id)
     {
-        //
+        // 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function update(Request $request, $id)
     {
         // return $request;
@@ -127,7 +132,7 @@ class DoctoresController extends Controller
     //actualizar informacion del médico
     public function actualiza(Request $request, $id)
     {
-        // return $request;
+      
         $user=User::find(decrypt($id));
         $user->num_licenciaMedica=$request->num_licenciaMedica;
         $user->idtitulo_profesional=$request->idtitulo_profesional;

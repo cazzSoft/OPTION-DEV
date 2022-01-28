@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Actividad_userModel;
 use App\ArticuloModel;
 use App\CoinsultDetalleModel;
 use App\CoinsultModel;
+use App\Events\HomeEventLike;
+use App\Events\HomeEventPerfilUser;
+use App\Events\PerfilUserEventUsuario;
 use App\Inters_userModel;
 use App\LikeUsersModel;
+use App\Registro_ActividadModel;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Str;
 class HomeController extends Controller
@@ -39,8 +44,7 @@ class HomeController extends Controller
 
     public function index()
     {
-       $url='http://'.$_SERVER['HTTP_HOST'];
-        
+         
         //datos iniciales del paciente para mostrar posibles enfermedades
             //paciente identificador
             $id=auth()->user()->id;
@@ -59,17 +63,19 @@ class HomeController extends Controller
             }
 
             
-            
+             $array_temas=null;
             //consultar sus temas elegidos
             $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
             if(isset($temas['temas'])){
                 $tema=  $temas['temas']['area_desc'];
+
+                 $splay = Str::slug($tema,", ");
+                 $array_temas= explode(', ', $splay );
             }
             
             
 
-            $splay = Str::slug($tema,", ");
-            $array_temas= explode(', ', $splay );
+           
             
             //verificar si no tiene hijo pero el tema si
             //si tiene hijos
@@ -326,9 +332,11 @@ class HomeController extends Controller
         $myCollectionObj=collect($enfermedades);
         
         $data=$this->paginate($myCollectionObj);
+        $url='http://'.$_SERVER['HTTP_HOST'];
         $data->setPath($url.'/home/');
         
-        // return $units = Paginator::make($array1ax, count($array1ax), 10);
+        //registro de evento view page
+        event(new HomeEventPerfilUser( ['page'=>'home (principal)','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'INI'])] ));
 
         return view('home',['articulos'=>$data]);
     }
@@ -355,18 +363,18 @@ class HomeController extends Controller
             }
 
             
-
+            $array_temas=null;
             //consultar sus temas elegidos
             $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
             if(isset($temas['temas'])){
                 $tema=  $temas['temas']['area_desc'];
-
+                 $splay = Str::slug($tema,", ");
+                $array_temas= explode(', ', $splay );
             }
             
             
 
-            $splay = Str::slug($tema,", ");
-            $array_temas= explode(', ', $splay );
+           
             
             //verificar si no tiene hijo pero el tema si
             //si tiene hijos
@@ -601,14 +609,7 @@ class HomeController extends Controller
 
         }
 
-        // if($tiene_hijos){
-           
-        //     $enfermedades= array_merge($array1t,$array2t,$array3t,$array1,$array2,$array3,$array3ax,$array2ax,$array1ax,$array1r,$array2r);
-          
-        // }else{
-           
-        //     $enfermedades= array_merge($array1,$array2,$array3,$array3ax,$array1ax,$array2ax,$array1r,$array2r,$array3r,$array3t,$array1t,$array2t);
-        // }
+        
         
         if($tiene_hijos){
         
@@ -647,17 +648,19 @@ class HomeController extends Controller
         }
         
     }
+
     //funcion para organizar hym hhmym h o m
     public function organize()
     {
         // code...
     }
 
-
+    //actualiza datos del usuario paciente
     public function update(Request $request ,$id)
     {
 
        $user=User::find(decrypt($id));
+       $userAux=User::find(decrypt($id));
        $user->name=$request->name;
        $user->email=$request->email;
        $user->telefono=$request->telefono;
@@ -665,6 +668,10 @@ class HomeController extends Controller
        $user->genero=$request->genero;
        $user->idciudad=$request->idciudad;
        $user->save();
+
+       //registro de evento update de perfil user paciente
+        event(new PerfilUserEventUsuario(['tipoUser'=>'P','objUser'=>$userAux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
+
        return redirect('/profile/perfil');
     }
 
@@ -678,6 +685,7 @@ class HomeController extends Controller
 
     public function putLikePoint($id)
     {
+
         $idarti=decrypt($id);
         $iduser= auth()->user()->id;
         $getPunto=CoinsultDetalleModel::where('punto','1')->first()->idcoinsultDetalle;
@@ -687,6 +695,8 @@ class HomeController extends Controller
             //ya tiene registrado su like
             $exitArt=LikeUsersModel::where('iduser',$iduser)->where('idarticulo',$idarti)->first();
             if(!isset($exitArt)){
+                //registro de actividad
+                 event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "like" ','tipo_S'=>session()->get('seccion_tipo')]));
                 //registro like
                     $regisLike=new LikeUsersModel();
                     $regisLike->iduser=$iduser;
@@ -698,11 +708,15 @@ class HomeController extends Controller
             }else{
                 //eliminar like
                 if($exitArt->delete()){
+
+                    //registro de actividad
+                    event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "dislike" ','tipo_S'=>session()->get('seccion_tipo')]));
                      //verificar si elimino su primer like
                     if(!LikeUsersModel::where('iduser',$iduser)->first()){
                        if($delete=CoinsultModel::where('iduser',$iduser)->where('idcoinsultDetalle',$getPunto)->first()){
                             $delete->delete();
                        } 
+                       
                     }
                     return response()->json([
                         'jsontxt'=>['msm'=>'like removed','estado'=>'warning']
@@ -716,6 +730,8 @@ class HomeController extends Controller
             }
             
         }else{
+
+
             //no tiene ningun like / entonces se registra y gana 1 puntos
             //registro like
                 $regisLike=new LikeUsersModel();
@@ -723,6 +739,10 @@ class HomeController extends Controller
                 $regisLike->idarticulo=$idarti;
                 $regisLike->save();
                 
+
+                //registro de actividad
+                event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "like" ','tipo_S'=>'SEA']));
+
             //registro puntos
                 
                
@@ -737,6 +757,7 @@ class HomeController extends Controller
         
     }
 
+  
    
 
     public function validarRol(Request $request)

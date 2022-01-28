@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Actividad_userModel;
 use App\CoinsultModel;
- use App\CoinsultDetalleModel;
+use App\Events\HomeEventPerfilUser;
+use App\Registro_ActividadModel;
+use Illuminate\Http\Request;
+use App\CoinsultDetalleModel;
+use Log;
+
 class CoinsultController extends Controller
 {
     public function __construct()
@@ -16,6 +21,11 @@ class CoinsultController extends Controller
     {
         $id= auth()->user()->id;
         $consul=CoinsultModel::with('detalle_coinsult')->where('iduser',$id)->orderBy('idcoinsult','desc')->get();
+        
+        
+        //registro de evento view page
+        event(new HomeEventPerfilUser(['page'=>'Coinsul usuaio','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'COIN'])]));
+
         return view('coinsult',['coinsult'=>$consul]);
     }
 
@@ -26,16 +36,20 @@ class CoinsultController extends Controller
      */
     public function create()
     {
+
         $id= auth()->user()->id;
         $getPunto=CoinsultDetalleModel::where('punto','5')->first()->idcoinsultDetalle;
         $validarCo=CoinsultModel::where('iduser',$id)->where('idcoinsultDetalle',$getPunto)->first();
         if($validarCo){
-             return redirect('/home');
+            return redirect('/home');
         }
-        $coinsulcreate= new CoinsultModel();
+        $coinsulcreate= new CoinsultModel(); 
         $coinsulcreate->iduser= $id;
         $coinsulcreate->idcoinsultDetalle= $getPunto;
         $coinsulcreate->save();
+
+        
+
         return redirect('/interes');
     }
 

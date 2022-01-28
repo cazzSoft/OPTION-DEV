@@ -1,4 +1,11 @@
+    //control del back del navegador
+    // window.history.forward();
+    // function noBack()
+    // {  
+    //     window.history.forward();
+    // }
 
+    
 	// configuraciones globales
     $(function () {
 
@@ -8,6 +15,9 @@
         cargar_stilos_table('.data_table');
         //  para aplicar el dataRange de fechas  
         // $('.daterange').daterangepicker();
+
+       
+      
     });
 
     {/*  funcion para mostrar alertas toast - */}

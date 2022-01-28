@@ -27,7 +27,7 @@ function saveArtUser(idart) {
     };
 
     $.ajax({
-        url: "gestion/articulo_user", 
+        url: "/gestion/articulo_user", 
         method: "POST", 
         data: FrmData, 
         dataType: "json",
@@ -131,4 +131,99 @@ $('#btn_action').click(function () {
    
 });
 
-//evento para actulizar perfil
+//evento para registrar actividad//////////////////////////////
+function acctionVideo(idar,ste) {
+    console.log(idar);
+    // $('ffr').removeClass('ffr');
+    // $(ste).children('iframe').attr('id','ffr');
+    // var symbol = $("#ffr")[0].src.indexOf("?") > -1 ? "&" : "?";
+   
+    //  $("#ffr")[0].src += "?autoplay=1";
+    // console.log(symbol);
+}
+
+function acctionVermas(idar) {
+    //se llama para insertar el evento de Ver mas
+    $.get("/actividades/vermas/"+idar, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+
+function acctionCompartirF(idar) {
+    //se llama para insertar el evento  de compartir
+    $.get("/actividades/shareF/"+idar, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+function acctionCompartirW(idar) {
+    //se llama para insertar el evento de compartir
+    $.get("/actividades/shareW/"+idar, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+function acctionContacOnline(idar) {
+     //se llama para insertar el evento de Contacto Online
+    $.get("/actividades/contactOnline/"+idar, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+function acctionContactW(idar) {
+     //se llama para insertar el evento de Contacto whatsapp
+    $.get("/actividades/contactW/"+idar, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+
+function acctionConoceme(idm) {
+     //se llama para insertar el evento de Conoceme view informacion medico
+    $.get("/actividades/conoceme/"+idm, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+function acctionPublicaciones(idm) {
+     //se llama para insertar el evento de Conoceme view informacion medico
+    $.get("/actividades/publicaciones/"+idm, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+function acctionSociales(idm,des) {
+     //se llama para insertar el evento de Conoceme view informacion medico
+    $.get("/actividades/redessociales/"+idm+'/'+des, function (data) {
+        console.log(data);
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+}
+
+ 
+
+        

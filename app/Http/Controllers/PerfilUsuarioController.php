@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
+use App\CiudadModel;
+use App\Events\HomeEventPerfilUser;
 use App\GuardadoModel;
 use App\SeguirModel;
-use App\CiudadModel;
+use App\User;
+use Illuminate\Http\Request;
 
 
 class PerfilUsuarioController extends Controller
@@ -16,9 +17,12 @@ class PerfilUsuarioController extends Controller
      public function __construct()
     {   
        
-        $this->middleware('auth');
+        $this->middleware('auth'); 
+     
     }
     
+
+    //Información del perfil del usuario
     public function index()
     {
        
@@ -26,6 +30,10 @@ class PerfilUsuarioController extends Controller
         $guardado=GuardadoModel::with('articulo_user')->where('iduser',auth()->user()->id)->orderBy('idguardado','desc')->get();
         $seguidos=SeguirModel::where('iduser',auth()->user()->id)->count();
         $ciudades= CiudadModel::all();
+
+        //registro de evento view page
+        event(new HomeEventPerfilUser(['page'=>'Perfil usuaio','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
+
         return view('perfil',['data'=>$consul,'listaGuar'=>$guardado,'sigues'=>$seguidos,'listaCiudad'=>$ciudades]);
     }
 
@@ -51,6 +59,7 @@ class PerfilUsuarioController extends Controller
      */
     public function show_info()
     {
+         
          $seguidos=SeguirModel::with('usuarios')->where('iduser',auth()->user()->id)->get();
          if ($seguidos) {
             $array=[];
