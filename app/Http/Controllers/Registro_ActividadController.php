@@ -26,7 +26,7 @@ class Registro_ActividadController extends Controller
     {
         $fecha= now();
         $value=$fecha->format('Y-m-d');
-        $consulta=Actividad_userModel::with('desub_actividad')->where('iduser',18)->where('created_at','like',$value.'%')->get();
+        $consulta=Actividad_userModel::with('desub_actividad')->where('iduser',auth()->user()->id)->where('created_at','like',$value.'%')->get();
         $array=[];
        
         $listaHistorial=Registro_ActividadModel::all();
