@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ArticuloModel;
+use App\Events\MedicoEventCasoEx;
+use App\Events\MedicoEventCasoExFiltroSearch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class Caso_exController extends Controller
@@ -74,6 +76,8 @@ class Caso_exController extends Controller
                 $actArt->iduser=auth()->user()->id;
                 $actArt->tipo='E';
                 if($actArt->save()){
+                    //registrar evento nuevo caso ex
+                    event(new MedicoEventCasoEx(['tipo'=>'save','caso'=>$actArt,'iduser'=>auth()->user()->id,'seccion'=>'CAEX']));
                      return response()->json([
                         'jsontxt'=> ['msm'=>'Datos guardado con éxito..','estado'=>'success']
                      ],200);
@@ -85,7 +89,7 @@ class Caso_exController extends Controller
             // return $request;
         } catch (\Throwable $th) {
             return response()->json([
-                'jsontxt'=>['msm'=>'Lo sentimos algo salio mal, intente nuevamente','estado'=>'error'],
+                'jsontxt'=>['msm'=>'Lo sentimos algo salio mal, intente nuevamente'.$th->getMessage(),'estado'=>'error'],
             ],500);
         } 
     }
@@ -94,7 +98,6 @@ class Caso_exController extends Controller
     public function get_casos(Request $request)
     {
        $value= $request->search_caso;
-       
        $listacasos=ArticuloModel::withCount('comentarios')
             ->with('medico')
             ->where('titulo','like','%'.$value.'%')
@@ -108,9 +111,14 @@ class Caso_exController extends Controller
         $casos=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','E')->where('estado',1)->count();
         $porcet= $counCasos/100;
 
+        //registrar evento al filtrar
+        event(new MedicoEventCasoExFiltroSearch(['tipo'=>'search','nameFiltro'=>$value,'iduser'=>auth()->user()->id,'seccion'=>'CAEX','sep'=> session(['seccion_tipo'=>'SEA'])]));
+        
         if($value==""){
             return redirect('medico/casos_ex')->with(['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos,'valor'=>$value]);
        }
+
+
         return view('medico.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos,'valor'=>$value]);
     }
 
@@ -128,6 +136,9 @@ class Caso_exController extends Controller
         $counCasos=ArticuloModel::where('created_at','like','2021-12%')->where('tipo','E')->where('estado',1)->count();
         $casos=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','E')->where('estado',1)->count();
         $porcet= $counCasos/100;
+
+        //registrar evento al filtrar
+        event(new MedicoEventCasoExFiltroSearch(['tipo'=>'filtro','nameFiltro'=>'Ultimo mes','iduser'=>auth()->user()->id,'seccion'=>'CAEX','sep'=> session(['seccion_tipo'=>'FLT'])]));
         return view('medico.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos]);
     }
 
@@ -144,11 +155,15 @@ class Caso_exController extends Controller
         $counCasos=ArticuloModel::where('created_at','like','2021-12%')->where('tipo','E')->where('estado',1)->count();
         $casos=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','E')->where('estado',1)->count();
         $porcet= $counCasos/100;
+         //registrar evento al filtrar
+        event(new MedicoEventCasoExFiltroSearch(['tipo'=>'filtro','nameFiltro'=>'Mis casos','iduser'=>auth()->user()->id,'seccion'=>'CAEX','sep'=> session(['seccion_tipo'=>'FLT'])]));
         return view('medico.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos]);
     }
+
+
+    //obtiene el caso
     public function show($id)
     {
-
         $id=decrypt($id);
         $consul=ArticuloModel::with(['medico'])->withCount(['comentarios'=>function ($q){
                 $q->where('activo',1);
@@ -159,7 +174,8 @@ class Caso_exController extends Controller
             $consul->visto=$consul->visto+1;
             $consul->save();
         }
-
+        //registrar evento obtener caso ex
+        event(new MedicoEventCasoEx(['tipo'=>'comment','caso'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'COM']));
         return view('medico.casoComent',['caso'=>$consul]);
     }
 
@@ -175,6 +191,8 @@ class Caso_exController extends Controller
             $id=decrypt($id);
             $consul=ArticuloModel::find($id);
             if(isset($consul)){
+                //registrar evento editar caso
+                event(new MedicoEventCasoEx(['tipo'=>'edit','caso'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'CAEX']));
                 return response()->json([
                     'jsontxt'=>['msm'=>'success','estado'=>'success'],
                     'request'=>$consul
@@ -222,6 +240,7 @@ class Caso_exController extends Controller
                 
                 //Guardamos los datos
                 $actArt= ArticuloModel::find(decrypt($id));
+                $actArt_aux= ArticuloModel::find(decrypt($id));
                 $actArt->descripcion=$request->descripcion;
                 $actArt->titulo=$request->titulo;
                 $actArt->url_video=$request->url_video;
@@ -235,6 +254,8 @@ class Caso_exController extends Controller
                 $actArt->medico_visitado=$request->medico_visitado;
 
                 if($actArt->save()){
+                    //registrar evento nuevo caso ex
+                    event(new MedicoEventCasoEx(['tipo'=>'update','objCaso'=>$actArt_aux,'objCasoUpdate'=>$request,'iduser'=>auth()->user()->id,'seccion'=>'CAEX']));
                      return response()->json([
                         'jsontxt'=> ['msm'=>'Datos actualizado con éxito..','estado'=>'success']
                      ],200);
@@ -246,7 +267,7 @@ class Caso_exController extends Controller
             // return $request;
         } catch (\Throwable $th) {
             return response()->json([
-                'jsontxt'=>['msm'=>'Lo sentimos algo salio mal, intente nuevamente','estado'=>'error'],
+                'jsontxt'=>['msm'=>'Lo sentimos algo salio mal, intente nuevamente '.$th->getMessage(),'estado'=>'error'],
             ],500);
         } 
     }

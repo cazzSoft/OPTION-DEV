@@ -120,6 +120,17 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\MedicoEventPublicacionesHabilitar::class=>[
              'App\Listeners\MedicoListenerPublicacionesHabilitar',
         ],
+
+        \App\Events\MedicoEventCasoEx::class=>[
+             'App\Listeners\MedicoListenerCasoEx',
+        ],
+
+        \App\Events\MedicoEventCasoExFiltroSearch::class=>[
+             'App\Listeners\MedicoListenerCasoExFiltroSearch',
+        ],
+         \App\Events\MedicoEventCasoExComent::class=>[
+             'App\Listeners\MedicoListenerCasoExComent',
+        ],
     ];
 
     /**

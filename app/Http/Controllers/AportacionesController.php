@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AportacionesModel;
+use App\Events\MedicoEventCasoExComent;
 use Illuminate\Http\Request;
 
 class AportacionesController extends Controller
@@ -42,7 +43,8 @@ class AportacionesController extends Controller
         $coment->iduser=auth()->user()->id;
       
         if($coment->save()){
-            
+            //registrar evento comentario nuevo
+            event(new MedicoEventCasoExComent(['tipo'=>'save','comentario'=>$coment,'iduser'=>auth()->user()->id,'seccion'=>'COM']));
              return response()->json([
                 'jsontxt'=> ['msm'=>'Datos guardado con éxito..','estado'=>'success'],
                 'request'=> AportacionesModel::with('usuario')->find($coment->idaportaciones)
@@ -86,17 +88,21 @@ class AportacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $coment= AportacionesModel::find(decrypt($id));
+        $comentAux= AportacionesModel::find(decrypt($id));
         //si es el comentario es vacio quiere decir que eliminamos su comentario
         if($request->comentario == null){
-          return $this->destroy($id);
+           
+            return $this->destroy($id);
         }
          
-        $coment= AportacionesModel::find(decrypt($id));
+       
         $coment->comentario=$request->comentario;
         $coment->idarticulo=decrypt($request->idart);
        
         if($coment->save()){
-            
+            //registrar evento actulizar comentario del caso
+            event(new MedicoEventCasoExComent(['tipo'=>'update','objComent'=>$comentAux,'objComentUpdate'=>$request,'iduser'=>auth()->user()->id]));
              return response()->json([
                 'jsontxt'=> ['msm'=>'Datos guardado con éxito..','estado'=>'success'],
              ],200);
@@ -118,6 +124,8 @@ class AportacionesController extends Controller
         $coment= AportacionesModel::find(decrypt($id));
         $coment->activo=0;
        if($coment->save()){
+            //registrar evento comentario eliminado
+            event(new MedicoEventCasoExComent(['tipo'=>'delete','comentario'=>$coment,'iduser'=>auth()->user()->id,'seccion'=>'COM']));
              return response()->json([
                 'jsontxt'=> ['msm'=>'Eliminado','estado'=>'success'],
              ],200);
