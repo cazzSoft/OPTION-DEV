@@ -75,6 +75,7 @@ class HomeListenerSearch
                         'idactividad_padre'=>$idactividad_padre,
                         'idsecciones_actividad'=>$seccionNavegacion,
                         'idtemas'=>null,
+                        'idbiblioteca_virtual'=>null,
                     ];
 
         $result=$this->actividad->historialUser($dataActividad,$dataRegistro);

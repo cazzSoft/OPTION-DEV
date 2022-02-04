@@ -54,6 +54,10 @@ return [
             // 'url' => env('APP_URL').'/public',
             // 'visibility' => 'public',
         ],
+        'diskDocumentosBiblioteca_v' => [
+            'driver' => 'local',
+            'root' => public_path('DocumentosBiblioteca'),
+        ],
 
         'public' => [
             'driver' => 'local',

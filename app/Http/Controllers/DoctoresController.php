@@ -8,6 +8,9 @@ use App\ArticuloModel;
 use App\CiudadModel;
 use App\EspecialidadesModel;
 use App\Events\HomeEventInfoMedico;
+use App\Events\HomeEventPerfilUser;
+use App\Events\PerfilUserEventUsuario;
+use App\Events\PerfilUserEventUsuarioEdit;
 use App\GuardadoModel;
 use App\Registro_ActividadModel;
 use App\SeguirModel;
@@ -28,6 +31,8 @@ class DoctoresController extends Controller
     
     public function index()
     {
+        //registro de evento user medico
+        event(new HomeEventPerfilUser(['page'=>'Perfil Usuaio','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
         $listaArt=ArticuloModel::withCount(['like'])->where('iduser',auth()->user()->id)->where('estado','1')->where('tipo','N')->get()->take(11);
         $countArt=ArticuloModel::where('iduser',auth()->user()->id)->count();
         $countSeguid=SeguirModel::where('iduser_medico',auth()->user()->id)->count();
@@ -67,7 +72,9 @@ class DoctoresController extends Controller
         $listaEspeci=EspecialidadesModel::all();
         $listaCiudad=CiudadModel::all();
         $listaTitulo=TituloModel::all(); 
-        
+        //registrar evento del medico
+        event(new PerfilUserEventUsuarioEdit(['idarticulo'=>null,'sub_a'=>'1','tipo_s'=>'PERMED','descripcion'=>' "Editar Perfil"','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
+
         return view('medico.perfil_medico',['datos_p'=>$datosPersonales,'listaCiudad'=>$listaCiudad,'especialidad'=>$especialidad,'lista_especialidad'=>$listaEspeci,'lista_titu'=>$listaTitulo]);
      
     }
@@ -102,7 +109,9 @@ class DoctoresController extends Controller
     public function update(Request $request, $id)
     {
         // return $request;
+
         $user=User::find(decrypt($id));
+        $user_aux=User::find(decrypt($id));
         $user->name=$request->name;
         $user->email=$request->email;
         $user->telefono=$request->telefono;
@@ -112,17 +121,22 @@ class DoctoresController extends Controller
         if( $user->save()){
             //actualizamos sus especialidad
             if($request->iduser_especialidad!=""){
-               
                 $espe=UsuarioEspecialidadModel::where('iduser',decrypt($id));
+                $espe_axu=UsuarioEspecialidadModel::where('iduser',decrypt($id))->get();
                 $espe->delete();
                 foreach ($request->iduser_especialidad as $key => $value) {
                     $nuevos= new UsuarioEspecialidadModel();
                     $nuevos->idespecialidades=$value;
                     $nuevos->iduser=decrypt($id);
                     $nuevos->save(); 
-                }   
-            }
-
+                }  
+                //registro evento para especialidades 
+                 session(['seccion_ctr'=>0]);
+                event(new PerfilUserEventUsuario(['tipoUser'=>'M-E','objUserEspeci'=>$espe_axu,'objUserEspeciUpdate'=>$request->iduser_especialidad ,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
+            } 
+            //registro de evento update datos basicos medico
+             session(['seccion_ctr'=>0]);
+            event(new PerfilUserEventUsuario(['tipoUser'=>'M','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
             return back()->with(['info' => 'Datos actualizados', 'estado' => 'success']);
         }else{
             return back()->with(['info' => 'No se pudieron actualizados los datos ', 'estado' => 'error']);
@@ -134,6 +148,7 @@ class DoctoresController extends Controller
     {
       
         $user=User::find(decrypt($id));
+        $user_aux=User::find(decrypt($id));
         $user->num_licenciaMedica=$request->num_licenciaMedica;
         $user->idtitulo_profesional=$request->idtitulo_profesional;
         $user->detalle_estudio=$request->detalle_estudio;
@@ -143,6 +158,9 @@ class DoctoresController extends Controller
         $user->link_stg=$request->link_stg;
         $user->link_lkd=$request->link_lkd;
         if( $user->save()){
+            //registro de evento update datos basicos medico
+            session(['seccion_ctr'=>0]);
+            event(new PerfilUserEventUsuario(['tipoUser'=>'M-A','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
             return back()->with(['info' => 'Datos actualizados', 'estado' => 'success']);
         }else{
             return back()->with(['info' => 'No se pudieron actualizados los datos ', 'estado' => 'error']);

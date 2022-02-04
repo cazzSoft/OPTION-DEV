@@ -9,60 +9,93 @@
 {{-- cuerpo de la pagina --}}
 @section('contenido')
   
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Repositorio </h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-          <i class="fas fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-          <i class="fas fa-times"></i>
-        </button>
+<div class="container-fluid">
+  <h2 class="text-center display-4">Biblioteca virtual</h2>
+  <form id="form_search_filtro" >
+    <div class="row">
+      <div class="col-md-12 offset-md-1">
+        <div class="row">
+          <div class="col-md-10 mb-0 mt-3">
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <input type="search" class="form-control form-control-lg" placeholder="Search document" id="search_archivo" value="">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-lg btn-default">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-3 mb-1 mt-0 offset-md-8 ">
+        <div class="form-group ">
+          <select  class="form-control  select2  @error('idespecialidades') is-invalid @enderror" style="width: 100%;"
+          data-placeholder=" Filtrar por especialidades" name="idespecialidades" id="idespecialidades_filtro"  >
+            <option></option>
+             <option value=" ">Todos</option>
+            @if(isset($lista_esp))
+              @foreach($lista_esp as $item)
+                <option @if(old('idespecialidades')==$item->idespecialidades)  selected="selected" @endif value="{{$item->idespecialidades}}">
+                  {{$item->descripcion}}
+                </option>
+                
+              @endforeach
 
+            @endif
+          </select>
+            @error('idespecialidades')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+      </div>
+    </div>
+  </form>
+</div>  
+
+  <div class="card">
     <div class="card-body">
       <div class="row">
         <div class="col-12 col-md-12 col-lg-12 ">
           <div class="row ">
-            <div class="col-md-2 mb-2 mt-3">
-              <div class="btn-group b" role="group">
-                  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filtrar por especialidades
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    @if(isset($lista_esp))
-                      @foreach($lista_esp as $item)
-                         <a class="dropdown-item" href="#">{{$item['descripcion']}}</a>
-                      @endforeach
-                    @endif
-                     
-
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-10 mt-3">
-              <form action="" method="POST">
-                {{ csrf_field() }}
-                <input id="method_" type="hidden" name="_method" value="POST">                  
-                <div class="input-group  ">
-                  <input type="Search" class="form-control" name="search_caso" value="" >
-                  <div class="input-group-append">
-                     <button class="input-group-text " type="submit"> <i class="fas fa-search"></i> </button>
-                  </div>
-                </div>
-              </form> 
-            </div>
-
-            <div class="col-12">
+            <div class="col-12 col-sm-12 col-xs-12">
              
-                @if(isset($lista_casos))
-                  @foreach($lista_casos as $item)
-                    
-                  @endforeach
-                    
- 
+                @if(isset($lista_archivo))
+                  <div class="card-footer bg-white responsive" >
+                    <ul class="mailbox-attachments d-flex align-items-stretch clearfix" id="contetResulFiltro">
+                    @foreach($lista_archivo as $item)
+                      @if($item['tipo']=='IMG')
+                        <li>
+                          <span class="mailbox-attachment-icon has-img"><img class="img" src="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" alt="Attachment"></span>
+                          <div class="mailbox-attachment-info">
+                            <a href="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" onclick="eventDocumeto('{{$item->idbibliotecavirtual_encryp}}')" target="_blank" class="mailbox-attachment-name"><i class="fas fa-camera"></i> {{$item['titulo']}}</a>
+                              <span class="mailbox-attachment-size clearfix mt-1">
+                                <span>{{$item['especialidad']['descripcion']}}</span>
+                                <a href="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" download="proposed_file_name" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                              </span>
+                          </div>
+                        </li>
+                      @elseif($item['tipo']=='PDF')
+                        <li>
+                          <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+                          <div class="mailbox-attachment-info">
+                            <a href="{{asset('DocumentosBiblioteca/'.$item->ruta)}}"  onclick="eventDocumeto('{{$item->idbibliotecavirtual_encryp}}')" target="_blank" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> {{$item['titulo']}}.pdf</a>
+                                <span class="mailbox-attachment-size clearfix mt-1">
+                                  <span>{{$item['especialidad']['descripcion']}}</span>
+                                  <a href="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" download="proposed_file_name" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                                </span>
+                          </div>
+                        </li>
+                      @endif
+                    @endforeach
+                  </ul>
+                  </div>
+                
                 @else
                   <div class="alert alert-light mt-4 " role="alert">
                     No se obtubo ningún resultado
@@ -70,7 +103,6 @@
                 @endif
                 
             </div>
-
           </div>
         </div>
         <div class=" col-md-12 col-lg-4 order-1 order-md-2">
@@ -90,7 +122,16 @@
   @stop   
   {{-- Seccion para insertar js--}}
   @section('include_js')
-       <script src="{{ asset('/js/casos_ex.js') }}"></script>
+    <script src="{{ asset('/js/casos_ex.js') }}"></script>
+    <script >
+    $(document).ready(function() {
+       $('.select2').select2({
+           
+      });
+    });
+    </script>
+    <script src="{{ asset('/js/biblioteca_virtual.js') }}"></script>
+
   @stop
 
 

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Actividad_userModel;
 use App\ArticuloModel;
+use App\Events\HomeEventPerfilUser;
 use App\Events\HomeEventSearch;
+use App\Events\MedicoEventPublicacion;
+use App\Events\MedicoEventPublicacionesSave;
+use App\Events\PerfilUserEventUsuarioEdit;
 use App\Inters_userModel;
 use App\Registro_ActividadModel;
 use Carbon\Carbon;
@@ -13,6 +17,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use Log;
 use Str;
 
 class ArticuloController extends Controller
@@ -25,6 +30,10 @@ class ArticuloController extends Controller
     public function index()
     {
         $lista=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','N')->where('estado',1)->get();
+
+        //registro de evento  articulo
+        event(new HomeEventPerfilUser(['page'=>'Agregar Publicación','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'ART'])]));
+
         return view('medico.gestionArticulo',['listaArt'=>$lista]);
     }
 
@@ -45,6 +54,8 @@ class ArticuloController extends Controller
                     if ($consul->publicar==1) {
                         $consul->publicar=0;
                         $consul->save();
+                        //registrar evento publicar articulo
+                        event(new MedicoEventPublicacionesSave(['tipo'=>'publicar','descripcion'=>' ha quitado la publicación del artículo','articulo'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'ART']));
                         return response()->json([
                             'jsontxt'=>['msm'=>'Se ha cambiado el estado a la publicación. ','estado'=>'info'],
                             'request'=>['clr'=>'btn-success','txt'=>'Publicar','icon'=>'fa fa-notes-medical','p'=>'0']
@@ -52,6 +63,8 @@ class ArticuloController extends Controller
                     }elseif ($consul->publicar==0) {
                         $consul->publicar=1;
                         $consul->save();
+                        //registrar evento publicar articulo
+                        event(new MedicoEventPublicacionesSave(['tipo'=>'publicar','descripcion'=>' ha publicado el artículo','articulo'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'ART']));
                         return response()->json([
                             'jsontxt'=>['msm'=>'Publicación habilitada.','estado'=>'success'],
                             'request'=>['clr'=>'btn-info','txt'=>'Quitar publicación ','icon'=>'fa fa-eye-slash','p'=>'1']
@@ -61,12 +74,12 @@ class ArticuloController extends Controller
 
                 }else{
                    return response()->json([
-                       'jsontxt'=>['msm'=>'No se completo la acción','estado'=>'error'],
+                       'jsontxt'=>['msm'=>'No 1se completo la acción','estado'=>'error'],
                    ],501); 
                 }   
         } catch (\Throwable $th) {
             return response()->json([
-                'jsontxt'=>['msm'=>'No se completo la acción','estado'=>'error'],
+                'jsontxt'=>['msm'=>'No se completo la acción'.$th->getMessage(),'estado'=>'error'],
             ],500);
         }
     }
@@ -116,6 +129,9 @@ class ArticuloController extends Controller
                  $actArt->tipo='N';
                 
                  if($actArt->save()){
+                    
+                    //registrar evento nuevo documento
+                    event(new MedicoEventPublicacionesSave(['tipo'=>'save','articulo'=>$actArt,'iduser'=>auth()->user()->id,'seccion'=>'ART']));
                       return response()->json([
                          'jsontxt'=> ['msm'=>'Datos guardado con éxito..','estado'=>'success']
                       ],200);
@@ -136,7 +152,6 @@ class ArticuloController extends Controller
     {
        //activamos la varible session para controlar las acciones de la busquedad
        
-        
     
         //consultar sus temas elegidos
         $id=auth()->user()->id;
@@ -476,18 +491,23 @@ class ArticuloController extends Controller
     public function edit($id)
     {
         try {
-            $id=decrypt($id);
-            $consul=ArticuloModel::find($id);
-            if(isset($consul)){
-                return response()->json([
-                    'jsontxt'=>['msm'=>'success','estado'=>'success'],
-                    'request'=>$consul
-                ],200);
-            }else{
-               return response()->json([
-                   'jsontxt'=>['msm'=>'No se completo la acción','estado'=>'error'],
-               ],501); 
-            }   
+                $id=decrypt($id);
+                $consul=ArticuloModel::find($id);
+
+                //registro de evento edit articulo
+                event(new PerfilUserEventUsuarioEdit(['idarticulo'=>$id,'sub_a'=>'0','tipo_s'=>'PER','descripcion'=>' "Icono Editar Publicacion "','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
+
+                if(isset($consul)){
+                    return response()->json([
+                        'jsontxt'=>['msm'=>'success','estado'=>'success'],
+                        'request'=>$consul
+                    ],200);
+                }else{
+                   return response()->json([
+                       'jsontxt'=>['msm'=>'No se completo la acción','estado'=>'error'],
+                   ],501); 
+                }   
+                
         } catch (\Throwable $th) {
             return response()->json([
                 'jsontxt'=>['msm'=>'No se completo la acción','estado'=>'error'],
@@ -528,6 +548,7 @@ class ArticuloController extends Controller
 
             //actualizamos registros
             $actArt= ArticuloModel::find($id);
+            $art_Aux=ArticuloModel::find($id);
             $actArt->descripcion=$request->descripcion;
             $actArt->titulo=$request->titulo;
             $actArt->vinculo_art=$request->vinculo_art;
@@ -543,6 +564,9 @@ class ArticuloController extends Controller
             $actArt->enfermedades=$request->enfermedades;
 
             if($actArt->save()){
+                //registro de evento update publicacion
+                event(new MedicoEventPublicacion(['objPublicacion'=>$art_Aux,'objPublicacionUpdate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
+
                  return response()->json([
                     'jsontxt'=> ['msm'=>'Datos actualizado con éxito..','estado'=>'success']
                  ],200);

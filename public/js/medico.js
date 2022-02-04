@@ -11,7 +11,15 @@ $('#btn_editArt').click(function () {
 });
 
 $('#btn_addtArt').click(function () {
-	window.location=url+"/gestion/articulo";
+
+	//registro de evento add publicacion
+	$.get("/actividades/eventMedicoPerfil", function (data) {
+	    console.log(data);
+	    window.location=url+"/gestion/articulo";
+	}).fail(function(data){
+	   console.log(data);
+	});
+	
 });
 
 
@@ -357,7 +365,7 @@ function limpiarFormArt() {
     	    	    	       		<i class="${data.request.icon}"></i> ${data.request.txt}        
     	    	            	</button>`; 
     			        mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
-    			        $(ste).parents('username').find('td').eq(5).html(btn); 
+    			        $(ste).parents('tr').find('td').eq(5).html(btn); 
     			    }, error: function (data) {
     			        var statusText = data.statusText;
     			        var data = data.responseJSON;

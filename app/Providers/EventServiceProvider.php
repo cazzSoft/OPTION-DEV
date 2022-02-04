@@ -97,6 +97,29 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\UserEventPreguntaIntere::class=>[
              'App\Listeners\UserListenerPreguntaIntere',
         ],
+
+        \App\Events\MedicoEventPublicacion::class=>[
+             'App\Listeners\MedicoListenerPublicacion',
+        ],
+
+        \App\Events\UserEventBibliotecaSave::class=>[
+             'App\Listeners\UserListenerBibliotecaSave',
+        ],
+
+         \App\Events\UserEventSearchBibliotecaFiltro::class=>[
+             'App\Listeners\UserListenerSearchBibliotecaFiltro',
+        ],
+        \App\Events\UserEventBibliotecaAction::class=>[
+             'App\Listeners\UserListenerBibliotecaAction',
+        ],
+
+        \App\Events\MedicoEventPublicacionesSave::class=>[
+             'App\Listeners\MedicoListenerPublicacionesSave',
+        ],
+
+        \App\Events\MedicoEventPublicacionesHabilitar::class=>[
+             'App\Listeners\MedicoListenerPublicacionesHabilitar',
+        ],
     ];
 
     /**
@@ -155,7 +178,7 @@ class EventServiceProvider extends ServiceProvider
                             ],
                             [
                                 'text' => 'Biblioteca virtual',
-                                'url'  => 'repositorio',
+                                'url'  => 'biblioteca/show',
                                 'icon' => 'fas fa-book-reader ',
                                 'label'       => 'in process',
                                 'label_color' => 'danger',
@@ -205,6 +228,20 @@ class EventServiceProvider extends ServiceProvider
                                 'label_color' => 'primary',
                                 'active' => ['gestion/search_user_art']
 
+                            ],
+                            [
+                                'text' => 'Repositorio',
+                                'icon' => 'fas fa-archive',
+                                'submenu' => [
+                                               [
+                                                   'text' => 'Buscar archivo',
+                                                   'url'  => 'biblioteca/show',
+                                               ],
+                                               [
+                                                   'text' => 'Guardar archivo',
+                                                   'url'  => 'biblioteca/repositorio',
+                                               ],
+                                            ],
                             ],
                             [
                                 'text' => 'Agregar Publicación',

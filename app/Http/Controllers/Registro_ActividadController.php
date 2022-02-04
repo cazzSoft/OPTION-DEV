@@ -10,6 +10,8 @@ use App\Events\HomeEventPerfilUser;
 use App\Events\HomeEventShare;
 use App\Events\MedicoEventSeguirSociales;
 use App\Events\MedicoEventTabsChange;
+use App\Events\PerfilUserEventUsuarioEdit;
+use App\Events\UserEventBibliotecaAction;
 use App\Events\UserEventPreguntaIntere;
 use App\Events\userRegistro;
 use App\Registro_ActividadModel;
@@ -26,7 +28,7 @@ class Registro_ActividadController extends Controller
     {
         $fecha= now();
         $value=$fecha->format('Y-m-d');
-        $consulta=Actividad_userModel::with('desub_actividad')->where('iduser',auth()->user()->id)->where('created_at','like',$value.'%')->get();
+        $consulta=Actividad_userModel::with('desub_actividad')->where('iduser',auth()->user()->id)->where('created_at','like',$value.'%')->where('sub_actividad',1)->get();
         $array=[];
        
         $listaHistorial=Registro_ActividadModel::all();
@@ -83,6 +85,8 @@ class Registro_ActividadController extends Controller
             $saveActividad->idactividad_padre=$dataAc['idactividad_padre'];
             $saveActividad->idsecciones_actividad=$dataAc['idsecciones_actividad'];
             $saveActividad->idtemas=$dataAc['idtemas'];
+            $saveActividad->idbiblioteca_virtual=$dataAc['idbiblioteca_virtual'];
+            
             $saveActividad->save();
             //guardamos idpadre encaso este activo el search
             // if(session()->get('seccion_tipo')==1){
@@ -111,6 +115,7 @@ class Registro_ActividadController extends Controller
                 $saveActividad->idactividad_padre=$dataAc['idactividad_padre'];
                 $saveActividad->idsecciones_actividad=$dataAc['idsecciones_actividad'];
                 $saveActividad->idtemas=$dataAc['idtemas'];
+                $saveActividad->idbiblioteca_virtual=$dataAc['idbiblioteca_virtual'];
                 $saveActividad->save();
                 //guardamos idpadre encaso este activo el search
                 // if(session()->get('activa_search')==1){
@@ -188,6 +193,20 @@ class Registro_ActividadController extends Controller
     public function EventOmitir()
     {
         event(new UserEventPreguntaIntere(['iduser'=>auth()->user()->id,'descripcion'=>'  ha "Omitido las pregunta de interes"','idtemas'=>null]));
+    }
+
+    //evento del medico
+    public function EventMedicoPerfil()
+    {
+        //registrar evento del medico
+        event(new PerfilUserEventUsuarioEdit(['idarticulo'=>null,'sub_a'=>'1','tipo_s'=>'ART','descripcion'=>' "Add publicación"','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
+
+    }
+
+    public function EventBiblioteca($id)
+    {
+        $id=decrypt($id);
+        event(new UserEventBibliotecaAction(['idbiblioteca_virtual'=>$id,'iduser'=>auth()->user()->id]));
     }
 
     ////////Gestión de Eventos END ////////////////////// 

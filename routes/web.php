@@ -91,7 +91,12 @@ use Illuminate\Support\Facades\Auth;
          Route::resource('/interes', 'Inters_userController');
 
          //RUTA BIBLIOTECA VIRTUAL
-         Route::resource('/repositorio', 'DocumentRepository');
+          Route::prefix('biblioteca')->group(function () {
+            Route::resource('/show', 'DocumentRepository');
+            Route::get('/repositorio', 'DocumentRepository@show_documento_virtual');
+            Route::post('/search', 'DocumentRepository@search_documento');
+          });
+        
         
 
         //HISTORIAL DE USUARIO 
@@ -110,7 +115,8 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/redessociales/{id}/{des?}', 'Registro_ActividadController@EventSociales'); 
             Route::get('/Preguntasomitir', 'Registro_ActividadController@EventOmitir');
 
-
+            Route::get('/eventMedicoPerfil', 'Registro_ActividadController@EventMedicoPerfil');
+            Route::get('/eventDocumentBiblioteca/{id}', 'Registro_ActividadController@EventBiblioteca');
 
         });
            

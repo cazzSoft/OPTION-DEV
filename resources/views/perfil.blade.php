@@ -13,7 +13,7 @@
         <div class="col-xl-4 col-sm-12">
             <div class="card card-info card-outline">
                 <div class="card-header">
-                    <div class="row">
+                    <div class="row"> 
                         <div class="col-6 col-md-6 col-sm-12 text-left">
                           <h3 class="card-title">
                               <b>Datos Personales</b>

@@ -85,6 +85,7 @@ class HomeListenerPerfilUser
                             'idactividad_padre'=> $idactividad_padre,
                             'idsecciones_actividad'=>$seccionNavegacion,
                             'idtemas'=>null,
+                            'idbiblioteca_virtual'=>null,
                         ];
             session(['seccion_ctr'=>0]);            
             $result=$this->actividad->historialUser($dataActividad,$dataRegistro);

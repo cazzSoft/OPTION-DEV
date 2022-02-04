@@ -20,7 +20,7 @@
                     <h3 class="widget-user-username text-center text-info">{{$datos_p->name}}</h3>
                     <h5 class="widget-user-desc text-center text-muted">{{$datos_p->titulo['descripcion']}}</h5>
                     <div class="comment-text text-center m-4">
-                      {{$datos_p->detalle_estudio}}
+                      {{$datos_p->detalle_estudio}} 
                     </div>
                     @if(isset($user) && $user!='dr' )
                       <div class="text-center mt-2 text-light  ">  <a  onclick="gestionSeguir('{{encrypt($datos_p->id)}}',this)" class="btn btn-info btn-sm text-center"><b> <i class="fa fa-check"></i> @if(isset($sigue)) Dejar de seguir @else Seguir @endif</b></a>
@@ -31,16 +31,16 @@
                       <p class="text-muted text-center">Sígueme en:</p>
                       <div class="text-center mb-3">
                       
-                        <a href="{{$datos_p->link_fb}}" target="_blank" class="btn btn-social-icon mr-1 btn-facebook ng-scope bg-indigo" ng-if="doctorsee.Facebook!==''">
+                        <a href="{{$datos_p->link_fb}}"  onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="_blank" class="btn btn-social-icon mr-1 btn-facebook ng-scope bg-indigo" ng-if="doctorsee.Facebook!==''">
                           <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="{{$datos_p->link_tw}}" target="_blank" class="btn btn-social-icon mr-1 btn-instagram ng-scope bg-lightblue " ng-if="doctorsee.Instagram!==''">
+                        <a href="{{$datos_p->link_tw}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Instagram')" target="_blank" class="btn btn-social-icon mr-1 btn-instagram ng-scope bg-lightblue " ng-if="doctorsee.Instagram!==''">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="{{$datos_p->link_stg}}" target="_blank" class="btn btn-social-icon mr-1 btn-twitter ng-scope btn-primary" ng-if="doctorsee.Twitter!==''">
+                        <a href="{{$datos_p->link_stg}}"  onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="_blank" class="btn btn-social-icon mr-1 btn-twitter ng-scope btn-primary" ng-if="doctorsee.Twitter!==''">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="{{$datos_p->link_lkd}}" target="_blank" class="btn btn-social-icon mr-1 btn-linkedin ng-scope bg-info" ng-if="doctorsee.Linkedin!==''">
+                        <a href="{{$datos_p->link_lkd}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Linkedin')" target="_blank" class="btn btn-social-icon mr-1 btn-linkedin ng-scope bg-info" ng-if="doctorsee.Linkedin!==''">
                             <i class="fab fa-linkedin"></i>
                         </a>
                       </div>
@@ -370,12 +370,12 @@
     {{-- Seccion para insertar js--}}
     @section('include_js')
         {{-- textarea estan raros --}}
-            @if( isset($datos_p) )
-               <script>
-                    $('#detalle_experiencia').val('{{$datos_p->detalle_experiencia}}');
-                    $('#detalle_estudio').val('{{$datos_p->detalle_estudio}}');
-               </script>
-            @endif
+        @if( isset($datos_p) )
+           <script>
+                $('#detalle_experiencia').val('{{$datos_p->detalle_experiencia}}');
+                $('#detalle_estudio').val('{{$datos_p->detalle_estudio}}');
+           </script>
+        @endif
         {{-- Mensaje de informacion --}}
           @if(session()->has('info'))
              <script >
@@ -386,9 +386,9 @@
        <script src="{{ asset('/js/medico.js') }}"></script>
        //activar select
        <script>
-
            $('.select2').select2();
        </script>
+        <script src="{{ asset('/js/actionEvent.js') }}"></script>
     @stop
 
 

@@ -54,7 +54,7 @@ class UserListenerPreguntaIntere
                         'idtemas'=>$user['idtemas'],
                         'idactividad_padre'=>null,
                         'idsecciones_actividad'=>null,
-
+                        'idbiblioteca_virtual'=>null,
                     ];
 
         $result=$this->actividad->historialUser($dataActividad,$dataRegistro);

@@ -56,6 +56,7 @@ class SuccessfulLogin
                         'idactividad_padre'=>null,
                         'idsecciones_actividad'=>null,
                         'idtemas'=>null,
+                        'idbiblioteca_virtual'=>null,
 
                     ];
 

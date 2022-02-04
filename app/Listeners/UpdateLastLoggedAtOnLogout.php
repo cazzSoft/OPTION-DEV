@@ -48,6 +48,7 @@ class UpdateLastLoggedAtOnLogout
                         'idactividad_padre'=>null,
                         'idsecciones_actividad'=>null,
                         'idtemas'=>null,
+                        'idbiblioteca_virtual'=>null,
 
                     ];
 
