@@ -27,7 +27,7 @@
   --primary: #007bff;
   --secondary: #6c757d;
   --success: #28a745;
-  --info: #17a2b8;
+  --info: #0FADCE;
   --warning: #ffc107;
   --danger: #dc3545;
   --light: #f8f9fa;
@@ -4323,7 +4323,7 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
+  color: #0FADCE;
   background-color: #ffffff;
   border-color: #dee2e6 #dee2e6 #ffffff;
 }
@@ -6777,7 +6777,7 @@ button.bg-success:focus {
 }
 
 .bg-info {
-  background-color: #17a2b8 !important;
+  background-color: #0FADCE !important;
 }
 
 a.bg-info:hover, a.bg-info:focus,
@@ -10113,7 +10113,7 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-  color: #17a2b8 !important;
+  color: #0FADCE !important;
 }
 
 a.text-info:hover, a.text-info:focus {

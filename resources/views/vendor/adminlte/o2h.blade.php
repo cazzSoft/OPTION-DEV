@@ -13,7 +13,7 @@
     @yield('css')
 @stop
 
-@section('classes_body', $layoutHelper->makeBodyClasses())
+@section('classes_body','hold-transition layout-top-nav')
 
 @section('body_data', $layoutHelper->makeBodyData())
 
@@ -24,31 +24,26 @@
         @if($layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.navbar.navbar-layout-topnav')
         @else
-            @include('adminlte::partials.navbar.navbar')   
+            @include('adminlte::componentO2h.navbar.navbar')
+
         @endif
 
-        {{-- Left Main Sidebar --}}
-        @if(!$layoutHelper->isLayoutTopnavEnabled())
-            {{-- @include('adminlte::partials.sidebar.left-sidebar')  --}} {{-- menu --}}
-        @endif
-
+ 
         {{-- Content Wrapper --}}
-        <div class="content-wrapper {{ config('adminlte.classes_content_wrapper') ?? '' }} ">
-
-            {{-- Content Header --}}
-            <div class="content-header">
-                <div class="{{ config('adminlte.classes_content_header') ?: $def_container_class }}">
-                    @yield('content_header')
+        <div class="content-wrapper ">
+            Content Header
+            <div class="content-header ">
+                <div class="row mb-2">
+                    @yield('content_header')  
                 </div>
             </div>
 
             {{-- Main Content --}}
-            <div class="content">
+            <div class="content " >
                 <div class="{{ config('adminlte.classes_content') ?: $def_container_class }}">
                     @yield('content')
                 </div>
             </div>
-
         </div>
 
         {{-- Footer --}}

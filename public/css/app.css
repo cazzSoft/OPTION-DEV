@@ -24,7 +24,7 @@
   --primary: #3490dc;
   --secondary: #6c757d;
   --success: #38c172;
-  --info: #6cb2eb;
+  --info: #0FADCE;
   --warning: #ffed4a;
   --danger: #e3342f;
   --light: #f8f9fa;
@@ -72,7 +72,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #fff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10757,7 +10757,7 @@ a.text-success:focus {
 }
 
 .text-info {
-  color: #6cb2eb !important;
+  color: #07ABCD !important;
 }
 
 a.text-info:hover,

@@ -17,9 +17,9 @@ class PrincipalController extends Controller
     public function index()
     {
         $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
-                ->with(['like'=>function($q){
+                ->with(['medico','like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->paginate(16);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(21)->paginate(16);
 
         return view('home',['articulos'=>$articulo,'activeM'=>0]); 
     }
@@ -32,12 +32,18 @@ class PrincipalController extends Controller
         return view('auth.register',['ciudades'=>$consul]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //informacion de loguin
+    public function infoLogin()
+    {
+        return view('login-registro.info-login');
+    }
+
+    //informacion de loguin
+    public function login()
+    {
+        return view('login-registro.login');
+    }
+
     public function store(Request $request)
     {
         //

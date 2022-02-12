@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Auth;
     });
 
     Route::get('/', 'PrincipalController@index')->middleware('web2');
-   
+    Route::get('/session', 'PrincipalController@infoLogin')->middleware('web2');
+    Route::get('/log-in', 'PrincipalController@login')->middleware('web2');
+
     //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
     Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
 
@@ -114,7 +116,6 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/publicaciones/{id}', 'Registro_ActividadController@Eventpublicaciones'); 
             Route::get('/redessociales/{id}/{des?}', 'Registro_ActividadController@EventSociales'); 
             Route::get('/Preguntasomitir', 'Registro_ActividadController@EventOmitir');
-
             Route::get('/eventMedicoPerfil', 'Registro_ActividadController@EventMedicoPerfil');
             Route::get('/eventDocumentBiblioteca/{id}', 'Registro_ActividadController@EventBiblioteca');
 
@@ -124,7 +125,17 @@ use Illuminate\Support\Facades\Auth;
 
     Route::get('/colas', 'Registro_ActividadController@colas');
 
-  
+    // Route::get('plantilla', function ()
+    // {
+    //     return view('option2healt');
+
+    // });
+
+    //  Route::get('plantilla1', function ()
+    // {
+    //     return view('homeOption2h');
+
+    // });
 
   // Auth::routes();
    

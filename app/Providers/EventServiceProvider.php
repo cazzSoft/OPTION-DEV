@@ -147,18 +147,31 @@ class EventServiceProvider extends ServiceProvider
                 
                     if($consul=='us'){
                         $event->menu->add(
+                             [
+                                'text' => 'Search1',
+                                'url'  => '#',
+                                'search' => true,
+                                'topnav' => true, 
+                                
+                             ],
+                             [
+                                'text' => 'Perfil',
+                                'url'  => '/profile/perfil',
+                                'icon' => 'fas fa-fw fa-user',
+                                 // Or "topnav => true" to place on the left.
+                             ],
                             [
                                 'text' => 'Inicio',
                                 'url'  => '/home',
                                 'icon' => 'fas fa-fw fa-home',
-                                'active' => ['gestion/articulo', 'medico/info*','gestion/search']
-                                
+                                'active' => ['gestion/articulo', 'medico/info*','gestion/search'],
+                              
                             ],
                             [
                                 'text' => 'Perfil',
                                 'url'  => '/profile/perfil',
                                 'icon' => 'fas fa-fw fa-user',
-                                
+                               
 
                             ],
                             [
@@ -167,7 +180,7 @@ class EventServiceProvider extends ServiceProvider
                                 'icon' => 'fas fa-fw fa-coins',
                                 'label'       => 'i',
                                 'label_color' => 'secondary',
-
+                               
 
                             ],
                              [
@@ -176,8 +189,8 @@ class EventServiceProvider extends ServiceProvider
                                 'icon' => 'fas fa-fw fa-bookmark',
                                 'label'       => 'i ',
                                 'label_color' => 'secondary',
-                                'active' => ['gestion/search_user_art']
-
+                                'active' => ['gestion/search_user_art'],
+                                
                             ],
                             [
                                 'text' => 'Historial',
@@ -185,7 +198,8 @@ class EventServiceProvider extends ServiceProvider
                                 'icon' => 'fas fa-fw fa-history ',
                                 'label'       => 'nuevo',
                                 'label_color' => 'success',
-                                'active' => ['actividades/historial']
+                                'active' => ['actividades/historial'],
+                                
                             ],
                             [
                                 'text' => 'Biblioteca virtual',
@@ -193,17 +207,20 @@ class EventServiceProvider extends ServiceProvider
                                 'icon' => 'fas fa-book-reader ',
                                 'label'       => 'in process',
                                 'label_color' => 'danger',
+                                
                                 // 'active' => ['actividades/historial']
                             ],
                             
-                            ['header' => 'Publicidad'],
+                          
                             [
                                 'text' => 'Encuentra AQUÍ ',
                                 'url'  => 'https://adminlte.io/themes/v3/index.html',
                                 
                                 'icon' => 'fas fa-fw fa-user',
-                                'target' => '_blank' 
+                                'target' => '_blank',
+                                 
                             ],
+
                         );
                      }
                     if($consul=='dr'){
@@ -328,6 +345,13 @@ class EventServiceProvider extends ServiceProvider
             }else{
                 $event->menu->add(
                             [
+                               'text' => 'Search1',
+                               'url'  => '#',
+                               'search' => true,
+                               'topnav' => true, 
+                               
+                            ],
+                            [
                                 'text' => '¿Qué somos ?',
                                 'url'  => '/login',
                                 'icon' => 'fa fa-notes-medical',
@@ -335,6 +359,12 @@ class EventServiceProvider extends ServiceProvider
                                 'label_color' => 'secondary',
                                 'active' => ['gestion/articulo', 'doctor*']
                                 
+                            ],
+                            [
+                                'text'     => 'Important Link',
+                                'url'      => 'important/link',
+                                'icon'     => 'fas fa-fw fa-exclamation-triangle',
+                                'classes'  => 'text-danger text-uppercase',
                             ],
                             [
                                 'text' => 'Inicio',

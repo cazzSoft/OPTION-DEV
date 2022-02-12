@@ -1,6 +1,6 @@
 <li @if(isset($item['id'])) id="{{ $item['id'] }}" @endif>
 
-    <form action="{{ $item['href'] }} " method="{{ $item['method'] }}" class="form-inline">
+    <form action="{{ $item['href'] }}" method="{{ $item['method'] }}" class="form-inline">
         {{ csrf_field() }}
         
         <div class="input-group">

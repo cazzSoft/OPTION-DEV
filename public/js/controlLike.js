@@ -1,17 +1,18 @@
 function putLike_poin(id,est) {
        
     var con=$(est).children('span').html();
+    // var con2=$(est).children('i').attr('class','fa fa-heartbeat icon-info');
+    // console.log(con2);
     $.get("/verificarLike/" + id , function (data) {
         
        if(data.jsontxt.estado=='info' || data.jsontxt.estado=='success'){
-            $(est).removeClass('btn btn-outline-info btn-block');  
-            $(est).addClass('btn btn-block bg-gradient-info ');  
+            $(est).children('i').attr('class','fa fa-heartbeat icon-info');  
+            
             $(est).children('span').html(parseInt(con)+1);
             
        }
        if(data.jsontxt.estado=='warning'){
-            $(est).removeClass('btn btn-block bg-gradient-info ');
-            $(est).addClass('btn btn-outline-info btn-block ');  
+            $(est).children('i').attr('class','fa fa-heartbeat ');  
             $(est).children('span').html(parseInt(con)-1);
        }
        

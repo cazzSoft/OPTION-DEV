@@ -1,13 +1,5 @@
 
 
-{{-- <script >
-    
-     $(document).ready(function() {
-         $('.select2').select2();
-     });
-
-</script> --}}
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -85,7 +77,7 @@
             color: #000;
             overflow-x: hidden;
             height: 100%;
-            background-color: #e9ecef;
+            background-color: #fff;
             background-repeat: no-repeat;
         }
 

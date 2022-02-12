@@ -48,7 +48,7 @@ return [
     'logo' => '<h4>Option2health</h4>',
     'logo_img' => 'vendor/adminlte/dist/img/acroxa.png',
     'logo_img_class' => 'brand-image  elevation-1',
-    'logo_img_xl' =>null,
+    'logo_img_xl' =>false,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'option2',
 
@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-info ',
+    'usermenu_header_class' => 'bg-light ',
     'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => true,
@@ -83,11 +83,11 @@ return [
     |
     */
 
-    'layout_topnav' => null,
-    'layout_boxed' => null,
+    'layout_topnav' => false,
+    'layout_boxed' => false,
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
-    'layout_fixed_footer' => true,
+    'layout_fixed_footer' => false, //footer habilita
 
     /*
     |--------------------------------------------------------------------------
@@ -120,17 +120,17 @@ return [
     |
     */
 
-    'classes_body' => ' ',
+    'classes_body' => ' hold-transition layout-top-nav', //hold-transition layout-top-nav
     'classes_brand' => 'navbar-brand   text-dark',
-    'classes_brand_text' => 'brand-text',
-    'classes_content_wrapper' => '',
+    'classes_brand_text' => '', //brand-text
+    'classes_content_wrapper' => 'bg-white ',
     'classes_content_header' => '',
     'classes_content' => ' ',
     'classes_sidebar' => 'sidebar-light-info elevation-1 ',
-    'classes_sidebar_nav' => 'nav-child-indent',
-    'classes_topnav' => 'navbar-white',
-    'classes_topnav_nav' => 'navbar-expand',
-    'classes_topnav_container' => ' main-header ',
+    'classes_sidebar_nav' => '', //nav-child-indent
+    'classes_topnav' => 'navbar-light navbar-white',
+    'classes_topnav_nav' => ' navbar-expand-md ',
+    'classes_topnav_container' => ' container ',
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +148,7 @@ return [
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
+    'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light ',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,

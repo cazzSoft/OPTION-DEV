@@ -21,6 +21,6 @@
             </span>
         @endif
 
-    </a>
+    </a> 
 
 </li>
