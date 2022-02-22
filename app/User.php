@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPasswordNotification;
 use App\TipoUserModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
         'id', 'name', 'email','password','telefono' ,'fecha_nacimiento','genero','idciudad', 'nom_referido' ,
             'tine_hijo',
             'termino' ,
-            'idtipo_user' 
+            'idtipo_user' ,'social_id','social_name','social_avatar',
     ];
 
     /**
@@ -30,15 +31,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function persona(){
-	    return $this->hasMany('App\PersonaModel', 'idpersona', 'idpersona');
-	}
+ //    public function persona(){
+	//     return $this->hasMany('App\PersonaModel', 'idpersona', 'idpersona');
+	// }
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
     public function adminlte_image()
     {
+       if(auth()->user()->social_avatar){
+            return auth()->user()->social_avatar;
+       }
         return 'https://picsum.photos/300/300';
     }
 
@@ -77,6 +81,17 @@ class User extends Authenticatable
     public function titulo()
     {
         return $this->belongsTo('App\TituloModel', 'idtitulo_profesional', 'idtitulos');
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
     
 }

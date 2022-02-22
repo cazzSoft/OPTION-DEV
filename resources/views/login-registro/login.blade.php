@@ -2,10 +2,10 @@
 @extends('layouts.baseLogin')
 @section('title','Registro')
 
-@section('plugins.Select2',true)
+{{-- @section('plugins.toastr',true) --}}
 {{-- class="hold-transition login-page" --}}
 @section('content')
-<div class="container col-md-12">
+<div class="text-center  container col-md-12">
     <div class="row ">
         <div class="col-md-12  px-0 d-flex justify-content-end">
             <div class="d-flex flex-row-reverse mr-5">
@@ -26,69 +26,439 @@
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 text-center text-muted mt-2">
-                   <a href="#" class="text-muted"> <div class="p-2"> ACERCA DE NOSOTROS</div></a> 
+                <div class="col-md-6 col-sm-6 col-xs-12 text-center ">
+                    <a href="{{url('nosotros')}}"  class="nav-link "> 
+                        <div class=" text-muted "> ACERCA DE NOSOTROS</div>
+                    </a> 
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12  text-muted mt-2">
-                   <a href="#" class="text-muted"> <div class="p-2  text-center"> COINSUL</div></a> 
+                <div class="col-md-6 col-sm-6 col-xs-12  text-center">
+                   <a href="{{url('info-coinsults')}} " class="nav-link"> 
+                        <div class=" text-muted"> COINSULTS</div>
+                    </a> 
                 </div>
             </div>
         </div>
         <div class="col-md-12"></div>
-        
     </div>
-
-    <div class="row mt-5">
-        <div class="col-md-8 col-sm-8 col-xs-12">
-        	 <p class=" text-left text-info h1 ml-5 p-2 mb-4" style="color: #13c6ef !important;"><b>Beneficios al Registrarte</b></p>
-        	<div class="row mb-3">
-	            <div class="col-sm-6">
-	             	<div class="ml-5">
-	             		 <img class="img-fluid" src="/img/op2.svg" alt="Photo">
-	             	</div>
-	            </div>
-	            <!-- /.col -->
-	            <div class="col-sm-6">
-	             	<ul class="list-group lead text-justify mr-5">
-	             		<li>Encontrar al profesional de la salud indicado para ti y tus necesidades.</li>
-	             		<li>Conocer más acerca de la carrera y el perfil de tu médico mediante la visualización de sus publicaciones  informativas en el área de salud subidas en nuestra plataforma.</li>
-	             		<li>Mantenerte informado/a mediante el acceso a la información profesional y científica sobre temas de salud de tu interés.</li>
-	             		<li>Ganar CoinSsults e intercambiarlos por consultas médicas o incluso donarlos a un familiar o amigo</li>
-	             	</ul>
-	             	
-	            </div>
-	            <!-- /.col -->
-	        </div>
-        </div>
-
-        <div class="col-md-3  ml-5 p-0">
-            <p class="profile-username text-center text-info h1" style="color: #13c6ef !important;">Inicia sesión</p>
-            
-            <div class="social-auth-links text-center mt-5 ">
-            	<a href="#" class="btn btn-block btn-danger">
-            		<i class="fab fa-google-plus mr-2"></i>
-            		Ingresa con Google
-            	</a>
-            	<a href="#" class="btn btn-block btn-primary">
-            		<i class="fab fa-facebook mr-2"></i>
-            		Ingresa con Facebook
-            	</a>
-            	<a href="#" class="btn btn-block btn-light">
-            		<i class="fas fa-envelope mr-2"></i>
-            		Ingresa  con tu email
-            	</a>
-              
-            </div>
-        </div>
-    </div>
-    
-    
 </div>
 
+<div class="row p-5">
+    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
+        
+        <div class="row ">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                 <p class="text-center text-info h2 " style="color:#13c6ef !important;"><b>Beneficios al Registrarte</b></p>
+                <div class="text-center">
+                    @if(isset($data))
+                      {!!$data['img']!!}
+                    @endif
+                </div>
+            </div>
+           
+            <div class="col-lg-8 col-md-8 col-sm-12 ">
+               @if(isset($data))
+                {!!$data['detalle']!!}
+               @endif
+            </div>
+           
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12 "></div>
+    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
+
+        <p class=" text-center text-info h4 mb-4 txt_log" style="color: #13c6ef !important;"> @if(isset($data)) {!!$data['icono']!!} @endif  Inicia sesión </p> 
+        @if(isset($data))
+            @if($data['tipo']=='P') 
+                <div class="mt-5 border-0  d-none form_login" >
+                  <div class="   border-0 mt-3">
+                        <form method="POST" action="{{ route('login') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico</label>
+                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico"  autocomplete="Email" value="{{old('email')}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"  style="color: #13c6ef;">Contraseña</label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Ingresa una contraseña" >
+                               @error('email')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
+                            <div class="row  justify-content-md-center">
+                               <div class="col-xl-12 col-sm-12">
+                                 <div class="icheck-primary">
+                                     <p class="mb-1 text-info">
+                                       <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('Olvidaste tu contraseña?') }} </a>
+                                     </p>
+                                 </div>
+                               </div> 
+                              <div class="col-xl-12 col-md-12 col-sm-12 text-center">
+                                <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">Iniciar sesión</button>
+                              </div>
+                            </div>
+
+                        </form>
+                        <p class="mt-4 text-center">
+                            - O -
+                        </p>
+                        <p  class="mb-2 mt-3 text-center h5" >
+                            <a disabled="false" style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
+                                 Registrate
+                            </a>
+                        </p>
+
+                        <p  class="mb-2 mt-3 text-right h6" >
+                            <a disabled="false" style="color: #13c6ef;" href="" class="">
+                               <i class="fas fa-sign-in-alt"></i>  Elegir otra opción
+                            </a>
+                        </p>
+                  </div>
+                </div>
+                <div class="mt-5 border-0 d-none form_register" >
+                  <div class="   border-0 mt-3">
+                        <form method="POST" action="{{ route('register') }}"  method="post">
+                            @csrf
+                            <input type="hidden" name="tp" value="{{encrypt($data['tipo']) }}">
+                            <div class="form-group">
+                                <label for="name" class="" style="color: #13c6ef;">Nombres y Apellido <span class="text-red">*</span></label>
+                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tus nombres" autofocus autocomplete="name" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico <span class="text-red">*</span></label>
+                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico" autofocus autocomplete="email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <span class="invalid-feedback alertError" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password"   style="color: #13c6ef;">Contraseña <span class="text-red">*</span></label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="Ingresa una contraseña"  >
+                               @error('password')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
+                           
+                             <div class="form-group">
+                                <label for="password-confirm"  style="color: #13c6ef;">Confirmar Contraseña <span class="text-red">*</span></label>
+                                <input type="password" id="password-confirm" class="form-control  border-right-0 border-left-0 border-top-0  @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" required autocomplete="new-password" placeholder="Ingresa una contraseña" >
+                                @error('password_confirmation')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                
+                            </div>
+                            <div class="row  justify-content-md-center">
+                              <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                              </div>
+                              
+                            </div>
+                        </form>
+                        
+                        <p  class="mb-2 mt-5 text-center h5" >
+                            <a disabled="false" style="color: #13c6ef;" href="/log-in-paciente" class="">
+                               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                            </a>
+                        </p>
+                  </div>
+                </div>
+                <div class="social-auth-links text-center mt-5 btn_sociales">
+                    <a href="{{url('login/google')}}" class="btn btn-block btn-outline-danger">
+                        <i class="fab fa-google-plus float-left  ml-5 mt-1"></i>
+                        Ingresa con Google
+                    </a>
+                    <a href="{{url('login/facebook')}}" class="btn btn-block btn-outline-primary">
+                        <i class="fab fa-facebook float-left  ml-5 mt-1"></i>
+                        Ingresa con Facebook
+                    </a>
+                    <button type="button" class="btn btn-block btn-outline-info" id="btn_ingreso_email"> 
+                        <i class="fas fa-envelope float-left  ml-5 mt-1"></i>
+                        Ingresa  con tu email
+                    </button>
+                </div>
+            @elseif($data['tipo']=='M')
+                <div class="mt-5 border-0  form_login" >
+                  <div class="   border-0 mt-3">
+                        <form method="POST" action="{{ route('login') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico</label>
+                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico"  autocomplete="Email" value="{{old('email')}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"  style="color: #13c6ef;">Contraseña</label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Ingresa una contraseña" >
+                               @error('email')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
+                            <div class="row  justify-content-md-center">
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="icheck-primary">
+                                        <p class="mb-1 text-info">
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('Olvidaste tu contraseña?') }} </a>
+                                        </p>
+                                    </div>
+                                </div> 
+                                <div class="col-xl-12 col-md-12 col-sm-12 text-center">
+                                    <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">Iniciar sesión</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="mt-4 text-center">
+                            - O -
+                        </p>
+                        <p  class="mb-2 mt-3 text-center h5" >
+                            <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
+                                 Registrate
+                            </a>
+                        </p>
+
+                       
+                  </div>
+                </div>
+                <div class="mt-5 border-0 d-none form_register" >
+                  <div class="   border-0 mt-3">
+                        <form method="POST" action="{{ route('register') }}"  method="post">
+                            @csrf
+                            <input type="hidden" name="tp" value=" {{encrypt($data['tipo'])  }}">
+                            <div class="form-group">
+                                <label for="name" class="" style="color: #13c6ef;">Nombres y Apellido <span class="text-red">*</span></label>
+                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tus nombres" autofocus autocomplete="name" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico <span class="text-red">*</span></label>
+                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico" autofocus autocomplete="email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <span class="invalid-feedback alertError" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password"   style="color: #13c6ef;">Contraseña <span class="text-red">*</span></label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="Ingresa una contraseña"  >
+                               @error('password')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
+                           
+                             <div class="form-group">
+                                <label for="password-confirm"  style="color: #13c6ef;">Confirmar Contraseña <span class="text-red">*</span></label>
+                                <input type="password" id="password-confirm" class="form-control  border-right-0 border-left-0 border-top-0  @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" required autocomplete="new-password" placeholder="Ingresa una contraseña" >
+                                @error('password_confirmation')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                
+                            </div>
+                            <div class="row  justify-content-md-center">
+                              <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                              </div>
+                              
+                            </div>
+                        </form>
+                        
+                        <p  class="mb-2 mt-5 text-center h5" >
+                            <a disabled="false" style="color: #13c6ef;" href="/log-in-medico" class="">
+                               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                            </a>
+                        </p>
+                  </div>
+                </div>
+            @elseif($data['tipo']=='E')
+                <div class="mt-5 border-0  form_login" >
+                  <div class="   border-0 mt-3">
+                        <form method="POST" action="{{ route('login') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico</label>
+                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico"  autocomplete="Email" value="{{old('email')}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"  style="color: #13c6ef;">Contraseña</label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Ingresa una contraseña" >
+                               @error('email')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
+                            <div class="row  justify-content-md-center">
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="icheck-primary">
+                                        <p class="mb-1 text-info">
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('Olvidaste tu contraseña?') }} </a>
+                                        </p>
+                                    </div>
+                                </div> 
+                                <div class="col-xl-12 col-md-12 col-sm-12 text-center">
+                                    <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">Iniciar sesión</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="mt-4 text-center">
+                            - O -
+                        </p>
+                        <p  class="mb-2 mt-3 text-center h5" >
+                            <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
+                                 Registrate
+                            </a>
+                        </p>
+
+                       
+                  </div>
+                </div>
+                <div class="mt-5 border-0 d-none form_register" >
+                  <div class="   border-0 mt-3">
+                        <form method="POST" action="{{ route('register') }}"  method="post">
+                            @csrf
+                            <input type="hidden" name="tp" value=" {{encrypt($data['tipo'])  }}">
+                            <div class="form-group">
+                                <label for="name" class="" style="color: #13c6ef;">Nombres y Apellido <span class="text-red">*</span></label>
+                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tus nombres" autofocus autocomplete="name" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico <span class="text-red">*</span></label>
+                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico" autofocus autocomplete="email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <span class="invalid-feedback alertError" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password"   style="color: #13c6ef;">Contraseña <span class="text-red">*</span></label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="Ingresa una contraseña"  >
+                               @error('password')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
+                           
+                             <div class="form-group">
+                                <label for="password-confirm"  style="color: #13c6ef;">Confirmar Contraseña <span class="text-red">*</span></label>
+                                <input type="password" id="password-confirm" class="form-control  border-right-0 border-left-0 border-top-0  @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" required autocomplete="new-password" placeholder="Ingresa una contraseña" >
+                                @error('password_confirmation')
+                                    <span class=" invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                
+                            </div>
+                            <div class="row  justify-content-md-center">
+                              <div class="col-xl-10 col-md-12 col-sm-12 text-center">
+                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                              </div>
+                              
+                            </div>
+                        </form>
+                        
+                        <p  class="mb-2 mt-5 text-center h5" >
+                            <a disabled="false" style="color: #13c6ef;" href="/log-in-empresa" class="">
+                               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                            </a>
+                        </p>
+                  </div>
+                </div>
+            @endif
+        @endif    
+        <p class="mb-2 mt-5 text-center h6" >
+            <a disabled="false" class="mt-5" style="color: #13c6ef;" href="/session" class="">
+              <i class="fas fa-arrow-circle-left"></i>  Elegir  otro tipo de usuario
+            </a>
+        </p>
+    </div>
+</div>
 
 @endsection
 
 
  @section('adminlte_js')
+    {{-- Mensaje de informacion --}}
+ 
+           {{-- mostrar errores form login Paciente--}}
+          
+           @error('email') 
+                @if($message=='El correo electrónico ya ha sido registrado.')
+                    <script >     
+                        $('.btn_sociales').addClass('d-none');
+                        $('.form_login').addClass('d-none');
+                        $('.form_register').removeClass('d-none');
+                    </script>
+                @else
+                    <script >      
+                       $('.btn_sociales').addClass('d-none');
+                       $('.form_login').removeClass('d-none');
+                    </script>
+                @endif
+               
+           @enderror
+
+            {{-- mostrar errores form register --}}
+            @error('name') 
+               <script >     
+                   $('.btn_sociales').addClass('d-none');
+                   $('.form_login').addClass('d-none');
+                   $('.form_register').removeClass('d-none');
+               </script>
+           @enderror
+           @error('password_confirmation') 
+               <script >     
+                   $('.btn_sociales').addClass('d-none');
+                   $('.form_login').addClass('d-none');
+                   $('.form_register').removeClass('d-none');
+               </script>
+           @enderror
+
+           @error('password') 
+               <script >     
+                   $('.btn_sociales').addClass('d-none');
+                   $('.form_login').addClass('d-none');
+                   $('.form_register').removeClass('d-none');
+               </script>
+           @enderror 
+       
+   
+
+    @if(session()->has('info'))
+         <script >
+            alert('{{session('info')}}');
+           // mostrar_toastr('{{session('info')}}','{{session('estado')}}')
+         </script>
+    @endif
+    {{-- <script > mostrar_toastr('qweqwe','error')</script> --}}
     <script src="{{ asset('/js/register.js') }}"></script>
  @stop

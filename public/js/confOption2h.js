@@ -85,3 +85,7 @@
            },
            })
     }
+
+    $('.drinfo').click(function () {
+        $('#modal-info-medico').modal('show');
+    });

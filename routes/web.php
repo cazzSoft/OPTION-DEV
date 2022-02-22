@@ -18,11 +18,17 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/login', function () {
         return view('auth.login'); 
     });
+    Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
+    Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
+//precentacion de informacion de login
     Route::get('/', 'PrincipalController@index')->middleware('web2');
     Route::get('/session', 'PrincipalController@infoLogin')->middleware('web2');
-    Route::get('/log-in', 'PrincipalController@login')->middleware('web2');
-
+    Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('web2');
+    Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('web2');
+    Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('web2');
+    Route::get('/nosotros', 'PrincipalController@aboutme')->middleware('web2');
+    Route::get('/info-coinsults', 'PrincipalController@info_coinsults')->middleware('web2');
     //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
     Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
 
@@ -42,7 +48,7 @@ use Illuminate\Support\Facades\Auth;
         //ruta del home page 
         Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/algoritmo', 'HomeController@prueba')->name('home');
-
+        Route::get('/nosotros_', 'PrincipalController@aboutme');
 
         //GESTION USER EDIT
         Route::prefix('profile')->group(function () {

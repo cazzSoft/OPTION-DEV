@@ -7,7 +7,7 @@
 @section('plugins.toastr',true)
 @section('plugins.switchButton',false)
 @section('plugins.daterangepicker',false)
-
+@section('plugins.Select2',true)
 {{-- cuerpo de la pagina --}}
 @section('contenido')
   
@@ -29,7 +29,7 @@
                 <div class="card-body row text-dark">
                   <div class="col-md-7 col-sm-12 text-center ">
                     <div class="ml-5 mr-5 ">
-                      <img class="img-fluid " src="/img/Imagen1.png" alt="Photo">
+                      <img class="img-fluid " src="{{asset('/img/Imagen1.png')}}" alt="Photo">
                       <h3 class="mt-4 ">
                         <strong>
                           <p>Physicians Say Covid-19 Has Triggered a 
@@ -416,25 +416,11 @@
          
        {{-- </div> --}}
        <!-- Modal -->
-      {{--  <div class="modal fade" id="modal-default">
-         <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h4 class="modal-title">Ayudemos a Samu! <i class="fa fa-smile-beam"></i></h4>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-               </button>
-             </div>
-             <div class="modal-body">
-               <a href="{{url('login')}}">
-                 <img class="card-img-top" src="http://option2health.com/assets/img/samu.jpeg" alt="AdminLTELogo">
-               </a>
-             </div>
-           </div>
-           <!-- /.modal-content -->
-         </div>
-         <!-- /.modal-dialog -->
-       </div> --}}
+      
+        @if(isset($registro))
+          @include('modalUpdate_users')
+        @endif
+     
     @section('include_css') 
 
       <style>
@@ -463,12 +449,29 @@
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
-     {{-- @if(isset($activeM)) 
+     
+    {{-- Mensaje de informacion --}}
+      @if(session()->has('info'))
+         <script >
+           mostrar_toastr('{{session('info')}}','{{session('estado')}}')
+         </script>
+      @endif
 
-      <script > alert(2);$('#modal-default').modal('show');</script>
-     @endif --}}
+     @if(isset($registro))
+      @if(!$registro)
+        <script > 
+            $('#modal-default').modal('show');
+            $(document).ready(function() {
+              $('.select2').select2();
+            });
+        </script>
+        
+      @endif 
+     @endif
       <script src="{{ asset('/js/controlLike.js') }}"></script>
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
+      <script src="{{ asset('/js/register.js') }}"></script>
+      <script src="{{ asset('/js/actionEvent.js') }}"></script>
     @stop
     
 

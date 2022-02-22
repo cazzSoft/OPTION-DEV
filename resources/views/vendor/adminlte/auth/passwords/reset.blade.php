@@ -11,7 +11,9 @@
 @section('auth_header', __('adminlte::adminlte.password_reset_message'))
 
 @section('auth_body')
-    <form action="{{ $password_reset_url }}" method="post">
+ <p class="login-box-msg">Estás a un paso de tu nueva contraseña, recupera tu contraseña ahora.</p>
+    
+    <form {{-- action="{{ $password_reset_url }}" --}}  action="{{ route('password.update') }}"  method="post">
         {{ csrf_field() }}
 
         {{-- Token field --}}
@@ -20,7 +22,7 @@
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+                value="{{ $email ?? old('email') }}"  {{--  value="{{ old('email') }}" --}} placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -70,7 +72,7 @@
         {{-- Confirm password reset button --}}
         <button type="submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
             <span class="fas fa-sync-alt"></span>
-            {{ __('adminlte::adminlte.reset_password') }}
+            {{ __('adminlte::adminlte.reset_password') }} 
         </button>
 
     </form>

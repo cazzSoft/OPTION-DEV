@@ -109,16 +109,17 @@ class DoctoresController extends Controller
     
     public function update(Request $request, $id)
     {
+         
         // return $request;
-
         $user=User::find(decrypt($id));
         $user_aux=User::find(decrypt($id));
-        $user->name=$request->name;
-        $user->email=$request->email;
+        // $user->name=$request->name;
+        // $user->email=$request->email;
         $user->telefono=$request->telefono;
         $user->fecha_nacimiento=$request->fecha_nacimiento;
-        $user->genero=$request->genero;
-        $user->idciudad=$request->idciudad;
+        // $user->genero=$request->genero;
+        // $user->idciudad=$request->idciudad;
+         $user->estado_registro=1;
         if( $user->save()){
             //actualizamos sus especialidad
             if($request->iduser_especialidad!=""){
@@ -132,13 +133,13 @@ class DoctoresController extends Controller
                     $nuevos->save(); 
                 }  
                 //registro evento para especialidades 
-                 session(['seccion_ctr'=>0]);
+                session(['seccion_ctr'=>0]);
                 event(new PerfilUserEventUsuario(['tipoUser'=>'M-E','objUserEspeci'=>$espe_axu,'objUserEspeciUpdate'=>$request->iduser_especialidad ,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
             } 
             //registro de evento update datos basicos medico
              session(['seccion_ctr'=>0]);
             event(new PerfilUserEventUsuario(['tipoUser'=>'M','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
-            return back()->with(['info' => 'Datos actualizados', 'estado' => 'success']);
+            return back()->with(['info' => 'Datos guardados', 'estado' => 'success']);
         }else{
             return back()->with(['info' => 'No se pudieron actualizados los datos ', 'estado' => 'error']);
         }

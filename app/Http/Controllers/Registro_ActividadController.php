@@ -18,6 +18,8 @@ use App\Registro_ActividadModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Log;
+use Mail;
+
 
 class Registro_ActividadController extends Controller
 {
@@ -57,8 +59,16 @@ class Registro_ActividadController extends Controller
         // event(new HomeEventInfoMedico(['idmedico'=>1,'iduser'=>auth()->user()->id]));
         // return "success";
        
-         return $mytime=Carbon::parse(auth()->user()->last_login)->diffForHumans();
-        return $mytime->diffForHumans();
+        //  return $mytime=Carbon::parse(auth()->user()->last_login)->diffForHumans();
+        // return $mytime->diffForHumans();
+
+        // Mail::send('mail.send-mail', ['name_user'=>'cazz'], function ($m)  {
+        //     $m->to('cazzdj17@hotmail.com')
+        //     ->from('info@option2health.com', 'Option2Health')
+        //     ->subject('recuperacion de contraseña');
+        // });
+
+        // return 'success';
     }
 
     

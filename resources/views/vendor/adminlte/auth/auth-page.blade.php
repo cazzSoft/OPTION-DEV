@@ -21,8 +21,8 @@
         {{-- Logo --}}
         <div class="{{ $auth_type ?? 'login' }}-logo">
             <a href="{{ $dashboard_url }}">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
-                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
+                <img src="{{ asset(config('adminlte.logo_img')) }}" height="90" class="border-radius">
+              {{--   {!! config('adminlte.logo', '<b>Admin</b>LTE') !!} --}}
             </a>
         </div>
 
@@ -32,8 +32,10 @@
             {{-- Card Header --}}
             @hasSection('auth_header')
                 <div class="card-header {{ config('adminlte.classes_auth_header', '') }}">
-                    <h3 class="card-title float-none text-center">
-                        @yield('auth_header')
+                    <h3 class="card-title float-none text-center"> 
+                        
+                           <b>@yield('auth_header')</b> 
+                       
                     </h3>
                 </div>
             @endif

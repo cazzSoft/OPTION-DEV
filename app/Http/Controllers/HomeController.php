@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Actividad_userModel;
+use App\AreaModel;
 use App\ArticuloModel;
+use App\CiudadModel;
 use App\CoinsultDetalleModel;
 use App\CoinsultModel;
+use App\EspecialidadesModel;
 use App\Events\HomeEventLike;
 use App\Events\HomeEventPerfilUser;
 use App\Events\PerfilUserEventUsuario;
 use App\Inters_userModel;
 use App\LikeUsersModel;
 use App\Registro_ActividadModel;
+use App\TipoUserModel;
+use App\TituloModel;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -338,6 +343,38 @@ class HomeController extends Controller
         //registro de evento view page
         event(new HomeEventPerfilUser( ['page'=>'home (principal)','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'INI'])] ));
 
+
+        //verificamos sus datos para update
+        $estado_registro=null;
+        if(!auth()->user()->estado_registro){
+             $estado_registro=auth()->user()->estado_registro;
+             $listaciu=CiudadModel::all();
+             $listaEspe=EspecialidadesModel::all();
+             $listaTitulo=TituloModel::all();
+             $lista_area=AreaModel::all();
+
+
+             //get datos del usuario tipo usuario
+              $data_user_tipo=null;
+              if(isset(auth()->user()->idtipo_user)){
+                  $data_user_tipo=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
+              }
+
+              //enviamos datos necesarios
+              if($data_user_tipo=='us'){
+                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'user_'=>$data_user_tipo]);}
+              if($data_user_tipo=='dr'){
+                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'lista_especialidad'=>$listaEspe,'user_'=>$data_user_tipo,'lista_titu'=>$listaTitulo]);
+              }
+              
+              if($data_user_tipo=='em'){
+                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'user_'=>$data_user_tipo,'lista_area'=>$lista_area]);
+              }
+
+        }
+
+       // return auth()->user()->estado_registro;
+
         return view('home',['articulos'=>$data]);
     }
 
@@ -658,21 +695,22 @@ class HomeController extends Controller
     //actualiza datos del usuario paciente
     public function update(Request $request ,$id)
     {
-
+        // return $request;
        $user=User::find(decrypt($id));
        $userAux=User::find(decrypt($id));
-       $user->name=$request->name;
-       $user->email=$request->email;
+       // $user->name=$request->name;
+       // $user->email=$request->email;
        $user->telefono=$request->telefono;
        $user->fecha_nacimiento=$request->fecha_nacimiento;
        $user->genero=$request->genero;
        $user->idciudad=$request->idciudad;
+       $user->estado_registro=1;
        $user->save();
 
        //registro de evento update de perfil user paciente
         event(new PerfilUserEventUsuario(['tipoUser'=>'P','objUser'=>$userAux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
-
-       return redirect('/profile/perfil');
+        return back()->with(['info' => 'Datos Guardados', 'estado' => 'success']);
+       // return redirect('/profile/perfil');
     }
 
     public function show($id)

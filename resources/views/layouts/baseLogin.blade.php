@@ -1,10 +1,7 @@
 
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-
     {{-- Base Meta Tags --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Custom Meta Tags --}}
-    @yield('meta_tags')
+    @yield('meta_tags') 
 
     {{-- Title --}}
     <title>
@@ -48,7 +45,7 @@
     @endif
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
-    @yield('adminlte_css')
+    
 
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))
@@ -79,9 +76,13 @@
             height: 100%;
             background-color: #fff;
             background-repeat: no-repeat;
+            /*font-family: calibri;*/
         }
 
     </style>
+    @yield('adminlte_css')
+    {{--  configuraciones globales css --}}
+    <link rel="stylesheet" href="{{ asset('css/appO2h.css') }}">
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>

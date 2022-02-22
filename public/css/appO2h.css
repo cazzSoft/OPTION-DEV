@@ -15,15 +15,15 @@
     .bz-danger {
         background-color: #dc354552!important;
     }
-    .bg-info {
+    .bgz-info {
         background-color: #13c6ef!important;
     }
-*/
+
     .vg{
         color: white;
     }
     /*.text-*/
-     .text-info{
+     .text-info_{
         color:#13c6ef !important ;
      }
 
@@ -35,3 +35,33 @@
         background-color: #fff;
         border-color: #dee2e6 #dee2e6 #fff;
     }
+
+    .btnx-info{
+        background: #0FADCE !important;
+    }
+/*responsive link informacion registro*/
+    
+    @media (max-width: 575.98px) {
+      .imgl{
+            width: 120px;
+            margin:0px ;px;
+      }
+      .linkce{
+        text-align: center;
+        padding: 0px !important;
+        margin: auto;
+        text-align: center;
+      }
+      .ml-5{
+        margin: 0px !important;
+      }
+      .h1{
+        font-size: 2em;
+      }
+    }
+
+    /*@media (min-width: 768px){ 
+        .ml-5{
+            margin:0px !important;
+        }       
+    }*/

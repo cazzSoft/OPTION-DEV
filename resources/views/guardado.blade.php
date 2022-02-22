@@ -10,9 +10,9 @@
 {{-- cuerpo de la pagina --}}
 @section('contenido') 
 
-    @section('content_header')
+    {{-- @section('content_header')
         <h1 ><b>Artículos Guardados</b> <i class="fa fa-save"></i> </h1>
-    @stop
+    @stop --}}
        <div class="card">
 
          <div class="card-header">
@@ -41,7 +41,7 @@
               @foreach ($listaGuar as $art )
                 @if(isset($art->articulo_user[0]))
                   <div class="col-lg-4 col-md-6  col-sm-12  d-flex align-items-stretch flex-column borrar">
-                    <div class="card d-flex flex-fill card card-outline card-info mt-3 mr-3">
+                    <div class="card d-flex flex-fill card card-outline card-info mt-5 mr-5">
                       <div class="card-header text-muted border-bottom-0">
                         <h1 class="card-title"> Option2Health </h1>
                         <a href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}">

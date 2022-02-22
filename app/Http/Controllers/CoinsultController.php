@@ -22,7 +22,6 @@ class CoinsultController extends Controller
         $id= auth()->user()->id;
         $consul=CoinsultModel::with('detalle_coinsult')->where('iduser',$id)->orderBy('idcoinsult','desc')->get();
         
-        
         //registro de evento view page
         event(new HomeEventPerfilUser(['page'=>'Coinsul usuaio','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'COIN'])]));
 
@@ -50,7 +49,7 @@ class CoinsultController extends Controller
 
         
 
-        return redirect('/interes');
+        return redirect('/home');
     }
 
     /**

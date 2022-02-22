@@ -127,7 +127,7 @@
                               </span>
                             @enderror
                           </div>
-                        </div>
+                        </div> 
                       </div>
                       <div class="row">
                         <div class="col-xl-8 col-sm-12">

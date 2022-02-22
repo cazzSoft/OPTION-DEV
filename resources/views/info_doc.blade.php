@@ -7,8 +7,171 @@
 
 {{-- cuerpo de la pagina --}}
 @section('contenido')
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
+  
+  <div class="row mt-3">
+    <div class="col-md-3 col-sm-12 col-xs-12 ">
+      @if(isset($user) && $user!='dr' )
+        <div class="text-center mt-2 ml-5 text-light ">  <a  onclick="gestionSeguir('{{encrypt($datos_p->id)}}',this)" class="btn btn-info btn-sm text-center"><b> <i class="fa fa-check"></i> @if(isset($sigue)) Dejar de seguir @else Seguir @endif</b></a>
+        </div>
+      @endif
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12 {{-- offset-md-2 --}} ">
+      <div class="card card-widget widget-user-2">
+          <!-- Add the bg color to the header using any of the bg-* classes -->
+          <div class="widget-user-header " style="background-color:#E0E0E0 !important; height: 170px;">
+            <div class="box-profile " >
+              <img class="img-circle elevation-2 img-fluid border border-info p-1" src="/img/user1-128x128.jpg" alt="User Avatar" style="position: absolute; margin-top:76px;border: 5px solid #0FADCE !important;">
+            </div>
+          </div>
+
+          <div class="widget-user-header bg-white">
+            <br>
+            <h3 class="widget-user-username mx-0 mt-5 ml-2"><b>DR. MATIAS HERNANDORENA</b></h3>
+            <h6 class="widget-user-desc mx-0 ml-2">Medico Cirujano . Especialista Oncologo . IESS</h6>
+
+            <div class="row">
+              <div class="col-7 mt-3">
+                <p class="ml-3">
+                  <spam class="ml-2 ">Teléfono: 099 999 9999</spam><br>
+                  <spam class="ml-2 ">Email: juan.medico@correo.com</spam><br>
+                  <spam class="ml-2 ">Dirección: calle 1 y calle 2 entre esquina NE 123</spam>
+                </p>
+
+              </div>
+              <div class="col-5 mt-3">
+                <p class="text-muted text-leth">Sígueme en:</p>
+                <div class="text-leth mb-3 ">
+                
+                  <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn btn-social-icon mr-1 btn-facebook ng-scope btnx-info" ng-if="doctorsee.Facebook!==''">
+                    <i class="fab fa-facebook-f "></i>
+                  </a>
+                  <a href="{{$datos_p->link_tw}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Instagram')" target="”_blank”" class="btn btn-social-icon mr-1 btn-instagram ng-scope bg-lightblue " ng-if="doctorsee.Instagram!==''">
+                      <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn btn-social-icon mr-1 btn-twitter ng-scope btn-primary" ng-if="doctorsee.Twitter!==''">
+                      <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="{{$datos_p->link_lkd}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Linkedin')" target="”_blank”" class="btn btn-social-icon mr-1 btn-linkedin ng-scope bg-info" ng-if="doctorsee.Linkedin!==''">
+                      <i class="fab fa-linkedin"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="card card-widget widget-user shadow-md">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="card-body">
+          <p><b>Acerca de mi</b></p>
+          <p class="description">Médcio cirujano de la universidad central, graduado en...........</p>
+
+          <p><b>Experiencia</b></p>
+          <p class="description"><li>Hospital Metropolitano</li></p>
+
+        </div>
+        
+      </div>
+      <div class="card card-widget widget-user shadow-md">
+        <div class="card-header">
+          <p class="h3">Publicaciones </p>
+          <small>Aqui tendras un listado de todas las publicaciones que has subido a O2H.</small>
+        </div>
+          @if (isset($listaArt))
+              @foreach ($listaArt as $art )
+                  <div class="card card-widget border-0 p-3 mx-3 mt-2">
+                    
+                      <div class="card-header">
+                        <div class="user-block text-dark">
+                          <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
+                            <img class="img-circle" src="/img/user1-128x128.jpg" alt="User Image">
+                          </a>
+                          <span class="username">{{$art['titulo']}}| Tratamiento</span>
+                          <span class="description"><a href="">{{$art['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>
+                        </div>
+                        <div class="card-tools">
+                          {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                          </button> --}}
+                        </div> 
+                      </div>
+
+                      <div class="card-body ">
+                    <p class="   text-justify text-dark">
+                      {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
+                    </p> 
+                  <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
+                    <iframe id=""  width="560" height="315" src="{{$art['url_video']}}"  frameborder="0" allowtransparency="true" allowfullscreen ></iframe>
+                  </div>
+                      
+                      </div>
+                    
+                    <div class="card-footer">
+                        <div class="row float-right">
+                          <div class="col-lg-4 col-md-6 col-sm-12 card-outline ">
+                            <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class=" btn btn-app border-0">
+                              <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  {{-- {{$art['like_count']}} Me gusta --}}
+                              <span >{{$art['like_count']}} </span> Me gusta 
+                            </button>
+                           
+                          </div>
+                          <div class="col-lg-4 col-md-6 col-sm-12  ">
+                            <div class="dropdown text-right">
+                              <button class="btn btn-app border-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
+                              <i class="fa fa-share-alt"></i>  Compartir
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <a onclick="acctionCompartirF('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art['url_video']}}" target="_blank">
+                                  <i class="fab fa-facebook" ></i> Facebook
+                                </a>
+                                 <a onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://api.whatsapp.com/send/?phone&text=Hola!.%20Te%20acabo%20de%20compartir%20*{{$art['titulo']}}*%20creo%20que%20te%20podria%20interesar.%20Rev%C3%ADsala:%20https://option2health.com/share.html?prodId={{ $art['idarticulo_encryp']}}%20%20*Option2health*.&app_absent=0" target="_blank">
+                                  <i class="fab fa-whatsapp"></i> Whatsapp 
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4 col-md-6 col-sm-12  ">
+                            <div class="dropdown text-right">
+                              <button class="btn border-0 btn-app dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class=" fa fa-bookmark"></i>Guardar
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
+                                <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
+                                <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {{-- <div class="bg-primary float-right">
+                          <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class="@if(isset($art['like'][0]))btn btn-default btn-sm float-right  @else btn btn-outline-info btn-block @endif "><i class=" fa fa-heartbeat"></i> <br>
+                            <span class="badge ">{{$art['like_count']}}</span>
+                            Me gusta 
+                          </button>
+
+                        </div> --}}
+                        
+                        
+                        {{-- <span class="float-right text-muted">127 likes - 3 comments</span> --}}
+                    </div>
+                  </div>
+              @endforeach
+             
+            <div class="form-group text-center mx-auto ">
+               {{-- {{ $articulos->links() }} --}}
+            </div>
+          @endif
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-12 col-xs-12 {{-- offset-md-2 --}} ">
+      
+    </div>
+  </div>
+
+
+
+    <div class="row"> 
+       {{--  <div class="col-md-4 col-sm-12">
             @if(isset($datos_p))
                 <div class="card card-info card-outline">
                   <div class="card-body box-profile">
@@ -86,8 +249,8 @@
                   <!-- /.card-body -->
                 </div>  
             @endif
-        </div>
-         <div class="col-md-8 col-sm-12">
+        </div> --}}
+        {{-- <div class="col-md-8 col-sm-12">
             <div class="card card-info card-outline card-tabs">
               <div class="card-header p-0 pt-1 border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
@@ -153,7 +316,7 @@
                                               <a onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://api.whatsapp.com/send/?phone&text=Hola!.%20Te%20acabo%20de%20compartir%20*{{$art['titulo']}}*%20creo%20que%20te%20podria%20interesar.%20Rev%C3%ADsala:%20https://option2health.com/share.html?prodId={{$art['idarticulo']}}%20%20*Option2health*.&app_absent=0" target="_blank">
                                                <i class="fab fa-whatsapp"></i> Whatsapp 
                                              </a>
-                                             {{-- <button class="dropdown-item" type="button" onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Whatsapp</button> --}}
+                                            
                                            </div>
                                          </div>
                                        </div>
@@ -162,11 +325,7 @@
                                            <button class="btn  btn-outline-info dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                            <i class="fa fa-info-circle"></i> Ver más
                                            </button>
-                                           {{-- <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                             <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art->idarticulo)}}')"> <i class="fa fa-save"></i> Guardar</button>
-                                             <button class="dropdown-item" type="button"><i class="fa fa-phone"></i> Contacto Online</button>
-                                             <button class="dropdown-item" type="button"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
-                                           </div> --}}
+                                           
                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                              <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
                                              <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
@@ -223,13 +382,16 @@
               </div>
               <!-- /.card -->
             </div>
-        </div>
+        </div> --}}
     </div>    
         
     
 
     @section('include_css') 
         <style>
+          .ocult{
+            display: none;
+          }
           .medico {
               position: absolute;
               border: 1px solid #10ADCF;

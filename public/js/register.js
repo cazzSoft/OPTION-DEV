@@ -95,3 +95,43 @@ $('#btnOmitir').click(function (e) {
 function acctionVermasdd(idar) {
     
 }
+
+//evento para ingresar por email
+$('#btn_ingreso_email').click(function (e) {
+		//ocultar botones sociales
+		$('.btn_sociales').addClass('d-none');
+		//mostrar form login email
+		$('.form_login').removeClass('d-none');
+
+		
+});
+
+//evento para mostrar registro paciente
+$('.btn_registrate').click(function (e) {
+		//ocultar botones sociales
+		$('.btn_sociales').addClass('d-none');
+		//mostrar form login email
+		$('.form_login').addClass('d-none');
+		$('.form_register').removeClass('d-none');
+
+		
+
+		$('.alertError').remove();
+		$('#email').removeClass('is-invalid');
+
+		//para cambiar el icono al cambiar al form registrarse
+		let usert = document.querySelector('.btn_registrate').dataset.user;
+		if(usert=='P'){
+				$('.txt_log').html('<i class="fas fa-user-plus"></i> Regístrate');
+		}
+		if(usert=='M'){
+				$('.txt_log').html('<i class="fa fa-user-md"></i> Regístrate');
+		}
+		if(usert=='E'){
+				$('.txt_log').html('<i class="fas fa-briefcase-medical"></i> Regístrate');
+		}
+	
+});
+
+
+

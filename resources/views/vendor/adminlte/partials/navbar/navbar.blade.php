@@ -35,7 +35,7 @@
               <p class="text-info">¿Listo para tomar el control de tu salud y de los demás? INGRESA AQUÍ</p>
            </li>
            <li class="nav-item dropdown user-menu mr-3">
-             <a class="nav-link btn btn-info text-light"  href="/session"> Registrate</a>
+             <a class="nav-link btn btn-info text-light"  href="session"> Registrate</a>
            </li>
         </div>
       @endif

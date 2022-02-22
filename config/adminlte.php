@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<h4>Option2health</h4>',
-    'logo_img' => 'vendor/adminlte/dist/img/acroxa.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logolg.svg', 
     'logo_img_class' => 'brand-image  elevation-1',
     'logo_img_xl' =>false,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -101,12 +101,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-info',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => 'text-center',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-info',
 
     /*
     |--------------------------------------------------------------------------

@@ -14,7 +14,7 @@
 @endif
 <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="fas fa-comments"></i>
+       <i class="far fa-comment"></i>
         <span class="badge badge-danger navbar-badge">3</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -70,46 +70,65 @@
       </div>
 </li>
 <li class="nav-item dropdown">
-  <a class="nav-link" data-toggle="dropdown" href="#">
-    <i class="far fa-bell"></i>
-    <span class="badge badge-warning navbar-badge">15</span>
-  </a>
-  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-    <span class="dropdown-header">15 Notifications</span>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item">
-      <i class="fas fa-envelope mr-2"></i> 4 new messages
-      <span class="float-right text-muted text-sm">3 mins</span>
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell "></i>
+        <span class="badge badge-danger navbar-badge">15</span>
     </a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item">
-      <i class="fas fa-users mr-2"></i> 8 friend requests
-      <span class="float-right text-muted text-sm">12 hours</span>
-    </a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item">
-      <i class="fas fa-file mr-2"></i> 3 new reports
-      <span class="float-right text-muted text-sm">2 days</span>
-    </a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-  </div>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-header">15 Notifications</span>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">
+          <i class="fas fa-envelope mr-2"></i> 4 new messages
+          <span class="float-right text-muted text-sm">3 mins</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">
+          <i class="fas fa-users mr-2"></i> 8 friend requests
+          <span class="float-right text-muted text-sm">12 hours</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">
+          <i class="fas fa-file mr-2"></i> 3 new reports
+          <span class="float-right text-muted text-sm">2 days</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+    </div>
 </li>
-<li class="nav-item dropdown user-menu">
-
+<li class="nav-item dropdown user-menu ">
     {{-- User menu toggler --}}
-    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-        <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{-- {{ Auth::user()->name }} --}}
-        </span>
+    
+    <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">
         @if(config('adminlte.usermenu_image'))
             <img src="{{ Auth::user()->adminlte_image() }}"
-                 class="user-image img-circle elevation-2"
+                 class="user-image img-circle elevation-3"
                  alt="{{ Auth::user()->name }}"> 
         @endif
-       
+        <span class="text-center" @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
+             {{ Auth::user()->name }} 
+        </span> <br>
+        <small style="margin-top: -124px;" class="align-text-bottom ml-5 align-text-bottom">Paciente</small>
+        {{-- <div class="media p-0 mb-5">
+            <img src="/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                Brad Diesel
+                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+              </h3>
+              <p class="text-sm">Call me whenever you can...</p>
+              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+            </div>
+        </div> --}}
+       {{--  <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+            <span class="username">
+              <a href="#">Adam Jones</a>
+              <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+            </span>
+            <span class="description">Posted 5 photos - 5 days ago</span>
+          </div> --}}
     </a>
-
+    
     {{-- User menu dropdown --}}
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
@@ -123,7 +142,7 @@
                          alt="{{ Auth::user()->name }}">
                 @endif
                 <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->name }} zambrani
                     @if(config('adminlte.usermenu_desc'))
                         <small>{{ Auth::user()->adminlte_desc() }}</small>
                     @endif
