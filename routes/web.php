@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
  
 //ruta login
     Route::get('/login', function () {
-        return view('auth.login'); 
+        return view('auth.login');  
     });
     Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
     Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');

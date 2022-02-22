@@ -134,11 +134,11 @@ class DoctoresController extends Controller
                 }  
                 //registro evento para especialidades 
                 session(['seccion_ctr'=>0]);
-                event(new PerfilUserEventUsuario(['tipoUser'=>'M-E','objUserEspeci'=>$espe_axu,'objUserEspeciUpdate'=>$request->iduser_especialidad ,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
+                // event(new PerfilUserEventUsuario(['tipoUser'=>'M-E','objUserEspeci'=>$espe_axu,'objUserEspeciUpdate'=>$request->iduser_especialidad ,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
             } 
             //registro de evento update datos basicos medico
              session(['seccion_ctr'=>0]);
-            event(new PerfilUserEventUsuario(['tipoUser'=>'M','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
+            // event(new PerfilUserEventUsuario(['tipoUser'=>'M','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
             return back()->with(['info' => 'Datos guardados', 'estado' => 'success']);
         }else{
             return back()->with(['info' => 'No se pudieron actualizados los datos ', 'estado' => 'error']);
@@ -162,7 +162,7 @@ class DoctoresController extends Controller
         if( $user->save()){
             //registro de evento update datos basicos medico
             session(['seccion_ctr'=>0]);
-            event(new PerfilUserEventUsuario(['tipoUser'=>'M-A','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
+            // event(new PerfilUserEventUsuario(['tipoUser'=>'M-A','objUser'=>$user_aux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PERMED'])] ));
             return back()->with(['info' => 'Datos actualizados', 'estado' => 'success']);
         }else{
             return back()->with(['info' => 'No se pudieron actualizados los datos ', 'estado' => 'error']);

@@ -708,7 +708,7 @@ class HomeController extends Controller
        $user->save();
 
        //registro de evento update de perfil user paciente
-        event(new PerfilUserEventUsuario(['tipoUser'=>'P','objUser'=>$userAux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
+        // event(new PerfilUserEventUsuario(['tipoUser'=>'P','objUser'=>$userAux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
         return back()->with(['info' => 'Datos Guardados', 'estado' => 'success']);
        // return redirect('/profile/perfil');
     }
