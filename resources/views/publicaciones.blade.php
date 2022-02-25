@@ -80,7 +80,7 @@
 	    @endforeach
 	   
 		<div class="form-group text-center mx-auto ">
-		   {{ $articulos->links() }}
+		   {{-- {{ $articulos->links() }} --}}
 		</div>
 	@endif
 

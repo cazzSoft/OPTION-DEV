@@ -69,6 +69,7 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('/articulo', 'ArticuloController');
             Route::post('/publicar', 'ArticuloController@publicar');
             Route::post('/search', 'ArticuloController@getArticulos');
+            Route::get('/resul', 'ArticuloController@resultadoSearch');
             Route::resource('/articulo_user', 'GuardadoController');
             Route::post('/search_user_art', 'GuardadoController@search_art');
             Route::resource('/caso', 'Caso_exController');

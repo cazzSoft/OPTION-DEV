@@ -11,6 +11,8 @@ use App\Events\MedicoEventPublicacionesSave;
 use App\Events\PerfilUserEventUsuarioEdit;
 use App\Inters_userModel;
 use App\Registro_ActividadModel;
+use App\TipoUserModel;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -148,11 +150,17 @@ class ArticuloController extends Controller
          // } 
     }
 
+    //metodo para mostrar resultado de busqueda
+    public function resultadoSearch()
+    {
+        
+        $lista=ArticuloModel::where('tipo','N')->where('estado',1)->get()->take(7);
+        return view('search.search',['articulos'=>$lista]);
+    }
+
     public function getArticulos(Request $request)
     {
-       //activamos la varible session para controlar las acciones de la busquedad
        
-    
         //consultar sus temas elegidos
         $id=auth()->user()->id;
         $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
@@ -224,9 +232,59 @@ class ArticuloController extends Controller
         $data->setPath($url.'/home/');    
         
         //Registro evento search
-        event(new HomeEventSearch(['txt_search'=>$request->q,'iduser'=>auth()->user()->id,'seccion'=>'INI']));
+        // event(new HomeEventSearch(['txt_search'=>$request->q,'iduser'=>auth()->user()->id,'seccion'=>'INI']));
+
+        // return view('home',['articulos'=>$data,'valor'=>$request->q]);
+
+        //obtener resultado en medicos
+        $tipoUser=TipoUserModel::where('abr','dr')->first()->idtipo_user;
+        $medicos=User::where('name','like','%'.$request->q.'%')->where('idtipo_user',$tipoUser)->get();
         
-        return view('home',['articulos'=>$data,'valor'=>$request->q]);
+        $listaPublicaciones=[];
+        $listMedicos=[];
+        $take=8;
+        if($medicos!='[]'){
+            $item=[];
+            foreach ($medicos as $key => $value) {
+                array_push($item,'<a  class="text-dark list-group-item list-group-item-action border-0 "  onclick="verResul(\' '.url('/gestion/resul').' \')"><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$value->name.'</dt></a>');
+            }
+            $take=5;
+            $listMedicos='<span  class="dropdown-item2">
+                  <div class="media ">
+                    <div class="media-body ">
+                      <dl>
+                        <dd class="dropdown-item-title  text-muted mt1"> Médicos <span class="float-right text-sm text-info"><i class="fa fa-user-md"></i></span></dd>
+                        '.implode(" ",$item).'
+                      </dl>
+                    </div>
+                  </div>
+                </span>';
+        }
+
+        if($data!='[]'){
+           $data= $data->take($take);
+            $item=[];
+            foreach ($data as $key => $value) {
+                
+                array_push($item,'<a href="'.url('/gestion/resul').'"  onclick="verResul(\' '.url('/gestion/resul').' \')" class="text-dark list-group-item list-group-item-action border-0 "><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$value['titulo'].'</dt></a>');
+            }
+
+            $listaPublicaciones='<span  class="dropdown-item2">
+                  <div class="media ">
+                    <div class="media-body">
+                     
+                      <dl>
+                        <dd class="dropdown-item-title  text-muted mt-1"> Publicaciones <span class="float-right text-sm text-info"><i class="far fa-newspaper"></i></span></dd>
+                        '.implode(" ",$item).'
+                      </dl>
+                    </div>
+                  </div>
+                </span>';
+        }
+       $data= ['listaPublicaciones'=>$listaPublicaciones,'listMedicos'=>$listMedicos];
+     
+       // return $data=array_merge($listMedicos, $listaPublicaciones);
+        return response()->json($data);
     }
 
     //ordena de acuerdo al genero y al edad que afecta la enfermedad

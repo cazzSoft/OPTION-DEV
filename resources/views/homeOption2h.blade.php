@@ -1,6 +1,8 @@
 
  @extends('adminlte::page')
+ 
   @section('content')
+
     <div class="row mb-0 mt-2 ocult" >
       <div class="col-lg-6 col-md-6 col-sm-12 ">
         @auth
@@ -106,12 +108,13 @@
 
   {{--  configuraciones globales css --}}
   <link rel="stylesheet" href="{{ asset('css/appO2h.css') }}">
+
  @stop
 
  @section('js') 
  	{{--  cinfiguraciones globales js --}}
  	<script src="{{ asset('/js/confOption2h.js') }}"></script>
-	 
+	
 	{{--  apartado para incluir mas js  --}}
 	@yield('include_js')
  @stop

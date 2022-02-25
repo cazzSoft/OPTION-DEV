@@ -225,7 +225,15 @@ class EventServiceProvider extends ServiceProvider
                      }
                     if($consul=='dr'){
                         $event->menu->add(
+                              [
+                               'text' => 'Search1',
+                               'url'  => '#',
+                               'search' => true,
+                               'topnav' => true, 
+                               
+                            ],
                             [
+                                
                                 'text' => 'Inicio',
                                 'url'  => '/home',
                                 'icon' => 'fas fa-fw fa-home',

@@ -105,5 +105,5 @@
     @yield('adminlte_js')
 
 </body>
-
+<script src="{{ asset('/js/global.js') }}"></script>
 </html>

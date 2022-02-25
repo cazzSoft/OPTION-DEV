@@ -16,7 +16,8 @@
         background-color: #dc354552!important;
     }
     .bgz-info {
-        background-color: #13c6ef!important;
+        background-color: #0FADCE!important;
+        color: #fff;
     }
 
     .vg{
@@ -65,3 +66,54 @@
             margin:0px !important;
         }       
     }*/
+
+    /* estilo de search */
+    .search{
+           border-radius: 0px 50px 50px 0px !important;  
+           width: 330px !important;
+    }
+    .btn-search{
+        border-radius: 50px 0px 0px 50px !important;
+       
+    }
+
+    /*estilos de list del search*/
+    #dropdown-menu{
+        width: ;
+    }
+
+    .dropdown-menu-lgz {
+     /*   max-width: 400px !important; */
+        max-width: 110% !important; 
+        min-width: 98% !important;
+        padding: 0; 
+        white-space: !important;
+    }
+    .dropdown-item2 {
+        display: block;
+        width: 100%;
+        padding: .25rem 1rem;
+        clear: both;
+        font-weight: 400;
+        color: #212529;
+        text-align: inherit;
+        white-space: normal;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .list-group-item {
+        /* position: relative; */
+        /* display: block; */
+            padding: .3rem 0rem !important;
+        /* background-color: #fff; */
+        /* border: 1px solid rgba(0,0,0,.125); */
+    }
+
+    /*.item_ :hover{
+       background-color: #afafaf !important;
+      border-radius: 50px 0px 0px 50px !important;
+    }*/
+    .card{
+        border: 0px !important;
+    }
