@@ -59,7 +59,7 @@ class HomeController extends Controller
 
     public function index()
     {
-         
+         return 2222;
         //datos iniciales del paciente para mostrar posibles enfermedades
             //paciente identificador
             $id=auth()->user()->id;
