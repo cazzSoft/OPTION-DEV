@@ -1,95 +1,101 @@
 
  @extends('adminlte::page')
- 
-  @section('content')
-
-    <div class="row mb-0 mt-2 ocult" >
-      <div class="col-lg-6 col-md-6 col-sm-12 ">
+  
+  @section('content_header')
+    <div class="row  ocult nav_content" >
         @auth
-         {{--  {{$user_}} --}}
-          <nav class="navbar navbar-expand-lg navbar-light bg-white  ml-2">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav h6">
-                <li class="nav-item active ">
-                  <a class="nav-link {{-- text-info --}}" href="/"><i class="fa fa-home"></i> Inicio </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> ¿Que Somos?</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{url('coinsult')}}"><i class="fas fa-fw fa-coins"></i> Coinsults</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> Guardados</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> Biblioteca</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
+          <header>
+             <nav class="navbar navbar-expand-lg navbar-light bg-white  mx-auto mt-3 mb-2 ocult">
+                <a  class="navbar-brand ml-2 navbar-toggler border-0 text-secondary "
+                      href="#" data-toggle="collapse" data-target="#navbarNav" >
+                       <b class="text-muted h6"> <span class="navbar-toggler-icon mr-3"></span> Menu </b>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav text-center">
+                    <li class="nav-item ml-4 mr-2">
+                      <a class="nav-link  {{ Route::is('home') ? 'text-info_' : '' }}" href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
+                    </li>
+                    <li class="nav-item ml-2 mr-3">
+                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Que Somos?</b></a>
+                    </li>
+                    <li class="nav-item ml-3 mr-3">
+                      <a class="nav-link  {{ Route::is('coinsult.index') ? 'text-info_' : '' }}" href="{{url('coinsult')}}"><i class="fas fa-fw fa-coins"></i> <b>Coinsults </b></a>
+                    </li>
+                    <li class="nav-item ml-2 mr-3">
+                      <a class="nav-link {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : '' }} " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> <b>Guardados</b></a>
+                    </li>
+                    <li class="nav-item ml-2 mr-3">
+                      <a class="nav-link {{ request()->is('biblioteca/show*') ? 'text-info_' : '' }} " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
+                    </li>
 
+                    @if(Auth::user()->type_user()=='dr' || Auth::user()->type_user()=='ad')
+                    <li class="nav-item ml-3 mr-3">
+                      <a class="nav-link  {{ request()->is(['gestion/user_casos*','medico/casos_ex*','gestion/search_caso*','gestion/caso*']) ? 'text-info_' : '' }}  " href="{{url('gestion/user_casos')}}"><i class="fas fa-book-reader "></i> <b>caso</b></a>
+                    </li>
+                    @endif
+                    @if( Auth::user()->type_user()=='ad')
+                    <li class="nav-item ml-3 mr-3">
+                      <a class="nav-link  {{ request()->is(['noticia/*']) ? 'text-info_' : '' }}  " href="{{url('noticia/new')}}"><i class="fas fa-book-reader "></i> <b>Noticia</b></a>
+                    </li>
+                    @endif
+                  </ul>
+                </div>
+            </nav>
+          </header>   
+        </div>
         @else
-          <nav class="navbar navbar-expand-lg navbar-light bg-white  ml-2">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active ">
-                  <a class="nav-link text-info" href="/"><i class="fa fa-home"></i> Inicio </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="session"><i class="fa fa-notes-medical"></i> ¿Que Somos?</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="session"><i class="fas fa-fw fa-coins"></i> Coinsults</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="session"><i class="fas fa-fw fa-bookmark"></i> Guardados</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+        <div class="col-lg-12 col-md-12 col-sm-12  ">
+          <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-white  mx-auto mt-3 mb-2 ocult">
+              <a  class="navbar-brand ml-2 navbar-toggler border-0 text-secondary " href="#" data-toggle="collapse" data-target="#navbarNav" ><b class="text-muted"> <span class="navbar-toggler-icon mr-3"></span> Menu </b></a>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ">
+                  <li class="nav-item  ml-3 mr-3">
+                    <a class="nav-link text-info_ " href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
+                  </li>
+                  <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" href="{{url('nosotros')}}"><i class="fa fa-notes-medical"></i>  <b>¿Que Somos?</b></a>
+                  </li>
+                  <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link" href="{{url('info-coinsults')}}"><i class="fa fa-coins"></i> <b>Coinsults</b></a>
+                  </li>
+                  <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> <b>Guardados</b></a>
+                  </li>
+                  <li class="nav-item ml-3 mr-3">
+                    <a class="nav-link " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </header>  
+        </div>
         @endauth
-        
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12  text-center bg-white">
-        <!-- Just an image -->
+      
         @guest
-        
+          
         @else  
-          <nav class="navbar navbar-light bg-white mr-1 mb-4 p-0">
-            <a class="navbar-brand text-center ml-5 drinfo" href="#">
-              <img src="/img/user1-128x128.jpg" alt="..." class="img-circle  mr-4 drinfo" width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
-            <a class="navbar-brand drinfo" href="#">
-              <img src="/img/user4-128x128.jpg" alt="..." class="img-circle  mr-4 " width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
-            <a class="navbar-brand drinfo " href="#">
-              <img src="/img/user3-128x128.jpg" alt="..." class="img-circle  mr-4 " width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
-            <a class="navbar-brand" href="#">
-              <img src="/img/user4-128x128.jpg" alt="..." class="img-circle  mr-4 " width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
-            <a class="navbar-brand" href="#">
-              <img src="/img/user5-128x128.jpg" alt="..." class="img-circle  mr-4 " width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
-            <a class="navbar-brand" href="#">
-              <img src="/img/user6-128x128.jpg" alt="..." class="img-circle  mr-4 " width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
-            <a class="navbar-brand" href="#">
-              <img src="/img/user7-128x128.jpg" alt="..." class="img-circle  mr-4 " width="60" height="60" style=" border: 3px solid #0FADCE;">
-            </a>
+         <div class="col-lg-4 col-md-12 col-sm-12  text-center bg-white justify-content-center bg-info">
+          <div class="main-carousel  text-center " data-flickity='{ "cellAlign": "center", "contain": true }'>
+            @if( Auth::user()->topMedicos() )
             
-            
-          </nav>
+              @foreach(Auth::user()->topMedicos() as $key=> $item)
+                <div class="carousel-cell text-center @if($key==0) offset-md-1 @endif align-self-end mt-2">
+                  <a class="navbar-brand text-center " onclick="getMedicoTop('{{encrypt($item->id)}}' )" href="#">
+                    <img src="{{asset($item->img)}}" alt="{{$item->img}}" class="img-circle  mr-4 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;"> 
+                  </a>
+                </div>
+              @endforeach
+            @endif 
+          </div>
+        </div>
         @endguest
-      </div>
+      
     </div>
+  @endsection
+
+  @section('content')
  		@yield('contenido')
 
       {{--   <footer class="main-footer">
@@ -102,19 +108,25 @@
   	@stop
 
  @section('css') 
-	
 	{{--  apartado para incluir mas css  --}}
 	@yield('include_css')
-
+   <style>
+     .flickity-page-dots{
+        display: none;
+     }
+     .flickity-button{
+      display: none;
+     }
+   </style>
   {{--  configuraciones globales css --}}
   <link rel="stylesheet" href="{{ asset('css/appO2h.css') }}">
-
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css">
  @stop
 
  @section('js') 
  	{{--  cinfiguraciones globales js --}}
  	<script src="{{ asset('/js/confOption2h.js') }}"></script>
-	
+	<script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
 	{{--  apartado para incluir mas js  --}}
 	@yield('include_js')
  @stop

@@ -46,47 +46,51 @@ class DocumentRepository extends Controller
     
     public function store(Request $request)
     {
+        try {
+            
         
-        //función para validar datos
-        $request->validate([
-            'img' => 'required',
-        ]);
+            //función para validar datos
+            $request->validate([
+                'img' => 'required',
+            ]);
 
-        //PREPARAMOS IMG o archivo
-        if($request->img!=null){
-            $img= $request->file('img');
-            $name=$img->getClientOriginalName();
-            $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
+            //PREPARAMOS IMG o archivo
+            if($request->img!=null){
+                $img= $request->file('img');
+                $name=$img->getClientOriginalName();
+                $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
 
-            if($extension=='pdf'){
-                $tipo="PDF";
-            }else if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
-                $tipo="IMG";
+                if($extension=='pdf'){
+                    $tipo="PDF";
+                }else if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
+                    $tipo="IMG";
+                }else{
+                    return back()->with(['info' => 'Solo se aceptan archivos con formato PDF, JPEG Y PNG', 'estado' => 'error']);
+                }
+
+                $nombre= $name.'-'.date('Ymd_h_s').'.'.$extension;
+                \Storage::disk('diskDocumentosBiblioteca_v')->put($nombre,\File::get($img));
+
+                //guardamos en base de datos
+                $documento= new biblioteca_virtualModel();
+                $documento->titulo=$request->titulo;
+                $documento->descripcion=$request->descripcion;
+                $documento->idespecialidades=$request->idespecialidades;
+                $documento->ruta=$nombre;
+                $documento->tipo=$tipo;
+                if($documento->save()){
+                    //registrar evento nuevo documento
+                     event(new UserEventBibliotecaSave(['tipo'=>'save','documento'=>$documento,'iduser'=>auth()->user()->id,'seccion'=>'REP']));
+                    return back()->with(['info' => 'Archivo guardado correctamente', 'estado' => 'success']);
+                }
+
             }else{
-                return back()->with(['info' => 'Solo se aceptan archivos con formato PDF, JPEG Y PNG', 'estado' => 'error']);
+                  return back()->with(['info' => 'El archivo es requerido', 'estado' => 'warning']);
             }
-
-            $nombre= $name.'-'.date('Ymd_h_s').'.'.$extension;
-            \Storage::disk('diskDocumentosBiblioteca_v')->put($nombre,\File::get($img));
-
-            //guardamos en base de datos
-            $documento= new biblioteca_virtualModel();
-            $documento->titulo=$request->titulo;
-            $documento->descripcion=$request->descripcion;
-            $documento->idespecialidades=$request->idespecialidades;
-            $documento->ruta=$nombre;
-            $documento->tipo=$tipo;
-            if($documento->save()){
-                //registrar evento nuevo documento
-                 event(new UserEventBibliotecaSave(['tipo'=>'save','documento'=>$documento,'iduser'=>auth()->user()->id,'seccion'=>'REP']));
-                return back()->with(['info' => 'Archivo guardado correctamente', 'estado' => 'success']);
-            }
-
-        }else{
-              return back()->with(['info' => 'El archivo es requerido', 'estado' => 'warning']);
-        }
       
-       
+        } catch (\Throwable $th) {
+            return back()->with(['info' => 'Algo ha ido mal.. ', 'estado' => 'error']);
+        }
     }
 
     //consulta obtener archivos por especialidades

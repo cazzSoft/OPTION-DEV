@@ -79,3 +79,22 @@ function obtenerResulSearch() {
     console.log(rul);
     window.location.href=rul;
  }
+
+
+ // funcion para cambiar el estado de visto a las notificaciones
+ function notyfyEstado() {
+    $.get("/notify/estado/"+0+'/edit', function (data) {
+      $('#badgeNoty').remove();
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+ }
+
+ //funcion de acciones de la notificaion
+ function notify(code) {
+    if(code==1){
+        window.location.href='/';
+        $('#modal-default').modal('show');
+    }
+ }

@@ -2,11 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Datos_medicosModel;
 use App\Http\Controllers\Registro_ActividadController;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered ;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Carbon\Carbon;
 
 class ListenerRegistered
 {
@@ -24,7 +25,10 @@ class ListenerRegistered
        
         //se restaura la varible de session 
         session()->regenerate();
-      
+        // insertamos datos medicos al us
+        
+
+        
 
         //guardamos actividad
         $user=$event->user;
@@ -35,6 +39,14 @@ class ListenerRegistered
         $color = array('info', 'success', 'maroon', 'warning', 'primary','teal','danger','secondary','gray','purple','orange','lime','olive');
         $count = count($color) - 1;
         $i = rand(0, $count);
+
+
+         $datos_medico=new Datos_medicosModel();
+            $datos_medico->peso=0;
+            $datos_medico->tipo_sangre='ninguno';
+            $datos_medico->talla=0;
+            $datos_medico->iduser=$user->id;
+            $datos_medico->save();
 
         $dataRegistro=[
                         'descripcion'=>'Registro de usuario',
@@ -59,6 +71,8 @@ class ListenerRegistered
                     ];
 
         $result=$this->actividad->historialUser($dataActividad,$dataRegistro);
+
+        
         logger($result);
         $event->user->last_login = new \DateTime();
         $event->user->online = 1;

@@ -60,7 +60,10 @@ function gestionSeguir(idm,ste) {
         dataType: "json",
         success: function (data ) {
             if(data.jsontxt.estado=='success'){
+                
                 $(ste).html('<i class="fa fa-check"></i> Dejar de seguir.');
+                 $('.btn_seg').removeClass('bgz-info text-white');
+                $('.btn_seg').addClass('btn-outline-info');
             }
             if(data.jsontxt.estado=='info'){
                 $(ste).html('<i class="fa fa-check-circle"></i> Seguir.');

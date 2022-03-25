@@ -1,13 +1,33 @@
 
 //funcion para previsualizar img user
-$('#imgU').change(function () {
+$('#file-upload').change(function () {
 	if (this.files && this.files[0]) {
 	    var reader = new FileReader();
 	    reader.onload = function(e) {
 	      // Asignamos el atributo src a la tag de imagen
-	      $('#preViewImg').attr('src', e.target.result);
+	      $('#preViewImg2').attr('src', e.target.result);
+	      var img=$('#preViewImg2').prop('src');
+	     	// mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+    	    if(img){
+	        	  Swal.fire({
+	        				title: 'Aptualizacion de foto de perfil',
+	        		    text: "Estas seguro que deseas ejecutar los cambios",
+	        		    icon: 'question', //question ,info, warning, success, error
+	        		    showCancelButton: true,
+	        		    confirmButtonColor: '#13c6ef',
+	        		    cancelButtonColor: '#cbcdcd',
+	        		    cancelButtonText: 'Abortar',
+	        		    confirmButtonText: 'Aceptar',
+	        		}).then((result) => {
+        			    if (result.isConfirmed) {
+        			    	 $('#update_img_perfil').submit();
+        			      
+        			    }
+	        		});
+    	     }	
 	    }
     	reader.readAsDataURL(this.files[0]);
+
   	}
 });
 function change(input) {

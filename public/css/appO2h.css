@@ -2,6 +2,7 @@
  /* estilos nuevos bz */
     .bz-info {
         background-color: #2cb5bf61!important;
+        color: #12adce!important;
     }
     .bz-warning {
         background-color: #ffc10766!important;
@@ -12,14 +13,23 @@
     .bz-success1{
         background-color: #4db199!important;
     }
+    .bz-white {
+        background-color: #fff!important;
+        color: #12adce!important;
+    }
     .bz-danger {
         background-color: #dc354552!important;
     }
     .bgz-info {
-        background-color: #0FADCE!important;
-        color: #fff;
+        background-color: #13c6ef!important;
+        color: #fff !important;
     }
-
+    .bgz-info:hover {
+        color: #fff !important;
+    }
+    .bz-secondary {
+        background-color: #bec5cc!important;
+    }
     .vg{
         color: white;
     }
@@ -61,7 +71,7 @@
       }
     }
 
-    /*@media (min-width: 768px){ 
+   /* @media (min-width: 768px){ 
         .ml-5{
             margin:0px !important;
         }       
@@ -74,14 +84,48 @@
     }
     .btn-search{
         border-radius: 50px 0px 0px 50px !important;
-       
     }
 
-    /*estilos de list del search*/
-    #dropdown-menu{
-        width: ;
+ /*estilos del perfil medico*/
+    /*imagen perfil*/
+    .widget-user .widget-user-image {
+        left: 3%;
+        margin-left:auto;
+        position: absolute;
+        top: 130px;
     }
 
+    .widget-user .widget-user-image>img {
+        border: 6px solid #0FADCE;
+        height: auto;
+        width: 160px;
+    }
+    /*portada perfil*/
+    .widget-user .widget-user-header {
+        height: 220px;
+        padding: 1rem;
+        text-align: left !important;
+    }
+
+    /*icono editar perfil*/
+    .ribbon-wrapper {
+        height: 48px !important;
+        top: 98px;
+        width: 10;
+        padding: 1px;
+        /*background-color: red;*/
+        border-radius: 200px;
+        transform: rotate(44deg);
+    }
+    .ribbon-wrapper .ribbon {
+        box-shadow: 0 0 0px rgb(0 0 0 / 30%) !important;
+        font-size: 1.4rem; 
+        padding: auto;
+        height: 0px;
+        border: 0px solid  transparent;
+    }
+
+/*estilos de list del search*/
     .dropdown-menu-lgz {
      /*   max-width: 400px !important; */
         max-width: 110% !important; 
@@ -116,4 +160,206 @@
     }*/
     .card{
         border: 0px !important;
+    }
+
+
+
+    @media (min-width: 576px) { 
+       
+
+    }
+
+    
+    /*// Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) { 
+
+    }
+
+    /*// Extra large devices (large desktops, 1200px and up)*/
+    @media (max-width: 1200px) { 
+
+        /* boton registrarse */
+        .item-nav{
+            font-size: 0.7em;
+            margin-left: 22px !important;
+        }
+    }
+
+    /*// Extra small devices (portrait phones, less than 576px)*/
+    @media (max-width: 575.98px) {
+        #usernamePerfil{
+          display: none;
+        }
+        #description{
+           display: none;
+        }
+        .main-header{
+            width: 100% !important;
+        }
+        
+        #inputSearch_{
+            font-size: 1rem !important;
+        }
+        .search{
+           border-radius: 0px 0px 0px 0px !important;  
+           width: 230px !important;
+        }
+        .btn-search{
+            border-radius: 0px 0px 0px 0px !important;
+        }
+        .dropdown-menu {
+            position: static;
+        }
+        .bt_coins{
+            font-size: 0.8em !important;
+        }
+       .nav-pills .nav-link {
+         padding: 0px !important;
+        }
+       
+       /*perfil de usuario*/
+       .widget-user .widget-user-image>img {
+            width: 120px;
+        }
+        .widget-user .widget-user-image {
+            top: 120px;
+        }
+        .widget-user .widget-user-header {
+            height: 184px;
+        }
+        .ribbon-wrapper {
+            top: 70px; 
+        }
+        .ribbon-wrapper .ribbon {
+            font-size: 1.4rem; 
+        }
+        
+        .tab_perfil a b{
+            font-size: 0.8em !important;
+        }
+        /*coisnults*/
+        .flex_titulo{
+            margin: 0px !important;
+            padding: 0px;
+        }
+        .flex_titulo a p{
+            margin-top: 10px !important;
+            font-size: 1.7em !important;
+        }
+        .flex_content_coinsul{
+            margin: 0px !important;
+        }
+
+        /*resul search*/
+        .containerResul{
+            padding: 0px;
+        }
+        .conten_publicaciones_search{
+            padding: 0px;
+            margin: 0px !important;
+        }
+    }
+    
+    /*// Small devices (landscape phones, less than 768px)*/
+    @media (max-width: 767.98px) { 
+       
+       /*stilo del logo y boton buscar res*/
+        #imaLogo{
+            width: 90%;
+            margin-left: 4px;
+        }
+        .btn_icon{
+            margin-left: 0px !important;
+        }
+        .profile-user-img {
+            padding: 0px 2px 0px 3px !important; 
+        }
+        .search{ 
+           width: 500px!important;
+        }
+
+        /*.content-header {
+             padding: 0px !important; 
+        }*/
+
+        .imgTop{
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+
+        /*texto de registrase*/
+        .item-nav{
+            font-size: 0.7em !important;
+            margin-top: 12px !important;
+        } 
+        .item-nav{
+            display: none !important;
+        }
+    }
+
+    /*// Medium devices (tablets, less than 992px)*/
+    @media (max-width: 991.98px) { 
+        .search{ 
+           width: 230px !important;
+        }
+        .item-nav{
+            font-size: 0.7em;
+            margin-left: 22px !important;
+        }
+        /* boton registrarse */
+        #btn_regis{
+         height: 40px !important;
+        }
+        .item-nav{
+          display: none;
+        }
+        .navbar-toggler {
+            font-size: 1.0rem;       
+        }
+
+    }
+
+    /*/*menu responsive */
+     @media (max-width: 767.98px) {
+        .header_content {
+            padding: 0px !important;
+            margin-top: -10px !important;
+        }   
+     }
+
+     @media (max-width: 991.98px){ 
+        .ocult {
+           background-color: #f8f9fa !important;
+           padding: 0px;
+        }
+        #navbarNav li{
+            margin-left:32px !important;
+            
+        }
+        #navbarNav ul li{
+           text-align:left !important;  
+        }
+        /* Change the link color on hover */
+        #navbarNav li a:hover {
+          background-color: #20cff7a1;
+          color: white !important;
+          padding: 10px;
+
+        }
+         
+        /*carrucel*/
+        .main-carousel{
+            padding: 3px 9px 1px !important;
+            border-top: 2px solid #e7ecf1f5;
+            border-bottom: 2px solid #e7ecf1f5;
+        }
+        .attachment_titulo{
+            font-size: 1em;
+        }
+        .attachment_desc{
+            font-size: 0.8em;
+        }
+        .content-item-carrosel{
+            margin: 0px !important;
+        }
     }

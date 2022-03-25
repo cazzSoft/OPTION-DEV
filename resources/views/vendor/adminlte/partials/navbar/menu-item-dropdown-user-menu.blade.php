@@ -12,10 +12,10 @@
     @php( $profile_url = $profile_url ? url($profile_url) : '' )
     @php( $logout_url = $logout_url ? url($logout_url) : '' )
 @endif
-<li class="nav-item dropdown">
+{{-- <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#"> 
        <i class="far fa-comment"></i>
-        <span class="badge badge-danger navbar-badge">3</span>
+        <span class="badge badge-danger navbar-badge">0</span>
     </a>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <a href="#" class="dropdown-item">
@@ -27,143 +27,67 @@
                 Brad Diesel
                 <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
               </h3>
-              <p class="text-sm">Call me whenever you can...</p>
+              <p class="text-sm">Hola como podemos ayudarte.</p>
               <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
             </div>
           </div>
-          <!-- Message End -->
+          
         </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <!-- Message Start -->
-          <div class="media">
-            <img src="/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                John Pierce
-                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-              </h3>
-              <p class="text-sm">I got your message bro</p>
-              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-            </div>
-          </div>
-          <!-- Message End -->
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <!-- Message Start -->
-          <div class="media">
-            <img src="/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                Nora Silvester
-                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-              </h3>
-              <p class="text-sm">The subject goes here</p>
-              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-            </div>
-          </div>
-          <!-- Message End -->
-        </a>
+        
+        
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
-</li>
+</li> --}}
 <li class="nav-item dropdown">
-    <a class="nav-link" data-toggle="dropdown" href="#">
+    <a class="nav-link mr-1" data-toggle="dropdown" href="#" onclick="notyfyEstado()">
         <i class="far fa-bell "></i>
-        <span class="badge badge-danger navbar-badge">2</span>
+        @if(Auth::user()->notify()['count_notify']!=0)
+            <span class="badge badge-danger navbar-badge" id="badgeNoty">{{Auth::user()->notify()['count_notify']}}</span>
+        @endif
+       
     </a>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-header">2 Notifications</span>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-coins mr-2"></i> has ganado 5 Coinsults
-          <span class="float-right text-muted text-sm">3 mins</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-coins mr-2"></i> has ganado 1 Coinsults
-          <span class="float-right text-muted text-sm">12 hours</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> Guarda un articula y ganas Coinsults
-          <span class="float-right text-muted text-sm">2 days</span>
-        </a>
+        <span class="dropdown-header">{{-- {{Auth::user()->notify()['count_notify']}}  --}}Notificaciones</span>
+        @if(isset(Auth::user()->notify()['listaNotify']))
+            @foreach(Auth::user()->notify()['listaNotify'] as $item)
+                <div class="dropdown-divider"></div>
+                <a href="{{asset($item['detalle_notificacion'][0]['url'])}}" class="dropdown-item2 text-dark " onclick="notify('{{ $item['detalle_notificacion'][0]['code']}}')"> 
+                  <i class="{{$item['detalle_notificacion'][0]['icon']}} mr-2 text-warning"></i> {{$item['detalle_notificacion'][0]['descripcion']}}
+                  <span class="float-right text-muted text-sm">{{ $item['created_at']->isoFormat('l') }}</span>
+                </a>
+            @endforeach
+        @endif
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
     </div>
 </li>
-<li class="nav-item dropdown user-menu ">
-    {{-- User menu toggler --}}
-    
-    <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">
+<li class=" ">
+    <div class="user-block">
         @if(config('adminlte.usermenu_image'))
-            <img src="{{ Auth::user()->adminlte_image() }}"
-                 class="user-image img-circle elevation-1 direct-chat-img"
-                 alt="{{ Auth::user()->name }}"> 
+        <a href="{{ $profile_url }}"> 
+            <img class="img-circle  direct-chat-img" src="{{asset(Auth::user()->adminlte_image()) }}" alt="{{ Auth::user()->name }}">
+        </a>
         @endif
-        <span class="text-center" @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-             {{ Auth::user()->name }} 
-        </span> <br>
-        <small style=" float: left !important;" class="align-text-bottom ml-5 align-text-bottom px-0">Paciente</small>
-    </a>
-    
-    {{-- User menu dropdown --}}
-    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        {{-- User menu header --}}
-        @if(!View::hasSection('usermenu_header') && config('adminlte.usermenu_header'))
-            <li class="user-header {{ config('adminlte.usermenu_header_class', 'bg-primary') }}
-                @if(!config('adminlte.usermenu_image')) h-auto @endif">
-                @if(config('adminlte.usermenu_image'))
-                    <img src="{{ Auth::user()->adminlte_image() }}"
-                         class="img-circle elevation-2"
-                         alt="{{ Auth::user()->name }}">
-                @endif
-                <p class="@if(!config('adminlte.usermenu_image')) mt-0 @endif">
-                    {{ Auth::user()->name }} zambrani
-                    @if(config('adminlte.usermenu_desc'))
-                        <small>{{ Auth::user()->adminlte_desc() }}</small>
-                    @endif
-                </p>
-            </li>
-        @else
-            @yield('usermenu_header')
-        @endif
-
-        {{-- Configured user menu links --}}
-        @each('adminlte::partials.navbar.dropdown-item', $adminlte->menu("navbar-user"), 'item')
-
-        {{-- User menu body --}}
-        @hasSection('usermenu_body')
-            <li class="user-body">
-                @yield('usermenu_body')
-            </li>
-        @endif
-
-        {{-- User menu footer --}}
-
-        <li class="user-footer">
-            @if($profile_url)
-                <a href="{{ $profile_url }}" class="btn btn-default btn-flat">
-                    <i class="fa fa-fw fa-user"></i>
-                    {{ __('adminlte::menu.profile') }}
-                </a>
+        <span id="usernamePerfil" class="username" @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
+          <a href="{{ $profile_url }}" class="text-dark"> {{ Str::limit(Auth::user()->name, 20)}} </a> 
+        </span>
+        <span class="description" id="description" > {{ Auth::user()->adminlte_desc() }}</span>
+    </div>
+</li>
+<li class="nav-item dropdown" style="margin-top: -10px;">
+    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2" style="top:28px;">
+        <a class="dropdown-item  @if(!$profile_url) btn-block @endif"
+           href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="fa fa-fw fa-power-off"></i>
+            {{ __('adminlte::adminlte.log_out') }}
+        </a>
+        <form id="logout-form" action="{{ $logout_url }}" method="POST" style="display: none;">
+            @if(config('adminlte.logout_method'))
+                {{ method_field(config('adminlte.logout_method')) }}
             @endif
-            <a class="btn btn-default btn-flat float-right @if(!$profile_url) btn-block @endif"
-               href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fa fa-fw fa-power-off"></i>
-                {{ __('adminlte::adminlte.log_out') }}
-            </a>
-            <form id="logout-form" action="{{ $logout_url }}" method="POST" style="display: none;">
-                @if(config('adminlte.logout_method'))
-                    {{ method_field(config('adminlte.logout_method')) }}
-                @endif
-                {{ csrf_field() }}
-            </form>
-        </li>
-
-    </ul>
-
+            {{ csrf_field() }}
+        </form>
+    </div>
 </li>

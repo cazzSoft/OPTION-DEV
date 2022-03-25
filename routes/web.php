@@ -16,19 +16,21 @@ use Illuminate\Support\Facades\Auth;
  
 //ruta login
     Route::get('/login', function () {
-        return view('auth.login');  
+        return view('login-registro.info-login');  
     });
     Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
     Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
-//precentacion de informacion de login
-    Route::get('/', 'PrincipalController@index')->middleware('web2');
+//RUTAS DE INFORMACION PUBLICA SIN LOGIN
+    Route::get('', 'PrincipalController@index')->middleware('web2');
     Route::get('/session', 'PrincipalController@infoLogin')->middleware('web2');
     Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('web2');
     Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('web2');
     Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('web2');
-    Route::get('/nosotros', 'PrincipalController@aboutme')->middleware('web2');
-    Route::get('/info-coinsults', 'PrincipalController@info_coinsults')->middleware('web2');
+    Route::get('/nosotros', 'PrincipalController@aboutme');
+    Route::get('/info-coinsults', 'PrincipalController@info_coinsults');
+    
+
     //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
     Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
 
@@ -55,6 +57,7 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('/user', 'HomeController'); 
             Route::resource('/perfil', 'PerfilUsuarioController'); 
             Route::get('/show_info', 'PerfilUsuarioController@show_info');
+            Route::post('/update_photo', 'PerfilUsuarioController@update_photo');
             
         });
 
@@ -69,7 +72,7 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('/articulo', 'ArticuloController');
             Route::post('/publicar', 'ArticuloController@publicar');
             Route::post('/search', 'ArticuloController@getArticulos');
-            Route::get('/resul', 'ArticuloController@resultadoSearch');
+            Route::get('/resul/{txt?}', 'ArticuloController@resultadoSearch');
             Route::resource('/articulo_user', 'GuardadoController');
             Route::post('/search_user_art', 'GuardadoController@search_art');
             Route::resource('/caso', 'Caso_exController');
@@ -77,6 +80,8 @@ use Illuminate\Support\Facades\Auth;
             Route::post('/search_caso', 'Caso_exController@get_casos');
             Route::get('/last_month', 'Caso_exController@get_casos_last_month');
             Route::get('/user_casos', 'Caso_exController@get_user_casos');
+            Route::get('/listaPublicaciones', 'ArticuloController@getlistaPublicaciones');
+            
             
         });
 
@@ -84,10 +89,14 @@ use Illuminate\Support\Facades\Auth;
          Route::prefix('medico')->group(function () {
             Route::resource('/perfil', 'DoctoresController');
             Route::put('/perfil_/{id}', 'DoctoresController@actualiza');
+            Route::put('/perfil_complet/{id}', 'DoctoresController@updateMedicoPerfil');
             Route::get('/show', 'DoctoresController@getInfo');
             Route::get('/info/{id}', 'DoctoresController@show_info');
+            Route::get('/getMedico/{id}', 'DoctoresController@getMedico');
             Route::get('/casos_ex', 'DoctoresController@casos_ex');
             Route::resource('/seguir', 'SeguirController');
+            Route::post('/update_portada', 'DoctoresController@update_photo_portada');
+            
 
          });
 
@@ -127,6 +136,19 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/eventDocumentBiblioteca/{id}', 'Registro_ActividadController@EventBiblioteca');
 
         });
+
+        //rutas para Noticias
+        Route::prefix('noticia')->group(function () {
+            Route::resource('new', 'NoticiaController');
+            Route::get('/lastOrden', 'NoticiaController@lastOrden');
+            Route::get('/ver/{id}', 'NoticiaController@getNoticia');
+        });
+
+        //rutas para gestion de Notificacion
+        Route::prefix('notify')->group(function () {
+            Route::resource('estado', 'NotificacionController');
+        });
+       
            
     });
 

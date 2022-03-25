@@ -406,4 +406,90 @@ $('#btn_action_m').click(function function_name(argument) {
 });
 
 
-//
+//funcion para mostrar el menu del perfil medico 
+function menu_perfil() {
+	 document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+var controlDrop=0;
+window.onclick = function(event) {
+
+	if(controlDrop!=0){
+		$('#myDropdown').removeClass('show');
+		controlDrop=0;
+		
+	}else{
+		
+		controlDrop=1;
+	}
+	
+	
+}
+
+
+//funcion para previsualizar img user
+$('#file-upload').change(function () {
+	
+	if (this.files && this.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      // Asignamos el atributo src a la tag de imagen
+	      $('#preViewImg').attr('src', e.target.result);
+	      var img=$('#preViewImg').prop('src');
+	     	// mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+    	    if(img){
+	        	  Swal.fire({
+	        			title: 'Aptualizacion de foto de perfil',
+	        		    text: "Estas seguro que deseas ejecutar los cambios",
+	        		    icon: 'question', //question ,info, warning, success, error
+	        		    showCancelButton: true,
+	        		    confirmButtonColor: '#13c6ef',
+	        		    cancelButtonColor: '#cbcdcd',
+	        		    cancelButtonText: 'Abortar',
+	        		    confirmButtonText: 'Aceptar',
+	        		}).then((result) => {
+        			    if (result.isConfirmed) {
+        			    	 $('#update_img_perfil').submit();
+        			      
+        			    }
+	        		});
+    	     }	
+	    }
+    	reader.readAsDataURL(this.files[0]);
+
+  	}
+});
+
+//funcion para previsualizar img user portada
+$('#file2').change(function () {
+	
+	if (this.files && this.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      // Asignamos el atributo src a la tag de imagen
+	      $('#preViewPortada').attr('style', `background: url('${e.target.result}') center center;`);
+	      // var img=$('#preViewImg').prop('src');
+	     	// mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+    	    if(e.target.result){
+	        	  Swal.fire({
+	        			title: 'Aptualizacion de foto de portada',
+	        		    text: "Estas seguro que deseas ejecutar los cambios",
+	        		    icon: 'question', //question ,info, warning, success, error
+	        		    showCancelButton: true,
+	        		    confirmButtonColor: '#13c6ef',
+	        		    cancelButtonColor: '#cbcdcd',
+	        		    cancelButtonText: 'Abortar',
+	        		    confirmButtonText: 'Aceptar',
+	        		}).then((result) => {
+        			    if (result.isConfirmed) {
+        			    	 $('#update_img_portada').submit();
+        			      
+        			    }
+	        		});
+    	     }	
+	    }
+    	reader.readAsDataURL(this.files[0]);
+
+  	}
+});

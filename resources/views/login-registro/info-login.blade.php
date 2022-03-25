@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12">
             <div class="register-logo d-flex justify-content-start ml-5 img_centrar">       
-               <a href="{{url('session')}}" class="linkce"> <img class=" img-fluid pad ml-2 imgl" src="{{asset('img/logolg.svg')}}" >  </a>
+               <a href="{{url('/')}}" class="linkce"> <img class=" img-fluid pad ml-2 imgl" src="{{asset('img/logolg.svg')}}" >  </a>
             </div>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
@@ -86,9 +86,9 @@
               <a disabled="false" href="{{ url('/log-in-medico') }}" class="btn btn-outline-info btn-block btn-lg">
                 <i class="fas fa-user-md mr-2 float-left ml-2"></i>  Médico
               </a>
-              <a disabled="false"  href="{{ url('/log-in-empresa') }}" class="btn btn-outline-info btn-block btn-lg">
+              {{-- <a disabled="false"  href="{{ url('/log-in-empresa') }}" class="btn btn-outline-info btn-block btn-lg">
                 <i class="fas fa-building float-left ml-2"></i> <span class="d-flex justify-content-center">Empresa</span>
-              </a>
+              </a> --}}
             </div>
 
             <p  class="mb-2 mt-5 text-center h6" >

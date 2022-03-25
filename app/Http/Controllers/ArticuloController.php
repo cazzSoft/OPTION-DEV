@@ -19,6 +19,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Str;
 use Log;
 use Str;
 
@@ -29,14 +30,20 @@ class ArticuloController extends Controller
        
         $this->middleware('auth');
     }
+
     public function index()
     {
         $lista=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','N')->where('estado',1)->get();
-
-        //registro de evento  articulo
-        event(new HomeEventPerfilUser(['page'=>'Agregar Publicación','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'ART'])]));
-
         return view('medico.gestionArticulo',['listaArt'=>$lista]);
+    }
+    public function getlistaPublicaciones()
+    {
+       $lista=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','N')->where('estado',1)->get();
+
+       //registro de evento  articulo
+       event(new HomeEventPerfilUser(['page'=>'Agregar Publicación','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'ART'])]));
+
+       return view('medico.lista_publicacion',['listaArt'=>$lista]);     
     }
 
     
@@ -151,104 +158,45 @@ class ArticuloController extends Controller
     }
 
     //metodo para mostrar resultado de busqueda
-    public function resultadoSearch()
+    public function resultadoSearch($value)
     {
-        
-        $lista=ArticuloModel::where('tipo','N')->where('estado',1)->get()->take(7);
-        return view('search.search',['articulos'=>$lista]);
+        $getSearch=$this->getSearch($value); 
+         // return $getSearch['medicos'];
+        $text_info=null;
+        $medicos=$getSearch['medicos'];
+        if( $medicos=='[]'){
+            $tipoUser=TipoUserModel::where('abr','dr')->first()->idtipo_user;
+            $medicos=User::where('idtipo_user',$tipoUser)->get()->take(5);
+            $text_info='Sugerido';
+        }
+        return view('search.search',['medicos'=>$medicos,'articulos'=>$getSearch['data'],'text_search'=>$value,'text_sms'=>$text_info]);
     }
 
     public function getArticulos(Request $request)
     {
        
-        //consultar sus temas elegidos
-        $id=auth()->user()->id;
-        $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
-        if(isset($temas['temas'])){
-            $tema=  $temas['temas']['area_desc'];
-        }
-        
-        $splay = Str::slug($tema,", ");
-        $array_temas= explode(', ', $splay );
-
-        
-
-        //lista de enfermedades
-        $enfermedades1=ArticuloModel::withCount(['like'])
-                ->where('tipo','N')
-                ->where('publicar','1')
-                ->where('estado','1')
-                ->where("titulo",'like',$request->q.'%')
-                
-                ->orWhere("descripcion", 'like', '%'.$request->q.'%')
-                ->orderBy('idarticulo','desc')
-                ->get();
-
-        $enfermedades2= ArticuloModel::withCount(['like'])
-                ->where('tipo','N')->where('publicar','1')->where('estado','1')
-                ->orwhere("titulo",'like','%'.$request->q)
-                ->orWhere("descripcion", 'like', '%'.$request->q.'%')
-                ->orWhere("area_desc", 'like', '%'.$request->q.'%')
-                ->orWhere("terminos", 'like', '%'.$request->q.'%')
-                ->orWhere("organos_involucrados", 'like', '%'.$request->q.'%')
-                ->orWhere("causas", 'like', '%'.$request->q.'%')
-                ->orWhere("sintoma", 'like', '%'.$request->q.'%')
-                ->orWhere("afecta_desc", 'like', '%'.$request->q.'%')
-                ->orWhere("enfermedades", 'like', '%'.$request->q.'%')
-                ->orderBy('idarticulo','desc')
-                ->get();
-        $enfermedades=[];
-
-        if(isset($enfermedades1)  ){
-            $enfermedades= array_merge($enfermedades1->toArray());
-
-        }else if(isset($enfermedades2)){
-            
-               $enfermedades= array_merge($enfermedades2->toArray());   
-        }
-
-        
-            //siempre dede ir esta informacion adicional
-            $value = Str::limit($request->q, 3);
-            $enfermedadesRes= ArticuloModel::withCount(['like'])
-                ->where('tipo','N')->where('publicar','1')->where('estado','1')
-                ->orwhere("titulo",'like','%'.$value.'%')
-                ->orWhere("descripcion", 'like', '%'.$value.'%')
-                ->orWhere("area_desc", 'like', '%'.$temas.'%')
-                ->orWhere("causas", 'like', '%'.$value.'%')
-                ->orWhere("sintoma", 'like', '%'.$value.'%')
-                ->orWhere("afecta_desc", 'like', '%'.$value.'%')
-                ->orWhere("enfermedades", 'like', '%'.$value.'%')
-                ->orderBy('idarticulo','desc')
-                ->get(); 
-            $enfermedadesAx=$this->ordenarSearchPrioridad($enfermedadesRes, $array_temas);
-            $enfermedades= array_merge($enfermedades,$enfermedadesAx);
-        
-        
-        $myCollectionObj=collect($enfermedades);
-        $data=$this->paginate($myCollectionObj); 
-        
-        $url='http://'.$_SERVER['HTTP_HOST'];
-        $data->setPath($url.'/home/');    
+        $getSearch=$this->getSearch($request->q);  
         
         //Registro evento search
         // event(new HomeEventSearch(['txt_search'=>$request->q,'iduser'=>auth()->user()->id,'seccion'=>'INI']));
 
         // return view('home',['articulos'=>$data,'valor'=>$request->q]);
 
-        //obtener resultado en medicos
-        $tipoUser=TipoUserModel::where('abr','dr')->first()->idtipo_user;
-        $medicos=User::where('name','like','%'.$request->q.'%')->where('idtipo_user',$tipoUser)->get();
         
+        $medicos=$getSearch['medicos'];
+        $data=$getSearch['data'];
         $listaPublicaciones=[];
         $listMedicos=[];
         $take=8;
         if($medicos!='[]'){
             $item=[];
+
             foreach ($medicos as $key => $value) {
-                array_push($item,'<a  class="text-dark list-group-item list-group-item-action border-0 "  onclick="verResul(\' '.url('/gestion/resul').' \')"><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$value->name.'</dt></a>');
+                $txt=Str::limit($value->name, 40); 
+                array_push($item,'<a  class="text-dark list-group-item list-group-item-action border-0 "  onclick="verResul(\' '.url('/medico/info/'.encrypt($value['id'])).' \')"><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$txt.'</dt></a>');
             }
             $take=5;
+
             $listMedicos='<span  class="dropdown-item2">
                   <div class="media ">
                     <div class="media-body ">
@@ -265,8 +213,8 @@ class ArticuloController extends Controller
            $data= $data->take($take);
             $item=[];
             foreach ($data as $key => $value) {
-                
-                array_push($item,'<a href="'.url('/gestion/resul').'"  onclick="verResul(\' '.url('/gestion/resul').' \')" class="text-dark list-group-item list-group-item-action border-0 "><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$value['titulo'].'</dt></a>');
+                $txt=Str::limit($value['titulo'], 40);
+                array_push($item,'<a href="'.url('/gestion/resul').'"  onclick="verResul(\' '.url('/gestion/resul/'.$value['titulo']).' \')" class="text-dark list-group-item list-group-item-action border-0 "><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$txt.'</dt></a>');
             }
 
             $listaPublicaciones='<span  class="dropdown-item2">
@@ -285,6 +233,97 @@ class ArticuloController extends Controller
      
        // return $data=array_merge($listMedicos, $listaPublicaciones);
         return response()->json($data);
+    }
+
+    //funcion para obtener array resultado del texto a buscar
+    public function getSearch($value)
+    {
+        //consultar sus temas elegidos
+        $id=auth()->user()->id;
+        $array_temas=null;
+        $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
+        if(isset($temas['temas'])){
+            $tema=  $temas['temas']['area_desc'];
+
+            $splay = Str::slug($tema,", ");
+            $array_temas= explode(', ', $splay );
+        }
+        
+        
+
+        
+        //lista de enfermedades
+        $enfermedades1=ArticuloModel::withCount(['like'])->with('medico')
+                ->where('tipo','N')
+                ->where('publicar','1')
+                ->where('estado','1')
+                ->where("titulo",'like',$value.'%')
+                
+                ->orWhere("descripcion", 'like', '%'.$value.'%')
+                ->orderBy('idarticulo','desc')
+                ->get();
+
+        $enfermedades2= ArticuloModel::withCount(['like'])->with('medico')
+                ->where('tipo','N')->where('publicar','1')->where('estado','1')
+                ->orwhere("titulo",'like','%'.$value)
+                ->orWhere("descripcion", 'like', '%'.$value.'%')
+                ->orWhere("area_desc", 'like', '%'.$value.'%')
+                ->orWhere("terminos", 'like', '%'.$value.'%')
+                ->orWhere("organos_involucrados", 'like', '%'.$value.'%')
+                ->orWhere("causas", 'like', '%'.$value.'%')
+                ->orWhere("sintoma", 'like', '%'.$value.'%')
+                ->orWhere("afecta_desc", 'like', '%'.$value.'%')
+                ->orWhere("enfermedades", 'like', '%'.$value.'%')
+                ->orderBy('idarticulo','desc')
+                ->get();
+        $enfermedades=[];
+
+        if(isset($enfermedades1)  ){
+            $enfermedades= array_merge($enfermedades1->toArray());
+
+        }else if(isset($enfermedades2)){
+            
+               $enfermedades= array_merge($enfermedades2->toArray());   
+        }
+
+        
+            //siempre dede ir esta informacion adicional
+            $val = Str::limit($value, 3);
+            $enfermedadesRes= ArticuloModel::withCount(['like'])
+                ->where('tipo','N')->where('publicar','1')->where('estado','1')->with('medico')
+                ->orwhere("titulo",'like','%'.$val.'%')
+                ->orWhere("descripcion", 'like', '%'.$val.'%')
+                ->orWhere("area_desc", 'like', '%'.$temas.'%')
+                ->orWhere("causas", 'like', '%'.$val.'%')
+                ->orWhere("sintoma", 'like', '%'.$val.'%')
+                ->orWhere("afecta_desc", 'like', '%'.$val.'%')
+                ->orWhere("enfermedades", 'like', '%'.$val.'%')
+                ->orderBy('idarticulo','desc')
+                ->get(); 
+            $enfermedadesAx=$this->ordenarSearchPrioridad($enfermedadesRes, $array_temas);
+            $enfermedades= array_merge($enfermedades,$enfermedadesAx);
+        
+        
+        $myCollectionObj=collect($enfermedades);
+        $data=$this->paginate($myCollectionObj); 
+        
+        $url='http://'.$_SERVER['HTTP_HOST'];
+        $data->setPath($url.'/home/'); 
+
+        // return $value;
+        // $tipoUser=TipoUserModel::where('abr','dr')->first()->idtipo_user;
+        $medicos=$enfermedadesRes->groupBy('iduser','asc');
+        if(isset($medicos)){
+            $array=[];
+            foreach ($medicos as $key => $value) {
+                 array_push($array,User::find($key));
+            }
+        }
+        $medicos=$array;
+        // $medicos=User::where('name','like','%'.$value.'%')->where('idtipo_user',$tipoUser)->get();
+
+        return ['medicos'=>$medicos,'data'=>$data];
+
     }
 
     //ordena de acuerdo al genero y al edad que afecta la enfermedad

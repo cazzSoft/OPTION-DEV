@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Datos_medicosModel;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\TipoUserModel;
@@ -66,7 +67,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
                         'name' => ['required', 'string', 'max:255'],
                         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                        'password' => ['required', 'string', 'min:8', 'regex:/[A-Z]{1}/','regex:/[a-z]{1}/','confirmed'],
+                        // 'password' => ['required', 'string', 'min:8', 'regex:/[A-Z]{1}/','regex:/[a-z]{1}/','confirmed'],
+                        'password' => ['required', 'string', 'min:8', 'confirmed'],
                     ], $messages);
        
 
@@ -141,7 +143,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'idtipo_user' =>TipoUserModel::where('abr',$tipo_us)->first()->idtipo_user,  
             'password' => Hash::make($data['password']),
-           
+            'img' => 'user.png',
         ]);
 
         // if($ver=='M'){

@@ -105,37 +105,44 @@ $('#idespecialidades_filtro').change( function () {
 function mostrarArchivosFiltro(data) {
 	$('#contetResulFiltro').html("");
 	$.each(data, function (i, item) {
-		
+		let titulo = item['titulo'].substring(0, 27);
 		if(item['tipo']=='IMG'){
 			var con=`
-				<li>
-				  <span class="mailbox-attachment-icon has-img"><img class="img" src="${url}/DocumentosBiblioteca/${item['ruta']}" alt="Attachment"></span>
-				  <div class="mailbox-attachment-info">
-				    <a href="${url}/DocumentosBiblioteca/${item['ruta']}"  onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-name"><i class="fas fa-camera"></i> ${item['titulo']}</a>
-				      <span class="mailbox-attachment-size clearfix mt-1">
-				        <span>${item['especialidad']['descripcion']}</span>
-				        <a href="${url}/DocumentosBiblioteca/${item['ruta']}" download="proposed_file_name" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-				      </span>
-				  </div>
-				</li>
-			`;
+					<img class="card-img-top objetfit" src="${url}/DocumentosBiblioteca/${item['ruta']}" alt="Card image ">
+					<div class="card-footer text-muted p-2">
+					    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-size text-muted clearfix"><i class="fas fa-camera"></i> ${titulo}</a>
+					  <span class="mailbox-attachment-size clearfix mt-0 ">
+					    <span>${item['especialidad']['descripcion']}</span>
+					    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" download="proposed_file_name" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt "></i></a>
+					  </span>
+					</div>`;
+			
 		}else{
 			var con=`
-				<li>
-				  <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
-				  <div class="mailbox-attachment-info">
-				    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i>${item['titulo']}.pdf</a>
-				        <span class="mailbox-attachment-size clearfix mt-1">
-				          <span>${item['especialidad']['descripcion']}</span>
-				          <a href="${url}/DocumentosBiblioteca/${item['ruta']}" download="proposed_file_name" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-				        </span>
-				  </div>
-				</li>
+				<span class="mailbox-attachment-icon mb-3"><i class="far fa-file-pdf fa-2x"></i></span>
+				<div class="card-footer mt-3 p-2">
+				    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-size text-muted "><i class="fas fa-paperclip"></i> ${titulo}.pdf</a>
+				    <span class="mailbox-attachment-size clearfix mt-0">
+				      <span>${item['especialidad']['descripcion']}</span>
+				      <a href="${url}/DocumentosBiblioteca/${item['ruta']}" download="proposed_file_name" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+				    </span>
+				</div>
+				
 			`;
 		}
 
+		var items=`
+			<div class=" col-md-2 col-xs-12 col-sm-12 ">
+			    <div class="card " >
+			      ${con}
+			    </div>
+			</div>
 
-		$('#contetResulFiltro').append(con);
+			
+		`;
+
+
+		$('#contetResulFiltro').append(items);
 	});
 }
 

@@ -57,8 +57,22 @@ return [
         'diskDocumentosBiblioteca_v' => [
             'driver' => 'local',
             'root' => public_path('DocumentosBiblioteca'),
+        ], 
+        'diskPortadaNoticia' => [
+            'driver' => 'local',
+            'root' => public_path('PortadaNoticia'),
         ],
-
+        'diskDocumentosPerfilUser' => [
+            'driver' => 'local',
+            'root' => public_path('FotoPerfil'),
+        ],
+        
+        'diskDocumentosPortadaUser' => [
+            'driver' => 'local',
+            'root' => public_path('FotoPortada'),
+        ],
+        
+ 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

@@ -12,9 +12,15 @@ use App\EspecialidadesModel;
 use App\Events\HomeEventLike;
 use App\Events\HomeEventPerfilUser;
 use App\Events\PerfilUserEventUsuario;
+use App\Http\Controllers\CoinsultController;
+use App\Http\Controllers\NotificacionController;
 use App\Inters_userModel;
 use App\LikeUsersModel;
+use App\NoticiaModel;
+use App\Notificacion;
+use App\NotificacionDetalleModel;
 use App\Registro_ActividadModel;
+use App\TemasModel;
 use App\TipoUserModel;
 use App\TituloModel;
 use App\User;
@@ -27,14 +33,18 @@ use Illuminate\Support\Facades\Route;
 use Str;
 class HomeController extends Controller
 {
-    
-    public function __construct()
+     
+    protected $notify;
+    protected $coins;
+
+    public function __construct(NotificacionController $notify, CoinsultController $coins)
     {   
-       
+        $this->notify=$notify;
+        $this->coins=$coins;
         $this->middleware('auth');
     }
 
-    public function paginate($items, $perPage = 12, $page = null, $options = [])
+    public function paginate($items, $perPage = 16, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -72,15 +82,18 @@ class HomeController extends Controller
             //consultar sus temas elegidos
             $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
             if(isset($temas['temas'])){
-                $tema=  $temas['temas']['area_desc'];
-
+                 $tema=  $temas['temas']['area_desc'];
                  $splay = Str::slug($tema,", ");
                  $array_temas= explode(', ', $splay );
-            }
-            
-            
+            }else{
+                // asignamos tema aleatorio
+                // $temas=TemasModel::inRandomOrder()->first();
+                // $tema=  $temas['area_desc'];
+                // $splay = Str::slug($tema,", ");
+                // $array_temas= explode(', ', $splay );
 
-           
+            }
+        
             
             //verificar si no tiene hijo pero el tema si
             //si tiene hijos
@@ -91,9 +104,9 @@ class HomeController extends Controller
                     $tiene_hijos= rand(1,18);
                 }
             }
-            
+          
         //lista de enfermedades
-        $enfermedades=ArticuloModel::withCount(['like'])
+        $enfermedades=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['like'=>function($q){
                             $q->select(['*'])->where('iduser',auth()->user()->id)->get();
                     }])->where('tipo','N')
@@ -101,7 +114,7 @@ class HomeController extends Controller
                 ->where('estado','1')
                 ->Where('afecta_desc','like','%'.$sexop1.'%')
                 ->orderBy('idarticulo','desc')
-                ->get()->take(2);
+                ->get();
         
         //array principales
         $array1=[];
@@ -202,8 +215,11 @@ class HomeController extends Controller
                 }
 
             }else{
+               // return ['sex'=>$titulo,'temasEn'=>$vartx,'Temas'=>$array_temas] ;
+                // return Str::contains( $vartx, $array_temas);
                 //no tiene hijos pero si selecciono un tema
                 if( Str::contains( $vartx, $array_temas) ){
+    
                   //separamos de acuerdo al sexo y prioridad
                     if(strlen($titulo)==7){
                        //separamos del genero myh
@@ -262,8 +278,10 @@ class HomeController extends Controller
                     }
                         
                 }else{
+                  
                     //separamos de acuerdo al sexo y prioridad
                     if(strlen($titulo)==7){
+
                        //separamos del genero myh
                         if( Str::startsWith($titulo, $sexop1)){
                             //encagamos al rango de edad
@@ -317,8 +335,9 @@ class HomeController extends Controller
                               }
                              
                          }
+                    }else{
+                      array_push($array1,$value);
                     }
-                     // array_push($array4,$value->afecta_desc.' rango[ '.$value->edad_inicial.' - '.$fecha_nacimiento.' - '.$value->edad_final.'] | '.$vartx);
                 }
             }
 
@@ -343,6 +362,14 @@ class HomeController extends Controller
         //registro de evento view page
         event(new HomeEventPerfilUser( ['page'=>'home (principal)','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'INI'])] ));
 
+        // creacion de lista de noticia para el sliders
+        $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1);
+        $listaNoticia = $listaNoticia->orderBy('orden','asc')->get();
+        $listaNoticia=$listaNoticia->groupBy('idespecialidades');
+
+         //lista medicos
+         $tipo=TipoUserModel::where('abr','dr')->first();
+         $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->get();
 
         //verificamos sus datos para update
         $estado_registro=null;
@@ -359,23 +386,23 @@ class HomeController extends Controller
               if(isset(auth()->user()->idtipo_user)){
                   $data_user_tipo=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
               }
-
+              
               //enviamos datos necesarios
               if($data_user_tipo=='us'){
-                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'user_'=>$data_user_tipo]);}
+                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'user_'=>$data_user_tipo,'list_top_medico'=>$listaTopMedico,'listaNoticia'=>$listaNoticia]);}
               if($data_user_tipo=='dr'){
-                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'lista_especialidad'=>$listaEspe,'user_'=>$data_user_tipo,'lista_titu'=>$listaTitulo]);
+                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'lista_especialidad'=>$listaEspe,'user_'=>$data_user_tipo,'lista_titu'=>$listaTitulo,'listaNoticia'=>$listaNoticia,'list_top_medico'=>$listaTopMedico]);
               }
               
               if($data_user_tipo=='em'){
-                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'user_'=>$data_user_tipo,'lista_area'=>$lista_area]);
+                  return view('home',['articulos'=>$data,'registro'=>$estado_registro,'ciudades'=>$listaciu,'user_'=>$data_user_tipo,'lista_area'=>$lista_area,'listaNoticia'=>$listaNoticia,'list_top_medico'=>$listaTopMedico]);
               }
 
         }
 
        // return auth()->user()->estado_registro;
 
-        return view('home',['articulos'=>$data]);
+        return view('home',['articulos'=>$data,'listaNoticia'=>$listaNoticia,'list_top_medico'=>$listaTopMedico]);
     }
 
    
@@ -383,22 +410,47 @@ class HomeController extends Controller
     //actualiza datos del usuario paciente
     public function update(Request $request ,$id)
     {
-        // return $request;
-       $user=User::find(decrypt($id));
-       $userAux=User::find(decrypt($id));
-       // $user->name=$request->name;
-       // $user->email=$request->email;
-       $user->telefono=$request->telefono;
-       $user->fecha_nacimiento=$request->fecha_nacimiento;
-       $user->genero=$request->genero;
-       $user->idciudad=$request->idciudad;
-       $user->estado_registro=1;
-       $user->save();
+       try {
+            // return $request;
+           $user=User::find(decrypt($id));
+           $userAux=User::find(decrypt($id));
+           $user->name=$request->name;
+           $user->email=$request->email;
+           $user->telefono=$request->telefono;
+           $user->fecha_nacimiento=$request->fecha_nacimiento;
+           $user->genero=$request->genero;
+           $user->idciudad=$request->idciudad;
+           $user->estado_registro=1;
+           $user->tine_hijo=$request->tine_hijo;
+           
+           $user->save();
 
-       //registro de evento update de perfil user paciente
-        // event(new PerfilUserEventUsuario(['tipoUser'=>'P','objUser'=>$userAux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
-        return back()->with(['info' => 'Datos Guardados', 'estado' => 'success']);
-       // return redirect('/profile/perfil');
+           if($user->save()){
+                $id= auth()->user()->id;
+                //asignamos 5 coinsult por update de datos code 2
+                $resul=$this->coins->add_coinsult('2');
+                if($resul){
+                    // notificamos que se ha ganado 5 coinsul code 2
+                    $this->notify->add_notificacion('5','coinsul');
+                }
+                
+                //ELIMINAMOS LA NOTIFICACION
+                $iddetalle=NotificacionDetalleModel::where('code','1')->first()->iddetalle_notificacion;
+                $delete= Notificacion::where('iduser',$id)->where('iddetalle_notificacion',$iddetalle)->first();
+                $delete->activo=0;
+                $delete->save();
+
+                 return back()->with(['info' => 'Gracias, tus datos se han guardado con exito.', 'estado' => 'success']);
+           }
+           //registro de evento update de perfil user paciente
+            // event(new PerfilUserEventUsuario(['tipoUser'=>'P','objUser'=>$userAux,'objUserUdpate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
+            return back()->with(['info' => 'Datos Guardados', 'estado' => 'success']);
+           // return redirect('/profile/perfil');
+       } catch (\Throwable $th) {
+            return back()->with(['info' => 'Algo ha ido mal', 'estado' => 'error']);
+       }
+           
+
     }
 
     public function show($id)
@@ -409,11 +461,12 @@ class HomeController extends Controller
     }
 
 
-    public function putLikePoint($id)
+    public function putLikePoint($id) 
     {
 
         $idarti=decrypt($id);
         $iduser= auth()->user()->id;
+        $getNoti=NotificacionDetalleModel::where('code','3')->first()->iddetalle_notificacion;
         $getPunto=CoinsultDetalleModel::where('punto','1')->first()->idcoinsultDetalle;
         $veri= LikeUsersModel::where('iduser',$iduser)->first();
 
@@ -422,12 +475,25 @@ class HomeController extends Controller
             $exitArt=LikeUsersModel::where('iduser',$iduser)->where('idarticulo',$idarti)->first();
             if(!isset($exitArt)){
                 //registro de actividad
-                 event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "like" ','tipo_S'=>session()->get('seccion_tipo')]));
+                 // event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "like" ','tipo_S'=>session()->get('seccion_tipo')]));
                 //registro like
                     $regisLike=new LikeUsersModel();
                     $regisLike->iduser=$iduser;
                     $regisLike->idarticulo=$idarti;
                     $regisLike->save();
+
+                    //registro de notificacion 
+                    $validarNoti=Notificacion::where('iduser',$iduser)->where('iddetalle_notificacion',$getNoti)->first();
+                    if($validarNoti){
+                        return response()->json([
+                            'jsontxt'=>['msm'=>'Gracias por Like..!!','estado'=>'info']
+                        ],200);
+                    }
+                    $notify= new Notificacion(); 
+                    $notify->iduser= $iduser;
+                    $notify->iddetalle_notificacion=$getNoti;
+                    $notify->save();
+
                      return response()->json([
                          'jsontxt'=>['msm'=>'Gracias por Like..!!','estado'=>'info']
                      ],200);
@@ -436,11 +502,13 @@ class HomeController extends Controller
                 if($exitArt->delete()){
 
                     //registro de actividad
-                    event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "dislike" ','tipo_S'=>session()->get('seccion_tipo')]));
+                    // event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "dislike" ','tipo_S'=>session()->get('seccion_tipo')]));
                      //verificar si elimino su primer like
                     if(!LikeUsersModel::where('iduser',$iduser)->first()){
                        if($delete=CoinsultModel::where('iduser',$iduser)->where('idcoinsultDetalle',$getPunto)->first()){
                             $delete->delete();
+                            $validarNoti=Notificacion::where('iduser',$iduser)->where('iddetalle_notificacion',$getNoti)->first();
+                            $validarNoti->delete();
                        } 
                        
                     }
@@ -467,15 +535,27 @@ class HomeController extends Controller
                 
 
                 //registro de actividad
-                event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "like" ','tipo_S'=>'SEA']));
+                // event(new HomeEventLike(['idarticulo'=>$idarti,'iduser'=>$iduser,'descripcion'=>'dio un "like" ','tipo_S'=>'SEA']));
 
             //registro puntos
-                
-               
                 $coinsulcreate= new CoinsultModel();
                 $coinsulcreate->iduser= $iduser;
                 $coinsulcreate->idcoinsultDetalle= $getPunto;
                 $coinsulcreate->save();
+
+
+                //registro de notificacion 
+                $validarNoti=Notificacion::where('iduser',$iduser)->where('iddetalle_notificacion',$getNoti)->first();
+                if($validarNoti){
+                    return response()->json([
+                        'jsontxt'=>['msm'=>'Gracias por Like..!!','estado'=>'info']
+                    ],200);
+                }
+                $notify= new Notificacion(); 
+                $notify->iduser= $iduser;
+                $notify->iddetalle_notificacion=$getNoti;
+                $notify->save();
+
                 return response()->json([
                     'jsontxt'=>['msm'=>'Gracias por tu primer Like!! has ganado un Coinsult','estado'=>'success']
                 ],200);

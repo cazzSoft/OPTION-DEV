@@ -124,7 +124,7 @@ return [
     'classes_brand' => 'navbar-brand   text-dark',
     'classes_brand_text' => '', //brand-text
     'classes_content_wrapper' => 'bg-white ',
-    'classes_content_header' => '',
+    'classes_content_header' => 'bg-info mt-4',
     'classes_content' => ' ',
     'classes_sidebar' => 'sidebar-light-info elevation-1 ',
     'classes_sidebar_nav' => '', //nav-child-indent

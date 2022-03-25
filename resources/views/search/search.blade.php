@@ -7,82 +7,70 @@
 @section('plugins.Select2',true)
 {{-- cuerpo de la pagina --}}
 @section('contenido')
-    <div class="container-fluid ">
+    <div class="container-fluid containerResul">
         <div class="row">
             <div class="col-md-12 col-sm-12 mt-4">
-                <a href="{{url('home')}}" class="mt-5">  <p class="ml-5 text-lead h4 text-info tex-sty">  <i class="fas fa-chevron-left mr-3 text-info"></i> <b>Resultados para Cancer</b> </p></a>
+                <a href="{{url('home')}}" class="mt-5 link-none text-dark">  <p class="ml-5 text-lead h4 ">  <i class="fas fa-chevron-left mr-3 text-info"></i> <b>Resultados para @if(isset($text_search)) {{$text_search}} @endif</b> </p></a>
             </div>
             <div class="col-md-12 col-sm-12 mt-4 m-2">
                 <div class="ml-5 mr-5 mt-4">
-                    <p >Aquí tienes todos los resultados que tenemos disponible para ti.</p>
-                    <p class=" text-lead h4 text-dark tex-sty mt-5 mb-5">
-                       <b>Médicos </b>
+                    <p class="lead">Aquí tienes todos los resultados que tenemos disponible para ti.</p>
+                    <p class=" text-lead h4 text-dark tex-sty mt-5 mb-4">
+                       <b>Médicos <small class="text-muted description">@if(isset($text_sms)) ({{ $text_sms}} )@endif  </small></b> 
                     </p>
                 </div>
             </div>
         </div>
-        <div class="row ml-5">
-          <div class="col-md-1 col-sm-4 col-xs-6 text-right ">
-
-            <img src="/img/user3-128x128.jpg" alt="User Image" class="img img-circle img-fluid">
-            <a class="users-list-name" href="#"><b>Alexander Pierce</b></a>
-           
-          </div>
-          <div class="col-md-1 col-sm-4 col-xs-6 text-left ">
-            <img src="/img/user4-128x128.jpg" alt="User Image" class="img img-circle img-fluid ">
-            <a class="users-list-name" href="#"><b>DR. FREDDY CANELAS</b></a>
-          </div>
-          <div class="col-md-1 col-sm-4 col-xs-6 text-left ">
-            <img src="/img/user4-128x128.jpg" alt="User Image" class="img img-circle img-fluid">
-            <a class="users-list-name" href="#"><b>DR. FREDDY CANELAS</b></a>
-          </div>
-        </div>
         <div class="row ">
-            <div class="col-md-12 col-sm-4 col-xs-6 ">
-                <div class="ml-5 mr-5 mb-5 mt-5">
-                    <p class=" text-lead h4 text-dark tex-sty mt-5">
-                    <b>Productos y Servicios </b>
-                </p>
-                </div>
-            </div>
-        </div> 
-        <div class="row ml-5">   
-            <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                <div class="attachment-block clearfix  ">
-                  <img class="img-fluid mb-3 " src="/img/photo2.png" alt="Photo">
-                  <p>Seguro de vida Can</p>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-2col-xs-6 text-center">
-                
-                    <div class="attachment-block clearfix">
-                      <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-                      <p>Farmacias Canhouse</p>
+            @if(isset($medicos))
+                @foreach($medicos as $key=>$item)
+                    <div class="col-md-1 col-sm-4 col-xs-6 text-right mb-4 @if($key<1) offset-md-1  @endif  text-center">
+                      <img src="{{asset($item->img)}}" id="Img_doc" alt="User Image" class="img img-circle img-fluid " >
+                      <a class="users-list-name" href="{{url('medico/info/'.encrypt($item['id']))}}"> <b>{{$item->name}}</b></a>
                     </div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                <div class="attachment-block clearfix">
-                  <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-                  <p>Seguro de Vida Equivida</p>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 text-center">
-                <div class="attachment-block clearfix">
-                  <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-                  <p>Seguro de Vida Equivida</p>
-                </div>
-            </div>
-           
+                @endforeach
+            @endif
+             
         </div>
-        <div class="row ml-4">
-            <div class="col-md-12 col-sm-4 col-xs-6 mt-5">
+
+       {{--  <div class="row ">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="ml-5 mr-5 mb-5 mt-5 ">
+                    <p class=" text-lead h4 text-dark tex-sty mt-5">
+                        <b>Productos y Servicios </b>
+                    </p>
+                </div>
+            </div>
+        </div>  --}}
+       {{--  <div class="row  text-center ">
+
+            <div class="col-md-2 p-0 col-sm-4 col-xs-12  offset-md-1 ">
+                <div class=" m-auto" >
+                  <img class="img-fluid m-auto cuadro" src="/img/photo2.png" alt="Photo">
+                </div>
+                 <p>Seguro de vida Can</p>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-12  ">
+                <div class="cuadro m-auto" >
+                 
+                </div>
+                 <p class="float-none">Seguro de vida Can</p>
+            </div>
+            
+           
+           
+        </div> --}}
+        <div class="row ml-4 conten_publicaciones_search">
+            <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
                 <p class=" text-lead h4 text-dark tex-sty mt-5">
                    <b>Publicaciones </b>
                 </p>
             </div>
-            <div class="col-md-12 col-sm-4 col-xs-12 ">
-                 <div class="container  mt-4">
-                      @include('publicaciones')
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                 <div class="row mt-3 "> 
+                   <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 offset-lg-3 offset-md-2  ">
+                    @include('publicaciones')
+                   </div>
                  </div>
             </div>
             
@@ -450,6 +438,19 @@
             .ocult{
                 display: none;
             }
+            .cuadro{
+                width: 180px;
+                height: 180px;
+                
+                
+                background: #C4C4C4;
+                text-align: center;
+            }
+            #Img_doc{
+                width: 150px;
+                height: 140px;
+                object-fit: cover;
+            }
         </style>
     @stop   
     {{-- Seccion para insertar js--}}
@@ -469,7 +470,8 @@
              </script>
           @endif
        <script src="{{ asset('/js/medico.js') }}"></script>
-       //activar select
+       <script src="{{ asset('/js/controlLike.js') }}"></script>
+       {{-- //activar select --}}
        <script>
            $('.select2').select2();
        </script>

@@ -8,7 +8,7 @@
  */
 
 :root {
-  --blue: #3490dc;
+  --blue: #0FADCE;
   --indigo: #6574cd;
   --purple: #9561e2;
   --pink: #f66d9b;
@@ -2800,7 +2800,7 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #212529;
-  background-color: #6cb2eb;
+  background-color: #0FADCE;
   border-color: #6cb2eb;
 }
 

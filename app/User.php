@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notificacion;
 use App\Notifications\ResetPasswordNotification;
 use App\TipoUserModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -40,15 +41,60 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-       if(auth()->user()->social_avatar){
+       if(isset(auth()->user()->social_avatar)){
             return auth()->user()->social_avatar;
+       }else if (isset(auth()->user()->img)) {
+          return auth()->user()->img;
+       }else{
+         return 'img/user.png';
        }
-        return 'https://picsum.photos/300/300';
+       
     }
 
     public function adminlte_desc()
     {
-        return auth()->user()->email;
+        if(isset(auth()->user()->idtipo_user)){
+            $us=TipoUserModel::find(auth()->user()->idtipo_user)->descripcion;    
+            return $us;   
+        }
+        
+    }
+
+    //obtener notificaciones
+    public function notify()
+    {
+         if(isset(auth()->user()->id)){
+            $listNotify=Notificacion::with('detalle_notificacion')->where('activo',1)->where('iduser',auth()->user()->id)->get();
+            $count_notify=Notificacion::where('estado',1)->where('activo',1)->where('iduser',auth()->user()->id)->get()->count();
+             return ['count_notify'=>$count_notify ,'listaNotify'=>$listNotify]; 
+         }
+         return null;
+    }
+   
+    //coinsult actuales count
+    public function coins()
+    {
+         if(isset(auth()->user()->id)){
+            $id=auth()->user()->id;
+            $coins=CoinsultModel::where('iduser',$id)->with('detalle_coinsult')->get();
+            $sum=00;
+            foreach ($coins as $key => $value) {
+                if (isset($value['detalle_coinsult'])) {
+                  $sum=$sum + $value['detalle_coinsult'][0]->punto;
+                 } 
+            }
+            return $sum;
+         }
+    }
+
+    //coinsult movimientos count
+    public function coins_movimiento()
+    {
+         if(isset(auth()->user()->id)){
+            $id=auth()->user()->id;
+            $cant=CoinsultModel::where('iduser',$id)->count();
+            return $cant;
+         }
     }
 
     public function adminlte_profile_url()
@@ -57,12 +103,37 @@ class User extends Authenticatable
         if(isset(auth()->user()->idtipo_user)){
             $consul=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
             if($consul=='dr'){
-               return 'medico/show';     
+               return 'medico/perfil';   
+               return 'profile/perfil';  
             }
         }
         return 'profile/perfil';
     }
 
+    // obtener tipo user medico
+    public function type_user()
+    {
+        if(isset(auth()->user()->idtipo_user)){
+            $consul=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
+            if($consul=='dr'){
+               return 'dr';   
+            }
+            return $consul; 
+        }
+        return 'profile/perfil';
+    }
+
+    // obtener top doctores
+    public function topMedicos()
+    {
+         if(isset(auth()->user()->id)){
+            $tipo=TipoUserModel::where('abr','dr')->first();
+            $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->get();
+            return $listaTopMedico;
+         }
+         
+         return null;
+    }
     public function ciudad()
     {
         return $this->hasOne('App\CiudadModel', 'idciudad', 'idciudad');

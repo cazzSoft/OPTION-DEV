@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ArticuloModel;
 use App\CiudadModel;
+use App\NoticiaModel;
 use Illuminate\Http\Request;
 class PrincipalController extends Controller
 {
@@ -19,9 +20,13 @@ class PrincipalController extends Controller
         $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['medico','like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(21)->paginate(16);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(5)->paginate(1);
+        // creacion de lista de noticia para el sliders
+        $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1)->get();
+        $listaNoticia=$listaNoticia->groupBy('idespecialidades');
+      
 
-        return view('home',['articulos'=>$articulo,'activeM'=>0]); 
+        return view('home',['articulos'=>$articulo,'listaNoticia'=>$listaNoticia]); 
     }
 
 
@@ -158,7 +163,7 @@ class PrincipalController extends Controller
         $datos=['detalle'=>$detalle,
                 'titulo'=>'Coinsults',
                 'tp'=>'CO',
-                ];
+                ]; 
         
         return view('login-registro.informacion',['data'=>$datos]);
     }

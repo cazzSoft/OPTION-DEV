@@ -86,6 +86,27 @@
            })
     }
 
-    $('.drinfo').click(function () {
-        $('#modal-info-medico').modal('show');
-    });
+    //evento para obtener datos del medico
+    function getMedicoTop(id) {
+        $.get("/medico/getMedico/"+id , function (data) {
+            
+            var desc_titulo=`${data.request['titulo']['descripcion']}. ${data.request['detalle_experiencia']}`;
+             desc_titulo=desc_titulo.substr(0,30);
+            $('.txt_name').html( data.request['name']);
+            $('.txt_titulo').html(` ${desc_titulo}`);
+            $('.txt_telf').html(`<i class="fas fa-mobile-alt"></i> Teléfono: ${data.request['telefono']}`);
+            $('.txt_email').html(`<i class="far fa-envelope"></i>: ${data.request['email']}`);
+            $('.txt_direc').html(`<i class="far fa-address-book"></i> Dirección: ${data.request['direccion']}`);
+            var url=window.location.protocol+'//'+window.location.host;
+            $('.text_url').attr('href',`${url}/medico/info/${id}`);
+            $('.img_txt').attr('src',`/${data.request['img']}`);
+            
+            
+            console.log(data);
+
+            $('#modal-info-medico').modal('show');
+        }).fail(function (data) {
+            var data = data.responseJSON;
+            mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)
+        });
+    }

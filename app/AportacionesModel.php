@@ -10,7 +10,7 @@ class AportacionesModel extends Model
     protected $table = 'aportaciones';
     protected $primaryKey  = 'idaportaciones';
     public $timestamps = true;
-     protected $appends = ['idaportaciones_encryp'];
+    protected $appends = ['idaportaciones_encryp'];
 
     public function usuario()
     {

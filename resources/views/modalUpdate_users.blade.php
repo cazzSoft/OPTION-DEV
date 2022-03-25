@@ -2,28 +2,29 @@
  <div class="modal-dialog modal-lg">
    <div class="modal-content">
      <div class="modal-header">
-      <h4 class="modal-title "> <i class="far fa-laugh-beam"></i> <span class="text-info"> Bienvenido</span>  @if(!Auth::guest()) {{auth()->user()->name}} @endif a <span class="text-info">Option2health</span>
-         <p class="lead"> "te sugerimos completar los datos de tu perfil"</p>
+      <h4 class="modal-title text-center mx-auto"> <i class="far fa-laugh-beam"></i> <span class="text-info_ text-center"> Bienvenido</span>  @if(!Auth::guest()) {{auth()->user()->name}} @endif a <span class="text-info">Option2health</span>
+         <p class="lead text-center"> "te sugerimos completar los datos de tu perfil"</p>
       </h4>
      
        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
+       <i class="fas fa-times-circle"></i>
        </button>
      </div>
-     <div class="modal-body">
+     <div class="modal-body"> 
        
         <p class="profile-username text-center mb-5 ">Registro de datos</p>
-        <form method="POST" @if($user_=='us') action="{{ url('/profile/user/'.encrypt(auth()->user()->id) ) }}"@else action="{{ url('/medico/perfil/'.encrypt(auth()->user()->id) ) }}" @endif >
+        <form method="POST" @if($user_=='us') action="{{ url('/profile/user/'.encrypt(auth()->user()->id) ) }}"@else action="{{ url('/medico/perfil_complet/'.encrypt(auth()->user()->id) ) }}" @endif >
             {{ csrf_field() }}
             <input id="method_" type="hidden" name="_method" value="PUT">
             <input type="hidden" name="tp" value=" @if(isset($user_)) {{encrypt($user_)  }} @endif ">
+            <input type="hidden" class="form-control form-control-sm" id="name" name="name" placeholder="Name" value="{{auth()->user()->name}}">
+            <input type="hidden"   name="email"  value="{{auth()->user()->email}}" >
             <div class="row">
                 @if(isset($user_) && $user_=="em")
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="card   mx-auto " style="width: 18rem;">
                       <img class="card-img-top profile-user-img img-fluid img-circle mt-5" id="preViewImg" src="{{asset('ava1.png')}}" alt="imgLogo">
                       <div class="card-body">
-                        
                         <div class="input-group mb-3">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="imgU">
@@ -34,33 +35,7 @@
                     </div>
                 </div>
                 @endif
-               {{--  <div class="col-xs-12 col-sm-12 col-md-6">
-                   
-                    <div class="form-group ">
-                        <label class="text-muted" for="name" > @if($user_=='em')Nombres de Contacto @else {{ __('Nombres Completos') }} @endif<span class="text-red">*</span></label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Nombres completos" required autocomplete="name" autofocus>
-
-                        @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                   
-                    <div class="form-group ">
-                        <label class="text-muted" for="email" >{{ __('Email') }} <span class="text-red">*</span></label>
-                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Ingrese Email">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div> --}}
-
+               
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6">
@@ -197,7 +172,7 @@
              @endif
             <div class="row">
                 @if($user_=="us"|| $user_=="dr")
-                <div class="col-xs-12 col-sm-12  @if($user_=='dr') col-md-12 @else col-md-6 @endif">
+                <div class="col-xs-12 col-sm-12   col-md-6 ">
                     <div class="form-group">
                         <label for="nom_referido" class="text-muted">Nombres de tu Referido</label>
                         <input class="form-control  @error('nom_referido') is-invalid @enderror" type="text" name="nom_referido" id="nom_referido"
@@ -209,6 +184,27 @@
                         @enderror    
                     </div>
                 </div>
+                @if($user_=="dr")
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="idciudad" class="text-muted">Ciudad <span class="text-red">*</span></label>
+                        <select class="form-control  select2 @error('idciudad') is-invalid @enderror" style="width: 100%;"
+                            data-placeholder="Seleccione su ciudad" name="idciudad" id="idciudad" >
+                            <option></option>
+                            @if(isset($ciudades))
+                                @foreach($ciudades as $ciu)
+                                <option @if(old('idciudad')==$ciu->idciudad)  selected="selected" @endif value="{{$ciu->idciudad}}">{{$ciu->descripcion}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                        @error('idciudad')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                @endif
                 @endif 
                 @if($user_=="us")
                 <div class="col-xs-12 col-sm-12 col-md-6">
@@ -321,18 +317,6 @@
                 @if($user_=="dr")
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <label class="text-muted" for="detalle_estudio">Ingrese una introducción de su perfil (se mostrará en la ficha personal) <span class="text-red">*</span></label>
-                        
-                        <textarea class="form-control @error('detalle_estudio') is-invalid @enderror"  rows="3" placeholder="Ej: soy una persona..."  value="{{ old('detalle_estudio') }}" name="detalle_estudio"  autocomplete="detalle_estudio" autofocus ></textarea>
-                        @error('detalle_estudio')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
                         <label for="idespecialidades" class="text-muted">Seleccione Áreas o especialidades de su interés <span class="text-red">*</span></label>
                         <select multiple class="form-control  select2 @error('idespecialidades') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione su ciudad" name="idespecialidades[]" id="idespecialidades" >
@@ -350,6 +334,44 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="text-muted" for="detalle_estudio">Ingrese una introducción de su perfil (se mostrará en la ficha personal) <span class="text-red">*</span></label>
+                        
+                        <textarea class="form-control @error('detalle_estudio') is-invalid @enderror"  rows="3" placeholder="Ej: soy una persona..."  value="{{ old('detalle_estudio') }}" name="detalle_estudio"  autocomplete="detalle_estudio" autofocus ></textarea>
+                        @error('detalle_estudio')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                 <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label class="text-muted" for="detalle_experiencia">Ingrese su experiencia profesional</label>
+                        <textarea class="form-control @error('detalle_experiencia') is-invalid @enderror"  rows="3" placeholder="Ej: Médico especialista..."  value=" " 
+                            name="detalle_experiencia" id="detalle_experiencia"  autocomplete="detalle_experiencia" autofocus required></textarea>
+                        @error('detalle_experiencia')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                   <div class="form-group ">
+                       <label class="text-muted" for="direccion" > Dirección de su consultorio</label>
+                       <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="" placeholder="Ingrese dirección de su consultorio"  autocomplete="direccion" autofocus required>
+
+                       @error('direccion')
+                           <span class="invalid-feedback" role="alert">
+                               <strong>{{ $message }}</strong>
+                           </span>
+                       @enderror
+                       
+                   </div>
+                </div>
+                
                 @endif
                {{-- <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group ">
@@ -383,10 +405,10 @@
                         @enderror
                     </div>
                 </div> --}}
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="form-group row mb-0">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group row mb-0 text-center mt-4">
                         <div class="col-md-12 offset-md-12">
-                            <button type="submit" class="btn btn-info ">
+                            <button type="submit" class="btn bgz-info pl-5 pr-5">
                                 {{ __('Guardar datos') }}
                             </button>
                         </div>

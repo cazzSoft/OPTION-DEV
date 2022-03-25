@@ -18,7 +18,7 @@ class HomeListenerContact
     public function __construct(Registro_ActividadController $actividad)
     {
         $this->actividad=$actividad;
-    }
+    } 
 
     public function handle(HomeEventContact $event)
     {

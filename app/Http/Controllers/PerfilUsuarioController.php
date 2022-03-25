@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\CiudadModel;
+use App\Datos_medicosModel;
 use App\Events\HomeEventPerfilUser;
 use App\GuardadoModel;
 use App\SeguirModel;
 use App\User;
 use Illuminate\Http\Request;
 
+use Log;
+use Str;
+use Storage;
 
 class PerfilUsuarioController extends Controller
 {
@@ -30,11 +34,17 @@ class PerfilUsuarioController extends Controller
         $guardado=GuardadoModel::with('articulo_user')->where('iduser',auth()->user()->id)->orderBy('idguardado','desc')->get();
         $seguidos=SeguirModel::where('iduser',auth()->user()->id)->count();
         $ciudades= CiudadModel::all();
-
+        $datos_medico=Datos_medicosModel::where('iduser',Auth()->user()->id)->first();
+        $array=null;
+        if(isset($datos_medico['enfermedades'])){
+            $array= json_decode($datos_medico['enfermedades'], true);
+        }
+        
+       
         //registro de evento view page
         event(new HomeEventPerfilUser(['page'=>'Perfil usuaio','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
 
-        return view('perfil',['data'=>$consul,'listaGuar'=>$guardado,'sigues'=>$seguidos,'listaCiudad'=>$ciudades]);
+        return view('perfil',['data'=>$consul,'listaGuar'=>$guardado,'sigues'=>$seguidos,'listaCiudad'=>$ciudades,'datos_m'=>$datos_medico,'lista_enf'=>$array]);
     }
 
     
@@ -48,7 +58,7 @@ class PerfilUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -91,6 +101,42 @@ class PerfilUsuarioController extends Controller
         //
     }
 
+    //funcion para guardar imagen de perfil del usuario
+    public function update_photo(Request $request)
+    {
+        //función para validar datos
+        $request->validate([
+            'img' => 'required',
+        ]);
+
+        //PREPARAMOS IMG o archivo
+        if($request->img!=null){
+            $img= $request->file('img');
+            $name=$img->getClientOriginalName();
+            $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
+
+            if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
+                $tipo="IMG";
+            }else{
+                return back()->with(['info' => 'Solo se aceptan archivos con formato JPEG Y PNG', 'estado' => 'error']);
+            }
+
+            $nombre= '00'.auth()->user()->id.'_'.date('Ymd_h_s').'.'.$extension;
+            \Storage::disk('diskDocumentosPerfilUser')->put($nombre,\File::get($img));
+
+            //guardamos en base de datos
+            $documento=  user::find(auth()->user()->id);
+            $documento->img='FotoPerfil/'.$nombre;
+            if($documento->save()){
+                //registrar evento nuevo documento
+                 // event(new UserEventBibliotecaSave(['tipo'=>'save','documento'=>$documento,'iduser'=>auth()->user()->id,'seccion'=>'REP']));
+                return back()->with(['info' => 'Archivo guardado correctamente', 'estado' => 'info']);
+            }
+
+        }else{
+              return back()->with(['info' => 'El archivo es requerido', 'estado' => 'warning']);
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -100,7 +146,16 @@ class PerfilUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id=decrypt($id);
+          
+        $datos_medico=Datos_medicosModel::find($id);
+        $datos_medico->peso=$request->peso;
+        $datos_medico->tipo_sangre=$request->tipo_sangre;
+        $datos_medico->talla=$request->talla;
+        $datos_medico->enfermedades=$request->enfermedades;
+        $datos_medico->save();
+
+        return back();
     }
 
     /**

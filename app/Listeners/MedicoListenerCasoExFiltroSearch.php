@@ -49,10 +49,10 @@ class MedicoListenerCasoExFiltroSearch
        
 
         //se obtiene el ultimo registro para obtener el  idactividad_padre
-        $actividadConsul=Actividad_userModel::where('iduser',auth()->user()->id)
-            ->where('sub_actividad',1)
-            ->where('idsecciones_actividad',$seccionNavegacion)->get()->last();
-        $idactividad_padre= $actividadConsul->idactividad_user;
+        // $actividadConsul=Actividad_userModel::where('iduser',auth()->user()->id)
+        //     ->where('sub_actividad',1)
+        //     ->where('idsecciones_actividad',$seccionNavegacion)->get()->last();
+        // $idactividad_padre= $actividadConsul->idactividad_user;
          
         $seccionNavegacion=SeccionActividadModel::where('tipo', $tipo_s)->first()->idsecciones_actividad; 
          

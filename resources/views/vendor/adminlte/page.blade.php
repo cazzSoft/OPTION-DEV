@@ -13,13 +13,12 @@
     @yield('css')
 @stop
 
-@section('classes_body', $layoutHelper->makeBodyClasses())
 
+@section('classes_body', $layoutHelper->makeBodyClasses())
 @section('body_data', $layoutHelper->makeBodyData())
 
 @section('body')
     <div class="wrapper">
-
         {{-- Top Navbar --}}
         @if($layoutHelper->isLayoutTopnavEnabled())
             @include('adminlte::partials.navbar.navbar-layout-topnav')
@@ -33,18 +32,18 @@
         @endif
 
         {{-- Content Wrapper --}}
-        <div class="content-wrapper {{ config('adminlte.classes_content_wrapper') ?? '' }} ">
+        <div class="content-wrapper  {{ config('adminlte.classes_content_wrapper') ?? '' }} ">
 
             {{-- Content Header --}}
-            <div class="content-header">
-                <div class="{{ config('adminlte.classes_content_header') ?: $def_container_class }}">
-                    @yield('content_header')
-                </div>
+            <div class="content-header header_content">
+                {{-- <div class=" mt-4 p-0"> --}}
+                    @yield('content_header') 
+                {{-- </div> --}}
             </div>
 
             {{-- Main Content --}}
             <div class="content">
-                <div class="{{ config('adminlte.classes_content') ?: $def_container_class }}">
+                <div class="{{ config('adminlte.classes_content') ?: $def_container_class }} ">
                     @yield('content')
                 </div>
             </div>
@@ -60,7 +59,6 @@
         @if(config('adminlte.right_sidebar'))
             @include('adminlte::partials.sidebar.right-sidebar')
         @endif
-
     </div>
 @stop
 
