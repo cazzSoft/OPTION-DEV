@@ -23,6 +23,7 @@ class PrincipalController extends Controller
                     }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(5)->paginate(1);
         // creacion de lista de noticia para el sliders
         $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1)->get();
+        
         $listaNoticia=$listaNoticia->groupBy('idespecialidades');
       
 
