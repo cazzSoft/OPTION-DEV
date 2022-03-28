@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div class="card-body box-profile">
           <div class="text-center mb-4">
-            <img class="profile-user-img img-fluid img-circle border-0 img_txt"   src="{{asset('/img/user1-128x128.jpg')}}" alt="User-profile">
+            <img class="profile-user-img  img-circle border-2 img_txt"   src="{{asset('/img/user1-128x128.jpg')}}" alt="User-profile" style=" width: 120px; height: 120px;  object-fit: cover;">
           </div>
           <small class="txt_titulo text-muted text-center"></small><br>
           <small class="txt_telf  text-muted text-center"></small><br>
@@ -23,7 +23,7 @@
           <div class="form-group row mb-0 mt-2">
               <div class="col-md-12 offset-md-12">
                   <a href="{{url('medico/info/'.encrypt('1'))}}" type="submit" class="btn btn-info btn-block text_url" style="background-color:#0FADCE;">
-                      {{ __('Visitar perfil') }}
+                      {{ __('Visitar perfil') }} 
                   </a>
               </div>
           </div>            

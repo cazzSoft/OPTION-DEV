@@ -20,7 +20,11 @@
               <h5 class="widget-user-desc text-right">Web Designer</h5> --}}
           </div>
           <div class="widget-user-image p-0  mr-5 " style="/*margin-left:-46%*/;">
-            <img class="img-circle img-fluid p-1" id="preViewImg" src="{{asset($datos_p->img)}}" alt="User-perfil" >
+            @if(asset($datos_p->img) && $datos_p['img']!=null)
+              <img class="img-circle img-fluid p-1" id="preViewImg" src="{{asset($datos_p->img)}}" alt="User-perfil" >
+            @else 
+              <img class="img-circle img-fluid p-1" id="preViewImg" src="{{asset('img/user.png')}}" alt="User-perfil" >
+            @endif
           </div>
         
           <div class="widget-user-header bg-white text-left mt-3" style="height: auto;">
@@ -32,7 +36,9 @@
                             </b>
                         </p>
                         <h6 class="widget-user-desc mx-0 ml-2">
-                            {{$datos_p->titulo['descripcion']}}  |
+                          @if(isset( $datos_p['idtitulo_profesional'] ))
+                            {{$datos_p->titulo['descripcion']}}
+                          @endif  |
                             <span class="ml-2 well well-sm shadow-none">Especialista en: </span>
                              @if(isset($especialidad))
                                  @foreach($especialidad as $key=>$item)
@@ -45,7 +51,7 @@
                     </div>
                 </div>
               <div class="row">
-                  <div class="col-md-8  col-sm-12">
+                  <div class="col-md-7  col-sm-12 ">
                       <h6 class="widget-user-desc mx-0 ml-2">
                           <b>@if(isset($publicaciones)) {{$publicaciones}} @endif</b> publicaciones   
                           <span class="ml-4"><b>@if(isset($seguidores)) {{$seguidores}} @endif</b> @if($seguidores==1)seguidor @else seguidores @endif</span>
@@ -55,20 +61,20 @@
                       <span class="ml-2 tag tag-info">Dirección: {{$datos_p->direccion}}</span>
                       
                   </div>
-                  <div class="col-md-4  mt-2 align-self-end col-sm-12">
+                  <div class="col-md-5  mt-2 align-self-end col-sm-12  ">
                       <p class="text-muted text-leth">Sígueme en:</p>
                       <div class="text-leth mb-3 ">
-                          <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 " ng-if="doctorsee.Twitter!==''">
+                          <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 p-1" ng-if="doctorsee.Twitter!==''">
                             <i class="fab fa-instagram text-info fa-2x"></i>
                           </a>
-                          <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn  " ng-if="doctorsee.Facebook!==''">
+                          <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn  p-1" ng-if="doctorsee.Facebook!==''">
                               <i class="fab fa-facebook text-info fa-2x"></i>
                           </a>
-                          <a href="{{$datos_p->link_lkd}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Linkedin')" target="”_blank”" class="btn  " ng-if="doctorsee.Linkedin!==''" >
+                          <a href="{{$datos_p->link_lkd}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Linkedin')" target="”_blank”" class="btn p-1 " ng-if="doctorsee.Linkedin!==''" >
                             <i class="fab fa-youtube text-info fa-2x "></i>
                           </a>
                           @if(auth()->user()->id!=$datos_p->id )
-                            <a  onclick="gestionSeguir('{{encrypt($datos_p->id)}}',this)" class="btn text-info btn_seg @if(isset($sigue)) btn-outline-info @else bgz-info text-white @endif btn-sm pr-5 pl-5 ml-1">
+                            <a  onclick="gestionSeguir('{{encrypt($datos_p->id)}}',this)" class="btn text-info btn_seg @if(isset($sigue)) btn-outline-info @else bgz-info text-white @endif btn-sm pr-5 pl-5 ml-3">
                               <b>    @if(isset($sigue)) Dejar de seguir @else Seguir @endif</b>  
                             </a>
                             

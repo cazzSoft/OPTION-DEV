@@ -83,7 +83,11 @@
               @foreach(Auth::user()->topMedicos() as $key=> $item)
                 <div class="carousel-cell text-center @if($key==0) offset-md-1 @endif align-self-end mt-2">
                   <a class="navbar-brand text-center " onclick="getMedicoTop('{{encrypt($item->id)}}' )" href="#">
-                    <img src="{{asset($item->img)}}" alt="{{$item->img}}" class="img-circle  mr-4 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;"> 
+                    @if(isset($item['img'] ) && $item['img']!=null )
+                      <img src="{{asset($item->img)}}" alt="{{$item->img}}" class="img-circle  mr-4 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;"> 
+                    @else 
+
+                    @endif
                   </a>
                 </div>
               @endforeach

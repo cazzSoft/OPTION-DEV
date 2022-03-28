@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label class="text-muted" for="telefono"> @if($user_=='dr')Teléfono (que tenga habilitado whatsapp) @elseif($user_=='us')Teléfono @elseif($user_=='em') Teléfono de contacto @endif <span class="text-red">*</span></label>
                         <input class="form-control  @error('telefono') is-invalid @enderror" name="telefono" id="telefono"
-                            placeholder="Número de teléfono " value="{{ old('telefono') }}"  autocomplete="telefono" autofocus required>
+                            placeholder="Número de teléfono " value="{{auth()->user()->telefono }}"  autocomplete="telefono" autofocus required>
                         @error('telefono')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label class="text-muted" for="cedula">@if($user_=="em" ) Ruc de la Empresa @else Cédula de identidad @endif<span class="text-red">*</span></label>
                         <input class="form-control  @error('cedula') is-invalid @enderror" name="cedula" id="cedula"
-                            placeholder="@if($user_=="em" ) Ruc de la Empresa @else Cédula de identidad @endif" value="{{ old('cedula') }}"  autocomplete="cedula" autofocus required>
+                            placeholder="@if($user_=="em" ) Ruc de la Empresa @else Cédula de identidad @endif" value="{{auth()->user()->cedula}}"  autocomplete="cedula" autofocus required>
                         @error('cedula')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <label for="razon_socila" class="text-muted">Razón Social  <span class="text-red">*</span></label>
                             <input type="text" class="form-control  @error('razon_socila') is-invalid @enderror" name="razon_socila" id="razon_socila"  placeholder="Razón Social"
-                                value="{{ old('razon_socila') }}" required>
+                                value="{{ auth()->user()->razon_socila }}" required>
                             @error('razon_socila')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -103,7 +103,7 @@
                     <div class="form-group">
                         <label for="fecha_nacimiento" class="text-muted">@if($user_=="em") Fecha de Nacimiento de la persona de contacto @else Fecha de Nacimiento @endif  <span class="text-red">*</span></label>
                         <input type="date" class="form-control  @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" id="fecha_nacimiento"
-                            value="{{ old('fecha_nacimiento') }}" required>
+                            value="{{ auth()->user()->fecha_nacimiento  }}" required>
                         @error('fecha_nacimiento')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -118,10 +118,11 @@
                     <div class="form-group">
                         <label for="genero" class="text-muted">@if($user_=="em") Género del administrador de la cuenta @else Género @endif<span class="text-red">*</span></label>
                         <select class="form-control  select2  @error('genero') is-invalid @enderror" style="width: 100%;"
-                            data-placeholder="Seleccione su género" name="genero" id="genero"  value="{{ old('genero') }}" required>
+                            data-placeholder="Seleccione su género" name="genero" id="genero"  value="{{ auth()->user()->genero  }}" required>
                             <option  ></option>
-                            <option @if(old('genero')==1) selected @endif  value="1">Masculino</option>
-                            <option @if(old('genero')==0) selected @endif value="0">Femenino</option>
+                            <option @if(auth()->user()->genero ==1) selected @endif  value="1">Masculino</option>
+                            <option @if(auth()->user()->genero ==0) selected @endif value="0">Femenino</option>
+                            <option @if(auth()->user()->genero ==2) selected @endif value="2">Indefinido</option>
                            
                         </select>
                         @error('genero')
@@ -140,7 +141,7 @@
                             <option></option>
                             @if(isset($ciudades))
                                 @foreach($ciudades as $ciu)
-                                <option @if(old('idciudad')==$ciu->idciudad)  selected="selected" @endif value="{{$ciu->idciudad}}">{{$ciu->descripcion}}</option>
+                                <option @if( auth()->user()->idciudad == $ciu->idciudad)  selected="selected" @endif value="{{$ciu->idciudad}}">{{$ciu->descripcion}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -176,7 +177,7 @@
                     <div class="form-group">
                         <label for="nom_referido" class="text-muted">Nombres de tu Referido</label>
                         <input class="form-control  @error('nom_referido') is-invalid @enderror" type="text" name="nom_referido" id="nom_referido"
-                            placeholder="Nombres de tu Referido" value="{{ old('nom_referido') }}">
+                            placeholder="Nombres de tu Referido" value="{{ auth()->user()->nom_referido }}">
                         @error('nom_referido')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -193,7 +194,7 @@
                             <option></option>
                             @if(isset($ciudades))
                                 @foreach($ciudades as $ciu)
-                                <option @if(old('idciudad')==$ciu->idciudad)  selected="selected" @endif value="{{$ciu->idciudad}}">{{$ciu->descripcion}}</option>
+                                <option @if(auth()->user()->idciudad == $ciu->idciudad)  selected="selected" @endif value="{{$ciu->idciudad}}">{{$ciu->descripcion}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -213,8 +214,8 @@
                         <select class="form-control  select2 @error('tine_hijo') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione " name="tine_hijo" id="tine_hijo" >
                             <option ></option>
-                            <option @if(old('tine_hijo')==1)  selected="selected" @endif value="1">Si</option>
-                            <option @if(old('tine_hijo')==0)  selected="selected" @endif value="0">No</option>
+                            <option @if(auth()->user()->tine_hijo ==1)  selected="selected" @endif value="1">Si</option>
+                            <option @if(auth()->user()->tine_hijo ==0)  selected="selected" @endif value="0">No</option>
                            
                         </select>
                         @error('tine_hijo')

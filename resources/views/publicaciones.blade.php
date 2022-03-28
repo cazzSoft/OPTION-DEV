@@ -1,6 +1,7 @@
 
 	@if (isset($articulos))
 	    @foreach ($articulos as $art )
+	    	@if(isset($art['medico'][0]['img']))
 	        <div class="card card-widget border-0 ">
 	            <div class="card-header">
 	            	<div class="user-block text-dark">
@@ -61,6 +62,7 @@
 		            </div>
 		        </div>
 	        </div>
+	        @endif
 	    @endforeach
 		<div class="form-group text-center mx-auto ">
 		   {{-- {{ $articulos->links() }} --}}

@@ -183,12 +183,18 @@ class ArticuloController extends Controller
         // return view('home',['articulos'=>$data,'valor'=>$request->q]);
 
         
-        $medicos=$getSearch['medicos'];
+        // $medicos=$getSearch['medicos'];
+
+        //lista medicos
+        $tipoUser=TipoUserModel::where('abr','dr')->first();
+        $medicos=User::where('name','like','%'.$request->q.'%')->where('idtipo_user',$tipoUser['idtipo_user'])->get();
         $data=$getSearch['data'];
+
         $listaPublicaciones=[];
         $listMedicos=[];
         $take=8;
-        if($medicos!='[]'){
+
+        if($medicos!='[]' && $medicos[0]!=null ){
             $item=[];
 
             foreach ($medicos as $key => $value) {

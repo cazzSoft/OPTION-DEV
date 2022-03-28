@@ -22,13 +22,19 @@
             </div>
         </div>
         <div class="row ">
-            @if(isset($medicos))
+            @if(isset($medicos) && $medicos!=null)
+             {{-- <div class="ml-5"> --}}
                 @foreach($medicos as $key=>$item)
+                @if($item)
                     <div class="col-md-1 col-sm-4 col-xs-6 text-right mb-4 @if($key<1) offset-md-1  @endif  text-center">
-                      <img src="{{asset($item->img)}}" id="Img_doc" alt="User Image" class="img img-circle img-fluid " >
+                        @if(isset($item->img) && $item->img!=null)
+                            <img src="{{asset($item->img)}}" id="Img_doc" alt="User Image" class="img img-circle img-fluid profile-user-img  border-segundary" >
+                        @endif
                       <a class="users-list-name" href="{{url('medico/info/'.encrypt($item['id']))}}"> <b>{{$item->name}}</b></a>
                     </div>
+                @endif
                 @endforeach
+            {{-- </div> --}}
             @endif
              
         </div>

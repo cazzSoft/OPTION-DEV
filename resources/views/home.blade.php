@@ -28,18 +28,22 @@
       <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12">
         <nav class="w-100 ">
           <div class="nav nav-tabs border-0 d-flex justify-content-center " id="product-tab" role="tablist">
-            <a class=" h5 nav-item nav-link  border-0 mr-3" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
-            <a class="h5 nav-item nav-link  border-0 active" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
+            <a class=" h5 nav-item nav-link  border-0 mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
+            <a class="h5 nav-item nav-link  border-0 " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
           </div>
         </nav>
         <div class="tab-content p-0" id="nav-tabContent">
-          <div class="tab-pane fade" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+          <div class="tab-pane  show active " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
             <div class="row mt-4  justify-content-start">
               @if(isset($list_top_medico))
                 @foreach($list_top_medico->take(5) as $key=> $item)
-                  <div class="col-md-2 col-sm-3 col-xs-12 text-left @if($key<1) offset-md-1  @endif  text-center mb-3">
-                    <img src="{{$item->img}}" alt="User Image" class=" img-circle img-fluid p-3 ">
-                    <a class="users-list-name " href="{{url('medico/info/'.encrypt($item['id']))}}"><b class="h5">{{$item->name}}</b></a>
+                  <div class="col-md-2 col-sm-3 col-xs-12 text-left  @if($key<1) offset-md-1  @endif  text-center mb-3">
+                    @if(isset($item->img) && $item['img']!=null) 
+                      <img src="{{$item->img}}" alt="{{$item->img}}" id="img_doc" class=" img-circle img-fluid p-0 profile-user-img  border border-info">
+                    @else 
+                       <img src="{{asset('img/user.png')}}" alt="{{$item->img}}" id="img_doc"  class=" img-circle img-fluid p-0 border profile-user-img border-info">
+                    @endif
+                    <a class="users-list-name mt-3 mb-2" href="{{url('medico/info/'.encrypt($item['id']))}}"><b class="h5">{{$item->name}}</b></a>
                   </div>
 
                 @endforeach
@@ -50,7 +54,7 @@
                 <p class="h4 text-info text-center" style="font-family:  Calibri; color: #13c6ef !important;"><b>Acerca de Nosotros</b></p>
               </div>
               <div class="col-md-12 col-sm-6 col-xs-12 mt-3 border-0">
-                <div class="card-deck ml-4 mr-4 border-0">
+                <div class="card-deck ml-4 mr-4 border-0 mb-5">
                   <div class="card ml-5 border-0">
                     <img class="card-img-top" src="/img/a1.png" alt="Card image cap">
                     <div class="card-body border-0">
@@ -94,7 +98,7 @@
             </div>
           </div>
 
-          <div class="tab-pane show active " id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
+          <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
             <div class="container">
               <div class="row mt-3">
                 <div class="col-md-8 col-sm-12 col-xs-12 offset-md-2 ">
@@ -119,7 +123,7 @@
   @section('include_css') 
 
     <style>
-      .medico {
+      /*.medico {
           position: absolute;
           border: 1px solid #10ADCF;
           text-align: center;
@@ -133,10 +137,10 @@
           font-size: 1em;
           -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
           box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-      }
-      .img2{
-        width: 67%;
-      }
+      }*/
+      /*.img2{
+        width: 61%;
+      }*/
 
       /*slider home*/
       .rounded-circle {
@@ -144,6 +148,12 @@
           width: 12px !important;
           height: 12px  !important;
       }
+      #img_doc{
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+           
+          }
 
     </style>
   @stop 

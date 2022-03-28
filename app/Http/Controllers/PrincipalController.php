@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\ArticuloModel;
 use App\CiudadModel;
 use App\NoticiaModel;
+use App\TipoUserModel;
+use App\User;
 use Illuminate\Http\Request;
 class PrincipalController extends Controller
 {
@@ -20,14 +22,18 @@ class PrincipalController extends Controller
         $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['medico','like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(5)->paginate(1);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(16)->paginate(16);
         // creacion de lista de noticia para el sliders
         $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1)->get();
         
-        $listaNoticia=$listaNoticia->groupBy('idespecialidades');
-      
+        $listaNoticia=$listaNoticia->groupBy('idespecialidades'); 
 
-        return view('home',['articulos'=>$articulo,'listaNoticia'=>$listaNoticia]); 
+        //lista medicos
+        $tipo=TipoUserModel::where('abr','dr')->first();
+        $list_top_medico=User::inRandomOrder()->where('idtipo_user',$tipo['idtipo_user'])->get();
+       
+
+        return view('home',['articulos'=>$articulo,'listaNoticia'=>$listaNoticia,'list_top_medico'=>$list_top_medico]); 
     }
 
 

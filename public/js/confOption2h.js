@@ -90,7 +90,19 @@
     function getMedicoTop(id) {
         $.get("/medico/getMedico/"+id , function (data) {
             
-            var desc_titulo=`${data.request['titulo']['descripcion']}. ${data.request['detalle_experiencia']}`;
+            // console.log(data.request); return ;
+            if(data.request['idtitulo_profesional']!=null){
+                var descrip=data.request['titulo']['descripcion'];
+            }else{
+                var descrip='Sin datos..';
+            }
+
+            var expe=' ';
+            if(data.request['detalle_experiencia']){
+                var expe=data.request['detalle_experiencia'];
+            }
+
+            var desc_titulo=`${descrip}. ${expe}`;
              desc_titulo=desc_titulo.substr(0,30);
             $('.txt_name').html( data.request['name']);
             $('.txt_titulo').html(` ${desc_titulo}`);
@@ -99,7 +111,7 @@
             $('.txt_direc').html(`<i class="far fa-address-book"></i> Dirección: ${data.request['direccion']}`);
             var url=window.location.protocol+'//'+window.location.host;
             $('.text_url').attr('href',`${url}/medico/info/${id}`);
-            $('.img_txt').attr('src',`/${data.request['img']}`);
+            $('.img_txt').attr('src',`${data.request['img']}`);
             
             
             console.log(data);
