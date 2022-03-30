@@ -44,7 +44,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function paginate($items, $perPage = 16, $page = null, $options = [])
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -369,7 +369,8 @@ class HomeController extends Controller
 
          //lista medicos
          $tipo=TipoUserModel::where('abr','dr')->first();
-         $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->get();
+         // $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->get();
+         $listaTopMedico=User::inRandomOrder()->where('idtipo_user',$tipo['idtipo_user'])->where('id','<>',auth()->user()->id)->get();
 
         //verificamos sus datos para update
         $estado_registro=null;

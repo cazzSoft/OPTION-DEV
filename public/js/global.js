@@ -33,6 +33,15 @@ function obtenerResulSearch() {
 
  //funcion para obtener resultado del search
  function getSearch() {
+    var rute=$('#tpch').val();
+    if(rute==1){
+        rute=`/gestion/search`;
+        
+    }else{
+        rute=`/search`;
+    }
+    console.log(rute);
+
      $.ajaxSetup({
          headers: {
              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -45,7 +54,7 @@ function obtenerResulSearch() {
      console.log(FrmData)
      // return 0;
       $.ajax({
-          url: "/gestion/search", 
+          url: rute,  
           method: "POST", 
           data: FrmData, 
           dataType: "json",

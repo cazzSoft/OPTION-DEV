@@ -64,7 +64,7 @@
                             </b>
                         </p>
                         <h6 class="widget-user-desc mx-0 ml-2">
-                            {{$datos_p->titulo['descripcion']}}  |
+                            @if(isset($datos_p['idtitulo_profesional'])) {{$datos_p->titulo['descripcion']}}  | @endif
                             <span class="ml-2 well well-sm shadow-none">Especialista en: </span>
                              @if(isset($especialidad))
                                  @foreach($especialidad as $key=>$item)
@@ -573,11 +573,12 @@
        <script src="{{ asset('/js/medico.js') }}"></script>
        <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
        {{-- //activar select --}}
-       <script>
+        <script>
            $('.select2').select2();
-
         </script>
         <script src="{{ asset('/js/actionEvent.js') }}"></script>
+        
+       
     @stop
 
 

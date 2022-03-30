@@ -72,7 +72,7 @@
                             <option></option>
                             @if(isset($lista_titu))
                                 @foreach($lista_titu as $tit)
-                                <option @if(old('idtitulo_profesional')==$tit->idtitulos)  selected="selected" @endif value="{{$tit->idtitulos}}">{{$tit->descripcion}}</option>
+                                <option @if(auth()->user()->idtitulo_profesional == $tit->idtitulos)  selected="selected" @endif value="{{$tit->idtitulos}}">{{$tit->descripcion}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -339,7 +339,7 @@
                     <div class="form-group">
                         <label class="text-muted" for="detalle_estudio">Ingrese una introducción de su perfil (se mostrará en la ficha personal) <span class="text-red">*</span></label>
                         
-                        <textarea class="form-control @error('detalle_estudio') is-invalid @enderror"  rows="3" placeholder="Ej: soy una persona..."  value="{{ old('detalle_estudio') }}" name="detalle_estudio"  autocomplete="detalle_estudio" autofocus ></textarea>
+                        <textarea class="form-control @error('detalle_estudio') is-invalid @enderror"  rows="3" placeholder="Ej: soy una persona..."  value=" " name="detalle_estudio" id="detalle_estudio"  autocomplete="detalle_estudio" autofocus ></textarea>
                         @error('detalle_estudio')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -362,7 +362,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                    <div class="form-group ">
                        <label class="text-muted" for="direccion" > Dirección de su consultorio</label>
-                       <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="" placeholder="Ingrese dirección de su consultorio"  autocomplete="direccion" autofocus required>
+                       <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{auth()->user()->direccion}}" placeholder="Ingrese dirección de su consultorio"  autocomplete="direccion" autofocus required>
 
                        @error('direccion')
                            <span class="invalid-feedback" role="alert">

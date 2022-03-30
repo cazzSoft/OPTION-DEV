@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
     });
     Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
     Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
-
+   // https://www.option2health.com/login/facebook/callback  https://app-option2health.herokuapp.com/login/facebook/callback  https://app-option2health.herokuapp.com/login/facebook/callback
 //RUTAS DE INFORMACION PUBLICA SIN LOGIN
     Route::get('', 'PrincipalController@index')->middleware('web2');
     Route::get('/session', 'PrincipalController@infoLogin')->middleware('web2');
@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('web2');
     Route::get('/nosotros', 'PrincipalController@aboutme');
     Route::get('/info-coinsults', 'PrincipalController@info_coinsults');
-    
+    Route::post('/search', 'PrincipalController@search');
 
     //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
     Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
@@ -106,10 +106,10 @@ use Illuminate\Support\Facades\Auth;
          });
 
         //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
-         Route::resource('/interes', 'Inters_userController');
+        Route::resource('/interes', 'Inters_userController');
 
          //RUTA BIBLIOTECA VIRTUAL
-          Route::prefix('biblioteca')->group(function () {
+        Route::prefix('biblioteca')->group(function () {
             Route::resource('/show', 'DocumentRepository');
             Route::get('/repositorio', 'DocumentRepository@show_documento_virtual');
             Route::post('/search', 'DocumentRepository@search_documento');
@@ -148,10 +148,11 @@ use Illuminate\Support\Facades\Auth;
         Route::prefix('notify')->group(function () {
             Route::resource('estado', 'NotificacionController');
         });
-       
+        
+        // Route::get('/passworduser', 'PrincipalController@user_clave');
            
     });
-
+     // Route::get('/passworduser', 'PrincipalController@user_clave');
     Route::get('/colas', 'Registro_ActividadController@colas');
 
     // Route::get('plantilla', function ()

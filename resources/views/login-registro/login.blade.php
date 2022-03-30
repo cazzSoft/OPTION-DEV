@@ -150,7 +150,7 @@
                                   @enderror
                             </div>
                            
-                             <div class="form-group">
+                            {{--  <div class="form-group">
                                 <label for="password-confirm"  style="color: #13c6ef;">Confirmar Contraseña <span class="text-red">*</span></label>
                                 <input type="password" id="password-confirm" class="form-control  border-right-0 border-left-0 border-top-0  @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" required autocomplete="new-password" placeholder="Ingresa una contraseña" >
                                 @error('password_confirmation')
@@ -159,7 +159,7 @@
                                     </span>
                                 @enderror
                                 
-                            </div>
+                            </div> --}}
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
@@ -266,7 +266,7 @@
                                   @enderror
                             </div>
                            
-                             <div class="form-group">
+                            {{--  <div class="form-group">
                                 <label for="password-confirm"  style="color: #13c6ef;">Confirmar Contraseña <span class="text-red">*</span></label>
                                 <input type="password" id="password-confirm" class="form-control  border-right-0 border-left-0 border-top-0  @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" required autocomplete="new-password" placeholder="Ingresa una contraseña" >
                                 @error('password_confirmation')
@@ -275,7 +275,7 @@
                                     </span>
                                 @enderror
                                 
-                            </div>
+                            </div> --}}
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
@@ -368,7 +368,7 @@
                                   @enderror
                             </div>
                            
-                             <div class="form-group">
+                           {{--   <div class="form-group">
                                 <label for="password-confirm"  style="color: #13c6ef;">Confirmar Contraseña <span class="text-red">*</span></label>
                                 <input type="password" id="password-confirm" class="form-control  border-right-0 border-left-0 border-top-0  @error('password_confirmation') is-invalid @enderror"  name="password_confirmation" required autocomplete="new-password" placeholder="Ingresa una contraseña" >
                                 @error('password_confirmation')
@@ -377,7 +377,7 @@
                                     </span>
                                 @enderror
                                 
-                            </div>
+                            </div> --}}
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>

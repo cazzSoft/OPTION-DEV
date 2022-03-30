@@ -131,6 +131,24 @@
  	{{--  cinfiguraciones globales js --}}
  	<script src="{{ asset('/js/confOption2h.js') }}"></script>
 	<script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
+  {{-- controlar imagen de rotas --}}
+  <script type='text/javascript'>
+    function ImagenOk(img) {
+       if (!img.complete) return false;
+       if (typeof img.naturalWidth != 'undefined' && img.naturalWidth == 0) return false;
+       return true;
+    }
+
+    function RevisarImagenesRotas() {
+       var replacementImg = `https://option2health.test/img/user.png`;
+       for (var i = 0; i < document.images.length; i++) {
+        if (!ImagenOk(document.images[i])) {
+          document.images[i].src = replacementImg;
+        }
+      }
+    }
+    window.onload=RevisarImagenesRotas;
+  </script>
 	{{--  apartado para incluir mas js  --}}
 	@yield('include_js')
  @stop

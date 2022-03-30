@@ -256,6 +256,7 @@ class DoctoresController extends Controller
             $user->direccion=$request->direccion;
             $user->fecha_nacimiento=$request->fecha_nacimiento;
             $user->genero=$request->genero;
+            $user->cedula=$request->cedula;
             $user->idciudad=$request->idciudad;
              $user->estado_registro=1;
             if( $user->save()){

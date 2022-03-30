@@ -245,8 +245,14 @@ class ArticuloController extends Controller
     public function getSearch($value)
     {
         //consultar sus temas elegidos
-        $id=auth()->user()->id;
+        
         $array_temas=null;
+        if(isset(auth()->user()->id)){
+            $id=auth()->user()->id;
+        }else{
+            $id=304;
+        }
+
         $temas=Inters_userModel::with('temas')->where('iduser',$id)->first();
         if(isset($temas['temas'])){
             $tema=  $temas['temas']['area_desc'];
@@ -335,7 +341,12 @@ class ArticuloController extends Controller
     //ordena de acuerdo al genero y al edad que afecta la enfermedad
     public function ordenarSearchPrioridad($enfermedades, $array_temas)
     {
-        $fecha_nacimiento = Carbon::createFromDate(auth()->user()->fecha_nacimiento)->age;
+        $fecha_nacimiento='1995-06-06';
+      
+        if(isset(auth()->user()->fecha_nacimiento)){
+            auth()->user()->fecha_nacimiento=auth()->user()->fecha_nacimiento;
+        }
+        $fecha_nacimiento = Carbon::createFromDate($fecha_nacimiento)->age;
          //array principales
         $array1=[]; $array2=[]; $array3=[]; $array4=[];
         //array axiliares
@@ -345,14 +356,22 @@ class ArticuloController extends Controller
         //array axiliares 3
         $array1r=[]; $array2r=[]; $array3r=[]; $array4r=[];
 
-        $sexo=auth()->user()->genero;
+        $sexo='1';
+        if(isset(auth()->user()->genero)){
+            $sexo=auth()->user()->genero;
+        }
+        
         if($sexo){
             $sexop1='hombres';  $sexop2='hombreshombresymujeres'; $sexop3='hombresymujeres'; 
         }else{ 
             $sexop1= 'mujeres'; $sexop2='mujeresmujeresyhombres'; $sexop3='mujeresyhombres'; 
         }
 
-        $tiene_hijos=auth()->user()->tine_hijo;
+        $tiene_hijos=1;
+        if(isset(auth()->user()->tine_hijo)){
+           $tiene_hijos=auth()->user()->tine_hijo;
+        }
+        
         if($tiene_hijos){
                 $tiene_hijos= rand(1,18);
         }else{

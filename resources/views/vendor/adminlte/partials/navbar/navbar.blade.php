@@ -11,6 +11,9 @@
       <div class="collapse navbar-collapse order-3  mb-3 mt-1 " id="navbarCollapse">
         <form class="ml-0 ml-md-3" id="form_searc_general" >
           {{ csrf_field() }}
+           
+          <input type="hidden" id="tpch" value="@if(Auth::user()) 1 @else 0 @endif">
+           
           <div class="input-group input-group-lg dropdown mt-2" data-toggle="dropdown">
             <div class="input-group-append">
               <button class="btn btn-navbar  btn-search" type="button" id="btn_submit_search">

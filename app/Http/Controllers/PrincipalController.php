@@ -4,25 +4,30 @@ namespace App\Http\Controllers;
 
 use App\ArticuloModel;
 use App\CiudadModel;
+use App\Http\Controllers\ArticuloController;
 use App\NoticiaModel;
 use App\TipoUserModel;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Log;
+use Str;
+
 class PrincipalController extends Controller
 {
-
-    // public function __construct()
-    // {   
-       
-    //     $this->middleware('web2');
-    // }
+    private $arti;
+    public function __construct(ArticuloController $arti)
+    {   
+        $this->arti=$arti;
+        // $this->middleware('web2');
+    }
 
     public function index()
     {
         $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['medico','like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(16)->paginate(16);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(5)->paginate(5);
         // creacion de lista de noticia para el sliders
         $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1)->get();
         
@@ -30,7 +35,8 @@ class PrincipalController extends Controller
 
         //lista medicos
         $tipo=TipoUserModel::where('abr','dr')->first();
-        $list_top_medico=User::inRandomOrder()->where('idtipo_user',$tipo['idtipo_user'])->get();
+
+         $list_top_medico=User::inRandomOrder()->where('idtipo_user',$tipo['idtipo_user'])->get();
        
 
         return view('home',['articulos'=>$articulo,'listaNoticia'=>$listaNoticia,'list_top_medico'=>$list_top_medico]); 
@@ -180,6 +186,97 @@ class PrincipalController extends Controller
         //
     }
 
+    // funcion para buscar 
+    public function search(Request $request)
+    {
+         $getSearch=$this->arti->getSearch($request->q);  
+         
+         //Registro evento search
+         // event(new HomeEventSearch(['txt_search'=>$request->q,'iduser'=>auth()->user()->id,'seccion'=>'INI']));
+
+         //lista medicos
+         $tipoUser=TipoUserModel::where('abr','dr')->first();
+         $medicos=User::where('name','like','%'.$request->q.'%')->where('idtipo_user',$tipoUser['idtipo_user'])->get();
+         $data=$getSearch['data'];
+
+         $listaPublicaciones=[];
+         $listMedicos=[];
+         $take=8;
+
+         if($medicos!='[]' && $medicos[0]!=null ){
+             $item=[];
+
+             foreach ($medicos as $key => $value) {
+                 $txt=Str::limit($value->name, 40); 
+                 array_push($item,'<a  class="text-dark list-group-item list-group-item-action border-0 "  onclick="verResul(\' '.url('/medico/info/'.encrypt($value['id'])).' \')"><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$txt.'</dt></a>');
+             }
+             $take=5;
+
+             $listMedicos='<span  class="dropdown-item2">
+                   <div class="media ">
+                     <div class="media-body ">
+                       <dl>
+                         <dd class="dropdown-item-title  text-muted mt1"> Médicos <span class="float-right text-sm text-info"><i class="fa fa-user-md"></i></span></dd>
+                         '.implode(" ",$item).'
+                       </dl>
+                     </div>
+                   </div>
+                 </span>';
+         }
+
+         if($data!='[]'){
+            $data= $data->take($take);
+             $item=[];
+             foreach ($data as $key => $value) {
+                 $txt=Str::limit($value['titulo'], 40);
+                 array_push($item,'<a href="'.url('/gestion/resul').'"  onclick="verResul(\' '.url('/gestion/resul/'.$value['titulo']).' \')" class="text-dark list-group-item list-group-item-action border-0 "><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$txt.'</dt></a>');
+             }
+
+             $listaPublicaciones='<span  class="dropdown-item2">
+                   <div class="media ">
+                     <div class="media-body">
+                      
+                       <dl>
+                         <dd class="dropdown-item-title  text-muted mt-1"> Publicaciones <span class="float-right text-sm text-info"><i class="far fa-newspaper"></i></span></dd>
+                         '.implode(" ",$item).'
+                       </dl>
+                     </div>
+                   </div>
+                 </span>';
+         }
+        $data= ['listaPublicaciones'=>$listaPublicaciones,'listMedicos'=>$listMedicos];
+        
+        // return $data=array_merge($listMedicos, $listaPublicaciones);
+         return response()->json($data);
+    }
+
+    // funcion para encritar clave de los usuarios
+    public function user_clave()
+    {
+
+        // $user=User::find(599);
+        // $user->password= Hash::make($user['password']);
+        // $user->save();
+        // return 1;
+        $userList=User::all();
+        $userCheck=[];
+        $userFail=[];
+
+        foreach ($userList as $key => $value) {
+            $user=User::find($value->id);
+            $user->password= Hash::make($value['password']);
+            if($user->save()){
+                array_push($userCheck,$value);   
+            }else{
+                 array_push($userFail,$value); 
+            }
+         } 
+       
+        
+
+        
+        return ["fails"=>$userFail,'success'=>$userCheck];
+    }
     /**
      * Display the specified resource.
      *

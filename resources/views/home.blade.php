@@ -27,14 +27,14 @@
     <div class="row mt-4">
       <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12">
         <nav class="w-100 ">
-          <div class="nav nav-tabs border-0 d-flex justify-content-center " id="product-tab" role="tablist">
-            <a class=" h5 nav-item nav-link  border-0 mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
-            <a class="h5 nav-item nav-link  border-0 " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
+          <div class="nav nav-tabs  d-flex justify-content-center " id="product-tab" role="tablist">
+            <a class=" h5 nav-item nav-link   mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
+            <a class="h5 nav-item nav-link   " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
           </div>
         </nav>
         <div class="tab-content p-0" id="nav-tabContent">
           <div class="tab-pane  show active " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
-            <div class="row mt-4  justify-content-start">
+            <div class="row mt-5  justify-content-start">
               @if(isset($list_top_medico))
                 @foreach($list_top_medico->take(5) as $key=> $item)
                   <div class="col-md-2 col-sm-3 col-xs-12 text-left  @if($key<1) offset-md-1  @endif  text-center mb-3">
@@ -170,7 +170,23 @@
      @if(isset($registro))
       @if(!$registro)
         <script > 
+          // control de modal de actualizacion de datos de perfil del usuario
             $('#modal-default').modal('show');
+            $('#modal-default').on('hidden.bs.modal', function (e) {
+              @if(auth::user()->type_user()=='dr')
+                  $('#modal-default').modal('show');
+              @endif
+            })
+
+            // carga de datos de los text tarea
+             @if(isset(auth()->user()->detalle_estudio)) 
+               $('#detalle_estudio').val(`{{auth()->user()->detalle_estudio}}`);
+             @endif 
+             @if(isset( auth()->user()->detalle_experiencia ) )
+               $('#detalle_experiencia').val(`{{auth()->user()->detalle_experiencia}}`);
+             @endif 
+
+            //inicializacion de estilos del select2
             $(document).ready(function() {
               $('.select2').select2();
             });
@@ -178,6 +194,8 @@
         
       @endif 
      @endif
+     
+
       <script src="{{ asset('/js/controlLike.js') }}"></script>
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
       <script src="{{ asset('/js/register.js') }}"></script>
