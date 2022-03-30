@@ -258,24 +258,24 @@ class PrincipalController extends Controller
         // $user->password= Hash::make($user['password']);
         // $user->save();
         // return 1;
-        $userList=User::whereBetween('id',[732, 1005])->get();   
-        $userCheck=[];
-        $userFail=[];
+        // $userList=User::whereBetween('id',[732, 1005])->get();   
+        // $userCheck=[];
+        // $userFail=[];
 
-        foreach ($userList as $key => $value) {
-            $user=User::find($value->id);
-            $user->password= Hash::make($value['password']);
-            if($user->save()){
-                array_push($userCheck,$value->id);   
-            }else{
-                 array_push($userFail,$value->id); 
-            }
-         } 
+        // foreach ($userList as $key => $value) {
+        //     $user=User::find($value->id);
+        //     $user->password= Hash::make($value['password']);
+        //     if($user->save()){
+        //         array_push($userCheck,$value->id);   
+        //     }else{
+        //          array_push($userFail,$value->id); 
+        //     }
+        //  } 
        
         
 
         
-        return ["fails"=>$userFail,'success'=>$userCheck];
+        // return ["fails"=>$userFail,'success'=>$userCheck];
     }
     /**
      * Display the specified resource.
