@@ -149,7 +149,7 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('estado', 'NotificacionController');
         });
         
-        // Route::get('/passworduser', 'PrincipalController@user_clave');
+        Route::get('/passworduser', 'PrincipalController@user_clave');
            
     });
      // Route::get('/passworduser', 'PrincipalController@user_clave');
