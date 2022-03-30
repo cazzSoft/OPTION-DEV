@@ -258,7 +258,7 @@ class PrincipalController extends Controller
         // $user->password= Hash::make($user['password']);
         // $user->save();
         // return 1;
-        $userList=User::all();
+        $userList=User::whereBetween('id',[732, 1005])->get();   
         $userCheck=[];
         $userFail=[];
 
@@ -266,9 +266,9 @@ class PrincipalController extends Controller
             $user=User::find($value->id);
             $user->password= Hash::make($value['password']);
             if($user->save()){
-                array_push($userCheck,$value);   
+                array_push($userCheck,$value->id);   
             }else{
-                 array_push($userFail,$value); 
+                 array_push($userFail,$value->id); 
             }
          } 
        
