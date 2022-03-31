@@ -49,30 +49,32 @@
                         <p class="h4" >  <b>{{$data->name}}</b>  <i class="far fa-edit ml-3 " style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user"></i></p>
                         <div class="p-1 text-left info_p">
                             @if(isset($data))
-                            <dl>
-                                <dd>Email:</dd>
-                                <dd class=" text-muted">{{$data->email}}</dd>
-                            </dl>
-                            <dl class="mt-4">
-                                <dd>Fecha de Nacimiento:</dd> 
-                                <dd class=" text-muted">{{$data->fecha_nacimiento}} Tienes: {{ \Carbon\Carbon::parse($data->fecha_nacimiento)->age}} años </dd>
-                            </dl>
-                            <dl class="mt-4">
-                                <dd>Télefono:</dd>
-                                <dd class=" text-muted">{{$data->telefono}} </dd>
-                            </dl>
-                            <dl class="mt-4">
-                                <dd>Genero:</dd>
-                                <dd class=" text-muted">@if($data->genero=='1') Masculino @else Femenino @endif </dd>
-                            </dl>
-                            <div class="product-info">
-                              <a  class="product-title username direct-chat-name hover">Personas a las que Sigues
-                                <span class="text-muted float-right text-red">
-                                    @if($sigues!=0)
-                                    <span class=" btn btn-sm img-fluid img-rounded bg-white border-info " id="btnModalSg"> <b>@if(isset($sigues)) {{$sigues}} @endif</b></span>
-                                    @endif
-                                </span></a>
-                            </div>
+                                <dl>
+                                    <dd>Email:</dd>
+                                    <dd class=" text-muted">{{$data->email}}</dd>
+                                </dl>
+                                <dl class="mt-4">
+                                    <dd>Fecha de Nacimiento:</dd> 
+                                    <dd class=" text-muted">{{$data->fecha_nacimiento}} Tienes: {{ \Carbon\Carbon::parse($data->fecha_nacimiento)->age}} años </dd>
+                                </dl>
+                                <dl class="mt-4">
+                                    <dd>Télefono:</dd>
+                                    <dd class=" text-muted">{{$data->telefono}} </dd>
+                                </dl>
+                                <dl class="mt-4">
+                                    <dd>Genero:</dd>
+                                    <dd class=" text-muted">@if($data->genero=='1') Masculino @else Femenino @endif </dd>
+                                </dl>
+                                @if($sigues!=0)
+                                    <div class="product-info">
+                                        <a  class="product-title username direct-chat-name hover">Personas a las que Sigues
+                                            <span class="text-muted float-right text-red">
+                                               <span class=" btn btn-sm img-fluid img-rounded bg-white border-info " id="btnModalSg"> <b>@if(isset($sigues)) {{$sigues}} @endif</b></span>
+                                               
+                                            </span>
+                                        </a>
+                                    </div>
+                                @endif
                             @endif
                         </div>
                         <div class="p-0 text-left  form_p d-none">
@@ -87,7 +89,7 @@
                                     <div class="form-group">
                                         <label class="text-muted" for="exampleInputEmail1">Email <span class="text-red">*</span></label>
                                         <input type="email"   name="email" class="form-control form-control-sm" id="emael" aria-describedby="emailHelp"
-                                            placeholder="Enter email" value="{{$data->email}}" requiered>
+                                            placeholder="Enter email" value="{{$data->email}}" requiered  >
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -139,9 +141,9 @@
             </div>
             <div class="col-xl-6 col-md-7 col-sm-12">
                 <nav class="w-100 ">
-                  <div class="nav nav-tabs border-0 d-flex justify-content-left tab_perfil nav nav-tabs" id="product-tab" role="tablist">
-                    <a class=" h5 nav-item nav-link  border-0 mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
-                    <a class="h5 nav-item nav-link  border-0 " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
+                  <div class="nav nav-tabs d-flex justify-content-left tab_perfil nav nav-tabs" id="product-tab" role="tablist">
+                    <a class=" h5 nav-item nav-link   mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
+                    <a class="h5 nav-item nav-link   " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
                   </div>
                 </nav>
                 <div class="tab-content p-0 mt-4" id="nav-tabContent">

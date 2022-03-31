@@ -36,21 +36,21 @@
                    <div class="col-md-6">
                        <div class="form-group">
                            <label class="text-muted" for="fecha_nacimiento">Fecha de Nacimiento <span class="text-red">*</span></label>
-                           <input type="date"   name="fecha_nacimiento" class="form-control form-control-sm" id="emael" aria-describedby="emailHelp"
+                           <input type="date"   name="fecha_nacimiento" class="form-control form-control-sm" id="fecha_nacimiento" aria-describedby="fecha_nacimiento"
                                placeholder="Enter fecha" value="{{$data->fecha_nacimiento}}" requiered>
                        </div>
                    </div>
                    <div class="col-md-6">
                         <div class="form-group">
-                            <label class="text-muted" for="exampleInputEmail1">Email <span class="text-red">*</span></label>
-                            <input type="email"   name="email" class="form-control form-control-sm" id="emael" aria-describedby="emailHelp"
-                                placeholder="Enter email" value="{{$data->email}}" requiered>
+                            <label class="text-muted" for="email">Email <span class="text-red">*</span></label>
+                            <input type="email"   name="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp"
+                                placeholder="Enter email" value="{{$data->email}}" requiered  @if(isset(auth()->user()->social_id) && auth()->user()->social_id!= null) readonly @endif>
                         </div>
                        
                    </div>
                    <div class="col-md-6">
                        <div class="form-group">
-                           <label class="text-muted" for="exampleInputEmail1">Genero  <span class="text-red">*</span></label>
+                           <label class="text-muted" for="genero">Genero  <span class="text-red">*</span></label>
                            <select class="form-control select2 form-control-sm" style="width: 100%;"  name="genero">
                                <option @if($data->genero==1) selected="selected" @endif  value="1">Masculino</option>
                                <option @if($data->genero==0) selected="selected" @endif value="0">Femenino</option>
@@ -59,7 +59,7 @@
                    </div>
                    <div class="col-md-6">
                        <div class="form-group"> 
-                           <label class="text-muted" for="exampleInputEmail1">Ciudad <span class="text-red">*</span></label>
+                           <label class="text-muted" for="idciudad">Ciudad <span class="text-red">*</span></label>
                            <select class="form-control select2 form-control-sm" style="width: 100%;"  name="idciudad" data-placeholder="Seleccione Ciudad" >
                                <option></option>
                                @if(isset($listaCiudad))
@@ -73,8 +73,8 @@
                    </div>
                     <div class="col-md-6">
                        <div class="form-group">
-                           <label class="text-muted" for="exampleInputEmail1">Nombres de tu Referido  <span class="text-red">*</span></label>
-                           <input type="nom_referido"   name="nom_referido" class="form-control form-control-sm" id="nom_referido" aria-describedby="emailHelp"
+                           <label class="text-muted" for="nom_referido">Nombres de tu Referido  <span class="text-red">*</span></label>
+                           <input type="nom_referido"   name="nom_referido" class="form-control form-control-sm" id="nom_referido" aria-describedby="nom_referido"
                                 placeholder="Enter nombre referido" value="{{$data->nom_referido}}" requiered>
                        </div>
                    </div>

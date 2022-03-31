@@ -107,3 +107,15 @@ function obtenerResulSearch() {
         $('#modal-default').modal('show');
     }
  }
+
+
+ //funcion para abrir modal de terminos y condiciones
+ function openInfoTermiCondiciones() {
+     $('#modal-termino-condiciones').modal('show');
+
+ }
+
+ // funcion para cerrar secion del usuario
+ function logout_session() {
+    $('#modalLogout').modal('show');
+ }

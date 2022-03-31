@@ -67,14 +67,14 @@
                     </div>
                    <div class="col-md-6">
                         <div class="form-group">
-                           <label class="text-muted" for="exampleInputEmail1">Télefono  <span class="text-red">*</span></label>
+                           <label class="text-muted" for="telefono">Télefono  <span class="text-red">*</span></label>
                            <input type="text"   name="telefono" class="form-control" id="telefono" aria-describedby="telefono"
                                placeholder="Enter Télefono" value="{{$datos_p->telefono}}" requiered>
                         </div>
                    </div>
                    <div class="col-md-6">
                       <div class="form-group">
-                          <label class="text-muted" for="exampleInputEmail1">Email <span class="text-red">*</span></label>
+                          <label class="text-muted" for="email">Email <span class="text-red">*</span></label>
                           <input type="email"   name="email" class="form-control" id="emael" aria-describedby="emailHelp"
                               placeholder="Enter email" value="{{$datos_p->email}}" requiered @if(isset(auth()->user()->social_id) && auth()->user()->social_id!= null) readonly @endif >
                       </div>

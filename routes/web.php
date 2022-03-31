@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
     Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
     Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
    // https://www.option2health.com/login/facebook/callback  https://app-option2health.herokuapp.com/login/facebook/callback  https://app-option2health.herokuapp.com/login/facebook/callback
+
 //RUTAS DE INFORMACION PUBLICA SIN LOGIN
     Route::get('', 'PrincipalController@index')->middleware('web2');
     Route::get('/session', 'PrincipalController@infoLogin')->middleware('web2');
@@ -30,7 +31,7 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/nosotros', 'PrincipalController@aboutme');
     Route::get('/info-coinsults', 'PrincipalController@info_coinsults');
     Route::post('/search', 'PrincipalController@search');
-
+    Route::get('/faq', 'PrincipalController@faq');
     //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
     Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
 

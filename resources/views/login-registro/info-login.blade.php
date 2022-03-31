@@ -6,9 +6,9 @@
 {{-- class="hold-transition login-page" --}}
 @section('content')
 <div class="container col-md-12">
-    <div class="row ">
+      <div class="row row border-bottom border-info p-0">
         <div class="col-md-12  px-0 d-flex justify-content-end">
-            <div class="d-flex flex-row-reverse mr-5">
+            <div class="d-flex flex-row-reverse mr-3">
                 <div class="p-2">
                     <select  class="form-control form-control-sm  d-inline  lead border-0" 
                     data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
@@ -20,18 +20,18 @@
             </div>
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12">
-            <div class="register-logo d-flex justify-content-start ml-5 img_centrar">       
-               <a href="{{url('/')}}" class="linkce"> <img class=" img-fluid pad ml-2 imgl" src="{{asset('img/logolg.svg')}}" >  </a>
-            </div>
+             <div class="register-logo d-flex justify-content-start ml-5 img_centrar ">             
+                   <a href="{{url('/')}}" class="linkce"> <img class=" img-fluid pad ml-2 imgl" width="60%" style="position: relative; margin-top: -30px" src="{{asset('img/logolg.svg')}}" >  </a>
+                </div>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 text-center ">
+            <div class="row p-0">
+                <div class="col-md-9 col-sm-6 col-xs-12 text-right ">
                     <a href="{{url('nosotros')}}"  class="nav-link "> 
                         <div class=" text-muted "> ACERCA DE NOSOTROS</div>
                     </a> 
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12  text-center">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                    <a href="{{url('info-coinsults')}} " class="nav-link"> 
                         <div class=" text-muted"> COINSULTS</div>
                     </a> 
@@ -39,7 +39,6 @@
             </div>
         </div>
         <div class="col-md-12"></div>
-        
     </div>
 
     <div class="row mt-5">

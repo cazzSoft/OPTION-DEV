@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Datos_medicosModel;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Laravel\Socialite\Facades\Socialite;
 use App\TipoUserModel;
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 use Log;
 
 class LoginController extends Controller
@@ -64,7 +65,6 @@ class LoginController extends Controller
 
                 //verificamos si existe y damos acceso si no registramos
                 if($usuario){
-                  
                     auth()->login($usuario);
                     return redirect('coinsultIn');  
                 }else{
@@ -98,11 +98,20 @@ class LoginController extends Controller
                                 'idtipo_user' =>TipoUserModel::where('abr','us')->first()->idtipo_user,
                                 
                             ]);
+                    //regidtro datos medicos
+                        $datos_medico= new Datos_medicosModel();
+                        $datos_medico->peso='0';
+                        $datos_medico->tipo_sangre='ninguno';
+                        $datos_medico->talla='0';
+                        $datos_medico->iduser=$usuario->id;
+                        $datos_medico->enfermedades='Sin registrar';
+                        $datos_medico->save();
+
                         auth()->login($usuario);
                        return redirect('coinsultIn'); 
                 }
         } catch (\Throwable $th ) {
-           return redirect('log-in');
+           return redirect('log-in-paciente');
         }
        
         

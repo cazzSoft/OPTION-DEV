@@ -416,15 +416,19 @@ class HomeController extends Controller
            $user=User::find(decrypt($id));
            $userAux=User::find(decrypt($id));
            $user->name=$request->name;
-           $user->email=$request->email;
+           //actualizar email cuando sea registrado desde la pagina
+           if($user->social_id==null){
+             $user->email=$request->email;
+           }
+           
            $user->telefono=$request->telefono;
            $user->fecha_nacimiento=$request->fecha_nacimiento;
            $user->genero=$request->genero;
            $user->idciudad=$request->idciudad;
            $user->estado_registro=1;
            $user->tine_hijo=$request->tine_hijo;
+           $user->nom_referido=$request->nom_referido;
            
-           $user->save();
 
            if($user->save()){
                 $id= auth()->user()->id;

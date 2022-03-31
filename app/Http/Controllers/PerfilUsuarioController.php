@@ -147,7 +147,6 @@ class PerfilUsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $id=decrypt($id);
-          
         $datos_medico=Datos_medicosModel::find($id);
         $datos_medico->peso=$request->peso;
         $datos_medico->tipo_sangre=$request->tipo_sangre;

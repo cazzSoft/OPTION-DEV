@@ -186,6 +186,12 @@ class PrincipalController extends Controller
         //
     }
 
+    // terminos y condiciones
+    public function faq()
+    {
+       return "Terminos y condiciones";
+    }
+
     // funcion para buscar 
     public function search(Request $request)
     {

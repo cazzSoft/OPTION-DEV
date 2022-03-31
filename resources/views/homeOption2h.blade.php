@@ -108,7 +108,9 @@
           </div>
           <strong>Copyright &copy; 2020-2030 <a href="https://adminlte.io">CAZZ</a>.</strong> All rights reserved.
         </footer> --}}
-     @include('modalInfoMedico')    
+     @include('modalInfoMedico') 
+     @include('modalTerminoCondiciones') 
+     @include('modalLogout')   
   	@stop
 
  @section('css') 

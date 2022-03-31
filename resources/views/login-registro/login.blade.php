@@ -6,9 +6,9 @@
 {{-- class="hold-transition login-page" --}}
 @section('content')
 <div class="text-center  container col-md-12">
-    <div class="row ">
+    <div class="row row border-bottom border-info p-0">
         <div class="col-md-12  px-0 d-flex justify-content-end">
-            <div class="d-flex flex-row-reverse mr-5">
+            <div class="d-flex flex-row-reverse mr-3">
                 <div class="p-2">
                     <select  class="form-control form-control-sm  d-inline  lead border-0" 
                     data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
@@ -20,18 +20,18 @@
             </div>
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12">
-            <div class="register-logo d-flex justify-content-start ml-5">       
-                <img class=" img-fluid pad ml-2" src="{{asset('img/logolg.svg')}}" >  
-            </div>
+             <div class="register-logo d-flex justify-content-start ml-5 img_centrar ">             
+                   <a href="{{url('session')}}" class="linkce"> <img class=" img-fluid pad ml-2 imgl" width="60%" style="position: relative; margin-top: -30px" src="{{asset('img/logolg.svg')}}" >  </a>
+                </div>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 text-center ">
+            <div class="row p-0">
+                <div class="col-md-9 col-sm-6 col-xs-12 text-right ">
                     <a href="{{url('nosotros')}}"  class="nav-link "> 
                         <div class=" text-muted "> ACERCA DE NOSOTROS</div>
                     </a> 
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12  text-center">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                    <a href="{{url('info-coinsults')}} " class="nav-link"> 
                         <div class=" text-muted"> COINSULTS</div>
                     </a> 
@@ -163,6 +163,10 @@
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                                <div class="mt-3 ">
+                                   <span class="text-muted"> Al crear una cuenta aceptas los</span> <br>
+                                    <a class="" target="_blank" href="{{asset('/Termino&condiciones/Terminos&Condiciones.pdf')}}">Términos y condiciones</a>
+                                </div>
                               </div>
                               
                             </div>
@@ -229,6 +233,7 @@
                             </a>
                         </p>
 
+
                        
                   </div>
                 </div>
@@ -279,12 +284,18 @@
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                                <div class="mt-3 ">
+                                   <span class="text-muted"> Al crear una cuenta aceptas los</span> <br>
+                                    <a class="" target="_blank" href="{{asset('/Termino&condiciones/Terminos&Condiciones.pdf')}}">Términos y condiciones</a>
+                                </div>
+                                
+                                
                               </div>
                               
                             </div>
                         </form>
                         
-                        <p  class="mb-2 mt-5 text-center h5" >
+                        <p  class="mb-1 mt-3 text-center h5" >
                             <a disabled="false" style="color: #13c6ef;" href="/log-in-medico" class="">
                                <i class="fas fa-sign-in-alt"></i> Iniciar sesión
                             </a>
@@ -395,7 +406,7 @@
                 </div>
             @endif
         @endif    
-        <p class="mb-2 mt-5 text-center h6" >
+        <p class="mb-2 mt-4 text-center h6" >
             <a disabled="false" class="mt-5" style="color: #13c6ef;" href="/session" class="">
               <i class="fas fa-arrow-circle-left"></i>  Elegir  otro tipo de usuario
             </a>

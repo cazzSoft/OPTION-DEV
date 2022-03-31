@@ -75,14 +75,21 @@
         <span class="description" id="description" > {{ Auth::user()->adminlte_desc() }}</span>
     </div>
 </li>
-<li class="nav-item dropdown" style="margin-top: -10px;">
+<li class="nav-item dropdown" style="margin-top: 8px;">
     <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2" style="top:28px;">
-        <a class="dropdown-item  @if(!$profile_url) btn-block @endif"
-           href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <i class="fa fa-fw fa-power-off"></i>
-            {{ __('adminlte::adminlte.log_out') }}
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2" >
+        <a class="dropdown-item   btn-block text-info_"
+           href="#" onclick="openInfoTermiCondiciones()">
+         {{--   <i class="far fa-closed-captioning"></i> --}}
+            Términos & Condiciones
         </a>
+         <a class="dropdown-item   btn-block text-info_"
+           href="#" onclick="logout_session()">
+         {{--   <i class="far fa-closed-captioning"></i> --}}
+            Cerrar sesión
+        </a>
+       
+        
         <form id="logout-form" action="{{ $logout_url }}" method="POST" style="display: none;">
             @if(config('adminlte.logout_method'))
                 {{ method_field(config('adminlte.logout_method')) }}
