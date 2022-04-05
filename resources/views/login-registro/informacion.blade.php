@@ -5,8 +5,34 @@
 
 @section('content')
     <!-- Just an image -->
-   
-    <div class="text-center  container col-md-12 ">
+   <div class="container-fluid  p-1">
+     <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
+       <div class=" container-fluid ">
+         <a href="{{url('session')}}" class="navbar-brand ml-4 imgSecion">
+           <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
+         </a>
+           <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
+               <li class="nav-item dropdown" >
+                   <div class="d-flex flex-row-reverse mr-3 idioma">
+                       <div class="p-2">
+                           <select  class="form-control form-control-sm  d-inline  lead border-0" 
+                           data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
+                               <option value="es"> ES</option>
+                               <option value="en"> EN</option>
+                           </select>
+                       </div>
+                       <div class="p-2 lead text-mutex">Idioma</div>
+                   </div>
+                   <div class="d-flex justify-content-end mr-3 options">
+                     <div class="p-2 mr-3 "><a class="{{ request()->is('nosotros') ? 'text-info_' : 'text-muted' }} "  href="{{url('nosotros')}}">ACERCA DE NOSOTROS  </a></div>
+                     <div class="p-2"><a class=" {{ request()->is('info-coinsults') ? 'text-info_' : 'text-muted' }} " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
+                   </div>
+              </li>
+           </ul>
+       </div>
+     </nav>     
+   </div>
+    {{-- <div class="text-center  container col-md-12 ">
         <div class="row border-bottom border-info p-0">
             <div class="col-md-12  px-0 d-flex justify-content-end">
                 <div class="d-flex flex-row-reverse mr-4">
@@ -41,10 +67,10 @@
             </div>
            
         </div>
-    </div>
+    </div> --}}
    
     <div class="row" style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;">
-        <div class="container">
+        <div class=" @if($data['tp']=='CO') container-fluid  @else container @endif">
             <div class="col-md-12 mt-5">
                <a href="{{url('session')}}">  <p class="ml-5 text-lead h1 text-info_ tex-sty text-center">  @if(isset($data))  {{$data['titulo']}} @endif </p>
                </a>
@@ -71,7 +97,7 @@
                 </div>
                 <div class="col-md-12 mt-3 mb-5">
                     <div class="lead ml-5 mr-5 p-2 mt-5 text-center">
-                        <p class="text-info_ h4 mb-3"><b>¿QUE ES LO QUE BUSCAMOS?</b></p>
+                        <p class="text-info_ h4 mb-3"><b>¿QUÉ ES LO QUE BUSCAMOS?</b></p>
                         <p ><b class="text-info_">PREVENCIÓN</b>: Aprende todo lo relacionado a tu salud.¡Prevenir enfermedades está en tus manos!</p>
                         <p ><b class="text-info_">DIAGNÓSTICO</b>: Conocer tus factores de riesgo e identificar síntomas a tiempo pueden salvar tu vida, o la de los tuyos. </p>
                         <p ><b class="text-info_">MÉDICOS</b>: No todos los médicos son para todos los pacientes. Conócelos y elige al indicado para ti.</p>

@@ -11,19 +11,19 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    @if(isset($data))
+    
       <div class="row">
         <div class="col-lg¡x-12">
           <div class="card card-primary " >
             <div class="card-body ">
-              <h5 class="card-subtitle mb-1 text-muted">Reciviste un mensaje de {{$name_user}}</h5>
+              <h5 class="card-subtitle mb-1 text-muted">Reciviste un mensaje de dad</h5>
               <h5 class="card-subtitle mb-2 text-muted"><strong>Asunto:</strong> recuperar  contraseña </h5>
               <p class="card-text">debes hacr askldjk</p>
             </div>
           </div>
         </div>
       </div>
-    @endif
+   
 
     
 

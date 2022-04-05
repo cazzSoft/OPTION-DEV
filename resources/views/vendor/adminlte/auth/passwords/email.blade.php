@@ -9,6 +9,11 @@
 @endif
 
 @section('auth_header', __('adminlte::adminlte.password_reset_message'))
+{{-- Top Navbar --}}
+
+  
+
+   
 
 @section('auth_body')
 
@@ -45,7 +50,7 @@
 
     </form>
     <p class="mt-3 mb-1">
-        <a href="/session">Iniciar seccion</a>
+        <a href="/session">Iniciar sesión</a>
     </p>
    
 @stop

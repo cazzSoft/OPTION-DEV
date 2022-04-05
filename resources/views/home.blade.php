@@ -27,7 +27,7 @@
     <div class="row mt-4">
       <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12">
         <nav class="w-100 ">
-          <div class="nav nav-tabs  d-flex justify-content-center " id="product-tab" role="tablist">
+          <div class="nav nav-tabs  d-flex justify-content-center  card-outline-tabs" id="custom-tabs-four-tab" role="tablist">
             <a class=" h5 nav-item nav-link   mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
             <a class="h5 nav-item nav-link   " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
           </div>
@@ -60,7 +60,7 @@
                     <div class="card-body border-0">
                        <h5 class=" h3 text-center mb-3 text-info">¡Option2Health, medicina en tus manos!</h5>
                        <p class="card-text text-justify">Option2health, un espacio digital innovador para médicos, pacientes y empresas.
-                         Nuestra plataforma de salud está enfocada en la salud y educación para aquellas personas que buscan que buscan a través de la información, generar soluciones para enfrentar enfermedades y tener una mejor calidad de vida.
+                         Nuestra plataforma de salud está enfocada en la salud y educación para aquellas personas que buscan a través de la información, generar soluciones para enfrentar enfermedades y tener una mejor calidad de vida.
                        </p>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
                       <img class="card-img-top" src="/img/a2.png" alt="Card image cap">
                       <div class="card-body border-0">
                        <h5 class=" h3 text-center mb-3 text-info">¿Sabes cuál es el estado de tu salud? </h5>
-                       <p class="card-text text-justify">¿Sabes cuál es el estado de tu salud? 
+                       <p class="card-text text-justify">
                          Al ser pioneros de la medicina preventiva, práctica y gratuita, te podremos ayudar a recuperar el control de tal manera que puedas llevar un estilo de vida más saludable, junto de la mano de los mejores médicos especialistas del país. 
                        </p>
 

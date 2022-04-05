@@ -9,7 +9,7 @@ function visor_show(tipo,contenido,titulo) {
 	}else{
 		contenido=`<embed src="${contenido}" width="100%" height="770" 
  						type="application/pdf">`;
-		$('#contenido').html(contenido);
+		$('#contenido').html(contenido); 
 	}
 
 	$('#modal-visor').modal('show');

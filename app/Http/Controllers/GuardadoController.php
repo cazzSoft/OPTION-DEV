@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ArticuloModel;
 use App\Events\HomeEventGuardar;
 use App\Events\HomeEventPerfilUser;
 use App\Events\HomeEventSearch;
@@ -26,10 +27,16 @@ class GuardadoController extends Controller
        }])->where('iduser',auth()->user()->id)->orderBy('idguardado','desc')
        ->get(); 
 
+       //obtenemos un articulo aleatoria para mostrar
+       $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
+               ->with(['medico','like'=>function($q){
+                           $q->select(['*'])->get();
+                   }])->where('tipo','N')->where('publicar','1')->where('estado','1')->get()->take(1);
+
        //registro de evento view page
         event(new HomeEventPerfilUser(['page'=>'Guardados','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'GUR'])]));
         
-        return view('guardado',['listaGuar'=>$guardado]);
+        return view('guardado',['listaGuar'=>$guardado,'mostrar'=>$articulo]);
     }
 
     

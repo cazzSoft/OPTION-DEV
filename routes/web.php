@@ -28,10 +28,15 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('web2');
     Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('web2');
     Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('web2');
+
     Route::get('/nosotros', 'PrincipalController@aboutme');
     Route::get('/info-coinsults', 'PrincipalController@info_coinsults');
     Route::post('/search', 'PrincipalController@search');
-    Route::get('/faq', 'PrincipalController@faq');
+    // Route::get('/faq', 'PrincipalController@faq'); 
+
+//RUTA PARA RECUPERAR CONTRASEÑAS
+    Route::resource('/password_reset', 'PasswordResetController')->middleware('web2');
+
     //RUTA DE PREGUNTA DE INTERES PARA EL USUARIO
     Route::get('/share/{id}', 'Inters_userController@shareUserInfo');
 

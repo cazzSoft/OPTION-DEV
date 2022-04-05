@@ -5,7 +5,34 @@
 {{-- @section('plugins.toastr',true) --}}
 {{-- class="hold-transition login-page" --}}
 @section('content')
-<div class="text-center  container col-md-12">
+<div class="container-fluid  p-1">
+  <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
+    <div class=" container-fluid ">
+      <a href="{{url('session')}}" class="navbar-brand ml-4 imgSecion">
+        <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
+      </a>
+        <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
+            <li class="nav-item dropdown" >
+                <div class="d-flex flex-row-reverse mr-3 idioma">
+                    <div class="p-2">
+                        <select  class="form-control form-control-sm  d-inline  lead border-0" 
+                        data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
+                            <option value="es"> ES</option>
+                            <option value="en"> EN</option>
+                        </select>
+                    </div>
+                    <div class="p-2 lead text-mutex">Idioma</div>
+                </div>
+                <div class="d-flex justify-content-end mr-3 options">
+                  <div class="p-2 mr-3 "><a class=" text-muted "  href="{{url('nosotros')}}">ACERCA DE NOSOTROS  </a></div>
+                  <div class="p-2"><a class=" text-muted " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
+                </div>
+           </li>
+        </ul>
+    </div>
+  </nav>     
+</div>
+{{-- <div class="text-center  container col-md-12">
     <div class="row row border-bottom border-info p-0">
         <div class="col-md-12  px-0 d-flex justify-content-end">
             <div class="d-flex flex-row-reverse mr-3">
@@ -40,7 +67,7 @@
         </div>
         <div class="col-md-12"></div>
     </div>
-</div>
+</div> --}}
 
 <div class="row p-5">
     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
@@ -90,7 +117,7 @@
                                <div class="col-xl-12 col-sm-12">
                                  <div class="icheck-primary">
                                      <p class="mb-1 text-info">
-                                       <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('Olvidaste tu contraseña?') }} </a>
+                                       <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ url('password_reset') }}"> {{ __('¿Olvidaste tu contraseña?') }} </a>
                                      </p>
                                  </div>
                                </div> 
@@ -105,7 +132,7 @@
                         </p>
                         <p  class="mb-2 mt-3 text-center h5" >
                             <a disabled="false" style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
-                                 Registrate
+                                 Regístrate
                             </a>
                         </p>
 
@@ -165,7 +192,7 @@
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
                                 <div class="mt-3 ">
                                    <span class="text-muted"> Al crear una cuenta aceptas los</span> <br>
-                                    <a class="" target="_blank" href="{{asset('/Termino&condiciones/Terminos&Condiciones.pdf')}}">Términos y condiciones</a>
+                                    <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">Términos y condiciones</a>
                                 </div>
                               </div>
                               
@@ -215,7 +242,7 @@
                                 <div class="col-xl-12 col-sm-12">
                                     <div class="icheck-primary">
                                         <p class="mb-1 text-info">
-                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('Olvidaste tu contraseña?') }} </a>
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('¿Olvidaste tu contraseña?') }} </a>
                                         </p>
                                     </div>
                                 </div> 
@@ -229,7 +256,7 @@
                         </p>
                         <p  class="mb-2 mt-3 text-center h5" >
                             <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
-                                 Registrate
+                                 Regístrate
                             </a>
                         </p>
 
@@ -286,7 +313,7 @@
                                 <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
                                 <div class="mt-3 ">
                                    <span class="text-muted"> Al crear una cuenta aceptas los</span> <br>
-                                    <a class="" target="_blank" href="{{asset('/Termino&condiciones/Terminos&Condiciones.pdf')}}">Términos y condiciones</a>
+                                    <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">Términos y condiciones</a>
                                 </div>
                                 
                                 
@@ -324,7 +351,7 @@
                                 <div class="col-xl-12 col-sm-12">
                                     <div class="icheck-primary">
                                         <p class="mb-1 text-info">
-                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('Olvidaste tu contraseña?') }} </a>
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('¿Olvidaste tu contraseña?') }} </a>
                                         </p>
                                     </div>
                                 </div> 
@@ -338,7 +365,7 @@
                         </p>
                         <p  class="mb-2 mt-3 text-center h5" >
                             <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
-                                 Registrate
+                                 Regístrate
                             </a>
                         </p>
 
@@ -413,7 +440,7 @@
         </p>
     </div>
 </div>
-
+@include('modalTerminoCondiciones')
 @endsection
 
 
@@ -472,4 +499,5 @@
     @endif
     {{-- <script > mostrar_toastr('qweqwe','error')</script> --}}
     <script src="{{ asset('/js/register.js') }}"></script>
+     <script src="{{ asset('/js/global.js') }}"></script>
  @stop

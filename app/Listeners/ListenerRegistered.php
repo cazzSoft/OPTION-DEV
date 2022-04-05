@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered ;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Mail;
 
 class ListenerRegistered
 {
@@ -26,8 +27,6 @@ class ListenerRegistered
         //se restaura la varible de session 
         session()->regenerate();
         // insertamos datos medicos al us
-        
-
         
 
         //guardamos actividad
@@ -72,6 +71,23 @@ class ListenerRegistered
 
         $result=$this->actividad->historialUser($dataActividad,$dataRegistro);
 
+        //envio de mensaje de bienvenida email
+            try {
+
+                $de=$user->email;
+                Mail::send('mail.send-mail-bienvenida', ['data'=>$user], function ($m) use ($de,$user) {
+                    $m->to($user->email)
+                    ->from('info@option2health.com', 'Option2Health')
+                    ->subject('¡Te damos una cordial bienvenida a la comunidad de Option2Health!');
+                });
+                 logger('send email'.$de);
+                
+
+            } catch (\Throwable $th) {
+             
+                logger('send email'.$th->getMessage());
+                // return $th->getMessage();
+            }
         
         logger($result);
         $event->user->last_login = new \DateTime();

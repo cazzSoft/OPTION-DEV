@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Log;
 use Str;
+use Mail;
 
 class PrincipalController extends Controller
 {
@@ -189,6 +190,22 @@ class PrincipalController extends Controller
     // terminos y condiciones
     public function faq()
     {
+        // try {
+        //     $request=null;
+        //     $de='cazzdj17@hotmail.com';
+        //     Mail::send('mail.send-mail', ['data'=>$request,'name_user'=>'cazz'], function ($m) use ($de,$request) {
+        //         $m->to('cazz13137@gmail.com')
+        //         ->from($de, 'Option2health2 S.A.')
+        //         ->subject('Cambio de contraseña');
+        //     });
+
+        //     $saveEmail->estado='1';
+
+        // } catch (\Throwable $th) {
+        //     $saveEmail->estado='0';
+        //     return $th->getMessage();
+        // }
+        return view('mail.send-mail-bienvenida');
        return "Terminos y condiciones";
     }
 

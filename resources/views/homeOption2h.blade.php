@@ -17,7 +17,7 @@
                       <a class="nav-link  {{ Route::is('home') ? 'text-info_' : '' }}" href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
                     </li>
                     <li class="nav-item ml-2 mr-3">
-                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Que Somos?</b></a>
+                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
                       <a class="nav-link  {{ Route::is('coinsult.index') ? 'text-info_' : '' }}" href="{{url('coinsult')}}"><i class="fas fa-fw fa-coins"></i> <b>Coinsults </b></a>
@@ -55,7 +55,7 @@
                     <a class="nav-link text-info_ " href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
                   </li>
                   <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link" href="{{url('nosotros')}}"><i class="fa fa-notes-medical"></i>  <b>¿Que Somos?</b></a>
+                    <a class="nav-link" href="{{url('nosotros')}}"><i class="fa fa-notes-medical"></i>  <b>¿Qué Somos?</b></a>
                   </li>
                   <li class="nav-item ml-3 mr-3">
                     <a class="nav-link" href="{{url('info-coinsults')}}"><i class="fa fa-coins"></i> <b>Coinsults</b></a>

@@ -12,9 +12,7 @@
       <div class="modal-body">
         <div class="card-body box-profile">
           <div class="form-group border">
-              <p class="text-justify p-4">
-              	Una vez activado el periodo de prueba de la membresía Tipti Prime, el usuario podrá disfrutarlos siguientes beneficios: envíos ilimitados gratis y shoppers selectos. La versión Tipti Prime de prueba no incluye: promociones exclusivas y Tipti Prime Day.CONSIDERACIONES:Válida 1 mes desde su activaciónUna vez culminado el mes de prueba, se realizará el respectivo cobro de Tipti Prime (plan mensual)El cobro será automáticamente vía el app a la tarjeta de crédito o débito que tienes registrada, el 31 de cada mes.En caso de que no se pueda realizar el cobro automático, la membresía será automáticamente cancelada.
-              </p>
+              <embed src="{{asset('/Termino&condiciones/Terminos&Condiciones.pdf')}}" width="100%" height="770" type="application/pdf"> </embed>
           </div>            
         </div>
       </div>

@@ -20,7 +20,7 @@
                 <i class="fas fa-search"></i>
               </button>
             </div>
-            <input class="form-control form-control-navbar search dropdown " id="inputSearch_" type="search" placeholder="Search option2health" aria-label="Search" autocomplete="of">
+            <input class="form-control form-control-navbar search dropdown " id="inputSearch_" type="search" placeholder="Search Option2health" aria-label="Search" autocomplete="of">
             <div class="dropdown-menu dropdown-menu-lgz dropdown-menu-right " id="dropdown-menu1">
             </div>
           </div>

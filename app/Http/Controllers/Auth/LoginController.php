@@ -62,7 +62,7 @@ class LoginController extends Controller
         try {
                 $user = Socialite::driver($driver)->user();
                 $usuario=User::where('email',$user->getEmail())->first();
-
+               
                 //verificamos si existe y damos acceso si no registramos
                 if($usuario){
                     auth()->login($usuario);
