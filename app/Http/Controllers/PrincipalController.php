@@ -193,11 +193,11 @@ class PrincipalController extends Controller
         // try {
         //     $request=null;
         //     $de='cazzdj17@hotmail.com';
-        //     Mail::send('mail.send-mail', ['data'=>$request,'name_user'=>'cazz'], function ($m) use ($de,$request) {
-        //         $m->to('cazz13137@gmail.com')
-        //         ->from($de, 'Option2health2 S.A.')
-        //         ->subject('Cambio de contraseña');
-        //     });
+        //         Mail::send('mail.send-mail', ['data'=>$request,'name_user'=>'cazz'], function ($m) use ($de,$request) {
+        //             $m->to('cazz13137@gmail.com')
+        //             ->from($de, 'Option2health2 S.A.')
+        //             ->subject('Cambio de contraseña');
+        //         });
 
         //     $saveEmail->estado='1';
 
@@ -205,7 +205,7 @@ class PrincipalController extends Controller
         //     $saveEmail->estado='0';
         //     return $th->getMessage();
         // }
-        return view('mail.send-mail-bienvenida');
+        // return view('mail.send-mail-bienvenida');
        return "Terminos y condiciones";
     }
 
@@ -281,24 +281,25 @@ class PrincipalController extends Controller
         // $user->password= Hash::make($user['password']);
         // $user->save();
         // return 1;
-        // $userList=User::whereBetween('id',[732, 1005])->get();   
-        // $userCheck=[];
-        // $userFail=[];
+        // $userList=User::whereBetween('id',[732, 1005])->get();  
+        $userList=User::all(); 
+        $userCheck=[];
+        $userFail=[];
 
-        // foreach ($userList as $key => $value) {
-        //     $user=User::find($value->id);
-        //     $user->password= Hash::make($value['password']);
-        //     if($user->save()){
-        //         array_push($userCheck,$value->id);   
-        //     }else{
-        //          array_push($userFail,$value->id); 
-        //     }
-        //  } 
+        foreach ($userList as $key => $value) {
+            $user=User::find($value->id);
+            $user->password= Hash::make($value['password']);
+            if($user->save()){
+                array_push($userCheck,$value->id);   
+            }else{
+                 array_push($userFail,$value->id); 
+            }
+         } 
        
         
 
         
-        // return ["fails"=>$userFail,'success'=>$userCheck];
+        return ["fails"=>$userFail,'success'=>$userCheck];
     }
     /**
      * Display the specified resource.

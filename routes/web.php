@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/nosotros', 'PrincipalController@aboutme');
     Route::get('/info-coinsults', 'PrincipalController@info_coinsults');
     Route::post('/search', 'PrincipalController@search');
-    // Route::get('/faq', 'PrincipalController@faq'); 
+    Route::get('/faq', 'PrincipalController@faq'); 
 
 //RUTA PARA RECUPERAR CONTRASEÑAS
     Route::resource('/password_reset', 'PasswordResetController')->middleware('web2');
@@ -126,7 +126,6 @@ use Illuminate\Support\Facades\Auth;
 
         //HISTORIAL DE USUARIO 
         Route::prefix('actividades')->group(function () {
-
             Route::get('/createEventInicial', 'Registro_ActividadController@EventInicial');
             Route::resource('/historial', 'Registro_ActividadController');
             Route::get('/historialDetail/{id}', 'Registro_ActividadController@getDetail'); 
@@ -157,14 +156,14 @@ use Illuminate\Support\Facades\Auth;
         });
         
         // RUTA PARA RECUPERAR CONTRASEÑAS
-        Route::get('/passworduser', 'PrincipalController@user_clave');
+        // Route::get('/passworduser', 'PrincipalController@user_clave');
 
        
 
            
     });
-     // Route::get('/passworduser', 'PrincipalController@user_clave');
-    Route::get('/colas', 'Registro_ActividadController@colas');
+     Route::get('/passworduser', 'PrincipalController@user_clave');
+     Route::get('/colas', 'Registro_ActividadController@colas');
 
     // Route::get('plantilla', function ()
     // {

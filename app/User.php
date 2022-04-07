@@ -41,15 +41,19 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-       if(isset(auth()->user()->social_avatar)){
-            return auth()->user()->social_avatar;
-       }else if (isset(auth()->user()->img) && auth()->user()->img!=null) {
-            $img=base64_encode(\Storage::disk('wasabi')->get(auth()->user()->img));
-            return 'data:image/png;base64,'.$img;
-       }else{
-         return 'img/user.png';
+       try {
+           
+           if(isset(auth()->user()->social_avatar)){
+                return auth()->user()->social_avatar;
+           }else if (isset(auth()->user()->img) && auth()->user()->img!=null) {
+                $img=base64_encode(\Storage::disk('wasabi')->get(auth()->user()->img));
+                return 'data:image/png;base64,'.$img;
+           }else{
+             return 'img/user.png';
+           }
+       } catch (\Throwable $th) {
+            return 'img/user.png';
        }
-       
     }
 
     public function adminlte_desc()

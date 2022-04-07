@@ -175,7 +175,7 @@ class DoctoresController extends Controller
             }
 
             $nombre= '00'.auth()->user()->id.$name.'-'.date('Ymd_h_s').'.'.$extension;
-            \Storage::disk('diskDocumentosPortadaUser')->put($nombre,\File::get($img));
+            \Storage::disk('wasabi')->put('FotoPortada/'.$nombre,\File::get($img));
 
             //guardamos en base de datos
             $documento=  user::find(auth()->user()->id);
