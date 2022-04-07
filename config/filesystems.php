@@ -58,6 +58,16 @@ return [
             'driver' => 'local',
             'root' => public_path('DocumentosBiblioteca'),
         ], 
+
+        'wasabi' => [
+            'driver' => 'wasabi',
+            'key' => env('WASABI_ACCESS_KEY_ID'),
+            'secret' => env('WASABI_SECRET_ACCESS_KEY'),
+            'region' => env('WASABI_DEFAULT_REGION', 'eu-central-1'),
+            'bucket' => env('WASABI_BUCKET'),
+            'root' => env('WASABI_ROOT'),
+        ],
+
         'diskPortadaNoticia' => [
             'driver' => 'local',
             'root' => public_path('PortadaNoticia'),
@@ -78,7 +88,7 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-        ],
+        ], 
 
         's3' => [
             'driver' => 's3',

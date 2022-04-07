@@ -24,7 +24,7 @@
                        <div class="p-2 lead text-mutex">Idioma</div>
                    </div>
                    <div class="d-flex justify-content-end mr-3 options">
-                     <div class="p-2 mr-3 "><a class="{{ request()->is('nosotros') ? 'text-info_' : 'text-muted' }} "  href="{{url('nosotros')}}">ACERCA DE NOSOTROS  </a></div>
+                     <div class="p-2 mr-3 "><a class="{{ request()->is(['nosotros','nosotros_']) ? 'text-info_' : 'text-muted' }} "  href="{{url('nosotros')}}">ACERCA DE NOSOTROS  </a></div>
                      <div class="p-2"><a class=" {{ request()->is('info-coinsults') ? 'text-info_' : 'text-muted' }} " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
                    </div>
               </li>

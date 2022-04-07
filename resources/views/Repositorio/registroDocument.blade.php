@@ -145,14 +145,15 @@
                           <tr>
                             <td>{{ $key + 1 }}</td>
                             @if($item->tipo=='IMG')
-                              <td style="vertical-align: middle; cursor: pointer;" onclick="visor_show('{{$item->tipo}}','{{asset("DocumentosBiblioteca/".$item->ruta)}}','{{$item['titulo']}}')"> 
+                              <td style="vertical-align: middle; cursor: pointer;" onclick="visor_show('{{$item->tipo}}','{{base64_encode(\Storage::disk('wasabi')->get($item->ruta))}}','{{$item['titulo']}}')"> 
                                 <span class="mailbox-attachment-icon has-img">
-                                  <img class="img img-fluid mb-3" src="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" alt="Attachment">
+                                  {{-- <img class="img img-fluid mb-3" src="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" alt="Attachment"> --}}
+                                   <img class="img img-fluid mb-3" src="data:image/png;base64, {{  base64_encode(\Storage::disk('wasabi')->get($item->ruta)) }}" alt="Attachment"/>
                                 </span>
                                
                               </td>
                             @else
-                              <td style="vertical-align: middle; cursor: pointer;" onclick="visor_show('{{$item->tipo}}','{{ asset("DocumentosBiblioteca/".$item->ruta)}}','{{$item['titulo']}}')"><span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
+                              <td style="vertical-align: middle; cursor: pointer;" onclick="visor_show('{{$item->tipo}}','{{base64_encode(\Storage::disk('wasabi')->get($item->ruta))}}','{{$item['titulo']}}')"><span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
                                
                               </td>
                             @endif

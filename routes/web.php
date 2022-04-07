@@ -119,6 +119,7 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('/show', 'DocumentRepository');
             Route::get('/repositorio', 'DocumentRepository@show_documento_virtual');
             Route::post('/search', 'DocumentRepository@search_documento');
+            Route::get('/view_documento/{id}', 'DocumentRepository@download');
           });
         
         
@@ -155,7 +156,11 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('estado', 'NotificacionController');
         });
         
+        // RUTA PARA RECUPERAR CONTRASEÑAS
         Route::get('/passworduser', 'PrincipalController@user_clave');
+
+       
+
            
     });
      // Route::get('/passworduser', 'PrincipalController@user_clave');

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Log;
 use Storage;
+use PDF;
+use Response;
 
 class DocumentRepository extends Controller
 {
@@ -68,8 +70,10 @@ class DocumentRepository extends Controller
                     return back()->with(['info' => 'Solo se aceptan archivos con formato PDF, JPEG Y PNG', 'estado' => 'error']);
                 }
 
-                $nombre= $name.'-'.date('Ymd_h_s').'.'.$extension;
-                \Storage::disk('diskDocumentosBiblioteca_v')->put($nombre,\File::get($img));
+                $nombre= 'listaPublicaciones/'.$name.'-'.date('Ymd_h_s').'.'.$extension;
+
+                // \Storage::disk('diskDocumentosBiblioteca_v')->put($nombre,\File::get($img));
+                 \Storage::disk('wasabi')->put($nombre,\File::get($img));
 
                 //guardamos en base de datos
                 $documento= new biblioteca_virtualModel();
@@ -89,7 +93,7 @@ class DocumentRepository extends Controller
             }
       
         } catch (\Throwable $th) {
-            return back()->with(['info' => 'Algo ha ido mal.. ', 'estado' => 'error']);
+            return back()->with(['info' => 'Algo ha ido mal.. '.$th->getMessage(), 'estado' => 'error']);
         }
     }
 
@@ -216,6 +220,22 @@ class DocumentRepository extends Controller
             //registrar evento nuevo documento
             event(new UserEventBibliotecaSave(['tipo'=>'delete','documento'=>$documentoAux,'iduser'=>auth()->user()->id]));
             return back()->with(['info' => 'Archivo eliminado', 'estado' => 'success']);
+        }
+    }
+
+    // funcion para descargar documentos
+    public function download($id)
+    {
+        $id=decrypt($id);
+        $documento=  biblioteca_virtualModel::find($id);
+        if(isset($documento)){
+            $contents = base64_encode(\Storage::disk('wasabi')->get($documento->ruta));
+            
+            if($documento->tipo=='IMG'){
+                return ' <img class="img img-fluid mb-3" src="data:image/png;base64, '. base64_encode(\Storage::disk('wasabi')->get($documento->ruta)).'"alt="Attachment"/>';
+            }
+
+            return '<embed  src="data:application/pdf;base64,'.$contents.'" frameborder="0" type="application/pdf" width="100%" height="100%"/>';
         }
     }
 }

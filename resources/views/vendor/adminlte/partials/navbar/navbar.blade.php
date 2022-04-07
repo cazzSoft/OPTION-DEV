@@ -29,8 +29,13 @@
         <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
           {{-- User menu link --}}
           @if(Auth::user())
-            <li class="nav-item">
-              <a  class=" btn bgz-info text-light btn-sm text-right mt-1 bt_coins " style="width:auto;">{{Auth::user()->coins() }} <i class="fas fa-coins"></i> </a>
+            <li class=" mt-2 text-right">
+              <div class="d-inline  bgz-info text-white bt_coins btn text-center" style="margin-top: -111px;">
+                <span class="">{{Auth::user()->coins() }}  </span>
+                <span class="ml-1">
+                  <img src="{{asset('img/icon-coins.png')}}" style="width: 20%;margin-top: -6px;" class="p-0" alt="icon-coins">
+                </span>
+              </div>
             </li>
 
               @if(config('adminlte.usermenu_enabled'))
