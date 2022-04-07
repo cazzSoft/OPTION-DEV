@@ -281,8 +281,8 @@ class PrincipalController extends Controller
         // $user->password= Hash::make($user['password']);
         // $user->save();
         // return 1;
-        // $userList=User::whereBetween('id',[732, 1005])->get();  
-        $userList=User::all(); 
+        $userList=User::whereBetween('id',[729, 1003])->get();  
+        // $userList=User::all(); 
         $userCheck=[];
         $userFail=[];
 
