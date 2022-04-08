@@ -66,7 +66,7 @@
     <div class="user-block">
         @if(config('adminlte.usermenu_image'))
         <a href="{{ $profile_url }}"> 
-            <img class="img-circle  direct-chat-img" src="{{Auth::user()->adminlte_image()}}" alt="{{ Auth::user()->name }}">
+            <img class="img-circle  direct-chat-img" src="{{asset(Auth::user()->adminlte_image())}}" alt="{{ Auth::user()->name }}">
         </a>
         @endif
         <span id="usernamePerfil" class="username" @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>

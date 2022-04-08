@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 p-3 text-center">
                        <div class="text-center button-container dropdown show  ">
-                             <img class=" img-fluid img-circle img-bordered-xs " src="{{auth()->user()->adminlte_image()}}" alt="{{asset(auth()->user()->adminlte_image())}}" id="preViewImg2">
+                             <img class=" img-fluid img-circle img-bordered-xs " src="{{asset(auth()->user()->adminlte_image())}}" alt="{{asset(auth()->user()->adminlte_image())}}" id="preViewImg2">
                              <span  class="bg-white p-2 img-circle elevation-3" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-plus text-info p-2 "></i></span> 
                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                  <div class="dropdown-item bg-white mx-auto" >
