@@ -59,6 +59,14 @@ return [
             'root' => public_path('DocumentosBiblioteca'),
         ], 
 
+        'diskFtp' => [
+            'driver' => 'sftp',
+            'host' => 'sparkling-sea-10352.sftptogo.com',
+            'username' => 'e5197d4f2b4759eb346689b468d07a',
+            'password' => '9xmv5hj8jovpksbdw5jkbzfr4wnpg7h2nll4v3ka',
+            'root' => '',
+        ],
+
         'wasabi' => [
             'driver' => 'wasabi',
             'key' => env('WASABI_ACCESS_KEY_ID'),
