@@ -162,21 +162,9 @@ use Illuminate\Support\Facades\Auth;
 
            
     });
-     // Route::get('/passworduser', 'PrincipalController@user_clave');
+    
      Route::get('/colas', 'Registro_ActividadController@colas');
 
-    // Route::get('plantilla', function ()
-    // {
-    //     return view('option2healt');
-
-    // });
-
-    //  Route::get('plantilla1', function ()
-    // {
-    //     return view('homeOption2h');
-
-    // });
-
-  // Auth::routes();
+    
    
 
