@@ -106,6 +106,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
             'Psr\\Http\\Client\\' => 16,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
+            'Psr\\Cache\\' => 10,
             'Prophecy\\' => 9,
             'ProbablyRational\\Wasabi\\' => 24,
             'PhpParser\\' => 10,
@@ -128,6 +129,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
             'League\\OAuth1\\Client\\' => 21,
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\Sftp\\' => 22,
+            'League\\Flysystem\\Cached\\' => 24,
             'League\\Flysystem\\AwsS3v3\\' => 25,
             'League\\Flysystem\\' => 17,
             'League\\CommonMark\\' => 18,
@@ -374,6 +376,10 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
@@ -413,6 +419,10 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'League\\Flysystem\\Sftp\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem-sftp/src',
+        ),
+        'League\\Flysystem\\Cached\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src',
         ),
         'League\\Flysystem\\AwsS3v3\\' => 
         array (
@@ -4059,6 +4069,17 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'League\\Flysystem\\Adapter\\Polyfill\\StreamedWritingTrait' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/Polyfill/StreamedWritingTrait.php',
         'League\\Flysystem\\Adapter\\SynologyFtp' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/SynologyFtp.php',
         'League\\Flysystem\\AwsS3v3\\AwsS3Adapter' => __DIR__ . '/..' . '/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php',
+        'League\\Flysystem\\Cached\\CacheInterface' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/CacheInterface.php',
+        'League\\Flysystem\\Cached\\CachedAdapter' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/CachedAdapter.php',
+        'League\\Flysystem\\Cached\\Storage\\AbstractCache' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/AbstractCache.php',
+        'League\\Flysystem\\Cached\\Storage\\Adapter' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Adapter.php',
+        'League\\Flysystem\\Cached\\Storage\\Memcached' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Memcached.php',
+        'League\\Flysystem\\Cached\\Storage\\Memory' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Memory.php',
+        'League\\Flysystem\\Cached\\Storage\\Noop' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Noop.php',
+        'League\\Flysystem\\Cached\\Storage\\PhpRedis' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/PhpRedis.php',
+        'League\\Flysystem\\Cached\\Storage\\Predis' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Predis.php',
+        'League\\Flysystem\\Cached\\Storage\\Psr6Cache' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Psr6Cache.php',
+        'League\\Flysystem\\Cached\\Storage\\Stash' => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src/Storage/Stash.php',
         'League\\Flysystem\\Config' => __DIR__ . '/..' . '/league/flysystem/src/Config.php',
         'League\\Flysystem\\ConfigAwareTrait' => __DIR__ . '/..' . '/league/flysystem/src/ConfigAwareTrait.php',
         'League\\Flysystem\\ConnectionErrorException' => __DIR__ . '/..' . '/league/flysystem/src/ConnectionErrorException.php',
@@ -5136,6 +5157,10 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'Prophecy\\Prophet' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Prophet.php',
         'Prophecy\\Util\\ExportUtil' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Util/ExportUtil.php',
         'Prophecy\\Util\\StringUtil' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Util/StringUtil.php',
+        'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
+        'Psr\\Cache\\CacheItemInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemInterface.php',
+        'Psr\\Cache\\CacheItemPoolInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemPoolInterface.php',
+        'Psr\\Cache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/cache/src/InvalidArgumentException.php',
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',

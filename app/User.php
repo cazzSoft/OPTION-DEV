@@ -9,6 +9,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -47,7 +51,8 @@ class User extends Authenticatable
                 return auth()->user()->social_avatar;
            }else if (isset(auth()->user()->img) && auth()->user()->img!=null) {
                 // return auth()->user()->img;
-                $img=base64_encode(\Storage::disk('diskFtp')->get(auth()->user()->img));
+              
+                $img=\Storage::disk('diskFtp')->get(auth()->user()->img);
                 return 'data:image/png;base64,'.$img;
            }else{
              return 'img/user.png';

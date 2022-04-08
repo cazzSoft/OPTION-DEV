@@ -14,7 +14,7 @@
             <div class="col-xl-5 col-md-5 col-sm-12 ">
                 <div class="row ">
                     <div class="col-12 p-4 ml-2">
-                        <p class="h4"><strong>Datos Personales </strong></p>
+                        <p class="h4"><strong>Datos Personales </strong></p> 
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 p-3 text-center">
                        <div class="text-center button-container dropdown show  ">
