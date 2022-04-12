@@ -71,7 +71,19 @@ class Registro_ActividadController extends Controller
         // return 'success';
     }
 
-    
+    public function prueba()
+    {
+        // $img=base64_encode(\Storage::disk('wasabi')->get(auth()->user()->img));
+        // return $url=\Storage::disk('wasabi')->url(auth()->user()->img);
+
+        return $url=\Storage::disk('wasabi')->temporaryUrl(
+             auth()->user()->img,
+             now()->addMinutes(3600)
+         );
+        return  $img;
+        dd( $img);
+        return  \Storage::disk('wasabi')->download($img, 'filename.pdf', ['Content-Type' => 'application/pdf']);
+    }
 
     //funcion principal para guardar el historial del usuairo
     public function historialUser($dataAc,$dataRe)

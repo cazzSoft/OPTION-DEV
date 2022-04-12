@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '42cc7479424ea718e7745f19a9e52122db57c990',
+        'reference' => 'caf8d34d6fa853eaa06e372f249d2ac0986ec295',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -460,7 +460,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '42cc7479424ea718e7745f19a9e52122db57c990',
+            'reference' => 'caf8d34d6fa853eaa06e372f249d2ac0986ec295',
             'dev_requirement' => false,
         ),
         'laravel/socialite' => array(

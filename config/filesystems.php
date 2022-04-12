@@ -74,6 +74,13 @@ return [
             'region' => env('WASABI_DEFAULT_REGION', 'ap-northeast-1'),
             'bucket' => env('WASABI_BUCKET'),
             'root' => env('WASABI_ROOT'),
+            'url' => env('WAS_URL'),
+            // 'visibility' => 'public',
+            'cache' => [
+                   'store' => 'memcached',
+                   'expire' => 600,
+                   'prefix' => 'cache-prefix',
+               ],
         ],
 
         'diskPortadaNoticia' => [

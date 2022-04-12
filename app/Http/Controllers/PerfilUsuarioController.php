@@ -122,7 +122,8 @@ class PerfilUsuarioController extends Controller
             }
 
             $nombre= '00'.auth()->user()->id.'_'.date('Ymd_h_s').'.'.$extension;
-            \Storage::disk('diskDocumentosPerfilUser')->put($nombre,\File::get($img));
+            // \Storage::disk('diskDocumentosPerfilUser')->put($nombre,\File::get($img));
+             \Storage::disk('wasabi')->put('FotoPerfil/'.$nombre,\File::get($img));
 
             //guardamos en base de datos
             $documento=  user::find(auth()->user()->id);

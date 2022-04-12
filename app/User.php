@@ -50,10 +50,12 @@ class User extends Authenticatable
            if(isset(auth()->user()->social_avatar)){
                 return auth()->user()->social_avatar;
            }else if (isset(auth()->user()->img) && auth()->user()->img!=null) {
-                return auth()->user()->img;
+                // return auth()->user()->img;
               
-                // $img=\Storage::disk('diskFtp')->get(auth()->user()->img);
-                // return 'data:image/png;base64,'.$img;
+             return   $url=\Storage::disk('wasabi')->temporaryUrl(
+                     auth()->user()->img,
+                     now()->addMinutes(3600)
+                 );
            }else{
              return 'img/user.png';
            }

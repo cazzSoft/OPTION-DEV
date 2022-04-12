@@ -163,8 +163,8 @@ use Illuminate\Support\Facades\Auth;
            
     });
     
-     Route::get('/colas', 'Registro_ActividadController@colas');
+     // Route::get('/colas', 'Registro_ActividadController@colas');
 
-    
+    // Route::get('/prueba', 'Registro_ActividadController@prueba');
    
 
