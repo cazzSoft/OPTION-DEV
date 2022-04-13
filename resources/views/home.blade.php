@@ -39,9 +39,9 @@
                 @foreach($list_top_medico->take(5) as $key=> $item)
                   <div class="col-md-2 col-sm-3 col-xs-12 text-left  @if($key<1) offset-md-1  @endif  text-center mb-3">
                     @if(isset($item->img) && $item['img']!=null) 
-                      <img src="{{$item->img}}" alt="{{$item->img}}" id="img_doc" class=" img-circle img-fluid p-0 profile-user-img  border border-info">
+                      <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" alt="{{$item->img}}" id="img_doc" class=" img-circle img-fluid p-0 profile-user-img  border border-info">
                     @else 
-                       <img src="{{asset('img/user.png')}}" alt="{{$item->img}}" id="img_doc"  class=" img-circle img-fluid p-0 border profile-user-img border-info">
+                       <img src="{{asset('img/user.png') }}" alt="{{$item->img}}" id="img_doc"  class=" img-circle img-fluid p-0 border profile-user-img border-info">
                     @endif
                     <a class="users-list-name mt-3 mb-2" href="{{url('medico/info/'.encrypt($item['id']))}}"><b class="h5">{{$item->name}}</b></a>
                   </div>
