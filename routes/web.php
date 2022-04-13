@@ -31,11 +31,11 @@ use Illuminate\Support\Facades\Auth;
          Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('translate');
          Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('translate');
          Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('translate');
-         Route::post('/lang','IdiomaControlle@translate')->name('language');
+         
     });
    
    
-
+    Route::post('/lang','IdiomaControlle@translate')->name('language');
     Route::get('/nosotros', 'PrincipalController@aboutme')->middleware('translate');
     Route::get('/info-coinsults', 'PrincipalController@info_coinsults')->middleware('translate');
     Route::post('/search', 'PrincipalController@search');
