@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        
     ];
 
     /**
@@ -65,5 +66,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'validarUser'=>\App\Http\Middleware\ControlUser::class,
         'web2'=>\App\Http\Middleware\SoloWeb::class,
+        'translate' => \App\Http\Middleware\CheckLanguage::class,
+
+
     ];
 }

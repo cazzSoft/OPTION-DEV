@@ -1,5 +1,11 @@
 //Este archivo es para definir funciones globales
 
+//evento para cambiar el idioma a la vista
+$('#language').change(function (e) {
+    console.log('test');
+    $('#form-language').submit();
+});
+
 //evento para ejecutar el enter o clich al buscar
 $("#form_searc_general").on("submit", function (e) {
     e.preventDefault();
@@ -19,7 +25,7 @@ function obtenerResulSearch() {
     $('#buscar_txt').html('');
      var text=$('#inputSearch_').val();
      var input=text.length;
-     console.log(input);
+     
      if(input>2){
        getSearch(); 
      }

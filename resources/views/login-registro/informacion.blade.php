@@ -1,6 +1,6 @@
 
 @extends('layouts.baseLogin')
-@section('title','Registro')
+@section('title','info')
 
 
 @section('content')
@@ -15,16 +15,18 @@
                <li class="nav-item dropdown" >
                    <div class="d-flex flex-row-reverse mr-3 idioma">
                        <div class="p-2">
-                           <select  class="form-control form-control-sm  d-inline  lead border-0" 
-                           data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
-                               <option value="es"> ES</option>
-                               <option value="en"> EN</option>
-                           </select>
+                            <form method="POST" action="{{url('lang')}}" id="form-language">
+                                {{ csrf_field() }}
+                                <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
+                                   <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
+                                   <option @if(Session::get('language')=='en') selected @endif value="en"> EN</option>
+                               </select>
+                            </form>
                        </div>
-                       <div class="p-2 lead text-mutex">Idioma</div>
+                       <div class="p-2 lead text-mutex"> {{trans('informacion-view.Language') }}</div>
                    </div>
                    <div class="d-flex justify-content-end mr-3 options">
-                     <div class="p-2 mr-3 "><a class="{{ request()->is(['nosotros','nosotros_']) ? 'text-info_' : 'text-muted' }} "  href="{{url('nosotros')}}">ACERCA DE NOSOTROS  </a></div>
+                     <div class="p-2 mr-3 "><a class="{{ request()->is(['nosotros','nosotros_']) ? 'text-info_' : 'text-muted' }} "  href="{{url('nosotros')}}"> {{trans('informacion-view.acerca de Nosotros') }}  </a></div>
                      <div class="p-2"><a class=" {{ request()->is('info-coinsults') ? 'text-info_' : 'text-muted' }} " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
                    </div>
               </li>
@@ -82,30 +84,29 @@
             </div>
             @if( $data['tp']=='AN')
                 <div class="col-md-12 mt-1">
-                    <h3 class="text-info_ text-center"><b>Visión</b></h3>
+                    <h3 class="text-info_ text-center"><b> {{trans('informacion-view.vision') }}</b></h3>
                     <p class="lead ml-5 mr-5 p-2 text-center">
-                      
-                        Ser la compañía proveedora de servicios de salud más grande a nivel mundial.
-
+                      {{trans('informacion-view.text-vision') }}
                     </p> 
                 </div>
                 <div class="col-md-12 mt-5">
-                    <h3 class="text-info_ text-center"><b>MISIÓN</b></h3>
+                    <h3 class="text-info_ text-center"><b> {{trans('informacion-view.mision') }}</b></h3>
                     <p class="lead ml-5 mr-5 p-2 text-center">
-                        Facilitar herramientas a través de la educación y la innovación digital médica que permitan a todas las personas tomar el control de su salud, así como tener acceso a médicos y tratamientos de forma oportuna y eficiente. 
+                        {{trans('informacion-view.text-mision') }} 
                     </p> 
                 </div>
                 <div class="col-md-12 mt-3 mb-5">
                     <div class="lead ml-5 mr-5 p-2 mt-5 text-center">
-                        <p class="text-info_ h4 mb-3"><b>¿QUÉ ES LO QUE BUSCAMOS?</b></p>
-                        <p ><b class="text-info_">PREVENCIÓN</b>: Aprende todo lo relacionado a tu salud.¡Prevenir enfermedades está en tus manos!</p>
-                        <p ><b class="text-info_">DIAGNÓSTICO</b>: Conocer tus factores de riesgo e identificar síntomas a tiempo pueden salvar tu vida, o la de los tuyos. </p>
-                        <p ><b class="text-info_">MÉDICOS</b>: No todos los médicos son para todos los pacientes. Conócelos y elige al indicado para ti.</p>
+                        <p class="text-info_ h4 mb-3"><b> {{trans('informacion-view.que-busca') }}</b></p>
+                        <p ><b class="text-info_">{{trans('informacion-view.prevencion') }}</b>: {{trans('informacion-view.text-prevencion') }}</p>
+                        <p ><b class="text-info_">{{trans('informacion-view.diagnostico') }}</b>: {{trans('informacion-view.text-diagnostico') }}</p>
+                        <p ><b class="text-info_">{{trans('informacion-view.medico') }}</b>: {{trans('informacion-view.text-medico') }}</p>
                     </div>
                 </div>
             @endif
         </div>
-    </div>
+    </div>                  
+  
 @endsection
 
 @section('adminlte_css') 
@@ -117,5 +118,9 @@
             font-family: calibri;
         }
 	</style>
+@stop
+
+@section('adminlte_js') 
+    <script src="{{ asset('/js/global.js') }}"></script>
 @stop
 

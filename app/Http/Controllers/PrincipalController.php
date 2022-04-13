@@ -10,9 +10,10 @@ use App\TipoUserModel;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Log;
-use Str;
 use Mail;
+use Str;
 
 class PrincipalController extends Controller
 {
@@ -60,13 +61,24 @@ class PrincipalController extends Controller
     //informacion de loguin
     public function login_paciente()
     {
-        $detalle='
+         if(Session::get('language')=='en'){
+            $detalle='
+                    <ul class="list-group lead text-justify mr-5 mt-5 ml-4 p-2 mb-5">
+                        <li>Find the right health professional for you and your needs.</li>
+                        <li>Learn more about your doctor\'s career and profile by viewing their informative publications in the health area uploaded on our platform.</li>
+                        <li>Keep you informed through access to professional and scientific information on health topics of interest to you</li>
+                        <li>Earn CoinSults and exchange them for medical consultations or even donate them to a family member or friend</li>
+                    </ul>';
+         }else{
+            $detalle='
                 <ul class="list-group lead text-justify mr-5 mt-5 ml-4 p-2 mb-5">
                     <li>Encontrar al profesional de la salud indicado para ti y tus necesidades.</li>
                     <li>Conocer más acerca de la carrera y el perfil de tu médico mediante la visualización de sus publicaciones  informativas en el área de salud subidas en nuestra plataforma.</li>
                     <li>Mantenerte informado/a mediante el acceso a la información profesional y científica sobre temas de salud de tu interés.</li>
                     <li>Ganar CoinSsults e intercambiarlos por consultas médicas o incluso donarlos a un familiar o amigo</li>
                 </ul>';
+         }
+        
 
         $datos=[
                 'icono'=>'<i class="fas fa-user-alt"></i>',
@@ -82,7 +94,18 @@ class PrincipalController extends Controller
     //informacion de loguin medico
     public function login_medico()
     {
-        $detalle='
+        if(Session::get('language')=='en'){
+            $detalle='
+                    <ul class="list-group lead text-justify mr-5 mt-5 ml-4 p-2 mb-5">
+                        <li>Position your career as a specialist doctor and offer your professional services on our platform.</li>
+                        <li>Strengthen the doctor-patient relationship, through which the patient knows the professional profile and work history of their treating doctor.</li>
+                        <li>Access free or scheduled promotion and advertising within the platform that will allow you to reach patients who really require your medical services.</li>
+                        <li>Expand your networking within the professional medical community.</li>
+                        <li>Be part of our crowdsourcing network in order to learn, collaborate or obtain professional support in special medical cases.</li>
+                    </ul>';
+
+        }else{
+            $detalle='
                 <ul class="list-group lead text-justify mr-5 mt-5 ml-4 p-2 mb-5">
                     <li>Posicionar tu carrera como médico especialsita y ofrecer tus servicios profesionales en nuestra plataforma.</li>
                     <li>Potenciar la relacion médico-paciente, mediante la cual el paciente conozca el perfil profesional y trayectoria laboral de su médico tratante.</li>
@@ -90,6 +113,8 @@ class PrincipalController extends Controller
                     <li>Expandir tu networking dentro de la comunidad de médicos profesionales.</li>
                     <li>Ser parte de nuestra red de crowdsourcing a fin de aprender, colaborar u obtener apoyo profesional en casos médicos especiales.</li>
                 </ul>';
+        }
+        
 
         $datos=[
                 'icono'=>'<i class="fas fa-user-md"></i>',
@@ -128,22 +153,67 @@ class PrincipalController extends Controller
     //acerca de nosotros 
     public function aboutme()
     {
-        $detalle='  <p class="lead ml-5 mr-5 p-3 text-justify">
-                      <a href="/"> <b class="text-info">Option2health </b></a> es una plataforma de salud digital enfocada en la salud y educación para las personas que buscan prevenir o tratar enfermedades, y a la vez encontrar el médico idóneo que se acople a sus necesidades personales, permitiéndoles tomar el control sobre su salud y generar soluciones para enfrentar enfermedades y tener una mejor calidad de vida.</p>
-                    <p class="lead ml-5 mr-5 p-3 text-justify">   
-                       Además,  <a href="/"> <b class="text-info">Option2health </b></a> permite posicionar a médicos y empresas del sector de la salud registrados en la plataforma como expertos en su área mediante la difusión segmentada de contenido de valor digital.
-                    </p>';
-        $datos=['detalle'=>$detalle,
-                'titulo'=>'Acerca de Nosotros',
-                'tp'=>'AN',
-                ];
+        if(Session::get('language')=='en'){
+            $detalle='  <p class="lead ml-5 mr-5 p-3 text-justify">
+                          <a href="/"> <b class="text-info">Option2health </b></a> is a digital health platform focused on health and education for people who seek to prevent or treat diseases, and at the same time find the right doctor that meets their personal needs, allowing them to take control over their health and generate solutions to face diseases and have a better quality of life.</p>
+                        <p class="lead ml-5 mr-5 p-3 text-justify">   
+                           In addition,  <a href="/"> <b class="text-info">Option2health </b></a> allows doctors and companies in the health sector registered on the platform to be positioned as experts in their area through the segmented dissemination of content of digital value.
+                        </p>';
+            $titulo='About us';
+        }else{
+            $detalle='  <p class="lead ml-5 mr-5 p-3 text-justify">
+                          <a href="/"> <b class="text-info">Option2health </b></a> es una plataforma de salud digital enfocada en la salud y educación para las personas que buscan prevenir o tratar enfermedades, y a la vez encontrar el médico idóneo que se acople a sus necesidades personales, permitiéndoles tomar el control sobre su salud y generar soluciones para enfrentar enfermedades y tener una mejor calidad de vida.</p>
+                        <p class="lead ml-5 mr-5 p-3 text-justify">   
+                           Además,  <a href="/"> <b class="text-info">Option2health </b></a> permite posicionar a médicos y empresas del sector de la salud registrados en la plataforma como expertos en su área mediante la difusión segmentada de contenido de valor digital.
+                        </p>';
+            $titulo='Acerca de Nosotros';
+        } 
+           
+            $datos=['detalle'=>$detalle,
+                    'titulo'=>$titulo,
+                    'tp'=>'AN',
+                    ];
         return view('login-registro.informacion',['data'=>$datos]);
     }
 
     //informacion del coinsul 
     public function info_coinsults()
     {   
-        $detalle='  <div class="lead ml-5 mr-5 p-3 text-justify">
+       
+        if(Session::get('language')=='en'){
+            $detalle='  <div class="lead ml-5 mr-5 p-3 text-justify">
+                            <dl>
+                                <dt> Do you know what Coinsults are?</dt>
+                                <dd class="mb-3"> These are the points you earn every time you interact with this platform.</dd>
+                                
+                                <dt> As a PATIENT, you will be able to obtain Coinsults in the following ways:</dt>
+                                <dd>
+                                    <ul class="list">
+                                        <li> By creating your account at Option2health, you will automatically earn 5 welcome Coinsults.</li>
+                                        <li> First “Like” on a post on the Option2health platform. </li>
+                                        <li> Every time you answer one of our questions on the platform, among others.</li> 
+                                    </ul>
+                                </dd>
+                                
+                                <dt class="ml-3"> How will you be able to use your Coinsults?</dt>
+                                <dd class="ml-3 mb-4 ">COMING SOON, your health will improve thanks to the Coinsults you get. The more Coinsults you accumulate, the greater the chances you will have access to medical consultations with your favorite doctor within the platform, or even benefit your family members or friends, to whom you can DONATE your Coinsults and thus support them in their health needs.</dd>
+                             
+                                <dt> The DOCTOR can also earn Coinsults in the following ways:</dt>
+                                <dd>
+                                    <ul class="mb-3 list">
+                                        <li> By creating your account at Option2health, you will automatically earn 5 welcome Coinsults.</li>
+                                        <li> First “Like” on a post on the Option2health platform. </li>
+                                        <li> Creation of valuable content for your patients, among others.</li>
+                                         
+                                    </ul>
+                                </dd>
+                              
+                                <dt class="ml-3">How can you use your Coinsults?</dt>
+                                <dd class="ml-3">As a DOCTOR, you can exchange your accumulated Coinsults for more scheduled publications on our platform and thus reach more users and potential patients who require your services..</dd>    
+                            </dl> 
+                        </div> ';
+        }else{
+            $detalle='  <div class="lead ml-5 mr-5 p-3 text-justify">
                         <dl>
                             <dt> ¿Sabes qué son los Coinsults?</dt>
                             <dd class="mb-3"> Son los puntos que ganas cada vez que interactúas con esta plataforma.</dd>
@@ -174,6 +244,9 @@ class PrincipalController extends Controller
                             <dd class="ml-3">Como MÉDICO, podrás canjear tus Coinsults acumulados por más publicaciones pautadas en nuestra plataforma y de esta manera llegar a más usuarios y potenciales pacientes que requieran de tus servicios.</dd>    
                         </dl> 
                     </div> ';
+        }
+        
+
         $datos=['detalle'=>$detalle,
                 'titulo'=>'Coinsults',
                 'tp'=>'CO',

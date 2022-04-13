@@ -18,19 +18,26 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/login', function () {
         return view('login-registro.info-login');  
     });
+
+//rutas del login de redes sociales
     Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider');
     Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
-   // https://www.option2health.com/login/facebook/callback  https://app-option2health.herokuapp.com/login/facebook/callback  https://app-option2health.herokuapp.com/login/facebook/callback
+  
 
 //RUTAS DE INFORMACION PUBLICA SIN LOGIN
-    Route::get('', 'PrincipalController@index')->middleware('web2');
-    Route::get('/session', 'PrincipalController@infoLogin')->middleware('web2');
-    Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('web2');
-    Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('web2');
-    Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('web2');
+    Route::group(['middleware'=>'web2'],function (){
+         Route::get('', 'PrincipalController@index');
+         Route::get('/session', 'PrincipalController@infoLogin')->middleware('translate');
+         Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('translate');
+         Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('translate');
+         Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('translate');
+         Route::post('/lang','IdiomaControlle@translate')->name('language');
+    });
+   
+   
 
-    Route::get('/nosotros', 'PrincipalController@aboutme');
-    Route::get('/info-coinsults', 'PrincipalController@info_coinsults');
+    Route::get('/nosotros', 'PrincipalController@aboutme')->middleware('translate');
+    Route::get('/info-coinsults', 'PrincipalController@info_coinsults')->middleware('translate');
     Route::post('/search', 'PrincipalController@search');
     Route::get('/faq', 'PrincipalController@faq'); 
 
@@ -50,7 +57,7 @@ use Illuminate\Support\Facades\Auth;
      });
 
 
-//RUTAS PERMITIDAS PARA DENTRO DE SESSION
+//RUTAS PERMITIDAS  DENTRO DE SESSION
     Route::group(['middleware'=>'auth'],function (){
 
         //ruta del home page 
@@ -165,6 +172,6 @@ use Illuminate\Support\Facades\Auth;
     
      // Route::get('/colas', 'Registro_ActividadController@colas');
 
-    // Route::get('/prueba', 'Registro_ActividadController@prueba');
+    Route::get('/prueba', 'Registro_ActividadController@prueba');
    
 

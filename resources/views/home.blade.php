@@ -1,5 +1,5 @@
 @extends('homeOption2h')
-@section('title','HOME')
+@section('title','INICIO')
 
 {{--para activar los plugin en la view  --}}
 

@@ -6,7 +6,7 @@
 	            <div class="card-header">
 	            	<div class="user-block text-dark">
 	            		<a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
-							<img class="img-circle" src="@if(isset($art['medico'][0]['img'])){{$art['medico'][0]['img']}}@else{{ asset('FotoPerfil/user.png')}} @endif" alt="User Image">
+							<img class="img-circle" src="@if(isset($art['medico'][0]['img']) && $art['medico'][0]['img']!=null){{ \Storage::disk('wasabi')->temporaryUrl($art['medico'][0]['img'], now()->addMinutes(3600)  ) }}@else{{ asset('FotoPerfil/user.png')}} @endif" alt="User Image">
 	            		</a>
 	            		<span class="username">{{$art['titulo']}}| Tratamiento</span>
 	            		<span class="description"><a href="{{url('medico/info/'.encrypt($art['iduser']))}}">{{$art['medico'][0]['name']}} </a>- @if(isset($art->created_at)) {{$art->created_at->isoFormat('lll') }} @endif </span>

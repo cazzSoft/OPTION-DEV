@@ -11,6 +11,7 @@ use App\UsuarioAreaModel;
 use App\UsuarioEspecialidadModel;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -57,11 +58,22 @@ class RegisterController extends Controller
         //validacion de datos
 
         //REGLAS
-        $messages = [
-            'name.required' => 'Debe ingresar sus Nombres y Apellidos', 
-            'password.confirmed' => 'Las contraseñas no coinciden  ', 
-            'password.regex' => 'La contraseña debe tener almenos una letra minúscula  y una mayúsculas ', 
-        ];
+         if(Session::get('language')=='en'){
+            $messages = [
+                'name.required' =>'You must enter your Names and Surnames', 
+                'password.min' => 'Password must contain more than 8 characters', 
+                'email.unique' => 'Email has already been registered', 
+                // 'password.regex' => 'La contraseña debe tener almenos una letra minúscula  y una mayúsculas ', 
+                ];
+         }else{
+            $messages = [
+                'name.required' =>'Debe ingresar sus Nombres y Apellidos', 
+                'password.min' => 'La contraseña debe contener más de 8 caracteres ', 
+                'email.unique' => 'El correo electrónico ya ha sido registrado', 
+                // 'password.regex' => 'La contraseña debe tener almenos una letra minúscula  y una mayúsculas ', 
+            ];
+         }
+        
        
        // return $this->validate($data, $rules, $messages);
         return Validator::make($data, [

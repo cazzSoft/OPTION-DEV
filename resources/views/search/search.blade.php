@@ -28,7 +28,7 @@
                 @if($item)
                     <div class="col-md-1 col-sm-4 col-xs-6 text-right mb-4 @if($key<1) offset-md-1  @endif  text-center">
                         @if(isset($item->img) && $item->img!=null)
-                            <img src="{{asset($item->img)}}" id="Img_doc" alt="User Image" class="img img-circle img-fluid profile-user-img  border-segundary" >
+                            <img src=" @if(isset($item->img) && $item->img !=null){{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}} @else {{asset('img/user.png')}} @endif" id="Img_doc" alt="User Image" class="img img-circle img-fluid profile-user-img  border-segundary" >
                         @endif
                       <a class="users-list-name" href="{{url('medico/info/'.encrypt($item['id']))}}"> <b>{{$item->name}}</b></a>
                     </div>

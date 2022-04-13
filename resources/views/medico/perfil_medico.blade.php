@@ -17,7 +17,8 @@
       <div class="col-md-6 col-sm-12 col-xs-12 {{-- offset-md-2 --}} ">
         <div class="card card-widget widget-user ">
             <div class="widget-user-header text-white text-left" id="preViewPortada"
-                style="@if(isset($datos_p->img_portada)) background: url('data:image/png;base64,{{ base64_encode(\Storage::disk('wasabi')->get($datos_p->img_portada) )}}') center center; @else background-color:#E0E0E0 !important @endif">
+                style="@if(isset($datos_p->img_portada) && $datos_p->img_portada!=null ) background: url('{{\Storage::disk('wasabi')->temporaryUrl(
+                    $datos_p->img_portada,  now()->addMinutes(3600) )}}') center center; @else background-color:#E0E0E0 !important @endif">
                 {{-- <h3 class="widget-user-username text-right">Elizabeth Pierce</h3> --}}
                 {{-- <h5 class="widget-user-desc text-right">Web Designer</h5> --}}
             </div>
@@ -136,7 +137,7 @@
                             <div class="card-header ">
                               <div class="user-block text-dark">
                                 <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
-                                  <img class="img-circle" src="@if(isset($art['medico'][0]['img'])){{ $art['medico'][0]['img']}}@else{{ asset('FotoPerfil/user.png')}} @endif" alt="User Image">
+                                  <img class="img-circle elevation-1" src="@if(isset($art['medico'][0]['img']) && $art['medico'][0]['img']!=null){{ auth()->user()->adminlte_image() }}@else{{ asset('FotoPerfil/user.png')}} @endif" alt="User Image">
                                 </a>
                                 <span class="username">{{$art['titulo']}}</span>
                                 <span class="description"><a href="">{{$art['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>

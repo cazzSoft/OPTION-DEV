@@ -15,16 +15,18 @@
             <li class="nav-item dropdown" >
                 <div class="d-flex flex-row-reverse mr-3 idioma">
                     <div class="p-2">
-                        <select  class="form-control form-control-sm  d-inline  lead border-0" 
-                        data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
-                            <option value="es"> ES</option>
-                            <option value="en"> EN</option>
-                        </select>
+                        <form method="POST" action="{{url('lang')}}" id="form-language">
+                            {{ csrf_field() }}
+                            <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
+                               <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
+                               <option @if(Session::get('language')=='en') selected @endif value="en"> EN</option>
+                           </select>
+                        </form>
                     </div>
-                    <div class="p-2 lead text-mutex">Idioma</div>
+                    <div class="p-2 lead text-mutex">{{trans('informacion-view.Language') }}</div>
                 </div>
                 <div class="d-flex justify-content-end mr-3 options">
-                  <div class="p-2 mr-3 "><a class=" text-muted "  href="{{url('nosotros')}}">ACERCA DE NOSOTROS  </a></div>
+                  <div class="p-2 mr-3 "><a class=" text-muted "  href="{{url('nosotros')}}">{{trans('informacion-view.acerca de Nosotros') }}  </a></div>
                   <div class="p-2"><a class=" text-muted " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
                 </div>
            </li>
@@ -32,49 +34,13 @@
     </div>
   </nav>     
 </div>
-{{-- <div class="text-center  container col-md-12">
-    <div class="row row border-bottom border-info p-0">
-        <div class="col-md-12  px-0 d-flex justify-content-end">
-            <div class="d-flex flex-row-reverse mr-3">
-                <div class="p-2">
-                    <select  class="form-control form-control-sm  d-inline  lead border-0" 
-                    data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" >
-                        <option value="es"> ES</option>
-                        <option value="en"> EN</option>
-                    </select>
-                </div>
-                <div class="p-2 lead text-mutex">Idioma</div>
-            </div>
-        </div>
-        <div class="col-md-8 col-sm-6 col-xs-12">
-             <div class="register-logo d-flex justify-content-start ml-5 img_centrar ">             
-                   <a href="{{url('session')}}" class="linkce"> <img class=" img-fluid pad ml-2 imgl" width="60%" style="position: relative; margin-top: -30px" src="{{asset('img/logolg.svg')}}" >  </a>
-                </div>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="row p-0">
-                <div class="col-md-9 col-sm-6 col-xs-12 text-right ">
-                    <a href="{{url('nosotros')}}"  class="nav-link "> 
-                        <div class=" text-muted "> ACERCA DE NOSOTROS</div>
-                    </a> 
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                   <a href="{{url('info-coinsults')}} " class="nav-link"> 
-                        <div class=" text-muted"> COINSULTS</div>
-                    </a> 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12"></div>
-    </div>
-</div> --}}
 
 <div class="row p-5">
     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
         
         <div class="row ">
             <div class="col-lg-4 col-md-4 col-sm-12">
-                 <p class="text-center text-info h2 " style="color:#13c6ef !important;"><b>Beneficios al Registrarte</b></p>
+                 <p class="text-center text-info h2 " style="color:#13c6ef !important;"><b>{{trans('log-in-paciente.Beneficios al Registrarte') }}</b></p>
                 <div class="text-center">
                     @if(isset($data))
                       {!!$data['img']!!}
@@ -93,7 +59,7 @@
     <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12 "></div>
     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
 
-        <p class=" text-center text-info h4 mb-4 txt_log" style="color: #13c6ef !important;"> @if(isset($data)) {!!$data['icono']!!} @endif  Inicia sesión </p> 
+        <p class=" text-center text-info h4 mb-4 txt_log" style="color: #13c6ef !important;"> @if(isset($data)) {!!$data['icono']!!} @endif  {{trans('log-in-paciente.iniciar-session') }} </p> 
         @if(isset($data))
             @if($data['tipo']=='P') 
                 <div class="mt-5 border-0  d-none form_login" >
@@ -101,15 +67,17 @@
                         <form method="POST" action="{{ route('login') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico</label>
-                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico"  autocomplete="Email" value="{{old('email')}}" required>
+                                <label for="email" class="" style="color: #13c6ef;"> {{trans('log-in-paciente.email') }}</label>
+                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-email') }}"  autocomplete="Email" value="{{old('email')}}" required 
+                                @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif >
                             </div>
                             <div class="form-group">
-                                <label for="password"  style="color: #13c6ef;">Contraseña</label>
-                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Ingresa una contraseña" >
+                                <label for="password"  style="color: #13c6ef;">{{trans('log-in-paciente.password') }}</label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="{{trans('log-in-paciente.placeholder-password') }}"
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif >
                                @error('email')
                                     <span class=" invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
+                                      <strong>{{ trans('auth.failed') }}</strong>
                                     </span>
                                   @enderror
                             </div>
@@ -117,12 +85,12 @@
                                <div class="col-xl-12 col-sm-12">
                                  <div class="icheck-primary">
                                      <p class="mb-1 text-info">
-                                       <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ url('password_reset') }}"> {{ __('¿Olvidaste tu contraseña?') }} </a>
+                                       <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ url('password_reset') }}"> {{trans('log-in-paciente.olvidaste') }} </a>
                                      </p>
                                  </div>
                                </div> 
                               <div class="col-xl-12 col-md-12 col-sm-12 text-center">
-                                <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">Iniciar sesión</button>
+                                <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">{{trans('log-in-paciente.iniciar-se') }}</button>
                               </div>
                             </div>
 
@@ -132,13 +100,13 @@
                         </p>
                         <p  class="mb-2 mt-3 text-center h5" >
                             <a disabled="false" style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
-                                 Regístrate
+                                 {{trans('log-in-paciente.registrate') }}
                             </a>
                         </p>
 
                         <p  class="mb-2 mt-3 text-right h6" >
                             <a disabled="false" style="color: #13c6ef;" href="" class="">
-                               <i class="fas fa-sign-in-alt"></i>  Elegir otra opción
+                               <i class="fas fa-sign-in-alt"></i>  {{trans('log-in-paciente.elegir-opcion') }}
                             </a>
                         </p>
                   </div>
@@ -149,8 +117,9 @@
                             @csrf
                             <input type="hidden" name="tp" value="{{encrypt($data['tipo']) }}">
                             <div class="form-group">
-                                <label for="name" class="" style="color: #13c6ef;">Nombres y Apellido <span class="text-red">*</span></label>
-                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tus nombres" autofocus autocomplete="name" value="{{ old('name') }}" required>
+                                <label for="name" class="" style="color: #13c6ef;"> {{trans('log-in-paciente.name') }} <span class="text-red">*</span></label>
+                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-name') }}" autofocus autocomplete="name" value="{{ old('name') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif required>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -158,8 +127,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico <span class="text-red">*</span></label>
-                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico" autofocus autocomplete="email" value="{{ old('email') }}" required>
+                                <label for="email" class="" style="color: #13c6ef;">{{trans('log-in-paciente.email') }} <span class="text-red">*</span></label>
+                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-email') }}" autofocus autocomplete="email" value="{{ old('email') }}" required   @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif>
                                 @error('email')
                                     <span class="invalid-feedback alertError" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -168,8 +137,9 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="password"   style="color: #13c6ef;">Contraseña <span class="text-red">*</span></label>
-                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="Ingresa una contraseña"  >
+                                <label for="password"   style="color: #13c6ef;">{{trans('log-in-paciente.password') }} <span class="text-red">*</span></label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="{{trans('log-in-paciente.placeholder-password') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif >
                                @error('password')
                                     <span class=" invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -189,10 +159,10 @@
                             </div> --}}
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
-                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4"> {{trans('log-in-paciente.registrar') }}</button>
                                 <div class="mt-3 ">
-                                   <span class="text-muted"> Al crear una cuenta aceptas los</span> <br>
-                                    <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">Términos y condiciones</a>
+                                   <span class="text-muted">  {{trans('log-in-paciente.al-crear-cuenta') }}</span> <br>
+                                    <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">{{trans('log-in-paciente.acepta-los') }}</a>
                                 </div>
                               </div>
                               
@@ -201,7 +171,7 @@
                         
                         <p  class="mb-2 mt-5 text-center h5" >
                             <a disabled="false" style="color: #13c6ef;" href="/log-in-paciente" class="">
-                               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                               <i class="fas fa-sign-in-alt"></i>  {{trans('log-in-paciente.iniciar-session') }}
                             </a>
                         </p>
                   </div>
@@ -209,15 +179,15 @@
                 <div class="social-auth-links text-center mt-5 btn_sociales">
                     <a href="{{url('login/google')}}" class="btn btn-block btn-outline-danger">
                         <i class="fab fa-google-plus float-left  ml-5 mt-1"></i>
-                        Ingresa con Google
+                        {{trans('log-in-paciente.ingresar-google') }}
                     </a>
                     <a href="{{url('login/facebook')}}" class="btn btn-block btn-outline-primary">
                         <i class="fab fa-facebook float-left  ml-5 mt-1"></i>
-                        Ingresa con Facebook
+                         {{trans('log-in-paciente.ingresar-facebook') }}
                     </a>
                     <button type="button" class="btn btn-block btn-outline-info" id="btn_ingreso_email"> 
                         <i class="fas fa-envelope float-left  ml-5 mt-1"></i>
-                        Ingresa  con tu email
+                         {{trans('log-in-paciente.ingresar-email') }}
                     </button>
                 </div>
             @elseif($data['tipo']=='M')
@@ -226,12 +196,14 @@
                         <form method="POST" action="{{ route('login') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico</label>
-                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico"  autocomplete="Email" value="{{old('email')}}" required>
+                                <label for="email" class="" style="color: #13c6ef;">{{trans('log-in-paciente.email') }}</label>
+                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-email') }}"  autocomplete="Email" value="{{old('email')}}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif required>
                             </div>
                             <div class="form-group">
-                                <label for="password"  style="color: #13c6ef;">Contraseña</label>
-                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Ingresa una contraseña" >
+                                <label for="password"  style="color: #13c6ef;">{{trans('log-in-paciente.password') }}</label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="{{trans('log-in-paciente.placeholder-password') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif >
                                @error('email')
                                     <span class=" invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -242,12 +214,12 @@
                                 <div class="col-xl-12 col-sm-12">
                                     <div class="icheck-primary">
                                         <p class="mb-1 text-info">
-                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('¿Olvidaste tu contraseña?') }} </a>
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}">  {{trans('log-in-paciente.olvidaste') }} </a>
                                         </p>
                                     </div>
                                 </div> 
                                 <div class="col-xl-12 col-md-12 col-sm-12 text-center">
-                                    <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">Iniciar sesión</button>
+                                    <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">{{trans('log-in-paciente.iniciar-se') }} </button>
                                 </div>
                             </div>
                         </form>
@@ -256,7 +228,7 @@
                         </p>
                         <p  class="mb-2 mt-3 text-center h5" >
                             <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
-                                 Regístrate
+                                  {{trans('log-in-paciente.registrate') }}
                             </a>
                         </p>
 
@@ -270,8 +242,9 @@
                             @csrf
                             <input type="hidden" name="tp" value=" {{encrypt($data['tipo'])  }}">
                             <div class="form-group">
-                                <label for="name" class="" style="color: #13c6ef;">Nombres y Apellido <span class="text-red">*</span></label>
-                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tus nombres" autofocus autocomplete="name" value="{{ old('name') }}" required>
+                                <label for="name" class="" style="color: #13c6ef;">{{trans('log-in-paciente.name') }}<span class="text-red">*</span></label>
+                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-name') }}" autofocus autocomplete="name" value="{{ old('name') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif required>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -279,8 +252,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico <span class="text-red">*</span></label>
-                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico" autofocus autocomplete="email" value="{{ old('email') }}" required>
+                                <label for="email" class="" style="color: #13c6ef;">{{trans('log-in-paciente.email') }} <span class="text-red">*</span></label>
+                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-email') }}" autofocus autocomplete="email" value="{{ old('email') }}" 
+                                  @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif required>
                                 @error('email')
                                     <span class="invalid-feedback alertError" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -289,8 +263,9 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="password"   style="color: #13c6ef;">Contraseña <span class="text-red">*</span></label>
-                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="Ingresa una contraseña"  >
+                                <label for="password"   style="color: #13c6ef;">{{trans('log-in-paciente.password') }} <span class="text-red">*</span></label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="{{trans('log-in-paciente.placeholder-password') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif >
                                @error('password')
                                     <span class=" invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -310,10 +285,10 @@
                             </div> --}}
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
-                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">{{trans('log-in-paciente.registrar') }}</button>
                                 <div class="mt-3 ">
-                                   <span class="text-muted"> Al crear una cuenta aceptas los</span> <br>
-                                    <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">Términos y condiciones</a>
+                                   <span class="text-muted"> {{trans('log-in-paciente.al-crear-cuenta') }}  </span> <br>
+                                    <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">{{trans('log-in-paciente.acepta-los') }}</a>
                                 </div>
                                 
                                 
@@ -324,7 +299,7 @@
                         
                         <p  class="mb-1 mt-3 text-center h5" >
                             <a disabled="false" style="color: #13c6ef;" href="/log-in-medico" class="">
-                               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                               <i class="fas fa-sign-in-alt"></i> {{trans('log-in-paciente.iniciar-session') }}
                             </a>
                         </p>
                   </div>
@@ -335,12 +310,14 @@
                         <form method="POST" action="{{ route('login') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico</label>
-                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico"  autocomplete="Email" value="{{old('email')}}" required>
+                                <label for="email" class="" style="color: #13c6ef;">{{trans('log-in-paciente.email') }}</label>
+                                <input type="email"  id="email_"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-email') }}"  autocomplete="Email" value="{{old('email')}}" 
+                                  @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif required>
                             </div>
                             <div class="form-group">
-                                <label for="password"  style="color: #13c6ef;">Contraseña</label>
-                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="Ingresa una contraseña" >
+                                <label for="password"  style="color: #13c6ef;">{{trans('log-in-paciente.password') }}</label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('email') is-invalid @enderror"  name="password" required autocomplete="current-password" placeholder="{{trans('log-in-paciente.placeholder-password') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif >
                                @error('email')
                                     <span class=" invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -351,12 +328,12 @@
                                 <div class="col-xl-12 col-sm-12">
                                     <div class="icheck-primary">
                                         <p class="mb-1 text-info">
-                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{ __('¿Olvidaste tu contraseña?') }} </a>
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{trans('log-in-paciente.olvidaste') }} </a>
                                         </p>
                                     </div>
                                 </div> 
                                 <div class="col-xl-12 col-md-12 col-sm-12 text-center">
-                                    <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md">Iniciar sesión</button>
+                                    <button type="submit" class="btn  btn-outline-secondary btn-block  btn-md"> {{trans('log-in-paciente.iniciar-se') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -365,7 +342,7 @@
                         </p>
                         <p  class="mb-2 mt-3 text-center h5" >
                             <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
-                                 Regístrate
+                                 {{trans('log-in-paciente.registrate') }}
                             </a>
                         </p>
 
@@ -378,8 +355,9 @@
                             @csrf
                             <input type="hidden" name="tp" value=" {{encrypt($data['tipo'])  }}">
                             <div class="form-group">
-                                <label for="name" class="" style="color: #13c6ef;">Nombres y Apellido <span class="text-red">*</span></label>
-                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tus nombres" autofocus autocomplete="name" value="{{ old('name') }}" required>
+                                <label for="name" class="" style="color: #13c6ef;">  {{trans('log-in-paciente.name') }} <span class="text-red">*</span></label>
+                                <input type="text"  id="name"  name="name" class="form-control  @error('name') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-name') }}" autofocus autocomplete="name" value="{{ old('name') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif required>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -387,8 +365,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email" class="" style="color: #13c6ef;">Correo Electronico <span class="text-red">*</span></label>
-                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="Ingresa tu correo electronico" autofocus autocomplete="email" value="{{ old('email') }}" required>
+                                <label for="email" class="" style="color: #13c6ef;">{{trans('log-in-paciente.email') }}<span class="text-red">*</span></label>
+                                <input type="email"  id="email"  name="email" class="form-control  @error('email') is-invalid @enderror  border-right-0 border-left-0 border-top-0" placeholder="{{trans('log-in-paciente.placeholder-email') }}" autofocus autocomplete="email" value="{{ old('email') }}" 
+                                  @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif required>
                                 @error('email')
                                     <span class="invalid-feedback alertError" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -397,8 +376,9 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="password"   style="color: #13c6ef;">Contraseña <span class="text-red">*</span></label>
-                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="Ingresa una contraseña"  >
+                                <label for="password"   style="color: #13c6ef;">{{trans('log-in-paciente.password') }} <span class="text-red">*</span></label>
+                                <input type="password" id="password" class="form-control  border-right-0 border-left-0 border-top-0  @error('password') is-invalid @enderror"  name="password" required autocomplete="new-password" placeholder="{{trans('log-in-paciente.placeholder-password') }}" 
+                                 @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);"  @endif  >
                                @error('password')
                                     <span class=" invalid-feedback" role="alert">
                                       <strong>{{ $message }}</strong>
@@ -418,7 +398,7 @@
                             </div> --}}
                             <div class="row  justify-content-md-center">
                               <div class="col-xl-10 col-md-12 col-sm-12 text-center">
-                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4">Registrar</button>
+                                <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4"> {{trans('log-in-paciente.registrar') }}</button>
                               </div>
                               
                             </div>
@@ -426,7 +406,7 @@
                         
                         <p  class="mb-2 mt-5 text-center h5" >
                             <a disabled="false" style="color: #13c6ef;" href="/log-in-empresa" class="">
-                               <i class="fas fa-sign-in-alt"></i> Iniciar sesión
+                               <i class="fas fa-sign-in-alt"></i>  {{trans('log-in-paciente.iniciar-session') }}
                             </a>
                         </p>
                   </div>
@@ -435,7 +415,7 @@
         @endif    
         <p class="mb-2 mt-4 text-center h6" >
             <a disabled="false" class="mt-5" style="color: #13c6ef;" href="/session" class="">
-              <i class="fas fa-arrow-circle-left"></i>  Elegir  otro tipo de usuario
+              <i class="fas fa-arrow-circle-left"></i> {{trans('log-in-paciente.elegir otro') }}
             </a>
         </p>
     </div>
@@ -445,7 +425,10 @@
 
 
  @section('adminlte_js')
-    {{-- Mensaje de informacion --}}
+    <script >
+        // variavle global
+        var txt_tit=`{{trans('log-in-paciente.registrate') }}`;
+    </script>
  
            {{-- mostrar errores form login Paciente--}}
           
@@ -488,11 +471,25 @@
                    $('.form_register').removeClass('d-none');
                </script>
            @enderror 
-       
-   
+        
+            <script >
+                function InvalidMsg(textbox) { 
+                    if (textbox.value == '') {
+                        textbox.setCustomValidity('please fill in the field'); 
+                     } else if (textbox.validity.typeMismatch){
+                         textbox.setCustomValidity('please enter a valid email address');
+                     } else { textbox.setCustomValidity(''); }
+                      return true; 
+                }
+
+    
+
+            </script>
+    
 
     @if(session()->has('info'))
          <script >
+
             alert('{{session('info')}}');
            // mostrar_toastr('{{session('info')}}','{{session('estado')}}')
          </script>

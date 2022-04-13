@@ -63,7 +63,7 @@
                                 </dl>
                                 <dl class="mt-4">
                                     <dd>Genero:</dd>
-                                    <dd class=" text-muted">@if($data->genero=='1') Masculino @else Femenino @endif </dd>
+                                    <dd class=" text-muted">@if($data->genero=='1') Masculino @elseif($data->genero=='0') Femenino @else Indefinido @endif </dd>
                                 </dl>
                                 @if($sigues!=0)
                                     <div class="product-info">
@@ -248,7 +248,7 @@
                                         <div class="card-header">
                                             <div class="user-block text-dark">
                                                 <a href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}" >
-                                                    <img class="img-circle" src="/img/user1-128x128.jpg" alt="User Image">
+                                                    <img class="img-circle" src="@if(isset($art->articulo_user[0]['medico'][0]['img']) && $art->articulo_user[0]['medico'][0]['img'] !=null) {{\Storage::disk('wasabi')->temporaryUrl($art->articulo_user[0]['medico'][0]['img'], now()->addMinutes(3600)  )}} @else {{asset('img/user.png')}} @endif" alt="User Image">
                                                 
                                                     <span class="username">{{$art->articulo_user[0]['titulo']}}| Tratamiento</span>
                                                     <span class="description"><a href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}">{{$art->articulo_user[0]['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>

@@ -142,13 +142,13 @@ $('.btn_registrate').click(function (e) {
 		//para cambiar el icono al cambiar al form registrarse
 		let usert = document.querySelector('.btn_registrate').dataset.user;
 		if(usert=='P'){
-				$('.txt_log').html('<i class="fas fa-user-plus"></i> Regístrate');
+				$('.txt_log').html('<i class="fas fa-user-plus"></i> '+txt_tit);
 		}
 		if(usert=='M'){
-				$('.txt_log').html('<i class="fa fa-user-md"></i> Regístrate');
+				$('.txt_log').html('<i class="fa fa-user-md"></i> '+txt_tit);
 		}
 		if(usert=='E'){
-				$('.txt_log').html('<i class="fas fa-briefcase-medical"></i> Regístrate');
+				$('.txt_log').html('<i class="fas fa-briefcase-medical"></i> '+txt_tit);
 		}
 	
 });
