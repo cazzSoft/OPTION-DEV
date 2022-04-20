@@ -38,47 +38,58 @@
             <div class="col-md-6">
                 <div class="card border-0">
                     <div class="card-header border-0 "> 
-                        <b class="tex-stile text-info_">{{ trans('passwords.title-rest') }}</b>
-                        <p class="text-muted mt-2">{{ trans('passwords.coment-reset') }}</p>
+                        <b class="tex-stile text-info_">{{ trans('code.title-rest') }}</b> <br>
+                        <span class="text-muted">{{ trans('code.coment-reset') }}  @if(isset($email))<b> {{$email}} </b> @endif </span>
+                       	<a disabled="false"  href="{{ url('password_reset') }}" class="text-muted text-center text-info_">
+                       	  {{ trans('code.cambiar') }}
+                       	</a>
+
                     </div>
 
                     <div class="card-body">
                         @if (session('status'))
-                            <div class="alert border border-info alert-dismissible">
-                                <span  class="close pl-0 pr-0" data-dismiss="alert" aria-hidden="true"><i class="icon fas fa-times text-info_ fa-sm"></i></span>
-                              
-                              <h5 class="text-info_"><i class="icon fas fa-info text-info_"></i>  {{ __('passwords.alert') }}</h5>
-                                {{ __('passwords.status') }}
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
                             </div>
-                           
                         @endif
 
-                        <form method="POST" action="{{ route('password_reset.store') }}">
+                        <form method="POST" action="{{ url('password_reset/'.encrypt($email)) }}"  enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group row">
-                                <input id="email" type="email" class="form-control {{-- is-valid --}} @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{trans('passwords.placeholder-input') }}" autofocus  @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif >
+                            <input  type="hidden" name="_method"  value="PUT">
+                            <div class="form-group row form-group-md">
+                                <input id="code" type="number"  class="form-control {{-- is-valid --}} @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" placeholder="{{trans('code.placeholder-input') }}" autofocus  @if(Session::get('language')=='en') oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" @endif >
 
-                                @error('email')
+                                @error('code')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ trans('passwords.user') }}</strong>
+                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <a disabled="false"  class="text-muted text-center text-info_ mt-3 " onclick="resend_code(`{{encrypt($email)}}`)">
+                       	  			{{ trans('code.renviar') }} 
+                                    <div class=" float-right" id="spinner-code">
+                                      {{--  <div class="spinner-border text-info_  ml-3 "  style="width: 1rem; height: 1rem;"  role="status"> </div>  --}}
+                                    </div>
+                                    
+                       			</a>
+                                
                             </div>
 
-                            <div class="form-group  ">
+                            <div class="form-group mt-5 ">
                                 <div class="text-center">
                                     <button type="submit" class="btn  bgz-info btn-lg">
-                                       {{ trans('passwords.text-btn-reset') }}
+                                       {{ trans('code.text-btn-reset') }}
                                     </button>
-
+                                    <p class="text-muted ml-5 mr-5 mt-2 text-center">
+                                    	<small class="text-cali text-justify">
+                                    		 {{ trans('code.info-email') }}
+                                    	</small>
+                                    </p>	
+                                   
                                     
                                 </div>
                             </div>
-                            <div class="form-group text-center mt-2">
-                                <a disabled="false"  href="{{ url('session') }}" class="text-muted text-center text-info_">
-                                  {{ trans('passwords.back') }}
-                                </a>
-                            </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -95,7 +106,7 @@
         font-family: 'Calibri';
         font-style: normal;
         font-weight: 700;
-        font-size: 22px;
+        font-size: 24px;
         line-height: 22px;
         /*color: #0FADCE;*/
     }
@@ -103,9 +114,15 @@
         margin-top: 100px !important;
         
     }
+    .text-cali{
+    	font-family: 'Calibri';
+    	font-style: normal;
+    	
+    }
     
 </style>
 @stop
 @section('adminlte_js') 
     <script src="{{ asset('/js/global.js') }}"></script>
+    <script src="{{ asset('/js/password-reset.js') }}"></script>
 @stop

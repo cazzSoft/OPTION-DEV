@@ -122,6 +122,16 @@
      .flickity-button{
       display: none;
      }
+     .btn-registrate{
+       
+        width: 127px;
+        height: 34px;
+        left: 1274px;
+        top: 24px;
+        background: #0FADCE;
+        box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+     }
    </style>
   {{--  configuraciones globales css --}}
   <link rel="stylesheet" href="{{ asset('css/appO2h.css') }}">

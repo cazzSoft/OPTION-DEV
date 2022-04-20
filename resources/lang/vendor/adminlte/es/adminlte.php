@@ -25,4 +25,7 @@ return [
     'verify_if_not_recieved'      => 'Si no has recibido el correo electrónico',
     'verify_request_another'      => 'haga clic aquí para solicitar otro',
     'confirm_password_message'    => 'Por favor, confirme su contraseña para continuar.',
+
+    'title_name'                   => 'Elija una nueva contraseña.',
+    'coment_reset'                   => 'Cree una nueva contraseña que tenga al menos 8 caracteres.',
 ];

@@ -2,7 +2,6 @@
 
 //evento para cambiar el idioma a la vista
 $('#language').change(function (e) {
-    console.log('test');
     $('#form-language').submit();
 });
 
@@ -125,3 +124,16 @@ function obtenerResulSearch() {
  function logout_session() {
     $('#modalLogout').modal('show');
  }
+
+ //traducir los mensajes de los input 
+ function InvalidMsg(textbox) { 
+    if (textbox.value == '') {
+        textbox.setCustomValidity('please fill in the field'); 
+     } else if (textbox.validity.typeMismatch){
+         textbox.setCustomValidity('please enter a valid email address');
+     } else { 
+        textbox.setCustomValidity(''); 
+    }
+      return true; 
+}
+

@@ -47,8 +47,8 @@
                <li class="mr-2  p-0 item-nav">
                   <p class="text-info">¿Listo para tomar el control de tu salud y de los demás? INGRESA AQUÍ</p>
                </li>
-               <li class=" bgz-info mr-2" >
-                 <a class="btn  text-light  border-0 text-center btn-flat "   href="session"> <span>Registrate</span> </a>
+               <li class="mr-2" >
+                 <a class="btn  text-light  border-0 text-center btn-registrate "   href="session"> <span>Registrate</span> </a>
                </li>
            
           @endif

@@ -571,6 +571,13 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
     );
 
     public static $prefixesPsr0 = array (
+        'p' => 
+        array (
+            'phpbrowscap\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/browscap/browscap-php/src',
+            ),
+        ),
         'M' => 
         array (
             'Mockery' => 
@@ -660,6 +667,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'App\\Http\\Controllers\\DocumentRepository' => __DIR__ . '/../..' . '/app/Http/Controllers/DocumentRepository.php',
         'App\\Http\\Controllers\\GuardadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/GuardadoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\IdiomaControlle' => __DIR__ . '/../..' . '/app/Http/Controllers/IdiomaControlle.php',
         'App\\Http\\Controllers\\Inters_userController' => __DIR__ . '/../..' . '/app/Http/Controllers/Inters_userController.php',
         'App\\Http\\Controllers\\NoticiaController' => __DIR__ . '/../..' . '/app/Http/Controllers/NoticiaController.php',
         'App\\Http\\Controllers\\NotificacionController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificacionController.php',
@@ -671,6 +679,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
+        'App\\Http\\Middleware\\CheckLanguage' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckLanguage.php',
         'App\\Http\\Middleware\\ControlUser' => __DIR__ . '/../..' . '/app/Http/Middleware/ControlUser.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -715,6 +724,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'App\\Notificacion' => __DIR__ . '/../..' . '/app/Notificacion.php',
         'App\\NotificacionDetalleModel' => __DIR__ . '/../..' . '/app/NotificacionDetalleModel.php',
         'App\\Notifications\\ResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/ResetPasswordNotification.php',
+        'App\\Password_resetModel' => __DIR__ . '/../..' . '/app/Password_resetModel.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -6660,6 +6670,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
         'phpDocumentor\\Reflection\\Utils' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/Utils.php',
+        'phpbrowscap\\Browscap' => __DIR__ . '/..' . '/browscap/browscap-php/src/phpbrowscap/Browscap.php',
         'phpseclib\\Crypt\\AES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
         'phpseclib\\Crypt\\Base' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
         'phpseclib\\Crypt\\Blowfish' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'caf8d34d6fa853eaa06e372f249d2ac0986ec295',
+        'reference' => 'd7760a44e41e738dbd4d12da2ce9e81cd9616d3e',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -80,6 +80,15 @@
             'install_path' => __DIR__ . '/../brick/math',
             'aliases' => array(),
             'reference' => 'ca57d18f028f84f777b2168cd1911b0dee2343ae',
+            'dev_requirement' => false,
+        ),
+        'browscap/browscap-php' => array(
+            'pretty_version' => '2.1.0',
+            'version' => '2.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../browscap/browscap-php',
+            'aliases' => array(),
+            'reference' => '22c03e5d232f15b62db1357ca98838b1417837c4',
             'dev_requirement' => false,
         ),
         'cordoval/hamcrest-php' => array(
@@ -460,7 +469,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'caf8d34d6fa853eaa06e372f249d2ac0986ec295',
+            'reference' => 'd7760a44e41e738dbd4d12da2ce9e81cd9616d3e',
             'dev_requirement' => false,
         ),
         'laravel/socialite' => array(

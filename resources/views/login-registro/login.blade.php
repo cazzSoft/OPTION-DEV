@@ -214,7 +214,7 @@
                                 <div class="col-xl-12 col-sm-12">
                                     <div class="icheck-primary">
                                         <p class="mb-1 text-info">
-                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}">  {{trans('log-in-paciente.olvidaste') }} </a>
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ url('password_reset') }}">  {{trans('log-in-paciente.olvidaste') }} </a>
                                         </p>
                                     </div>
                                 </div> 
@@ -328,7 +328,7 @@
                                 <div class="col-xl-12 col-sm-12">
                                     <div class="icheck-primary">
                                         <p class="mb-1 text-info">
-                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ route('password.request') }}"> {{trans('log-in-paciente.olvidaste') }} </a>
+                                           <a class="btn btn-link ml-auto mb-0 text-sm " href="{{ url('password_reset') }}"> {{trans('log-in-paciente.olvidaste') }} </a>
                                         </p>
                                     </div>
                                 </div> 
@@ -472,21 +472,6 @@
                </script>
            @enderror 
         
-            <script >
-                function InvalidMsg(textbox) { 
-                    if (textbox.value == '') {
-                        textbox.setCustomValidity('please fill in the field'); 
-                     } else if (textbox.validity.typeMismatch){
-                         textbox.setCustomValidity('please enter a valid email address');
-                     } else { textbox.setCustomValidity(''); }
-                      return true; 
-                }
-
-    
-
-            </script>
-    
-
     @if(session()->has('info'))
          <script >
 

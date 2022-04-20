@@ -104,6 +104,7 @@ trait ResetsPasswords
      */
     protected function resetPassword($user, $password)
     {
+       
         $this->setUserPassword($user, $password);
 
         $user->setRememberToken(Str::random(60));

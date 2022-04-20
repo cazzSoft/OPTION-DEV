@@ -25,4 +25,7 @@ return [
     'verify_if_not_recieved'      => 'If you did not receive the email',
     'verify_request_another'      => 'click here to request another',
     'confirm_password_message'    => 'Please, confirm your password to continue.',
+
+    'title_name'                   => 'Choose a new password.',
+    'coment_reset'                   => 'Create a new password that is at least 8 characters long.',
 ];

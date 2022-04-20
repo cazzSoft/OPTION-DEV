@@ -17,4 +17,13 @@ return [
     'throttled' => 'Por favor espere antes de intentar de nuevo.',
     'token'     => 'El token de restablecimiento de contraseña es inválido.',
     'user'      => 'No encontramos ningún usuario con ese correo electrónico.',
-];
+
+    'title-rest'        =>'¿Olvidaste tu contaseña?',
+    'coment-reset'      =>'Restablece tu contraseña en dos pasos',
+    'placeholder-input' =>'Ingresa tu E-mail',
+    'text-btn-reset'    =>'Restablecer contraseña',
+    'back'              =>'Atrás',
+    'alert'              =>'Advertencia',
+    'status'            =>'Acción no permitida para este email'
+
+]; 

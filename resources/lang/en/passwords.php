@@ -19,4 +19,14 @@ return [
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
 
-];
+    'title-rest'        =>'Forgot your password?',
+    'coment-reset'      =>'Reset your password in two steps',
+    'placeholder-input' =>'Enter your email',
+    'text-btn-reset'    =>'Restore password',
+    'back'              =>'Back',
+
+    'alert'             =>'warning',
+    'status'            =>'Action not allowed for this email'
+
+
+]; 

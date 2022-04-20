@@ -11,9 +11,11 @@
 {{-- cuerpo de la pagina --}}
 @section('contenido')
   
-  <section class="">
+   
+  <section class="content">
+    
     <div class="row ">
-      <div class="col-12 col-xs-12 ">
+      <div class="col-lg-12 col-xs-12 ">
         <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias</b></p>
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12 ">
@@ -23,17 +25,16 @@
   </section> 
 
   <section>
-
     <div class="row mt-4">
       <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12">
         <nav class="w-100 ">
-          <div class="nav nav-tabs  d-flex justify-content-center  card-outline-tabs" id="custom-tabs-four-tab" role="tablist">
-            <a class=" h5 nav-item nav-link   mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
-            <a class="h5 nav-item nav-link   " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
+          <div class="nav nav-tabs  d-flex justify-content-center  border-0" id="custom-tabs-four-tab" role="tablist">
+            <a class=" h5 nav-item nav-link   mr-3 active border-0 btn-tab  " id="medico-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
+            <a class="h5 nav-item nav-link  border-0 ml-3 btn-tab" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
           </div>
         </nav>
         <div class="tab-content p-0" id="nav-tabContent">
-          <div class="tab-pane  show active " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+          <div class="tab-pane  show active " id="product-desc" role="tabpanel" aria-labelledby="medico-desc-tab">
             <div class="row mt-5  justify-content-start">
               @if(isset($list_top_medico))
                 @foreach($list_top_medico->take(5) as $key=> $item)
@@ -110,8 +111,7 @@
         </div>
       </div>
     </div>
-
-</section>   
+  </section>   
 
      
       
@@ -149,12 +149,36 @@
           height: 12px  !important;
       }
       #img_doc{
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
-           
-          }
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+       
+      }
+      .imgran{
+      
+        width: 687.55px;
+        height: 459.05px;
+        left: 577.51px;
+        top: 189.95px;
+      }
 
+      .btn-tab{
+        width: auto;
+        height: 40px;
+        left: 576px;
+        top: 1018px;
+        color: #fff;
+        background: #0FADCE;
+        padding: 2px 33px;
+
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);*/
+        border-radius: 5px;
+      }
+      link.active {
+        
+          background: #0FADCE !important;
+         
+      }
     </style>
   @stop 
 
