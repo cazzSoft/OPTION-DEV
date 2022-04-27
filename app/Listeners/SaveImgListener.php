@@ -45,6 +45,11 @@ class SaveImgListener implements ShouldQueue
                 }
             logger("Guardar img".$event->data['nombreDoc']." se ha registrado");
        } catch (\Throwable $th) {
+            
+            $prueba= new PruebaModel();
+            $prueba->des=$event->data['nombreDoc'].' error =>'.$th->getMessage();
+            $prueba->save();
+
             logger($th->getMessage()."  no se ha registrado  ".$event->data['nombreDoc']);
        }
       
