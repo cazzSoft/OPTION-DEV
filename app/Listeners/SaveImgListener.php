@@ -29,7 +29,9 @@ class SaveImgListener implements ShouldQueue
      */
     public function handle(SaveImgEvent $event)
     {
-        
+        $prueba= new PruebaModel();
+        $prueba->des=$event->data['nombreDoc'];
+        $prueba->save();
         
        try {
           
