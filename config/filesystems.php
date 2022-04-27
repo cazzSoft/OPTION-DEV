@@ -50,10 +50,11 @@ return [
 
         'galeria' => [
             'driver' => 'local',
-            'root' => public_path('galeria'),
+            'root' => public_path('/'),
             // 'url' => env('APP_URL').'/public',
             // 'visibility' => 'public',
         ],
+
         'diskDocumentosBiblioteca_v' => [
             'driver' => 'local',
             'root' => public_path('DocumentosBiblioteca'),
@@ -87,9 +88,10 @@ return [
             'driver' => 'local',
             'root' => public_path('PortadaNoticia'),
         ],
+        
         'diskDocumentosPerfilUser' => [
             'driver' => 'local',
-            'root' => public_path('FotoPerfil'),
+            'root' => public_path('/'),
         ],
         
         'diskDocumentosPortadaUser' => [

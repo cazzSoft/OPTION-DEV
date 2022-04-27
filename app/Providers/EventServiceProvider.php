@@ -131,6 +131,9 @@ class EventServiceProvider extends ServiceProvider
          \App\Events\MedicoEventCasoExComent::class=>[
              'App\Listeners\MedicoListenerCasoExComent',
         ],
+         \App\Events\SaveImgEvent::class=>[
+             'App\Listeners\SaveImgListener',
+        ],
     ];
 
     /**

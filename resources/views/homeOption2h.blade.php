@@ -17,16 +17,21 @@
                       <a class="nav-link  {{ Route::is('home') ? 'text-info_' : '' }}" href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
                     </li>
                     <li class="nav-item ml-2 mr-3">
-                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a>
+                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a> 
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                      <a class="nav-link  {{ Route::is('coinsult.index') ? 'text-info_' : '' }}" href="{{url('coinsult')}}"><i class="fas fa-fw fa-coins"></i> <b>Coinsults </b></a>
+                      <a class="nav-link text-center {{ Route::is('coinsult.index') ? 'text-info_' : '' }}" href="{{url('coinsult')}}"> 
+                        <span class="ml-1  text-center mb-5">
+                          <img src="{{asset('img/icon-coins-gris.png')}}" style="width: 18px; margin-top: -4px;" class="p-0 " alt="icon-coins">
+                        </span> 
+                        <b>Coinsults </b>
+                      </a>
                     </li>
                     <li class="nav-item ml-2 mr-3">
                       <a class="nav-link {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : '' }} " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> <b>Guardados</b></a>
                     </li>
                     <li class="nav-item ml-2 mr-3">
-                      <a class="nav-link {{ request()->is('biblioteca/show*') ? 'text-info_' : '' }} " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
+                      <a class="nav-link {{ request()->is(['biblioteca/*']) ? 'text-info_' : '' }} " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
                     </li>
 
                     @if(Auth::user()->type_user()=='dr' || Auth::user()->type_user()=='ad')
@@ -55,17 +60,14 @@
                     <a class="nav-link text-info_ " href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
                   </li>
                   <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link" href="{{url('nosotros')}}"><i class="fa fa-notes-medical"></i>  <b>¿Qué Somos?</b></a>
+                    <a class="nav-link" href="{{url('nosotros')}}"><i class="fas fa-info  border border-segundary p-1 fa-xs"></i>  <b>¿Qué Somos?</b></a>
                   </li>
                   <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link" href="{{url('info-coinsults')}}"><i class="fa fa-coins"></i> <b>Coinsults</b></a>
+                    <a class="nav-link" href="{{url('info-coinsults')}}"> <span class="ml-1  text-center mb-5">
+                          <img src="{{asset('img/icon-coins-gris.png')}}" style="width: 18px; margin-top: -4px;" class="p-0 " alt="icon-coins">
+                        </span> <b>Coinsults</b></a>
                   </li>
-                  <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> <b>Guardados</b></a>
-                  </li>
-                  <li class="nav-item ml-3 mr-3">
-                    <a class="nav-link " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
-                  </li>
+                  
                 </ul>
               </div>
             </nav>
@@ -79,16 +81,29 @@
          <div class="col-lg-4 col-md-12 col-sm-12  text-center bg-white justify-content-center bg-info">
           <div class="main-carousel  text-center " data-flickity='{ "cellAlign": "center", "contain": true }'>
             @if( Auth::user()->topMedicos() )
-              @foreach(Auth::user()->topMedicos() as $key=> $item)
-                <div class="carousel-cell text-center @if($key==0) offset-md-1 @endif align-self-end mt-2">
-                  <a class="navbar-brand text-center " onclick="getMedicoTop('{{encrypt($item->id)}}' )" href="#">
-                    @if(isset($item['img'] ) && $item['img']!=null )
-                      <img src="{{\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" alt="{{$item->img}}" class="img-circle  mr-4 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;">  
-                    @else 
+              @foreach(Auth::user()->topMedicos()->take(10) as $key=> $item)
+               
+                  <div class="carousel-cell text-center @if($key==0) offset-md-1 @endif align-self-end mt-2">
+                    <a class="navbar-brand text-center " onclick="getMedicoTop('{{encrypt($item->id)}}',`{{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}` )"   href="#"  >
+                      @if(isset($item['img'] ) && $item['img']!=null )
+                        <img 
+                            src="
+                                  @if(\Storage::disk('diskDocumentosPerfilUser')->exists($item->img)) 
+                                      {{asset($item->img)}}
+                                  @else
+                                    {{-- {{\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(9600)  )}} --}}
+                                      {{$img}}
+                                  @endif
+                                " 
+                              alt="{{$item->img}}"
+                              class="img-circle  mr-4 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;" 
+                        >  
+                      @else 
 
-                    @endif
-                  </a>
-                </div>
+                      @endif
+                    </a>
+                  </div>
+               
               @endforeach
             @endif 
           </div>
@@ -122,16 +137,7 @@
      .flickity-button{
       display: none;
      }
-     .btn-registrate{
-       
-        width: 127px;
-        height: 34px;
-        left: 1274px;
-        top: 24px;
-        background: #0FADCE;
-        box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-     }
+     
    </style>
   {{--  configuraciones globales css --}}
   <link rel="stylesheet" href="{{ asset('css/appO2h.css') }}">

@@ -1,5 +1,5 @@
 @extends('homeOption2h')
-@section('title','Perfil-Médico')
+@section('title','Casos')
 
 
 {{--para activar los plugin en la view  --}}

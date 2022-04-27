@@ -2,12 +2,12 @@
 function visor_show(tipo,contenido,titulo) {
 	$('#contenido').html(" ");
 	$('#txtTitulo').html(`<i class="far fa-file"></i> ${titulo} `);
-	
+	console.log(contenido); 
 	if(tipo=='IMG'){
-		contenido=` <img class="product-image img-fluid mb-3" src="data:image/png;base64, ${contenido}" alt="img">`;
+		contenido=` <img class="product-image img-fluid mb-3" src="${contenido}" alt="img">`;
 		$('#contenido').html(contenido);
 	}else{
-		contenido=`<embed src="data:application/pdf;base64,${contenido}" width="100%" height="770" 
+		contenido=`<embed src="${contenido}" width="100%" height="770" 
  						type="application/pdf">`;
 		$('#contenido').html(contenido); 
 	}
@@ -187,26 +187,24 @@ function eventDocumeto(id) {
 }
 
 // funcion para descargar archivos
-function downloadPDF(doc,titulo,tp) {
-	if(tp=='IMG'){
-		var dw=`data:image/png`;
-	}else{
-		var dw=`data:application/pdf`;
-	}
-	console.log(dw);
-    const linkSource = `${dw};base64,${doc}`;
-	const downloadLink = document.createElement("a");
-	const fileName = `${titulo}-option2health`;
-	downloadLink.href = linkSource;
-	downloadLink.download = fileName;
-	downloadLink.click();
+function downloade(ste,id) {
+		 
+		var doc= window.location.href = url+'/biblioteca/download_documento/'+id;
+		$(ste).html(` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`);
+		 fetch(doc)
+		   .then(resp => resp.blob())
+		   .then(blob => {
+		    
+		   	$(ste).html(`<i class="fas fa-cloud-download-alt"></i>`);
+		 }).catch(() => alert('oh no!'));
 }
 
 // funcion para abrir imagen el biblioteca
 function showModal(doc,titulo){
+	console.log(doc);
   $('#modal-image-content').html(" ");
-  $('#modal-image-content').html(`<img src="data:image/png;base64,${doc}" class="modal-content-img img-fluid"><div class="modal-nav">
-  <button id="close" class="btn btn-info btn-sm d-none">Cerrar</button>
+  $('#modal-image-content').html(`<img src="${doc}" class="modal-content-img img-fluid"> <div class="modal-nav">
+  <button id="close" class="btn btn-info btn-sm mt-3">Cerrar</button>
   </div>`);
 
   var modal = document.getElementById('modalImage');
@@ -234,3 +232,5 @@ function showModal(doc,titulo){
     }
   }
 }
+
+

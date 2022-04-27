@@ -75,12 +75,12 @@
               <div class="card " >
                 @if($item['tipo']=='IMG')
                   {{-- <img class="card-img-top objetfit" src="{{asset('DocumentosBiblioteca/'.$item->ruta)}}" alt="Card image "> --}}
-                  <img class="card-img-top objetfit btn btn-outline-light p-0" src="data:image/png;base64, {{  base64_encode(\Storage::disk('wasabi')->get($item->ruta)) }}" alt="Card image " onclick="showModal(`{{  base64_encode(\Storage::disk('wasabi')->get($item->ruta)) }}`,'{{$item['titulo']}}')" onclick="eventDocumeto('{{$item->idbibliotecavirtual_encryp}}')" />
+                  <img class="card-img-top objetfit btn btn-outline-light p-0" src=" {{ $img=\Storage::disk('wasabi')->temporaryUrl( $item->ruta, now()->addMinutes(3600)) }}" alt="{{$item->titulo}} " onclick="showModal(`{{ $img }}`,'{{$item['titulo']}}')" onclick="eventDocumeto('{{$item->idbibliotecavirtual_encryp}}')" />
                   <div class="card-footer text-muted p-2">
                     <span class="mailbox-attachment-size text-muted "><i class="fas fa-camera"></i> {{Str::limit($item['titulo'],35,'...') }}</span>
                     <span class="mailbox-attachment-size clearfix mt-0 ">
                       <span>{{$item['especialidad']['descripcion']}}</span>
-                      <a href="#" onclick="downloadPDF(`{{base64_encode(\Storage::disk('wasabi')->get($item->ruta))}}`,'{{$item->titulo}}','{{$item->tipo}}')" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt "></i></a>
+                      <a onclick="downloade(this,`{{$item->idbiblioteca_virtual_encryp}}`)" download="download-img" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt "></i></a>
                     </span>
                   </div>
                 @elseif($item['tipo']=='PDF')
@@ -90,9 +90,9 @@
                   <div class="card-footer mt-2 p-2">
                     <a href="{{url('biblioteca/view_documento/'.$item->idbiblioteca_virtual_encryp)}}" target="_blank" class="mailbox-attachment-size text-muted "><i class="fas fa-paperclip"></i>  {{Str::limit($item['titulo'],35,'...') }}</a>
                       
-                    <span class="mailbox-attachment-size clearfix mt-0">
+                    <span class="mailbox-attachment-size clearfix mt-0"> 
                       <span>{{$item['especialidad']['descripcion']}}</span>
-                      <a onclick="downloadPDF(`{{base64_encode(\Storage::disk('wasabi')->get($item->ruta))}}`,'{{$item->titulo}}','{{$item->tipo}}')" {{-- href="{{url('biblioteca/download_documento/'.$item->idbiblioteca_virtual_encryp)}}" --}}  class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+                      <a  ref="#" {{--  href="{{url('biblioteca/download_documento/'.$item->idbiblioteca_virtual_encryp)}}" --}} onclick="downloade(this,`{{$item->idbiblioteca_virtual_encryp}}`)" download="download-pdf" class="btn bgz-info btn-sm float-right spinnet_down"><i class="fas fa-cloud-download-alt"></i></a>
                     </span>
                   </div>
                 @endif
@@ -126,7 +126,7 @@
           width: auto;
           height: 164px;
           object-fit: cover;
-          background-color: black;
+          background-color: #0fadce7a;
         }
     </style>
     <style type="text/css">
@@ -144,9 +144,11 @@
        }
 
        .modal-content-img{
-           margin: auto;
+           margin-top: 60px;
+           margin-left: auto;
+           margin-right: auto;
            display: block;
-           max-width: 100%;
+           max-width: 85%;
            max-height: 95%;
            animation-name: zoom;
            animation-duration: 0.6s;

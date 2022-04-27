@@ -1,5 +1,5 @@
 @extends('homeOption2h')
-@section('title','INICIO')
+@section('title','Inicio')
 
 {{--para activar los plugin en la view  --}}
 
@@ -18,7 +18,7 @@
       <div class="col-lg-12 col-xs-12 ">
         <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias</b></p>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 ">
+      <div class="col-lg-12 col-md-12 col-sm-12">
         @include('carousel_noticias')
       </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="row mt-4">
       <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12">
         <nav class="w-100 ">
-          <div class="nav nav-tabs  d-flex justify-content-center  border-0" id="custom-tabs-four-tab" role="tablist">
+          <div class="nav nav-tabs  d-flex justify-content-center  border-0 " id="custom-tabs-four-tab" role="tablist">
             <a class=" h5 nav-item nav-link   mr-3 active border-0 btn-tab  " id="medico-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>
             <a class="h5 nav-item nav-link  border-0 ml-3 btn-tab" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri;"><b>Publicaciones</b></p></a>
           </div>
@@ -40,9 +40,9 @@
                 @foreach($list_top_medico->take(5) as $key=> $item)
                   <div class="col-md-2 col-sm-3 col-xs-12 text-left  @if($key<1) offset-md-1  @endif  text-center mb-3">
                     @if(isset($item->img) && $item['img']!=null) 
-                      <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" alt="{{$item->img}}" id="img_doc" class=" img-circle img-fluid p-0 profile-user-img  border border-info">
+                      <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" alt="{{$item->img}}" id="img_doc" class=" img-circle img-fluid p-0 elevation-1">
                     @else 
-                       <img src="{{asset('img/user.png') }}" alt="{{$item->img}}" id="img_doc"  class=" img-circle img-fluid p-0 border profile-user-img border-info">
+                       <img src="{{asset('img/user.png') }}" alt="{{$item->img}}" id="img_doc"  class=" img-circle img-fluid p-0 elevation-1">
                     @endif
                     <a class="users-list-name mt-3 mb-2" href="{{url('medico/info/'.encrypt($item['id']))}}"><b class="h5">{{$item->name}}</b></a>
                   </div>
@@ -101,7 +101,7 @@
 
           <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
             <div class="container">
-              <div class="row mt-3">
+              <div class="row mt-5">
                 <div class="col-md-8 col-sm-12 col-xs-12 offset-md-2 ">
                  @include('publicaciones')
                 </div>
@@ -121,27 +121,31 @@
   
   {{-- Seccion para insertar css--}}    
   @section('include_css') 
-
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <style>
-      /*.medico {
-          position: absolute;
-          border: 1px solid #10ADCF;
-          text-align: center;
-          right: 1vh;
-          top: 1.8vh;
-          background: #fff;
-          border-radius: 4px;
-          padding: 1vh;
-          width: 7em;
-          height: 6em;
-          font-size: 1em;
-          -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
-          box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-      }*/
-      /*.img2{
-        width: 61%;
-      }*/
+      #preViewImg2{
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+            }
+      input[type="file"] {
+          display: none;
+      }
+      .custom-file-upload {
+          /*border: 1px solid #ccc;*/
+          display: inline-block;
+          padding: 1px ;
+          cursor: pointer;
+      }
+      #dropdownMenuLink{
+        position: absolute;
+       /* width: 25px;
+        height: 30px;*/
 
+        margin-top:118px;
+        margin-left: -42px;
+        margin-right: auto;
+      }
       /*slider home*/
       .rounded-circle {
           border-radius: 50%!important;
@@ -162,23 +166,7 @@
         top: 189.95px;
       }
 
-      .btn-tab{
-        width: auto;
-        height: 40px;
-        left: 576px;
-        top: 1018px;
-        color: #fff;
-        background: #0FADCE;
-        padding: 2px 33px;
-
-        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);*/
-        border-radius: 5px;
-      }
-      link.active {
-        
-          background: #0FADCE !important;
-         
-      }
+      
     </style>
   @stop 
 

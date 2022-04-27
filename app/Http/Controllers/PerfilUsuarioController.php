@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\CiudadModel;
 use App\Datos_medicosModel;
 use App\Events\HomeEventPerfilUser;
+use App\Events\SaveImgEvent;
 use App\GuardadoModel;
 use App\SeguirModel;
 use App\User;
 use Illuminate\Http\Request;
-
 use Log;
-use Str;
 use Storage;
+use Str;
 
 class PerfilUsuarioController extends Controller
 {
@@ -112,7 +112,7 @@ class PerfilUsuarioController extends Controller
         //PREPARAMOS IMG o archivo
         if($request->img!=null){
             $img= $request->file('img');
-            $name=$img->getClientOriginalName();
+            // $name=$img->getClientOriginalName();
             $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
 
             if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
@@ -123,8 +123,10 @@ class PerfilUsuarioController extends Controller
 
             $nombre= '00'.auth()->user()->id.'_'.date('Ymd_h_s').'.'.$extension;
             // \Storage::disk('diskDocumentosPerfilUser')->put($nombre,\File::get($img));
-             \Storage::disk('wasabi')->put('FotoPerfil/'.$nombre,\File::get($img));
+             // \Storage::disk('wasabi')->put('FotoPerfil/'.$nombre,\File::get($img));
+              \Storage::disk('diskDocumentosPerfilUser')->put('FotoPerfil/'.$nombre,\File::get($img));
 
+            event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
             //guardamos en base de datos
             $documento=  user::find(auth()->user()->id);
             $documento->img='FotoPerfil/'.$nombre;

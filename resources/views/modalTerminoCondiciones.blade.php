@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-lg"  role="dialog" id="modal-termino-condiciones" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg  bd-example-modal-lg">
     <div class="modal-content">
-      <div class="modal-header text-center">
+      <div class="modal-header text-center"> 
         <h6 class="modal-title text-center mx-auto"> 
           <b class=" text-center lead text-center ml-5">TÉRMINOS Y CONDICIONES</b>
         </h6>

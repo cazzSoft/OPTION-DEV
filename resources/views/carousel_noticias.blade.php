@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide border-0 " data-ride="carousel">
   <ol class="carousel-indicators ">
     @if(isset($listaNoticia))
       @foreach($listaNoticia as $key=>$noti)
@@ -14,7 +14,7 @@
     @if(isset($listaNoticia))
       @foreach($listaNoticia as $key=>$noti)
           <div class="carousel-item  @if($loop->iteration==1) active @endif ">
-            <div class="card rounded-0" >
+            <div class="s " >
               <div class="card-body row text-dark">
                 <div class="col-md-7 col-sm-12 text-center ">
                   <div class="ml-5 mr-5 ">

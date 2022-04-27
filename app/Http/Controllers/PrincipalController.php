@@ -29,7 +29,7 @@ class PrincipalController extends Controller
         $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['medico','like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(5)->paginate(5);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(2)->paginate(2);
         // creacion de lista de noticia para el sliders
         $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1)->get();
         

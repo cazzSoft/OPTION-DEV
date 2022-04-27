@@ -12,6 +12,7 @@ use App\EspecialidadesModel;
 use App\Events\HomeEventLike;
 use App\Events\HomeEventPerfilUser;
 use App\Events\PerfilUserEventUsuario;
+use App\Events\SaveImgEvent;
 use App\Http\Controllers\CoinsultController;
 use App\Http\Controllers\NotificacionController;
 use App\Inters_userModel;
@@ -30,7 +31,11 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Str;
+
+
+
 class HomeController extends Controller
 {
      
@@ -412,23 +417,49 @@ class HomeController extends Controller
     public function update(Request $request ,$id)
     {
        try {
-            // return $request;
-           $user=User::find(decrypt($id));
-           $userAux=User::find(decrypt($id));
-           $user->name=$request->name;
-           //actualizar email cuando sea registrado desde la pagina
-           if($user->social_id==null){
-             $user->email=$request->email;
-           }
+             
+            $user=User::find(decrypt($id));
+            //PREPARAMOS IMG 
+            if($request->img!=null){
+                $img= $request->file('img');
+
+                // $name=$img->getClientOriginalName();
+                $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
+
+                if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
+                    $tipo="IMG";
+                }else{
+                    return back()->with(['info' => 'Solo se aceptan archivos con formato JPEG Y PNG', 'estado' => 'error']);
+                }
+
+                $nombre= '00'.auth()->user()->id.'-'.date('Ymd_h_s').'.'.$extension;
+
+                // \Storage::disk('wasabi')->put('FotoPortada/'.$nombre,\File::get($img));
+                 \Storage::disk('diskDocumentosPerfilUser')->put('FotoPerfil/'.$nombre,\File::get($img));
+
+                 event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
+                
+                  $user->img='FotoPerfil/'.$nombre;
+            }
+
            
-           $user->telefono=$request->telefono;
-           $user->fecha_nacimiento=$request->fecha_nacimiento;
-           $user->genero=$request->genero;
-           $user->idciudad=$request->idciudad;
-           $user->estado_registro=1;
-           $user->tine_hijo=$request->tine_hijo;
-           $user->nom_referido=$request->nom_referido;
+            $userAux=User::find(decrypt($id));
+            $user->name=$request->name;
+            //actualizar email cuando sea registrado desde la pagina
+            if($user->social_id==null){
+              $user->email=$request->email;
+            }
            
+            $user->telefono=$request->telefono;
+            $user->fecha_nacimiento=$request->fecha_nacimiento;
+            $user->genero=$request->genero;
+            $user->idciudad=$request->idciudad;
+            $user->estado_registro=1;
+            $user->tine_hijo=$request->tine_hijo;
+            $user->nom_referido=$request->nom_referido;
+           
+          
+
 
            if($user->save()){
                 $id= auth()->user()->id;
@@ -452,7 +483,7 @@ class HomeController extends Controller
             return back()->with(['info' => 'Datos Guardados', 'estado' => 'success']);
            // return redirect('/profile/perfil');
        } catch (\Throwable $th) {
-            return back()->with(['info' => 'Algo ha ido mal', 'estado' => 'error']);
+            return back()->with(['info' => 'Algo ha ido mal'.$th->getMessage(), 'estado' => 'error']);
        }
            
 

@@ -16,7 +16,7 @@ return [
 
     'title' => 'Option2Health',
     'title_prefix' => 'Option2Health | ',
-    'title_postfix' => 'O2H',
+    'title_postfix' => '',
 
     /*
     |--------------------------------------------------------------------------

@@ -1,20 +1,36 @@
 <div class="modal fade" id="modal-default">
  <div class="modal-dialog modal-lg">
    <div class="modal-content">
-     <div class="modal-header">
-      <h4 class="modal-title text-center mx-auto"> <i class="far fa-laugh-beam"></i> <span class="text-info_ text-center"> Bienvenido</span>  @if(!Auth::guest()) {{auth()->user()->name}} @endif a <span class="text-info">Option2health</span>
-         <p class="lead text-center"> "te sugerimos completar los datos de tu perfil"</p>
-      </h4>
+     <div class="modal-header text-center">
+          <h4 class="modal-title text-center mx-auto "> 
+            <i class="far fa-laugh-beam"></i> <span class="text-info_ text-center"> Bienvenido</span>  @if(!Auth::guest()) {{auth()->user()->name}} @endif a <span class="text-info">Option2health</span>
+             <p class="lead text-center"> "te sugerimos completar los datos de tu perfil"</p>
+          </h4>
      
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-       <i class="fas fa-times-circle"></i>
-       </button>
+           <button type="button" class="close p-0 m-0" data-dismiss="modal" aria-label="Close">
+           <i class="fas fa-times-circle"></i>
+           </button>
      </div>
      <div class="modal-body"> 
-       
-        <p class="profile-username text-center mb-5 ">Registro de datos</p>
-        <form method="POST" @if($user_=='us') action="{{ url('/profile/user/'.encrypt(auth()->user()->id) ) }}"@else action="{{ url('/medico/perfil_complet/'.encrypt(auth()->user()->id) ) }}" @endif >
+        
+        {{-- <p class="profile-username text-center mb-5 ">Registro de datos</p> --}}
+        <form method="POST" @if($user_=='us') action="{{ url('/profile/user/'.encrypt(auth()->user()->id) ) }}"@else action="{{ url('/medico/perfil_complet/'.encrypt(auth()->user()->id) ) }}" @endif   enctype="multipart/form-data" >
             {{ csrf_field() }}
+
+            {{-- foto de perfil --}}
+            <div class="form-group text-center" >
+                <img class=" img-fluid img-circle img-bordered-xs " src="{{auth()->user()->adminlte_image()}}" alt="{{asset(auth()->user()->adminlte_image())}}" id="preViewImg2">
+                <label for="file-upload" class="custom-file-upload p-0 bg-white p-2 img-circle elevation-3" id="dropdownMenuLink">
+                    <i class="fas fa-plus text-info p-1 fa-lg"></i>
+                </label>
+            </div>
+            <div class="text-center  mt-4 mb-5">
+                <label for="file-upload" class="custom-file-upload p-0">
+                    <i class="fa fa-cloud-upload"></i> Añadir foto*
+                </label>
+                <input id="file-upload" name="img"  type="file"/>   
+           </div>
+    
             <input id="method_" type="hidden" name="_method" value="PUT">
             <input type="hidden" name="tp" value=" @if(isset($user_)) {{encrypt($user_)  }} @endif ">
             <input type="hidden" class="form-control form-control-sm" id="name" name="name" placeholder="Name" value="{{auth()->user()->name}}">
@@ -373,39 +389,9 @@
                    </div>
                 </div>
                 
-                @endif
-               {{-- <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="form-group ">
-                        <label for="password" class="text-muted">{{ __('Password') }} <span class="text-red">*</span></label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                    </div>
-               </div>  --}}
-              {{--  <div class="col-xs-12 col-sm-12 col-md-6">
-                    <div class="form-group ">
-                        <label for="password-confirm" class="text-muted">{{ __('Confirm Password') }} <span class="text-red">*</span></label>
-                        <input id="password-confirm" type="password" class="form-control " name="password_confirmation" required autocomplete="new-password">
-                    </div>
-               </div> --}}
-                
+                @endif    
             </div>
             <div class="row">
-               {{--  <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="termino" class="custom-control-input ng-dirty ng-valid-parse ng-touched ng-empty ng-invalid ng-invalid-required @error('termino') is-invalid @enderror" id="termino" ng-model="termino" onblur="$('#termino').val($('#termino:checked').val() ? 1 : 0)" required>
-                        <label class="custom-control-label text-muted" for="termino">Yo acepto los términos y condiciones de Option2health</label>
-                        @error('termino')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                        @enderror
-                    </div>
-                </div> --}}
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group row mb-0 text-center mt-4">
                         <div class="col-md-12 offset-md-12">
@@ -415,12 +401,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-xs-12 col-sm-12 col-md-6">
-                    <p class="mb-0 text-right text-muted">
-                        Ya estoy registrado? 
-                      <a disabled="false" href="{{ url('login') }}" class="text-center btn btn-link ml-auto mb-0 text-sm"> Ingresar</a>
-                    </p>
-                </div> --}}
+                
             </div>
         </form>
      </div>

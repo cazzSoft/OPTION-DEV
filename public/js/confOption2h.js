@@ -87,7 +87,7 @@
     }
 
     //evento para obtener datos del medico
-    function getMedicoTop(id) {
+    function getMedicoTop(id,img) {
         $.get("/medico/getMedico/"+id , function (data) {
             
             // console.log(data.request); return ;
@@ -110,8 +110,8 @@
             $('.txt_email').html(`<i class="far fa-envelope"></i>: ${data.request['email']}`);
             $('.txt_direc').html(`<i class="far fa-address-book"></i> Dirección: ${data.request['direccion']}`);
             var url=window.location.protocol+'//'+window.location.host;
-            $('.text_url').attr('href',`${url}/medico/info/${id}`);
-            $('.img_txt').attr('src',`${data.request['img']}`);
+            $('.text_url').attr('href',`${ data.request['url']}`);
+            $('.img_txt').attr('src',`${ data.request['img']}`);
             
             
             console.log(data);

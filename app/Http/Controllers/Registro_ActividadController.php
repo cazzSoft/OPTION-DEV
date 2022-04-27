@@ -73,16 +73,9 @@ class Registro_ActividadController extends Controller
 
     public function prueba()
     {
-        // $img=base64_encode(\Storage::disk('wasabi')->get(auth()->user()->img));
-        // return $url=\Storage::disk('wasabi')->url(auth()->user()->img);
-
-        return $url=\Storage::disk('wasabi')->temporaryUrl(
-             auth()->user()->img,
-             now()->addMinutes(3600)
-         );
-        return  $img;
-        dd( $img);
-        return  \Storage::disk('wasabi')->download($img, 'filename.pdf', ['Content-Type' => 'application/pdf']);
+         // $exists=\Storage::disk('diskDocumentosPerfilUser')->exists(auth()->user()->img);
+       return  \Storage::disk('wasabi')->download('listaPublicaciones/ResultadoNotasPsicometricas.pdf-20220425_07_51.pdf');
+       
     }
 
     //funcion principal para guardar el historial del usuairo

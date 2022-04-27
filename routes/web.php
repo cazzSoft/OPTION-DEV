@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Auth;
   
 
 //RUTAS DE INFORMACION PUBLICA SIN LOGIN
-    Route::group(['middleware'=>'web2'],function (){
+    Route::group(['middleware'=>'web2'],function (){ 
          Route::get('', 'PrincipalController@index');
          Route::get('/session', 'PrincipalController@infoLogin')->middleware('translate');
          Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('translate');
@@ -130,7 +130,8 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('/show', 'DocumentRepository');
             Route::get('/repositorio', 'DocumentRepository@show_documento_virtual');
             Route::post('/search', 'DocumentRepository@search_documento');
-            Route::get('/view_documento/{id}', 'DocumentRepository@download');
+            Route::get('/view_documento/{id}', 'DocumentRepository@viewDocument');
+            Route::get('/download_documento/{id}', 'DocumentRepository@download');
           });
         
         

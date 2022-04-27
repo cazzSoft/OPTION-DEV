@@ -1,5 +1,5 @@
 @extends('homeOption2h')
-@section('title','Art.guar.')
+@section('title','Guardado')
 
 {{--para activar los plugin en la view  --}}
 @section('plugins.Select2',false)

@@ -15,13 +15,32 @@
     <div class="col-md-6 col-sm-12 col-xs-12 {{-- offset-md-2 --}} "> 
      
       <div class="card card-widget widget-user ">
-          <div class="widget-user-header text-white text-left" style="@if(isset($datos_p->img_portada) && $datos_p->img_portada !=null) background: url('{{ \Storage::disk('wasabi')->temporaryUrl($datos_p->img_portada, now()->addMinutes(3600)  ) }}') center center; @else background-color:#E0E0E0 !important @endif">
+          <div class="widget-user-header text-white text-left" 
+            style=" 
+                  @if(isset($datos_p->img_portada) && $datos_p->img_portada!=null ) 
+                        @if(\Storage::disk('diskDocumentosPerfilUser')->exists($datos_p->img_portada)) 
+                            background: url('{{asset($datos_p->img_portada) }}')  center center; 
+                        @else
+                            background: url('{{ \Storage::disk('wasabi')->temporaryUrl($datos_p->img_portada,  now()->addMinutes(3600) )}}') center center; 
+                        @endif
+                    @else
+                        background-color:#E0E0E0 !important
+                  @endif">
               {{-- <h3 class="widget-user-username text-right">Elizabeth Pierce</h3>
               <h5 class="widget-user-desc text-right">Web Designer</h5> --}}
           </div>
           <div class="widget-user-image p-0  mr-5 " style="/*margin-left:-46%*/;">
             @if(asset($datos_p->img) && $datos_p['img']!=null)
-              <img class="img-circle img-fluid p-1" id="preViewImg" src="{{ \Storage::disk('wasabi')->temporaryUrl($datos_p->img, now()->addMinutes(3600)  )}}" alt="User-perfil" >
+              <img class="img-circle img-fluid p-1" id="preViewImg" 
+                src="
+                      @if(\Storage::disk('diskDocumentosPerfilUser')->exists($datos_p->img)) 
+                        {{ asset($datos_p->img)}}
+                      @else 
+                        {{ \Storage::disk('wasabi')->temporaryUrl($datos_p->img, now()->addMinutes(3600)  )}}
+                      @endif
+                    " 
+                alt="User-perfil" 
+              >
             @else 
               <img class="img-circle img-fluid p-1" id="preViewImg" src="{{asset('img/user.png')}}" alt="User-perfil" >
             @endif

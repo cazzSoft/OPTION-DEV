@@ -30,6 +30,7 @@ $('#file-upload').change(function () {
 
   	}
 });
+
 function change(input) {
   
 }

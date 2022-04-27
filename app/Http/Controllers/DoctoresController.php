@@ -11,6 +11,7 @@ use App\Events\HomeEventInfoMedico;
 use App\Events\HomeEventPerfilUser;
 use App\Events\PerfilUserEventUsuario;
 use App\Events\PerfilUserEventUsuarioEdit;
+use App\Events\SaveImgEvent;
 use App\GuardadoModel;
 use App\Http\Controllers\CoinsultController;
 use App\Http\Controllers\NotificacionController;
@@ -138,6 +139,29 @@ class DoctoresController extends Controller
        if(isset($InfoMedico)){
            //registrar evento editar caso
            // event(new MedicoEventCasoEx(['tipo'=>'edit','caso'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'CAEX']));
+            $url_perfil=asset('/medico/info/'.encrypt($id));
+            if(auth()->user()->id== $InfoMedico->id){
+                $url_perfil=asset('/medico/perfil'); 
+            }
+
+            $img=\Storage::disk('diskDocumentosPerfilUser')->exists($InfoMedico->img);
+            if($img){
+               $img= asset(auth()->user()->img);     
+            }else{
+                $img=\Storage::disk('wasabi')->temporaryUrl($InfoMedico->img, now()->addMinutes(3600) );
+            }
+
+            $InfoMedico=[
+                'name'=>$InfoMedico->name,
+                'telefono'=>$InfoMedico->telefono,
+                'email'=>$InfoMedico->email,
+                'direccion'=>$InfoMedico->direccion,
+                'url'=>$url_perfil,
+                'idtitulo_profesional'=>$InfoMedico->idtitulo_profesional,
+                'titulo'=>$InfoMedico->titulo,
+                'detalle_experiencia'=>$InfoMedico->detalle_experiencia,
+                'img'=>$img,
+            ];
            return response()->json([
                'jsontxt'=>['msm'=>'success','estado'=>'success'],
                'request'=>$InfoMedico
@@ -175,7 +199,9 @@ class DoctoresController extends Controller
             }
 
             $nombre= '00'.auth()->user()->id.$name.'-'.date('Ymd_h_s').'.'.$extension;
-            \Storage::disk('wasabi')->put('FotoPortada/'.$nombre,\File::get($img));
+            // \Storage::disk('wasabi')->put('FotoPortada/'.$nombre,\File::get($img));
+            \Storage::disk('diskDocumentosPerfilUser')->put('FotoPortada/'.$nombre,\File::get($img));
+            event(new SaveImgEvent(['nombreDoc'=>'FotoPortada/'.$nombre] )); 
 
             //guardamos en base de datos
             $documento=  user::find(auth()->user()->id);
@@ -246,9 +272,31 @@ class DoctoresController extends Controller
     {
         try {
             
-        
+            
             $user=User::find(decrypt($id));
             // $user_aux=User::find(decrypt($id));
+
+
+            //PREPARAMOS IMG 
+            if($request->img!=null){
+                $img= $request->file('img');
+                $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
+
+                if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
+                    $tipo="IMG";
+                }else{
+                    return back()->with(['info' => 'Solo se aceptan archivos con formato JPEG Y PNG', 'estado' => 'error']);
+                }
+
+                $nombre= '00'.auth()->user()->id.'-'.date('Ymd_h_s').'.'.$extension;
+
+                // \Storage::disk('wasabi')->put('FotoPortada/'.$nombre,\File::get($img));
+                 \Storage::disk('diskDocumentosPerfilUser')->put('FotoPerfil/'.$nombre,\File::get($img));
+
+                 event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
+                
+                  $user->img='FotoPerfil/'.$nombre;
+            }
             $user->idtitulo_profesional=$request->idtitulo_profesional;
             $user->detalle_estudio=$request->detalle_estudio;
             $user->detalle_experiencia=$request->detalle_experiencia;

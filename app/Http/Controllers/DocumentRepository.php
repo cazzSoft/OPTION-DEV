@@ -9,6 +9,7 @@ use App\Events\UserEventSearchBibliotecaFiltro;
 use App\biblioteca_virtualModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 use Log;
 use Storage;
 use PDF;
@@ -48,14 +49,21 @@ class DocumentRepository extends Controller
     
     public function store(Request $request)
     {
+        
+        //función para validar datos
+        $messages = [
+                'img.required' =>'El campo documentación es obligatorio.', 
+                'idespecialidades.required' => ' El campo especialidad es obligatorio',  
+                ];
+
+        $request->validate([
+            'img' => 'required',
+            'titulo' => 'required',
+            'idespecialidades' => 'required',
+        ],$messages);
+
         try {
             
-        
-            //función para validar datos
-            $request->validate([
-                'img' => 'required',
-            ]);
-
             //PREPARAMOS IMG o archivo
             if($request->img!=null){
                 $img= $request->file('img');
@@ -223,8 +231,8 @@ class DocumentRepository extends Controller
         }
     }
 
-    // funcion para descargar documentos
-    public function download($id)
+    // funcion para mostrar el documentos
+    public function viewDocument($id)
     {
         $id=decrypt($id);
         $documento=  biblioteca_virtualModel::find($id);
@@ -238,4 +246,26 @@ class DocumentRepository extends Controller
             return '<embed  src="data:application/pdf;base64,'.$contents.'" frameborder="0" type="application/pdf" width="100%" height="100%"/>';
         }
     }
+
+    //funcion para descargar
+    public function download($id)
+    {
+       
+
+        try {
+            $id=decrypt($id);
+        } catch (\Throwable $th) {
+            return view('error.error-404');// vista de error
+        }
+
+        $documento=  biblioteca_virtualModel::find($id);
+        if(isset($documento)){
+            // return base64_encode(\Storage::disk('wasabi')->get($documento->ruta));
+            return  \Storage::disk('wasabi')->download($documento->ruta);;
+        }
+
+        return back();
+    }
+
+
 }
