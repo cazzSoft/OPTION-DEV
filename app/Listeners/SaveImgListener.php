@@ -33,7 +33,7 @@ class SaveImgListener implements ShouldQueue
         $prueba->des=$event->data['nombreDoc'];
         $prueba->save();
         
-       try {
+       // try {
           
             $img=\Storage::disk('diskDocumentosPerfilUser')->exists($event->data['nombreDoc']);
                 if($img){
@@ -51,14 +51,14 @@ class SaveImgListener implements ShouldQueue
             $prueba->save();
 
             logger("Guardar img".$event->data['nombreDoc']." se ha registrado");
-       } catch (\Throwable $th) {
+       // } catch (\Throwable $th) {
             
-            $prueba= new PruebaModel();
-            $prueba->des=$event->data['nombreDoc'].' error =>'.$th->getMessage();
-            $prueba->save();
+       //      $prueba= new PruebaModel();
+       //      $prueba->des=$event->data['nombreDoc'].' error =>'.$th->getMessage();
+       //      $prueba->save();
 
-            logger($th->getMessage()."  no se ha registrado  ".$event->data['nombreDoc']);
-       }
+       //      logger($th->getMessage()."  no se ha registrado  ".$event->data['nombreDoc']);
+       // }
       
         
     }
