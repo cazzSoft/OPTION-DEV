@@ -14,6 +14,7 @@ use App\Events\PerfilUserEventUsuarioEdit;
 use App\Events\UserEventBibliotecaAction;
 use App\Events\UserEventPreguntaIntere;
 use App\Events\userRegistro;
+use App\PruebaModel;
 use App\Registro_ActividadModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -71,10 +72,20 @@ class Registro_ActividadController extends Controller
         // return 'success';
     }
 
-    public function prueba()
+    public function prueba($value)
     {
-         // $exists=\Storage::disk('diskDocumentosPerfilUser')->exists(auth()->user()->img);
-       return  \Storage::disk('wasabi')->download('listaPublicaciones/ResultadoNotasPsicometricas.pdf-20220425_07_51.pdf');
+        $exists=\Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/'.$value);
+        if($exists){
+            $url=\Storage::disk('diskDocumentosPerfilUser')->url('FotoPerfil/'.$value);
+            $prueba= new PruebaModel();
+            $prueba->des=$url;
+            $prueba->save();
+
+           return $url;
+             return ' <img src="'.\Storage::disk('diskDocumentosPerfilUser')->get('FotoPerfil/'.$value).'" alt="eww"  class=" img-circle img-fluid p-0 elevation-1">';
+        }
+       
+       return 'no hay';
        
     }
 

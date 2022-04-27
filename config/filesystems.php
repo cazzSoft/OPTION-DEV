@@ -92,6 +92,14 @@ return [
         'diskDocumentosPerfilUser' => [
             'driver' => 'local',
             'root' => public_path('/'),
+            'permissions' => [
+                    'file' => [
+                        'public' => 0664,
+                        'private' => 0600,
+                    ],
+            ],
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
         
         'diskDocumentosPortadaUser' => [
