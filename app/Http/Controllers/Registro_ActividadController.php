@@ -75,17 +75,22 @@ class Registro_ActividadController extends Controller
 
     public function prueba($value)
     {
+       // dd($value);
+
         $exists= Storage::disk('diskDocumentosPerfilUser')->exists($value);
         if($exists){
             $url= Storage::disk('diskDocumentosPerfilUser')->url($value);
             $prueba= new PruebaModel();
-            $prueba->des=$url.'de prueba';
+            $prueba->des=$url.'de prueba  '.$exists;
             $prueba->save();
 
            return $url;
              return ' <img src="'.\Storage::disk('diskDocumentosPerfilUser')->get('FotoPerfil/'.$value).'" alt="eww"  class=" img-circle img-fluid p-0 elevation-1">';
         }
-       
+      
+            $prueba= new PruebaModel();
+            $prueba->des=$exists.'no hay';
+            $prueba->save();
        return 'no hay';
        
     }

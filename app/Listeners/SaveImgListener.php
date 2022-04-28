@@ -14,7 +14,7 @@ class SaveImgListener implements ShouldQueue
 {
     /** implements ShouldQueue
      * Create the event listener.
-     *
+     * implements ShouldQueue
      * @return void
      */
 
@@ -36,11 +36,9 @@ class SaveImgListener implements ShouldQueue
         
         
        // try {
-         $result=$this->prueba->prueba($event);
-        
-         $prueba= new PruebaModel();
-         $prueba->des='Evento '.$result;
-         $prueba->save();
+       
+         $result=$this->prueba->prueba($event->data['nombreDoc']);
+        return $result;
             // $url=\Storage::disk('diskDocumentosPerfilUser')->url($event->data['nombreDoc']);
             // $img= Storage::disk('diskDocumentosPerfilUser')->exists($event->data['nombreDoc']);
             //  // $exists= Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/'.$value);
