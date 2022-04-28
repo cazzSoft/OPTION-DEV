@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Storage;
 
 
-class SaveImgListener implements ShouldQueue
+class SaveImgListener 
 {
     /** implements ShouldQueue
      * Create the event listener.
