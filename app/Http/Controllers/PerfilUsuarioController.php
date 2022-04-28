@@ -126,11 +126,12 @@ class PerfilUsuarioController extends Controller
              // \Storage::disk('wasabi')->put('FotoPerfil/'.$nombre,\File::get($img));
               \Storage::disk('diskDocumentosPerfilUser')->put('FotoPerfil/'.$nombre,\File::get($img));
 
-            event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
+           
             //guardamos en base de datos
             $documento=  user::find(auth()->user()->id);
             $documento->img='FotoPerfil/'.$nombre;
             if($documento->save()){
+                 event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
                 //registrar evento nuevo documento
                  // event(new UserEventBibliotecaSave(['tipo'=>'save','documento'=>$documento,'iduser'=>auth()->user()->id,'seccion'=>'REP']));
                 return back()->with(['info' => 'Archivo guardado correctamente', 'estado' => 'info']);
