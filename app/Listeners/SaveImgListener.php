@@ -33,7 +33,7 @@ class SaveImgListener implements ShouldQueue
         
        // try {
           
-            $img= Storage::disk('diskDocumentosPerfilUser')->exists(''.$event->data['nombreDoc'].'');
+            $img= Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/00315_20220www427_06_08.png');
              // $exists= Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/'.$value);
 
             $prueba= new PruebaModel();
