@@ -29,13 +29,17 @@ class SaveImgListener implements ShouldQueue
      */
     public function handle(SaveImgEvent $event)
     {
-        $prueba= new PruebaModel();
-        $prueba->des=$event->data['nombreDoc'];
-        $prueba->save();
+        
         
        // try {
           
             $img=\Storage::disk('diskDocumentosPerfilUser')->exists($event->data['nombreDoc']);
+
+            $prueba= new PruebaModel();
+            $prueba->des=$event->data['nombreDoc'].' pasa '.$img;
+            $prueba->save();
+
+
                 if($img){
                     $img=\Storage::disk('diskDocumentosPerfilUser')->get($event->data['nombreDoc']);
                     \Storage::disk('wasabi')->put($event->data['nombreDoc'], $img);
@@ -48,7 +52,7 @@ class SaveImgListener implements ShouldQueue
 
             $prueba= new PruebaModel();
             $prueba->des=$event->data['nombreDoc'].' error =>'.$img;
-            $prueba->save();
+           return $prueba->save();
 
             logger("Guardar img".$event->data['nombreDoc']." se ha registrado");
        // } catch (\Throwable $th) {
