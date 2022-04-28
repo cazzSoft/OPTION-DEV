@@ -18,6 +18,7 @@ use App\PruebaModel;
 use App\Registro_ActividadModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Storage;
 use Log;
 use Mail;
 
@@ -74,9 +75,9 @@ class Registro_ActividadController extends Controller
 
     public function prueba($value)
     {
-        $exists=\Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/'.$value);
+        $exists= Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/'.$value);
         if($exists){
-            $url=\Storage::disk('diskDocumentosPerfilUser')->url('FotoPerfil/'.$value);
+            $url= Storage::disk('diskDocumentosPerfilUser')->url('FotoPerfil/'.$value);
             $prueba= new PruebaModel();
             $prueba->des=$url;
             $prueba->save();

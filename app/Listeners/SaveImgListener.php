@@ -6,7 +6,7 @@ use App\Events\SaveImgEvent;
 use App\PruebaModel;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 
 class SaveImgListener implements ShouldQueue
@@ -33,22 +33,23 @@ class SaveImgListener implements ShouldQueue
         
        // try {
           
-            $img=\Storage::disk('diskDocumentosPerfilUser')->exists($event->data['nombreDoc']);
+            $img= Storage::disk('diskDocumentosPerfilUser')->exists(''.$event->data['nombreDoc'].'');
+             // $exists= Storage::disk('diskDocumentosPerfilUser')->exists('FotoPerfil/'.$value);
 
             $prueba= new PruebaModel();
             $prueba->des=$event->data['nombreDoc'].' pasa '.$img;
             $prueba->save();
 
+            return $img;
+                // if($img){
+                //     $img= Storage::disk('diskDocumentosPerfilUser')->get($event->data['nombreDoc']);
+                //     \Storage::disk('wasabi')->put($event->data['nombreDoc'], $img);
 
-                if($img){
-                    $img=\Storage::disk('diskDocumentosPerfilUser')->get($event->data['nombreDoc']);
-                    \Storage::disk('wasabi')->put($event->data['nombreDoc'], $img);
-
-                    $url=\Storage::disk('diskDocumentosPerfilUser')->url($event->data['nombreDoc']);
-                    $prueba= new PruebaModel();
-                    $prueba->des=$url;
-                    $prueba->save();
-                }
+                //     $url=\Storage::disk('diskDocumentosPerfilUser')->url($event->data['nombreDoc']);
+                //     $prueba= new PruebaModel();
+                //     $prueba->des=$url;
+                //     $prueba->save();
+                // }
 
             $prueba= new PruebaModel();
             $prueba->des=$event->data['nombreDoc'].' error =>'.$img;
