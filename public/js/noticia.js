@@ -21,7 +21,7 @@ function btn_eliminar_archivo_nt(btn){
       cancelButtonColor: '#dc3545',
       confirmButtonText: 'Eliminar',
       cancelButtonText: 'Canelar'
-    }).then((result) => {
+    }).then((result) => { 
       if (result.isConfirmed) {
           $(btn).parents('.frm_eliminar_nt').submit();
       }
@@ -55,14 +55,17 @@ function editar_archivo_nt(id) {
 	}else{
 		collapse=1;
 	}
-	console.log(collapse);
+	
 	$.get("/noticia/new/" + id +'/edit', function (data) {
-	    console.log(data);
+	   console.log(data);
  		$('#titulo').val(data.request.titulo);
  		$('#descripcion').val(data.request.descripcion);
+ 		$('#autor').val(data.request.autor);
  		$('#orden').val(data.request.orden);
+ 		$('#fuente').val(data.request.fuente);
  		$('#file_txt').val(data.request.img);
  		$("#idespecialidades").val(data.request.idespecialidades).trigger("change");
+ 		$("#estado").val(data.request.estado).trigger("change");
  		
  		$('.file_txt').removeClass('d-none');
  		$('.file_img').addClass('d-none');
@@ -70,11 +73,7 @@ function editar_archivo_nt(id) {
 		$('#for_noticia').attr('action','/noticia/new/'+id);
 		$('#btnsave').html(`<i class="fa fa-save"></i> Actualizar`); // cambiamos nombre del boton
 
-		if(data.request.estado){
-			$('#estado').bootstrapSwitch('state' , true);
-		}else{
-			$('#estado').bootstrapSwitch('state' , false);
-		}
+		
 		// $('.card-control').removeClass('collapsed-card');
 		$('.fas-control').removeClass('fa-plus');
 		$('.fas-control').addClass('fa-minus');
@@ -88,7 +87,10 @@ function editar_archivo_nt(id) {
     $('#descripcion').val('');
     $('#titulo').val('');
     $('#orden').val('');
+    $('#autor').val('');
+ 		$('#fuente').val('');
     $('#idespecialidades').val(null).trigger('change');
+    $('#estado').val(null).trigger('change');
 		$('#file_txt').val("");
 		$('#img').val("");
 		$('.file_txt').addClass('d-none');
@@ -111,6 +113,20 @@ function minusInputFile() {
  	$('.icon-input').addClass('d-none');
 }
 
+
+// funciones para cambiar estado de la noticia
+function aprobar_nt(id,std,col) {
+		$.get(`/noticia/estadoNoticia/${id}/${std}`, function (data) {
+			console.log(data); 
+			$(col).parents('tr').find('td').eq(5).html(`${data.request.text}`);
+			$(col).attr('onclick',`aprobar_nt('${id}','${data.request.valor}',this)`);
+			$(col).html(`${data.request.txt_btn}`);
+			mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+		}).fail(function (data) {
+		    var data = data.responseJSON;
+		    mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+		});
+}
 
 //////////////////////funciones del menu show biblioteca ///////////////////
 

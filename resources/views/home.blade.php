@@ -26,7 +26,7 @@
 
   <section>
     <div class="row mt-4">
-      <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12">
+      <div class="col-xl-12 col-lg-12 col-md-12  col-sm-12"> 
         <nav class="w-100 ">
           <div class="nav nav-tabs  d-flex justify-content-center  border-0 " id="custom-tabs-four-tab" role="tablist">
             <a class=" h5 nav-item nav-link   mr-3 active border-0 btn-tab  " id="medico-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" style="font-family:  Calibri; "><b>Médicos</b></p></a>

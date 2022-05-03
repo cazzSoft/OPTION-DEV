@@ -139,11 +139,11 @@
                     
                 </div>
             </div>
-            <div class="col-xl-6 col-md-7 col-sm-12">
+            <div class="col-xl-6 col-md-7 col-sm-12"> 
                 <nav class="w-100 ">
-                  <div class="nav nav-tabs d-flex justify-content-left tab_perfil nav nav-tabs" id="product-tab" role="tablist">
-                    <a class=" h5 nav-item nav-link   mr-3 active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
-                    <a class="h5 nav-item nav-link   " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
+                  <div class="nav nav-tabs d-flex justify-content-left tab_perfil nav nav-tabs border-0" id="product-tab" role="tablist">
+                    <a class=" h5 nav-item nav-link   mr-3 active border-0 btn-tab " id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
+                    <a class="h5 nav-item nav-link  border-0 ml-3 btn-tab " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
                   </div>
                 </nav>
                 <div class="tab-content p-0 mt-4" id="nav-tabContent">
@@ -403,8 +403,21 @@
            
           }
 
-         
-         
+        /*estilos botones de medico y noticias*/
+          .btn-tab{
+            color: #4F4F4F;
+            background: #fff;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            text-align: center;
+            height: 44px;
+          }
+
+        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+            color: #fff !important;
+            background-color: #0FADCE !important;
+            border-color: #dee2e6 #dee2e6 #fff;
+        } 
       </style>
     @stop   
     {{-- Seccion para insertar js--}}

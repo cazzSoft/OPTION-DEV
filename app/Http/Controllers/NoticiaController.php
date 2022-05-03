@@ -58,24 +58,65 @@ class NoticiaController extends Controller
         // return ['NoticiaDetalle'=>$noticia,'noticia relacionadas'=>$listaNoticia];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //funcion para publicar o quitar la noticia
+    public function putEstadonoticia($id,$estado)
+    {
+        try {
+            $id=decrypt($id);
+            $estado=decrypt($estado);
+        } catch (\Throwable $th) {
+            return view('error.error-404');// vista de error
+        }
+
+        //mesaje para mostrar el estado de la noticia
+         $msm='La noticia se ha quitado con exito';
+         $estadoTxt='Sin Publicar';
+         $txt_btn='Aprobar Publicación';
+         $valor=encrypt(1);
+        if($estado){
+            $msm='La noticia se ha publicado con exito';
+            $estadoTxt='Publicada';
+            $txt_btn='Quitar Publicación';
+            $valor=encrypt(0);
+        }
+        
+        $noticia=  NoticiaModel::find($id);
+        if(isset($noticia)){
+            $noticia->estado=$estado;
+            $noticia->save();
+
+
+          return response()->json([
+              'jsontxt'=>['msm'=>$msm,'estado'=>'info'],
+              'request'=>['text'=>$estadoTxt,'valor'=>$valor,'txt_btn'=>$txt_btn,'va'=>$estado]
+          ],200);
+        }else{
+         return response()->json([
+             'jsontxt'=>['msm'=>'No se completo la acción','estado'=>'error'],
+         ],501); 
+        }  
+    }
+
     public function store(Request $request)
     {
-      
+       
+        //mensaje para las validaciones
+        $messages=[
+                    'img.required'=>'El campo archivo es obligatorio.',
+                    'idespecialidades.required' => 'El campo especialidad es obligatorio.',
+            ];
+
         //función para validar datos
         $request->validate([
              'descripcion' => 'required|string',
-             'titulo' => 'required|string',
+             'titulo' => 'required|unique:noticia',
              'img' => 'required',
              'orden' => 'required',
-             // 'orden' => 'required|unique:noticia',
+             'autor' => 'required',
+             'estado' => 'required',
+             'fuente' => 'required',
              'idespecialidades' => 'required|string',
-        ]);
+        ],$messages);
 
         //validamos el estado
         $estado=0;
@@ -86,10 +127,9 @@ class NoticiaController extends Controller
         $nombre='';
         if($request->img!=null){
             $img= $request->file('img');
-            $name=$img->getClientOriginalName();
             $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
-            $nombre= $name.'-'.date('Ymd_h_s').'.'.$extension;
-            \Storage::disk('diskPortadaNoticia')->put($nombre,\File::get($img));
+            $nombre='not-'.date('Ymd_h_s').'.'.$extension;
+            \Storage::disk('wasabi')->put('Noticia/'.$nombre,\File::get($img));
         }
 
 
@@ -97,9 +137,11 @@ class NoticiaController extends Controller
         $createNoticia= new NoticiaModel();
         $createNoticia->titulo=$request->titulo;
         $createNoticia->descripcion=$request->descripcion;
-        $createNoticia->img=$nombre;
+        $createNoticia->img='Noticia/'.$nombre;
         $createNoticia->idespecialidades=$request->idespecialidades;
         $createNoticia->estado=$estado;
+        $createNoticia->autor=$request->autor;
+        $createNoticia->fuente=$request->fuente;
         $createNoticia->orden=$request->orden;
 
         if( $createNoticia->save()){
@@ -153,34 +195,52 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $request;
-        //función para validar datos
-        $request->validate([
-            'descripcion' => 'required|string',
-            'titulo' => 'required|string',
-            'idespecialidades' => 'required|string',
-        ]);
-
+    
         $updateNoticia=  NoticiaModel::find(decrypt($id));
 
-        //función para validar datos unicos y requeridos
+
+        
+
+        //funciónes para validar datos unicos y requeridos
         if ($request->orden != $updateNoticia->orden) {
             $request->validate([
                 // 'orden' => 'required|unique:noticia',
                  'orden' => 'required',
             ]);
         }
+
+        if ($request->titulo != $updateNoticia->titulo) {
+            $request->validate([
+                'titulo' => 'required|unique:noticia',
+            ]);
+        }
+
+        //mensaje para las validaciones
+        $messages=[
+                    'img.required'=>'El campo archivo es obligatorio.',
+                    'idespecialidades.required' => 'El campo especialidad es obligatorio.',
+            ];
+
+        //función para validar datos
+        $request->validate([
+             'descripcion' => 'required|string',
+             'orden' => 'required',
+             'autor' => 'required',
+             'estado' => 'required',
+             'fuente' => 'required',
+             'idespecialidades' => 'required|string',
+        ],$messages);
+
          
         $nombre=''; 
         if($request->img!=null){
             // dd( $request->file('img'));
             $img= $request->file('img');
-            $name=$img->getClientOriginalName();
             $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
-            $nombre= $name.'-'.date('Ymd_h_s').'.'.$extension;
-            \Storage::disk('diskPortadaNoticia')->put($nombre,\File::get($img));
-
-         $updateNoticia->img=$nombre;
+            $nombre='not-'.date('Ymd_h_s').'.'.$extension;
+            \Storage::disk('wasabi')->put('Noticia/'.$nombre,\File::get($img));
+            $updateNoticia->img='Noticia/'.$nombre;
+            
         }
         
         $estado=0;
@@ -190,10 +250,11 @@ class NoticiaController extends Controller
 
         $updateNoticia->titulo=$request->titulo;
         $updateNoticia->descripcion=$request->descripcion;
-       
+        $updateNoticia->autor=$request->autor;
         $updateNoticia->idespecialidades=$request->idespecialidades;
         $updateNoticia->estado=$estado;
         $updateNoticia->orden=$request->orden;
+        $updateNoticia->fuente=$request->fuente;
 
         if( $updateNoticia->save()){
              // event(new MedicoEventCasoEx(['tipo'=>'save','caso'=>$actArt,'iduser'=>auth()->user()->id,'seccion'=>'CAEX']));

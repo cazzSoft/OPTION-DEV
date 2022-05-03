@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="card ml-5 mr-5 ">
+  <div class="card ml-5 mr-5 shadow-sm  bg-white rounded">
     <div class="card-header  border-0">
       <h3 class="card-title text-secondary"><b>Ingresar nuevo documento</b> </h3>
       <div class="card-tools">
@@ -38,7 +38,7 @@
                   <div class="col-xs-12 col-sm-12 col-md-6 mt-3">
                     <div class="form-group">
                       <label class="text-muted" for="titulo">Nombre del archivo <span class="text-red">*</span></label>
-                      <input class="form-control border-right-0 border-left-0 border-top-0  @error('titulo') is-invalid @enderror" name="titulo" id="titulo"
+                      <input class="form-control border border-white shadow-sm  @error('titulo') is-invalid @enderror" name="titulo" id="titulo"
                       placeholder="Ingrese nombre del archivo " value="{{ old('titulo') }}" required  autocomplete="titulo" autofocus>
                       @error('titulo')
                         <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                   <div class="col-xs-12 col-sm-12 col-md-6 mt-3">
                     <div class="form-group">
                       <label class="text-muted" for="descripcion">Descripción del archivo </label>
-                      <input class="form-control  border-right-0 border-left-0 border-top-0   @error('descripcion') is-invalid @enderror" name="descripcion" id="descripcion"
+                      <input class="form-control  border border-white shadow-sm   @error('descripcion') is-invalid @enderror" name="descripcion" id="descripcion"
                       placeholder="Ingrese descripción del archivo " value="{{ old('descripcion') }}"  autocomplete="descripcion" autofocus>
                       @error('descripcion')
                       <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                   <div class="col-xs-12 col-sm-12 col-md-6 mt-3">
                     <div class="form-group">
                       <label for="idespecialidades" class="text-muted">Seleccione especialidad <span class="text-red">*</span></label>
-                      <select  class="form-control border-right-0 border-left-0 border-top-0 select22 @error('idespecialidades') is-invalid @enderror" style="width: 100%;"  data-placeholder="Seleccione especialidad " name="idespecialidades" id="idespecialidades" required >
+                      <select  class="form-control shadow-sm border border-white select22 @error('idespecialidades') is-invalid @enderror" style="width: 100%;"  data-placeholder="Seleccione especialidad " name="idespecialidades" id="idespecialidades" required >
                         <option></option>
                         @if(isset($lista_esp))
                           @foreach($lista_esp as $item)
@@ -89,7 +89,7 @@
                        <label for="img" class="text-muted">Documentación <span class="text-red">*</span></label>
                        <div class="input-group ">
 
-                        <input type="file" class="form-control border-right-0 border-left-0 border-top-0 @error('img') is-invalid @enderror"  accept="application/pdf " id="img"  name="img" required >
+                        <input type="file" class="form-control border border-white shadow-sm @error('img') is-invalid @enderror"  accept="application/pdf " id="img"  name="img" required >
                          @error('img')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -105,7 +105,7 @@
                     <div class="form-group mb-3 d-none file_txt ">
                       <label for="img" class="text-muted">Documentación <span class="text-red">*</span></label>
                       <div class="input-group ">
-                        <input type="text" class="form-control  border-right-0 border-left-0 border-top-0" id="file_txt">
+                        <input type="text" class="form-control  border border-white shadow-sm" id="file_txt">
                         <div class="input-group-append" onclick="addinputFile()">
                           <span class="input-group-text btn"><i class="fas fa-folder-plus"></i></span>
                         </div>
@@ -131,7 +131,7 @@
     </div>
   </div>
   <br>
-  <div class="card ml-5 mr-5 ">
+  <div class="card ml-5 mr-5 shadow-sm  bg-white rounded">
     <div class="card-header border-0">
       <h3 class="card-title text-secondary"><b>Lista de documentos </b></h3>
       <div class="card-tools">
@@ -225,7 +225,8 @@
           border-top: 0px solid #ced4da;
           border-right: 0px solid #ced4da;
           border-left: 0px solid #ced4da;
-          border-bottom: 1px solid #ced4da;
+          border-bottom: 0px solid #ced4da;
+          box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
         }
         table, tr, td,thead{
           border:none !important;

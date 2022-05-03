@@ -16,7 +16,7 @@
       <a href="{{asset('/')}}" class="text-leth float-left ">  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-5 mb-5 "></i></a>
       <span class="text-info_ h5"><b> Gestión de Noticia</b></span>
     </div>
-  </div>
+  </div> 
 
   <div class="container-fluid ">
     
@@ -85,7 +85,7 @@
                           <option></option>
                           @if(isset($lista_esp))
                             @foreach($lista_esp as $item)
-                              <option  value="{{$item->idespecialidades}}">
+                              <option  @if(old('idespecialidades')==$item->idespecialidades) selected @endif value="{{$item->idespecialidades}}">
                                 {{$item->descripcion}}
                               </option>
                             @endforeach
@@ -105,15 +105,16 @@
                         <label for="img" class="text-muted">Archivo <span class="text-red">*</span> </label>
                         <div class="input-group ">
                           <input type="file" class="shadow-sm border border-white form-control @error('img') is-invalid @enderror"  accept="image/* " id="img"  name="img" >
+                          @error('img')
+                            <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                            <div class="input-group-append d-none icon-input" onclick="minusInputFile()">
                             <span class="input-group-text btn"><i class="fas fa-folder-minus"></i></span>
                           </div>
                         </div>
-                        @error('img')
-                        <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        
                       </div>
 
                       <div class="form-group file_txt d-none"> 
@@ -143,12 +144,28 @@
                     <div class="col-xs-12 col-sm-12 col-md-3">
                       <div class="form-group">
                         <label class="text-muted" for="estado">Estado </label><br>
-                        <select name="estado" id="estado" class=" select22 form-control shadow-sm border border-white " data-placeholder="Seleccione ">
+                        <select name="estado" id="estado" class=" select22 form-control shadow-sm border border-white @error('estado') is-invalid @enderror" data-placeholder="Seleccione ">
                           <option></option>
-                          <option  value="1">Publico </option>
-                          <option  value="0">Privado </option>
+                          <option @if(old('estado')==1) selected @endif value="1">Publico </option>
+                          <option @if(old('estado')==0) selected @endif value="0">Privado </option>
                         </select>
-                       {{--  <input type="checkbox"  onchange="changeInput()" n    data-bootstrap-switch data-off-color="secondary" data-on-color="success" data-inverse='true' data-on-text='Publico' data-off-text='Privado'> --}}
+                        @error('estado')
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <label class="text-muted" for="fuente">Fuente <span class="text-red">*</span></label>
+                        <input class="form-control  border border-white shadow-sm  @error('fuente') is-invalid @enderror" name="fuente" id="fuente"
+                        placeholder="Ingrese fuente" value="{{ old('fuente') }}"  autocomplete="fuente" autofocus>
+                        @error('fuente')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                       </div>
                     </div>
 
@@ -223,11 +240,10 @@
                                   <td  style="vertical-align: middle;" class="text-center  ">  Sin Publicada</td>
                               @endif
                              
-                              @if(isset($item['img']))
-                                <td style="vertical-align: middle; cursor: pointer;" onclick="visor_show_nt('{{asset("PortadaNoticia/".$item->img)}}','{{$item['titulo']}}')"> 
-                                  <div  class="product-image-thumb mx-auto border-0"><img src="{{asset('PortadaNoticia/'.$item->img)}}" alt="Product Image"></div>
-                                  {{-- <span class="mailbox-attachment-icon has-img"> --}}
-                                  {{-- <img class="img img-fluid  " src="{{asset('PortadaNoticia/'.$item->img)}}" alt="Attachment"> --}}
+                              @if(isset($item['img']) && $item['img']!= null)
+                                <td style="vertical-align: middle; cursor: pointer;" onclick="visor_show_nt('{{$img=\Storage::disk('wasabi')->temporaryUrl( $item->img, now()->addMinutes(3600))}}','{{$item['titulo']}}')"> 
+                                  <div  class="product-image-thumb mx-auto border-0">
+                                    <img src="{{$img}}" alt="Product Image"></div>
                                 </span>
                               </td>
                               @endif
@@ -236,17 +252,18 @@
                                     <div class="btn-group btn-group-sm">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE">
-                                       {{--  <a href="#card" class="dropdown-item text-info_"  onclick="editar_archivo_nt('{{ $item->idnoticia_encryp }}')"><i class="fa fa-edit"></i> </a>
-                                        <button type="button" class="btn btn-sm btn-danger" onclick="btn_eliminar_archivo_nt(this)"><i class="fa fa-trash"></i> </button> --}}
                                     </div>
-                                    <div class="btn-group">
+                                    <div class="btn-group este">
                                       <button type="button" class="btn btn-link text-info_ dropdown-toggle border border-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                        Seleccione
                                       </button>
                                       <div class="dropdown-menu">
-                                        <a class="dropdown-item text-info_" href="#for_archivo"  onclick="editar_archivo_nt('{{ $item->idnoticia_encryp }}')"> Aprobar Publicación</a>
+                                        @if($item->estado)
+                                            <a class="dropdown-item text-info_ qbtn" href="#for_archivo"  onclick="aprobar_nt('{{ $item->idnoticia_encryp }}','{{encrypt(0)}}',this)"> Quitar Publicación</a>
+                                        @else
+                                            <a class="dropdown-item text-info_ qbtn" href="#for_archivo"  onclick="aprobar_nt('{{ $item->idnoticia_encryp }}','{{encrypt(1)}}',this)"> Aprobar Publicación</a>
+                                        @endif
                                         <a class="dropdown-item text-info_" href="#for_archivo"  onclick="editar_archivo_nt('{{ $item->idnoticia_encryp }}')"> Editar Noticia</a>
-                                        <a class="dropdown-item text-info_" href="#for_archivo"  onclick="editar_archivo_nt('{{ $item->idnoticia_encryp }}')"> Quitar Publicación</a>
                                         <a class="dropdown-item text-info_"  onclick="btn_eliminar_archivo_nt(this)" href="#">Eliminar</a>
                                       </div>
                                     </div>
@@ -305,6 +322,7 @@
     @if(session()->has('info'))
       <script >
        mostrar_toastr('{{session('info')}}','{{session('estado')}}')
+       
       </script>
     @endif
 
@@ -316,9 +334,22 @@
         $('.fas-control').addClass('fa-minus'); 
       </script>
     @endif
-    
+    @if(old('descripcion'))
+      <script>
+        $('#descripcion').val({{old('descripcion')}});
+      </script>
+    @endif
+
+
     {{-- script de la view --}}
-    
+    <script>
+      // funcion para encryptar
+      function encrypt_(valorr) {
+       return valor=`{{encrypt('`${valorr}`')}}`;
+          
+        }
+      
+    </script>
 
     {{-- script para la gestion de noticias --}}
     <script src="{{ asset('/js/noticia.js') }}"></script>

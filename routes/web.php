@@ -160,6 +160,7 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('new', 'NoticiaController');
             Route::get('/lastOrden', 'NoticiaController@lastOrden');
             Route::get('/ver/{id}', 'NoticiaController@getNoticia');
+            Route::get('/estadoNoticia/{id}/{estado}', 'NoticiaController@putEstadonoticia');
         });
 
         //rutas para gestion de Notificacion

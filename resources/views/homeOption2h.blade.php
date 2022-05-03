@@ -78,7 +78,7 @@
         @guest
           
         @else  
-         <div class="col-lg-4 col-md-12 col-sm-12  text-center bg-white justify-content-center bg-info">
+         <div class="col-lg-4 col-md-12 col-sm-12  text-center bg-white justify-content-center bg-info history">
           <div class="main-carousel  text-center " data-flickity='{ "cellAlign": "center", "contain": true }'>
             @if( Auth::user()->topMedicos() )
               @foreach(Auth::user()->topMedicos()->take(10) as $key=> $item)
