@@ -80,7 +80,8 @@
             <div class="card-footer card-comments" id="list_comets">
                 @foreach($caso['comentarios'] as $cas)
                   <div class="card-comment">
-                    <img class="img-circle img-sm" src="{{$cas['usuario'][0]['img'] }}" alt="User Image">
+                   
+                    <img class="img-circle img-sm" src="@if(isset($cas['usuario'][0]['img']) && $cas['usuario'][0]['img']!=null){{ \Storage::disk('wasabi')->temporaryUrl($cas['usuario'][0]['img'], now()->addMinutes(3600)  )  }} @else {{asset('ava1.png') }} @endif" alt="{{$cas['usuario'][0]['img']}}">
                     <div class="comment-text">
                       @if(auth()->user()->id==$cas['usuario'][0]['id'])
                         <span class="username">

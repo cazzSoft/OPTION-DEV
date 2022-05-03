@@ -32,7 +32,7 @@
             
 
             <div class="user-block comment-text">
-              <img class="img-circle img-bordered-sm" src=" @if(isset($item['medico'][0]['img']) && $item['medico'][0]['img']!=null){{ auth()->user()->adminlte_image() }} @else {{asset('ava1.png') }} @endif" alt="User Image">
+              <img class="img-circle img-bordered-sm" src=" @if(isset($item['medico'][0]['img']) && $item['medico'][0]['img']!=null){{ \Storage::disk('wasabi')->temporaryUrl($item['medico'][0]['img'], now()->addMinutes(3600)  ) }} @else {{asset('ava1.png') }} @endif" alt="{{$item['medico'][0]['img']}}">
               <span class="username">
 
                 <a href="{{url('gestion/caso/'.$item->idarticulo_encryp)}}" class="text-dark font-weight-bold deco-none " style="text-decoration: none;cursor: pointer;">{{$item['titulo']}}</a>
