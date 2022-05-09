@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide border-0 " data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide  border-bottom  ml-5 mr-5" data-ride="carousel">
   <ol class="carousel-indicators ">
     @if(isset($listaNoticia))
       @foreach($listaNoticia as $key=>$noti)
@@ -11,10 +11,10 @@
     @endif
   </ol>
   <div class="carousel-inner ">
-    @if(isset($listaNoticia))
+    @if(isset($listaNoticia)) 
       @foreach($listaNoticia as $key=>$noti)
           <div class="carousel-item  @if($loop->iteration==1) active @endif ">
-            <div class="s " >
+            <div class="s" >
               <div class="card-body row text-dark">
                 <div class="col-md-7 col-sm-12 text-center ">
                   <div class="ml-5 mr-5 ">
@@ -63,86 +63,6 @@
           </div>
       @endforeach   
     @endif
-
-    
-    
-   {{--  <div class="carousel-item">
-      <div class="card rounded-0" >
-        <div class="card-body row text-dark">
-          <div class="col-md-7 col-sm-12 text-center ">
-            <div class="ml-5 mr-5 ">
-              <img class="img-fluid " src="/img/Imagen1.png" alt="Photo">
-              <h3 class="mt-4 ">
-                <strong>
-                  <p>Physicians Say Covid-19 Has Triggered a 
-                   Drinking Problem
-                  </p>
-                </strong> 
-              </h3>
-              <p class="lead mb-5 mt-3">
-                The daily repetitiveness of the pandemic, the increase in stress, the decrease in seeing friends and family—these scenarios may have contributed to an increase in alcohol consumption for many people. For some, the sudden disappearance…
-                Ver más...
-              </p>
-            </div>
-                
-          </div>
-          <div class="col-lg-5 col-md-5 col-sm-12">
-            <div class="row">
-              <div class="col-4">
-                <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-              </div>
-             
-              <div class="col-8 ">
-                <div class="row justify-content-md-center mr-5 ">
-                  <p class="attachment-heading  align-content-md-center h4"> MENIEREENFERMEDAD DE MENIEREENFERMEDAD DE MENIERE <br> </p>
-                  <p class="attachment-heading  align-content-md-center h5 text-muted"> DR. MATIAS HERNANDORENA ENFERMEDAD DE MENIERE</p>
-                </div>
-               
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-              </div>
-             
-              <div class="col-8 ">
-                <div class="row justify-content-md-center mr-5 ">
-                  <p class="attachment-heading  align-content-md-center h4"> MENIEREENFERMEDAD DE MENIEREENFERMEDAD DE MENIERE <br> </p>
-                  <p class="attachment-heading  align-content-md-center h5 text-muted"> DR. MATIAS HERNANDORENA ENFERMEDAD DE MENIERE</p>
-                </div>
-               
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-              </div>
-             
-              <div class="col-8 ">
-                <div class="row justify-content-md-center mr-5 ">
-                  <p class="attachment-heading  align-content-md-center h4"> MENIEREENFERMEDAD DE MENIEREENFERMEDAD DE MENIERE <br> </p>
-                  <p class="attachment-heading  align-content-md-center h5 text-muted"> DR. MATIAS HERNANDORENA ENFERMEDAD DE MENIERE</p>
-                </div>
-               
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <img class="img-fluid mb-3" src="/img/photo2.png" alt="Photo">
-              </div>
-             
-              <div class="col-8 ">
-                <div class="row justify-content-md-center mr-5 ">
-                  <p class="attachment-heading  align-content-md-center h4"> MENIEREENFERMEDAD DE MENIEREENFERMEDAD DE MENIERE <br> </p>
-                  <p class="attachment-heading  align-content-md-center h5 text-muted"> DR. MATIAS HERNANDORENA ENFERMEDAD DE MENIERE</p>
-                </div>
-               
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
   </div>
   <a class="carousel-control-prev text-dark " style="width:60px; " href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-custom-icon d-none" aria-hidden="true">

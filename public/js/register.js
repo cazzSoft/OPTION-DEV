@@ -154,5 +154,59 @@ $('.btn_registrate').click(function (e) {
 	
 });
 
+ // evento para contactos
+    $("#contac").on("submit", function (e) {
+    e.preventDefault();
+
+    // efecot del boton
+    	$('#btn-contac').html(` <span class="spinner-border spinner-border-sm "></span>`);
+    	
+       $.ajaxSetup({
+           headers: {
+               "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+           },
+       }); 
+       
+       var FrmData = {
+            email: $("#email").val(),
+            name: $("#name").val(),
+            telefono: $("#telefono").val(),
+       };
+      
+        $.ajax({
+            url: "/send_email_contac", 
+            method: "POST", 
+            data: FrmData, 
+            dataType: "json",
+            success: function (data) {
+                // mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+                
+                mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+                $("#email").val(" ");
+                $("#name").val(" ");
+                $("#telefono").val(" ");
+                $('#btn-contac').html(`Enviar`);
+               
+            },
+
+            error: function (data) {
+            	  $('#btn-contac').html(`Enviar`);
+                
+                var statusText = data.statusText;
+                var data = data.responseJSON;
+                if (statusText == "Not Implemented") {
+                    //error 501
+                    $.each(data.request, function (i, item) {
+                        mostrar_toastr(item, data.jsontxt.estado);
+                    });
+                } else {
+                    mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+                }
+
+            },
+        });    
+    });
+
+
 
 

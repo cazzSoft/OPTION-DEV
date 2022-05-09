@@ -8,6 +8,7 @@ use App\Http\Controllers\ArticuloController;
 use App\NoticiaModel;
 use App\TipoUserModel;
 use App\User;
+use App\config_email_receiverModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -29,7 +30,7 @@ class PrincipalController extends Controller
         $articulo=ArticuloModel::inRandomOrder()->withCount(['like'])
                 ->with(['medico','like'=>function($q){
                             $q->select(['*'])->get();
-                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(2)->paginate(2);
+                    }])->where('tipo','N')->where('publicar','1')->where('estado','1')->take(6)->paginate(6);
         // creacion de lista de noticia para el sliders
         $listaNoticia=NoticiaModel::with('especialidad')->where('estado',1)->where('activo',1)->get();
         
@@ -369,17 +370,45 @@ class PrincipalController extends Controller
             }
          } 
        
-        
-
-        
         return ["fails"=>$userFail,'success'=>$userCheck];
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+
+    // funcion para enviar email de contacto
+    public function send_email(Request $request)
+    {
+      
+       
+       try {
+            
+            $recived=config_email_receiverModel::first();
+            $para=$recived->email;
+
+
+               Mail::send('mail.send-mail-contact', ['array'=>$request,'name_user'=>'cazz'], function ($m) use ($para) {
+                   $m->to($para)
+                   ->from('info@option2health.com', 'Option2health')
+                   ->subject('Nuevo contacto Option2health');
+               });
+
+           
+                return response()->json([
+                   'jsontxt'=> ['msm'=>'Los datos fueron enviados correctamente','estado'=>'info']
+                ],200);
+            
+
+       } catch (\Throwable $th) {
+
+            return response()->json([
+                   'jsontxt'=> ['msm'=>'Lo sentimos algo ha ido mal','estado'=>'error']
+               ],501);//Not Implemented
+       }
+       return response()->json([
+                   'jsontxt'=> ['msm'=>'Lo sentimos no se pudo completar la acción','estado'=>'error']
+               ],501);//Not Implemented
+    }
+
+
     public function show($id)
     {
         //

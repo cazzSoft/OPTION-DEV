@@ -116,12 +116,74 @@
   @section('content')
  		@yield('contenido')
 
-      {{--   <footer class="main-footer">
-          <div class="float-right d-none d-sm-block">
-            <b>Option2health Version</b> 1.0.0
+      @guest
+        <footer class="main-footer border-info">
+          <div class="row">
+            <div class="col-md-3 col-sm-12 text-center">
+              <img src="{{asset('img/logo2.svg')}}" alt="" class="mt-2">
+              <div class="text-leth mb-3 p-3 ">
+                <a  href="https://twitter.com/mikec84" target="_blank" class="btn  border-0 p-1" >
+                  <i class="fab fa-twitter fa-lg text-info_"></i>
+                </a>
+                <a  href="https://www.instagram.com/option2health/" target="_blank" class="btn  border-0 p-1" >
+                  <i class="fab fa-instagram text-info_ fa-lg"></i>
+                </a>
+                 <a href="https://www.youtube.com/channel/UC13o92F3ZetJ4sIC_dln7HA"  target="_blank" class="btn p-1 "  >
+                    <i class="fab fa-youtube text-info_  fa-lg"></i>
+                  </a>
+                   <a href="https://www.linkedin.com/in/mike-cardenas-077a1978/"  target="_blank" class="btn p-1 "  >
+                    <i class="fab fa-linkedin-in text-info_  fa-lg"></i> 
+                  </a>
+                  <a href="https://www.facebook.com/Option2health"  target="_blank" class="btn  p-1" >
+                    <i class="fab fa-facebook text-info_ fa-lg"></i>
+                  </a>
+                  <a href="https://api.whatsapp.com/send?phone=593969331727&app=facebook&entry_point=page_cta&fbclid=IwAR28kSawtc8mna9gxDocZrOBZtt2wCrmqrR8QYUK4QNhYQnvcon_DMLy_qY"  target="_blank" class="btn  p-1" >
+                    <i class="fab fa-whatsapp text-info_ fa-lg"></i> 
+                  </a>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 border-right border-info border-left">
+              <p class="text-info_  ml-3"><b>Legal</b></p>
+              <a href="{{asset('#')}}" class="text-muted text-dark ml-3" onclick="openInfoTermiCondiciones()"> Términos y Condiciones </a> <br>
+              <a href="{{asset('#')}}" class="text-muted text-dark ml-3"> Política de Privacidad</a><br>
+              <a href="{{asset('nosotros')}}" class="text-muted text-dark ml-3"> Acerca de Nosotros</a><br>
+              <a href="{{asset('info-coinsults')}}" class="text-muted text-dark ml-3"> Coinsults</a><br>
+            </div>
+            <div class="col-md-3 col-sm-12">
+              <p class="text-info_  ml-3"><b>Contáctanos</b></p>
+                <form id="contac" action="POST" method="POST">
+                  <div class="card-body m-0 p-0">
+                    <div class="form-group row m-0 text-right">
+                      <label for="email" class="col-sm-4 col-form-label"><small><b>E-mail</b></small></label>
+                      <div class="col-sm-7">
+                        <input type="email" class="form-control form-control-sm" id="email" required>
+                      </div>
+                    </div>
+                    <div class="form-group row m-0 text-right">
+                      <label for="name" class="col-sm-4 col-form-label"><small><b>Nombres</b></small></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="name" required>
+                      </div>
+                    </div>
+                    <div class="form-group row m-0 text-right">
+                      <label for="telefono" class="col-sm-4 col-form-label"><small><b>Número Telefonico</b></small></label>
+                      <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" id="telefono" required>
+                      </div>
+                    </div>
+                     <div class="form-group row m-0 text-right">
+                      <div class="col-sm-11 text-right">
+                        <button type="submit" class="btn bgz-info btn-xs pl-5 pr-5" id="btn-contac"> Enviar </button>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </form>
+             
+            </div>
           </div>
-          <strong>Copyright &copy; 2020-2030 <a href="https://adminlte.io">CAZZ</a>.</strong> All rights reserved.
-        </footer> --}}
+        </footer>
+      @endguest
      @include('modalInfoMedico') 
      @include('modalTerminoCondiciones') 
      @include('modalLogout')   

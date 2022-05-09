@@ -122,3 +122,6 @@
             mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)
         });
     }
+
+
+   

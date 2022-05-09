@@ -42,10 +42,10 @@
          <div class="inner">
            <h5><b>Nº de Casos de Estudio</b></h5>
            <div class="col-md-12">
-             <p class="text-leth">
+             <p class="text-leth ">
                <span>Número de casos ingresados el último mes por nuestors médicos especialistas.</span>
              </p>
-             <div class="progress-group mb-3">
+             <div class="progress-group mt-4 mb-4">
               <span class="text-muted"> <b>casos :</b> </span> 0
                <span class="float-right"><b>@if(isset($casos_publicado)) {{$casos_publicado}}@endif</b>/100</span>
                <div class="progress progress-sm">
@@ -61,10 +61,10 @@
          <div class="inner ">
            <h5><b>Tus casos Excepcionales</b> </h5>
             <div class="col-md-12">
-               <p class="text-leth">
+               <p class="text-left ">
                  <span>Aqui se mostrara una barrita con la cantidad de Casos Excepcionales que has publicado en la plataforma.</span>
                </p>
-               <div class="progress-group mb-3">
+               <div class="progress-group mb-2">
                 <span class="text-muted"> <b>Casos subidos por ti:</b> </span>
                  <span class="info-box-number  ">@if(isset($casos)) {{$casos}} @endif</span>
                  <span class="float-right"><b>@if(isset($casos_publicado)) {{$casos_publicado}}@endif</b>/100</span>
@@ -110,6 +110,7 @@
           border-radius: 5px;
         }
         .small-box {
+
           /*background: #FFFFFF;*/
           /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;*/
           border-radius: 10px !important;
@@ -119,10 +120,11 @@
         }
         .callout.callout-info {
             border-left-color: #0FADCE !important;
+
         }
         .callout {
-           border-radius: .56rem !important;
-            /*box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);*/
+            border-radius: .56rem !important;
+         
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
             border-left: 10px solid #e9ecef !important;
             

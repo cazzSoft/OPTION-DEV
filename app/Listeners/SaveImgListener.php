@@ -45,16 +45,16 @@ class SaveImgListener
                 if($img){
                     $img= Storage::disk('diskDocumentosPerfilUser')->get($event->data['nombreDoc']);
                     \Storage::disk('wasabi')->put($event->data['nombreDoc'], $img);
-                    $prueba= new PruebaModel();
-                    $prueba->des=$event->data['nombreDoc'];
-                    $prueba->save();
+                    // $prueba= new PruebaModel();
+                    // $prueba->des=$event->data['nombreDoc'];
+                    // $prueba->save();
                 }
 
        } catch (\Throwable $th) {
             
-            $prueba= new PruebaModel();
-            $prueba->des=$event->data['nombreDoc'].' error =>'.$th->getMessage();
-            $prueba->save();
+            // $prueba= new PruebaModel();
+            // $prueba->des=$event->data['nombreDoc'].' error =>'.$th->getMessage();
+            // $prueba->save();
 
             logger($th->getMessage()."  no se ha registrado  ".$event->data['nombreDoc']);
        }

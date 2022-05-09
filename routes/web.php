@@ -26,17 +26,19 @@ use Illuminate\Support\Facades\Auth;
 
 //RUTAS DE INFORMACION PUBLICA SIN LOGIN
     Route::group(['middleware'=>'web2'],function (){ 
-         Route::get('', 'PrincipalController@index');
-         Route::get('/session', 'PrincipalController@infoLogin')->middleware('translate');
-         Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('translate');
-         Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('translate');
-         Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('translate');
+        Route::get('', 'PrincipalController@index');
+        Route::get('/session', 'PrincipalController@infoLogin')->middleware('translate');
+        Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('translate');
+        Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('translate');
+        Route::get('/log-in-empresa', 'PrincipalController@login_empresa')->middleware('translate');
         //RUTA PARA RECUPERAR CONTRASEÑAS
             Route::resource('/password_reset', 'PasswordResetController')->middleware('translate');
             // Route::get('/insert-code', 'PasswordResetController@insertCode')->middleware('translate');
             Route::post('/reset', 'PasswordResetController@resetPassword')->middleware('translate'); 
             Route::get('/reenviar/{email?}', 'PasswordResetController@resend_code');    
             // Route::get('/edit-email', 'PasswordResetController@reset');
+        //RUTA DE ENVIO DE CONTACTO
+        Route::post('/send_email_contac', 'PrincipalController@send_email');   
     });
    
    
