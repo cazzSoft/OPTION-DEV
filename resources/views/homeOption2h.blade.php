@@ -119,8 +119,8 @@
       @guest
         <footer class="main-footer border-info">
           <div class="row">
-            <div class="col-md-3 col-sm-12 text-center">
-              <img src="{{asset('img/logo2.svg')}}" alt="" class="mt-2">
+            <div class="col-md-3 col-sm-12 text-center footer-div-1">
+              <img src="{{asset('img/logo2.svg')}}" alt="" class="mt-2 img-logo-f">
               <div class="text-leth mb-3 p-3 ">
                 <a  href="https://twitter.com/mikec84" target="_blank" class="btn  border-0 p-1" >
                   <i class="fab fa-twitter fa-lg text-info_"></i>
@@ -142,7 +142,7 @@
                   </a>
               </div>
             </div>
-            <div class="col-md-6 col-sm-12 border-right border-info border-left">
+            <div class="col-md-6 col-sm-12 border-right border-info border-left bordes-footer">
               <p class="text-info_  ml-3"><b>Legal</b></p>
               <a href="{{asset('#')}}" class="text-muted text-dark ml-3" onclick="openInfoTermiCondiciones()"> Términos y Condiciones </a> <br>
               <a href="{{asset('#')}}" class="text-muted text-dark ml-3"> Política de Privacidad</a><br>
@@ -171,7 +171,7 @@
                         <input type="text" class="form-control form-control-sm" id="telefono" required>
                       </div>
                     </div>
-                     <div class="form-group row m-0 text-right">
+                     <div class="form-group row m-0 text-right btn-form">
                       <div class="col-sm-11 text-right">
                         <button type="submit" class="btn bgz-info btn-xs pl-5 pr-5" id="btn-contac"> Enviar </button>
                       </div>
@@ -227,6 +227,15 @@
       }
     }
     window.onload=RevisarImagenesRotas;
+  </script>
+  <script>
+    $(function () {
+      var nua = navigator.userAgent
+      var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1)
+      if (isAndroid) {
+        $('select.form-control').removeClass('form-control').css('width', '100%')
+      }
+    })
   </script>
 	{{--  apartado para incluir mas js  --}}
 	@yield('include_js')

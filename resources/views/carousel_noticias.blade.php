@@ -19,7 +19,7 @@
                 <div class="col-md-7 col-sm-12 text-center ">
                   <div class="ml-5 mr-5 ">
                       <div   class="w-75 mx-auto    border border-white ">
-                        <img class=" card-img-top" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}@else{{ asset('img/error.png')}} @endif " alt="Photo">
+                        <img class=" card-img-top img-not" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}@else{{ asset('img/error.png')}} @endif " alt="Photo">
                       </div>
                       <h3 class="mt-4 ">
                         <strong>

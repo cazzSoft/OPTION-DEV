@@ -1,49 +1,354 @@
 /*Sin registro*/
-  .text-info-s1{
-    font-family: 'Calibri';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 67px;
-    line-height: 71px;
-    color: #4F4F4F;
-  }
-  .text-calibri{
-    font-family: 'Calibri';
-    font-style: normal;
-    font-weight: 700;
-  }
-  .btn-registrate-s{
-    margin-left: 22px;
-    margin-top: 123px;
-    width: 58%;
-    background: #0FADCE;
-    box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-  }
+.text-info-s1{
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 67px;
+  line-height: 71px;
+  color: #4F4F4F;
+}
+.text-calibri{
+  font-family: 'Calibri' !important;
+  font-style: normal !important;
+  /*font-weight: 700;*/
+}
+.btn-registrate-s{
+  margin-left: 22px;
+  margin-top: 123px;
+  width: 58%;
+  background: #0FADCE; 
+  box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
 /*Boton registrarse*/
 .btn-registrate{
-    width: 127px;
-    left: 1274px;
-    top: 24px;
+  width: 127px;
+  left: 1274px;
+  top: 24px;
+  background: #0FADCE;
+  box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+/*estilos botones de medico y noticias*/
+.btn-tab{
+  color: #4F4F4F;
+  background: #fff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  text-align: center;
+  height: 44px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #fff !important;
+  background-color: #0FADCE !important;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+
+
+/*Diseños y stilos de modal update user*/
+#preViewImg2{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  /*border: 1px solid #ccc;*/
+  display: inline-block;
+  padding: 1px ;
+  cursor: pointer;
+}
+
+/*Botones*/
+  /*#dropdownMenuLink{
+    position: absolute;
+    margin-top:118px;
+    margin-left: -42px;
+    margin-right: auto;
+  }*/
+
+  /*slider home*/
+  .rounded-circle {
+    border-radius: 50%!important;
+    width: 12px !important;
+    height: 12px  !important;
+  }
+  #img_doc{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+
+  }
+
+  .imgran{
+    width: 687.55px;
+    height: 459.05px;
+    left: 577.51px;
+    top: 189.95px;
+  }
+
+  .btn-s3{
+    text-align: center;
     background: #0FADCE;
     box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
- }
+    margin: auto !important;
+    width:410px ;
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  
 
-/*estilos botones de medico y noticias*/
-  .btn-tab{
-    color: #4F4F4F;
-    background: #fff;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 5px;
+
+
+  @media (max-width: 575.98px) { 
+    /*estilos del slider de informacion*/
+    .img-info{
+      width: 228px;
+      height: auto;
+      object-fit: cover;
+      margin: auto !important;
+      padding: 0px;
+    }
+
+    .text-info-s1{
+      padding: 12px !important;
+      margin: 0px !important;
+      text-align: center !important;
+      font-family: 'Calibri' !important;
+      font-style: normal !important;
+      font-weight: 800 !important;
+      font-size: 22px !important;
+      line-height: 22px !important;
+      text-align: center !important;
+      color: #4F4F4F;
+    }
+    
+    .card-body {
+     padding: 0rem; 
+   }
+   
+
+   .card-info{
+    padding: 0px !important;
+    /* background: violet;*/
+    height: 460px !important;
+  }
+  .row .column1 {
+    width: 100%;
+    order: 11;
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 120px;
+  }
+  .column1 .div-info-1{
+    margin: 0px !important ;
+    padding: 0px !important;
+    text-align: center !important;
+    width: 100% !important;
+    
+  }
+
+  .row .column2 {
+    width: 100%;
+    order: 1;
+    height: 190px;
+    padding: 0px !important;
+  }
+  .column1 .div-info-1 .btn-registrate-s{
+    font-size: 0.3em !important;
+    text-align: center !important;
+  }
+  .btn-registrate-s {
+    font-size: 10px !important;
+    width: 90% !important;
+    margin: auto;
+    height: 34px;
+    margin-top: 11px !important;
+
+
+  }
+  .btn-registrate-s b{
+    font-size: 20px;
     text-align: center;
-    height: 44px;
+  }
+  .form-group{
+    margin:auto !important;
+    padding: 0px !important;
+    height: auto;
+    text-align: center;
   }
 
-  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-      color: #fff !important;
-      background-color: #0FADCE !important;
-      border-color: #dee2e6 #dee2e6 #fff;
+  .column3 .div-info-2 {
+    margin-left: 25px !important;
+    text-align: left !important;
+    width: 100% !important;
+    /*background: #000; */
+    padding: 0px !important;
   }
 
-/*registrado
+  .text-info-s2{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 800 !important;
+    line-height: 22px !important;
+    font-size: 18px !important;
+    line-height: 31px !important;
+    text-align: left !important;
+    /*margin-top: 22px !important;*/
+
+  }
+  .div-info-2 h2{
+    font-weight:800 !important;
+    font-size: 22px !important;
+    text-align: left !important;
+    padding: 0px !important;
+    /*margin: 0px !important;*/
+  }
+  .div-info-2 span{
+
+    font-weight: 800 !important;
+    font-size: 20px !important;
+    text-align: left !important;
+    
+  }
+  .row .column3 {
+    width: 100%;
+    order: 2;
+    height: 120px;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  .row .column4 {
+    width: 100%;
+    order: 1;
+    padding: 0px !important;
+      /*padding-left: 1220px !important;
+      padding-right: 10px !important;*/
+      height: 130px;
+    }
+
+    .div-info-3 h2 span{
+      font-weight: 800 !important;
+      font-size: 20px !important;
+      text-align: left !important;
+      line-height: 1px !important;
+      padding: 0px !important;
+    }
+
+    .div-info-3 span  b{
+      /*margin-bottom: 122px !important;*/
+      font-weight: 800 !important;
+      font-size: 17px !important;
+      line-height: 12px !important;
+      text-align: center !important;
+    }
+    .div-info-3 h2{
+      font-weight:800 !important;
+      font-size: 20px !important;
+      text-align: left !important;
+      padding: 0px !important;
+    }
+
+    .row .column5 {
+      padding: 0px !important;
+      margin: 0px !important;
+      height: 180px !important;
+    }
+    .row .column6 {
+      padding: 0px !important;
+      margin: 0px !important;
+      height: 190px !important;
+    }
+    .column5 .div-info-3 {
+      text-align: left !important;
+      padding-left: 36px !important;
+      padding-right: 36px !important;
+      margin: 0px !important;
+    }
+    .btn-s3{
+      width: 100%;
+      margin-top: 3px !important;
+    }
+
+
+    /*noticia*/
+    .desc-noticia{
+      width: 100% !important;
+    }
+
+    .img-not{
+      height: auto;
+      object-fit: cover;
+    }
+    .desc-publica{
+      width: 100% !important;
+
+    }
+    .w-50 {
+      width: 90%!important;
+    }
+    .btn-ver-mas-publi{
+      width: 90% !important;
+      margin-bottom: 22px;
+      height: 34px;
+    }
+
+    .footer-div-1{
+      width: 100%;
+      order: 15;
+    }
+    .bordes-footer{
+      border-left: 0px !important;
+      border-right: 0px !important;
+      border-bottom: 2px solid #0FADCE !important;
+      padding-bottom: 22px;
+    }
+    #contac .card-body .form-group{
+      text-align: left !important;
+    }
+    .btn-form div{
+      margin-top: 22px !important;
+      padding: 0px !important;
+      text-align: center;
+      margin-right: 22px !important;
+    }
+    #btn-contac{
+      width: 90%!important;
+      padding: 10px !important;
+      margin: auto;
+      margin-bottom: 78px !important;
+    }
+    .img-logo-f{
+      width: 144px !important;
+    }
+  }
+
+
+  @media (min-width: 576px) and (max-width: 767.98px) { 
+
+  }
+
+
+  @media (min-width: 768px) and (max-width: 991.98px) { 
+
+  }
+
+
+  @media (min-width: 992px) and (max-width: 1199.98px) { 
+
+
+  }
+
+  @media (min-width: 1200px) { 
+
+
+  }

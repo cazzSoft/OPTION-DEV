@@ -106,7 +106,7 @@
 
 </div>
 <div class="form-group ml-5  m-auto text-center mb-5 pb-5">
-  <a class="btn  bgz-info rounded  shadow-sm mt-1 pr-5 pl-5  btn-sm" Width="208px"    href="session" >
+  <a class="btn  bgz-info rounded  shadow-sm mt-1 pr-5 pl-5  btn-sm btn-ver-mas-publi" Width="208px"    href="session" >
     <b class="h6 text-calibri">Ver más</b>
   </a>
 </div> 

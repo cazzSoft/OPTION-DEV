@@ -26,7 +26,7 @@
     <div class="row ">
       <div class="col-lg-12 col-xs-12 text-center">
         <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias</b></p>
-        <p class="h4 text-center lead mb-2" style="width: 680px; margin:auto;">
+        <p class="h4 text-center lead mb-2 desc-noticia" style="width: 680px; margin:auto;">
           En esta seccion encontraras las más novedosas noticias sobre la comunidad medica, desde nuevos descubrimientos hasta datos curiosos.
         </p>
       </div>
@@ -41,7 +41,7 @@
       <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-5">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Médicos</b></p>
-          <p class="h4 text-center lead mb-2" style="width: 680px; margin:auto;">
+          <p class="h4 text-center lead mb-2 desc-noticia" style="width: 680px; margin:auto;">
            En esta seccion encontraras un directorio con todos los médicos especialistas disponibles.  <a href="" class="text-info_">ver todos</a>
           </p>
         </div>
@@ -71,7 +71,7 @@
       <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-5">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Publicaciones</b></p>
-          <p class="h4 text-center lead mb-2" style="width: 680px; margin:auto;">
+          <p class="h4 text-center lead mb-2 desc-publica" style="width: 680px; margin:auto;">
            En esta seccion encontraras las publicaciones e investigaciones realizadas por nuestros médicos
           </p>
         </div>
@@ -93,7 +93,7 @@
       <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-1">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Publicaciones</b></p>
-          <p class="h4 text-center lead mb-2" style="width: 680px; margin:auto;">
+          <p class="h4 text-center lead mb-2 desc-publica" style="width: 680px; margin:auto;">
            En esta seccion encontraras las publicaciones e investigaciones realizadas por nuestros médicos
           </p>
         </div>
@@ -162,52 +162,6 @@
   {{-- Seccion para insertar css--}}    
   @section('include_css') 
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <style>
-      #preViewImg2{
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-            }
-      input[type="file"] {
-          display: none;
-      }
-      .custom-file-upload {
-          /*border: 1px solid #ccc;*/
-          display: inline-block;
-          padding: 1px ;
-          cursor: pointer;
-      }
-      #dropdownMenuLink{
-        position: absolute;
-       /* width: 25px;
-        height: 30px;*/
-
-        margin-top:118px;
-        margin-left: -42px;
-        margin-right: auto;
-      }
-      /*slider home*/
-      .rounded-circle {
-          border-radius: 50%!important;
-          width: 12px !important;
-          height: 12px  !important;
-      }
-      #img_doc{
-        width: 220px;
-        height: 220px;
-        object-fit: cover;
-       
-      }
-      .imgran{
-      
-        width: 687.55px;
-        height: 459.05px;
-        left: 577.51px;
-        top: 189.95px;
-      }
-
-      
-    </style>
   @stop 
 
   {{-- Seccion para insertar js--}}
@@ -252,6 +206,8 @@
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
       <script src="{{ asset('/js/register.js') }}"></script>
       <script src="{{ asset('/js/actionEvent.js') }}"></script>
+      {{-- para dar stilos responsive --}}
+      <script src="{{ asset('/js/screen/screen_home.js') }}"></script>
   @stop
     
 @stop
