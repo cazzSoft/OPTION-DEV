@@ -1,0 +1,84 @@
+
+.text-calibri{
+    font-family: 'Calibri';
+    font-style: normal;
+}
+
+.text-info{
+    color:#12adce !important;
+}
+.tex-sty{
+    font-family: calibri;
+}
+
+.main-footer{
+    display: none;
+}
+.text-f1{
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #4F4F4F !important;
+}
+
+.text-f2{
+   font-weight: 400;
+   font-size: 10px;
+   line-height: 12px;
+   text-align: center;
+   text-decoration-line: underline;
+   color: #0FADCE !important;
+   cursor: pointer;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+    
+    .profile-user-img{
+        margin-top: 20px;
+        padding: 3px;
+        width: 195px;
+        display: block !important;
+    }
+    .social-auth-links{
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .btn-outline-info{
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+        border-radius: 5px;
+        border-color: white;
+    }
+    .btn-outline-info:hover{
+      background: #0FADCE !important    ;
+    }
+    .nav-login-info{
+        display: none;
+    }
+    .profile-username{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17.6289px !important;
+        line-height: 21px;
+        text-align: center;
+        color: #0FADCE;
+        margin-top: 40px;
+    }
+    .text-seleccione {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 13px;
+        color: #4F4F4F;
+        margin-top: 30px !important;
+        margin-bottom: 18px !important;
+    }
+
+
+    .div-info-session{
+        display: none;
+    }
+    .main-footer{
+        display: block;
+    }
+}
