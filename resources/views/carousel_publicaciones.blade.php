@@ -34,7 +34,7 @@
                           " 
                         alt="User Image">
                       </a>
-                      <span class="username">{{$art['titulo']}}| Tratamiento</span>
+                      <span class="username ">{{$art['titulo']}}| Tratamiento</span>
                       <span class="description"><a href="{{url('medico/info/'.encrypt($art['iduser']))}}">{{$art['medico'][0]['name']}} </a>- @if(isset($art->created_at)) {{$art->created_at->isoFormat('lll') }} @endif </span>
                     </div>
                     <div class="card-tools">
@@ -44,7 +44,7 @@
                     </div> 
                   </div>
                   <div class="card-body ">
-                      <p class="   text-justify text-dark">
+                      <p class="text-justify text-dark text-descript-publicaciones">
                         {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
                       </p> 
                       <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
@@ -54,13 +54,13 @@
                   
                   <div class="card-footer p-0 ">
                       <div class="row justify-content-end">
-                        <div class="col-lg-12 text-right p-0">
+                        <div class="col-lg-12 text-right p-0 col-sm-12">
                           <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class=" btn btn-app border-0">
                             <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  {{-- {{$art['like_count']}} Me gusta --}}
                             <span >{{$art['like_count']}} </span> Me gusta 
                           </button>
                           
-                          <div class="dropdown text-right float-right mr-4">
+                          <div class="btn-group dropup text-right float-right mr-4">
                             <button class="btn border-0 btn-app dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class=" fa fa-bookmark"></i>Guardar
                             </button>
@@ -70,7 +70,7 @@
                               <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
                             </div>
                           </div>
-                          <div class="dropdown text-right float-right ">
+                          <div class="btn-group dropup text-right float-right ">
                               <button class="btn btn-app border-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
                                 <i class="fa fa-share-alt"></i>  Compartir
                               </button>

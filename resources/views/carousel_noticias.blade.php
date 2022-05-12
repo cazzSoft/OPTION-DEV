@@ -21,15 +21,14 @@
                       <div   class="w-75 mx-auto    border border-white ">
                         <img class=" card-img-top img-not" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}@else{{ asset('img/error.png')}} @endif " alt="Photo">
                       </div>
-                      <h3 class="mt-4 ">
+                      <h3 class="mt-4 title-notice">
                         <strong>
-                          <p>{{$noti[0]['titulo']}}</p>
+                          <p>{{$noti[0]['titulo']}} | {{$noti[0]['autor']}}</p>
                         </strong> 
                       </h3>
-                      <p class="lead mb-5 mt-3 text-justify">
+                      <p class="lead mb-5 mt-3 text-justify detalle-notice">
                         {{ Str::limit($noti[0]['descripcion'], 228,'.') }}... <br>
                         <a href="{{url('noticia/ver/'.$noti[0]['idnoticia_encryp'])}}">ver mas...</a>
-
                       </p>
                     
                   </div>   
@@ -45,7 +44,7 @@
                        
                         <div class="col-8 ">
                           <div class="row justify-content-md-center mr-5 content-item-carrosel">
-                            <p class="attachment-heading  align-content-md-center h4 attachment_titulo"> 
+                            <p class="attachment-heading  align-content-md-center h4 attachment_titulo title-notice"> 
                               <a href="{{url('noticia/ver/'.$item['idnoticia_encryp'])}}" class="text-dark">{{$item['titulo']}}</a>
                             </p>
                             <p class="attachment-heading  align-content-md-left h5 text-muted attachment_desc">  {{ Str::limit($noti[0]['descripcion'], 68,'.') }}...</p>
@@ -55,8 +54,6 @@
                       </div>  
                     @endforeach
                   @endif
-                    
-
                 </div>
               </div>
             </div>

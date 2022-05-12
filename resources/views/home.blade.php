@@ -120,7 +120,7 @@
                     <img class="card-img-top" src="/img/a2.png" alt="Card image cap">
                     <div class="card-body border-0">
                      <h5 class=" h4 text-center mb-3 text-info_">¿Sabes cuál es el estado de tu salud? </h5>
-                     <p class="card-text text-justify">
+                     <p class="card-text text-justify text-desc mb-3">
                        Al ser pioneros de la medicina preventiva, práctica y gratuita, te podremos ayudar a recuperar el control de tal manera que puedas llevar un estilo de vida más saludable, junto de la mano de los mejores médicos especialistas del país. 
                      </p>
 
@@ -130,7 +130,7 @@
                   <img class="card-img-top" src="/img/a3.png" alt="Card image cap">
                   <div class="card-body border-0">
                      <h5 class=" h4 text-center mb-3 text-info_">¡Los pacientes llegarán a ti a llenar tu agenda!</h5>
-                     <p class="card-text text-justify">Los pacientes están buscándote ahora mismo.
+                     <p class="card-text text-justify text-desc mb-3">Los pacientes están buscándote ahora mismo.
                        ¡Y llegan a llenar tu agenda! Posiciona tu carrera profesional como uno de los mejores médicos especialistas, mejorando la relación médico-paciente y potenciando tu networking mediante colaboración con otros médicos especialistas.
                      </p>
                   </div>
@@ -139,7 +139,7 @@
                   <img class="card-img-top" src="/img/a4.png" alt="Card image cap">
                   <div class="card-body border-0">
                    <h5 class=" h4 text-center mb-3 text-info_">Lleva tu marca empresarial al siguiente nivel con Option2health.</h5>
-                   <p class="card-text text-justify">Nuestra plataforma te permitirá posicionar tu marca, obtener datos y estadísticas de tu alcance, encontrar al cliente ideal, optimizando recursos y conectando con aliados estratégicos del sector de la salud.
+                   <p class="card-text text-justify text-desc mb-3">Nuestra plataforma te permitirá posicionar tu marca, obtener datos y estadísticas de tu alcance, encontrar al cliente ideal, optimizando recursos y conectando con aliados estratégicos del sector de la salud.
 
                    </p>
 
