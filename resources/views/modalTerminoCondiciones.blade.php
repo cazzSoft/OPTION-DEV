@@ -10,7 +10,7 @@
           </button>
       </div>
       <div class="modal-body">
-        <div class="card-body box-profile">
+        <div class="card-body box-profile p-0">
           <div class="form-group border">
               <embed src="{{asset('/Termino&condiciones/Terminos&Condiciones.pdf')}}" width="100%" height="770" type="application/pdf"> </embed>
           </div>            

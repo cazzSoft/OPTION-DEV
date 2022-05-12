@@ -30,7 +30,7 @@ return [
     'registrate' => 'Regístrate',
     'name' => 'Nombres y Apellido',
     'placeholder-name' => 'Ingresa tus nombres',
-    'registrar' => 'Regístrar',
+    'registrar' => 'Regístrarme',
     'al-crear-cuenta' => 'Al crear una cuenta aceptas los',
     'acepta-los' => 'Términos y condiciones',
 

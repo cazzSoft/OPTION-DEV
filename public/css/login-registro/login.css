@@ -1,16 +1,9 @@
 
+/*footer*/
 .text-calibri{
     font-family: 'Calibri';
     font-style: normal;
 }
-
-.text-info{
-    color:#12adce !important;
-}
-.tex-sty{
-    font-family: calibri;
-}
-
 .main-footer{
     display: none;
 }
@@ -31,19 +24,21 @@
    color: #0FADCE !important;
    cursor: pointer;
 }
-
 @media (min-width:100px) and (max-width: 767.98px) { 
-    
+    .login-content{
+        padding: 10px !important;
+    }
+
     .profile-user-img{
-        margin-top: 20px;
+        margin-top: 72px;
         padding: 3px;
         width: 195px;
         display: block !important;
     }
-    .social-auth-links{
-        padding-left: 12px;
-        padding-right: 12px;
+    .detalle-register{
+        display: none;
     }
+
     .btn-outline-info{
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
         border-radius: 5px;
@@ -52,6 +47,9 @@
     .btn-outline-info:hover{
       background: #0FADCE !important    ;
     }
+    
+
+
     .btn-regresar{
         display: none;
     }
@@ -59,27 +57,43 @@
     .nav-login-info{
         display: none;
     }
-    .profile-username{
+
+    .txt_log{
+        margin-top: 50px;
         font-family: 'Calibri';
         font-style: normal;
         font-weight: 400;
-        font-size: 17.6289px !important;
+        font-size: 17.6289px;
         line-height: 21px;
-        text-align: center;
         color: #0FADCE;
-        margin-top: 40px;
+        margin-bottom: 0px;
     }
-    .text-seleccione {
+   
+    .form_login{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .form_register{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .btn-outline-secondary{
+        margin-top: 20px;
+        padding-left: 20px !important;
+    }
+    .link-login{
+        font-family: 'Calibri';
+        font-style: normal;
         font-weight: 400;
-        font-size: 11px;
-        line-height: 13px;
-        color: #4F4F4F;
-        margin-top: 30px !important;
-        margin-bottom: 18px !important;
+        font-size: 14.1031px;
+        line-height: 17px;
+        text-align: center;
+        text-decoration-line: underline;
+
+        color: #0FADCE;
     }
-
-
-    .div-info-session{
+    .none{
         display: none;
     }
     .main-footer{

@@ -70,7 +70,9 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-12  ml-5 p-0 text-center">
-                <img src="{{asset('/img/logo2.svg')}}" alt="o2hLogo" class="profile-user-img border-0 img-fluid d-none" >
+                <a href="/">
+                    <img src="{{asset('/img/logo2.svg')}}" alt="o2hLogo" class="profile-user-img border-0 img-fluid d-none" >
+                </a>
                 <p class="profile-username text-center text-info h1" style="color: #13c6ef !important;">{{trans('session.Bienvenido-a') }}</p>
                 
                 <div class="social-auth-links text-center mt-3 mb-5">
@@ -84,7 +86,7 @@
                   </a> --}}
                 </div>
 
-                <p  class="mb-2 mt-5 text-center h6" >
+                <p  class="mb-2 mt-5 text-center h6 btn-regresar" >
                     <a disabled="false" class="mt-5" style="color: #13c6ef;" href="/" class="">
                      <i class="fas fa-arrow-circle-left"></i>   {{trans('session.regresar') }}
                     </a>
@@ -107,7 +109,6 @@
 
 @section('adminlte_css') 
     <link rel="stylesheet" href="{{ asset('css/login-registro/info-login.css') }}">
-    
 @stop
 
 @section('adminlte_js') 
