@@ -198,8 +198,14 @@ function getSearch_app() {
  //funcion para abrir modal de terminos y condiciones
  function openInfoTermiCondiciones() {
      $('#modal-termino-condiciones').modal('show');
-
  }
+
+ // politicas de privacidad home
+ function openInfoPoliticas() {
+
+     $('#modal-politica-privacidad').modal('show');
+ }
+ 
 
  // funcion para cerrar secion del usuario
  function logout_session() {
@@ -244,9 +250,15 @@ $('.btn_search_in').click(function (argument) {
 $(document).ready(function(){
       $("#dropdownMenuLink").css("display:none");
       $("#dropdownMenuLink").addClass("d-none");
+
+
 });
 
 window.onload = function(){
-   $("#dropdownMenuLink").css("display:block");
-   $("#dropdownMenuLink").removeClass("d-none");
-}; 
+    $("#dropdownMenuLink").css("display:block");
+    $("#dropdownMenuLink").removeClass("d-none");
+
+    $('.footer_sidebar').removeClass('d-none');
+    // $('.nav_content').removeClass('d-none');
+
+};  

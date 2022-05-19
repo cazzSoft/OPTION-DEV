@@ -26,7 +26,7 @@
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
             </ul>
             
-            <ul class="nav nav-pills nav-sidebar flex-column mb-4" style="position:fixed; bottom: 0; height:auto; width:219px;">
+            <ul class="nav nav-pills nav-sidebar flex-column mb-4 d-none footer_sidebar" style="position:fixed; bottom: 0; height:auto; width:219px;">
                 <li class="nav-item ml-3">
                    <span class="text-muted"> Idioma</span>
                     <a href="#" class="ml-2 @if(Session::get('language')=='es') text-info_ @endif "><b>Es</b></a>

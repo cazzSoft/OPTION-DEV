@@ -154,7 +154,7 @@
   @endguest
 
   
-      
+  @include('modalPolitica_privacidad')    
   @if(isset($registro))
     @include('modalUpdate_users')
   @endif

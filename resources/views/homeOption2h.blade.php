@@ -2,7 +2,7 @@
  @extends('adminlte::page')
   
   @section('content_header')
-    <div class="row   nav_content" >
+    <div class="row   nav_content " >
         @auth
         <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ocult">
           <header>
@@ -79,7 +79,7 @@
           
         @else  
          <div class="col-lg-4 col-md-12 col-sm-12  text-center  justify-content-center  history">
-          <div class="main-carousel  text-center " data-flickity='{ "cellAlign": "center", "contain": true }'>
+          <div class="main-carousel  text-center main-carousel-dr" data-flickity='{ "cellAlign": "center", "contain": true }'>
             @if( Auth::user()->topMedicos() )
               @foreach(Auth::user()->topMedicos()->take(10) as $key=> $item)
                
@@ -145,7 +145,7 @@
             <div class="col-md-6 col-sm-12 border-right border-info border-left bordes-footer">
               <p class="text-info_  ml-3"><b>Legal</b></p>
               <a href="{{asset('#')}}" class="text-muted text-dark ml-3" onclick="openInfoTermiCondiciones()"> Términos y Condiciones </a> <br>
-              <a href="{{asset('#')}}" class="text-muted text-dark ml-3"> Política de Privacidad</a><br>
+              <a href="#" class="text-muted text-dark ml-3" onclick="openInfoPoliticas()"> Política de Privacidad</a><br>
               <a href="{{asset('nosotros')}}" class="text-muted text-dark ml-3"> Acerca de Nosotros</a><br>
               <a href="{{asset('info-coinsults')}}" class="text-muted text-dark ml-3"> Coinsults</a><br>
             </div>
