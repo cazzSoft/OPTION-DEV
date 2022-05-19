@@ -14,7 +14,7 @@
 @stop
 
 
-@section('classes_body', $layoutHelper->makeBodyClasses())
+@section('classes_body', $layoutHelper->makeBodyClasses()) 
 @section('body_data', $layoutHelper->makeBodyData())
 
 @section('body')
@@ -28,14 +28,14 @@
 
         {{-- Left Main Sidebar --}}
         @if(!$layoutHelper->isLayoutTopnavEnabled())
-            {{-- @include('adminlte::partials.sidebar.left-sidebar')  --}} {{-- menu --}}
+            @include('adminlte::partials.sidebar.left-sidebar')  {{-- menu --}}
         @endif
 
         {{-- Content Wrapper --}}
         <div class="content-wrapper  {{ config('adminlte.classes_content_wrapper') ?? '' }} ">
 
             {{-- Content Header --}}
-            <div class="content-header header_content">
+            <div class="content-header {{-- header_content --}}">
                 {{-- <div class=" mt-4 p-0"> --}}
                     @yield('content_header') 
                 {{-- </div> --}}

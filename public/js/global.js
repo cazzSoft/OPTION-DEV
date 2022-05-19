@@ -7,8 +7,14 @@ $('#language').change(function (e) {
 
 //evento para ejecutar el enter o clich al buscar
 $("#form_searc_general").on("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); 
     getSearch();    
+});
+
+//evento para ejecutar el enter o clich al buscar movil
+$("#form_searc_general_app").on("submit", function (e) {
+    e.preventDefault();
+    getSearch_app();    
 });
 
 function obtenerResulSearch() {
@@ -18,9 +24,9 @@ function obtenerResulSearch() {
     console.log(text);
 }
 
+// evento de busquedad 
 
-
- $('#inputSearch_').keyup(function (argument) {
+ $('#inputSearch_').keyup(function (argument) { 
     $('#buscar_txt').html('');
      var text=$('#inputSearch_').val();
      var input=text.length;
@@ -36,8 +42,25 @@ function obtenerResulSearch() {
  });
 
 
- //funcion para obtener resultado del search
- function getSearch() {
+ // evento de busquedad app
+ $('#inputSearch_app').keyup(function (argument) { 
+    $('#buscar_txt').html('');
+     var text=$('#inputSearch_app').val();
+     var input=text.length;
+     
+     if(input>2){
+       getSearch_app(); 
+     }
+     
+    $('#buscar_txt_app').html(text);
+    $('#dropdown-menu1_app').addClass('show');
+    $('#form_searc_general_app').addClass('show');
+    
+ });
+
+
+//funcion para obtener resultado del search
+function getSearch() {
     var rute=$('#tpch').val();
     if(rute==1){
         rute=`/gestion/search`;
@@ -45,8 +68,7 @@ function obtenerResulSearch() {
     }else{
         rute=`/search`;
     }
-    console.log(rute);
-
+    
      $.ajaxSetup({
          headers: {
              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -56,7 +78,7 @@ function obtenerResulSearch() {
      var FrmData = {
          q: $("#inputSearch_").val(),
      };
-     console.log(FrmData)
+     
      // return 0;
       $.ajax({
           url: rute,  
@@ -85,12 +107,61 @@ function obtenerResulSearch() {
 
           },
       });   
- }
+}
 
+//funcion para obtener resultado del search app
+function getSearch_app() {
+    var rute=$('#tpch_app').val();
+    if(rute==1){
+        rute=`/gestion/search`; 
+    }else{
+        rute=`/search`;
+    }
+    
+     $.ajaxSetup({
+         headers: {
+             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+         },
+     }); 
+     
+     var FrmData = {
+         q: $("#inputSearch_app").val(),
+     };
+     
+     // return 0;
+      $.ajax({
+          url: rute,  
+          method: "POST", 
+          data: FrmData, 
+          dataType: "json",
+          success: function (data) {
+             console.log(data);
+              $('#dropdown-menu1_app').html("");
+              $('#dropdown-menu1_app').append(data['listMedicos']);
+              $('#dropdown-menu1_app').append(data['listaPublicaciones']);  
+
+               // $('#dropdown-menu1').append(`<a href="#" class="dropdown-item dropdown-footer text-left p-2 text-info"><i class="fa fa-search bgz-info p-2 img-circle img-bordered-xs" ></i> Buscar <span id="buscar_txt"></span></a>`);
+          },
+
+          error: function (data) {
+              var statusText = data.statusText;
+              var data = data.responseJSON;
+              if (statusText == "Not Implemented") {
+                  //error 501
+                  console.log('Not Implemented');
+                  
+              } else {
+                  console.log('Error revisar log');
+              }
+
+          },
+      });   
+}
 
  //funcion para recorrer resultado del search
  function verResul(rul) {
     console.log(rul);
+  
     window.location.href=rul;
  }
 
@@ -99,6 +170,16 @@ function obtenerResulSearch() {
  function notyfyEstado() {
     $.get("/notify/estado/"+0+'/edit', function (data) {
       $('#badgeNoty').remove();
+       
+    }).fail(function(data){
+       console.log(data);
+    });
+ }
+
+ // funcion para cambiar el estado de visto a las notificaciones
+ function notyfyEstado_app() {
+    $.get("/notify/estado/"+0+'/edit', function (data) {
+      $('#badgeNoty_app').remove();
        
     }).fail(function(data){
        console.log(data);
@@ -137,3 +218,35 @@ function obtenerResulSearch() {
       return true; 
 }
 
+// $('.item_input').hide();
+// $('.btn_search').show();
+var item_input=0;
+// evento del search app
+$('.btn_search_in').click(function (argument) {
+    if(item_input){
+        $(".item_input").css("display:block");
+        $('.item_input').hide(40);
+        $('.item_input').addClass('d-none');
+        $('.btn_search').removeClass('d-none');
+       
+        item_input=0;
+    }else{
+        $('.item_input').show(40);
+        $('.item_input').removeClass('d-none');
+        $('.btn_search').addClass('d-none');
+      
+        item_input=1;   
+    }
+   
+});
+
+
+$(document).ready(function(){
+      $("#dropdownMenuLink").css("display:none");
+      $("#dropdownMenuLink").addClass("d-none");
+});
+
+window.onload = function(){
+   $("#dropdownMenuLink").css("display:block");
+   $("#dropdownMenuLink").removeClass("d-none");
+}; 

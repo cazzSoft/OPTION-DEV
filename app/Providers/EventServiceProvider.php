@@ -143,19 +143,120 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Asignamos sus menu de acuerdo al rol
-        Event::listen(BuildingMenu::class,function(BuildingMenu $event){
-            if(isset(auth()->user()->idtipo_user)){
-                $consul=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
+          //Asignamos sus menu de acuerdo al rol
+          Event::listen(BuildingMenu::class,function(BuildingMenu $event){
+          if(isset(auth()->user()->idtipo_user)){
+               $consul=TipoUserModel::find(auth()->user()->idtipo_user)->abr;
+               if($consul=='us'){
                     $event->menu->add(
                          [
-                            'text' => 'Search1',
-                            'url'  => '#',
-                            'search' => true,
-                            'topnav' => true, 
+                           'text' => 'Inicio',
+                           'url'  => '/home',
+                           'icon' => 'fas fa-fw fa-home',
+                           'active' => ['home']
+                           
                          ],
+                         [
+                           'text' => '¿Qué Somos?',
+                           'url'  => 'nosotros_',
+                           'icon' => 'fa fa-notes-medical',
+                         ],
+                         [
+                           'text' => 'Coinsults',
+                           'url'  => 'coinsults',
+                           'icon' => 'far fa-copyright',
+                         
+                         ],
+                         [
+                           'text' => 'Guardados',
+                           'url'  => 'gestion/articulo_user',
+                           'icon' => 'fas fa-fw fa-bookmark',
+                           
+                         ],
+                         [
+                           'text' => 'Biblioteca',
+                           'url'  => 'biblioteca/show',
+                           'icon' => 'fas fa-book-reader',
+                          
+                         ],
+                        
                     );
-            }
+               }else if($consul=='dr'){
+                    $event->menu->add(
+                         [
+                           'text' => 'Inicio',
+                           'url'  => '/home',
+                           'icon' => 'fas fa-fw fa-home',
+                           'active' => ['home']
+                           
+                         ],
+                         [
+                           'text' => '¿Qué Somos?',
+                           'url'  => 'nosotros_',
+                           'icon' => 'fa fa-notes-medical',
+                         ],
+                         [
+                           'text' => 'Coinsults',
+                           'url'  => 'coinsult',
+                           'icon' => 'far fa-copyright',
+                         
+                         ],
+                         [
+                           'text' => 'Guardados',
+                           'url'  => 'gestion/articulo_user',
+                           'icon' => 'fas fa-fw fa-bookmark',
+                           
+                         ],
+                         [
+                           'text' => 'Biblioteca',
+                           'url'  => 'biblioteca/show',
+                           'icon' => 'fas fa-book-reader',
+                          
+                         ],
+                         [
+                           'text' => 'Casos',
+                           'url'  => 'gestion/user_casos',
+                           'icon' => 'fas fa-briefcase-medical',
+                           'active'=> ['gestion/user_casos*','medico/casos_ex*','gestion/search_caso*','gestion/caso*']
+                         ],
+                        
+                    );
+
+               }else if($consul=='ins'){
+
+               }else if($consul=='ad'){
+
+               }
+               
+          }else{
+               $event->menu->add(
+                    [
+                      'text' => 'Inicio',
+                      'url'  => '/home',
+                      'icon' => 'fas fa-fw fa-home',
+                      'active' => ['home']
+                      
+                    ],
+                    [
+                      'text' => '¿Qué Somos?',
+                      'url'  => 'nosotros_',
+                      'icon' => 'fa fa-notes-medical',
+                    ],
+                    [
+                      'text' => 'Coinsults',
+                      'url'  => 'info-coinsults',
+                      'icon' => 'far fa-copyright',
+                    
+                    ],
+                    [
+                      'text' => 'Biblioteca',
+                      'url'  => 'biblioteca/show',
+                      'icon' => 'fas fa-book-reader',
+                     
+                    ],
+                   
+               );
+          }
         });
 
         parent::boot();

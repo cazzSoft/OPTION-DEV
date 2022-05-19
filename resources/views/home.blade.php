@@ -18,14 +18,14 @@
           @include('carousel_info')
         </div>
       </div>
-    </section> 
+    </section>  
   @endguest
 
     
   <section class="content">
     <div class="row ">
       <div class="col-lg-12 col-xs-12 text-center">
-        <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias</b></p>
+        <p class="h4 text-info text-center mt-3 " style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias nuevas</b></p>
         <p class="h4 text-center lead mb-2 desc-noticia" style="width: 680px; margin:auto;">
           En esta seccion encontraras las más novedosas noticias sobre la comunidad medica, desde nuevos descubrimientos hasta datos curiosos.
         </p>

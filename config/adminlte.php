@@ -129,7 +129,7 @@ return [
     'classes_sidebar' => 'sidebar-light-info elevation-1 ',
     'classes_sidebar_nav' => '', //nav-child-indent
     'classes_topnav' => 'navbar-light navbar-white',
-    'classes_topnav_nav' => ' navbar-expand-md ',
+    'classes_topnav_nav' => 'navbar-expand-md ',
     'classes_topnav_container' => ' container ',
 
     /*
@@ -148,7 +148,7 @@ return [
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => false,
+    'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light ',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
@@ -226,6 +226,7 @@ return [
    'menu' => [
          
        
+        
     ],
 
 

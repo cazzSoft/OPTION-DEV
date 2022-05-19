@@ -119,7 +119,7 @@ class HomeController extends Controller
                 ->where('estado','1')
                 ->Where('afecta_desc','like','%'.$sexop1.'%')
                 ->orderBy('idarticulo','desc')
-                ->get();
+                ->get()->take(6);
         
         //array principales
         $array1=[];

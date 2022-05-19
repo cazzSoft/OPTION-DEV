@@ -2,9 +2,9 @@
  @extends('adminlte::page')
   
   @section('content_header')
-    <div class="row  ocult nav_content" >
+    <div class="row   nav_content" >
         @auth
-        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ocult">
           <header>
              <nav class="navbar navbar-expand-lg navbar-light bg-white  mx-auto mt-3 mb-2 ocult">
                 <a  class="navbar-brand ml-2 navbar-toggler border-0 text-secondary "
@@ -17,7 +17,7 @@
                       <a class="nav-link  {{ Route::is('home') ? 'text-info_' : '' }}" href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
                     </li>
                     <li class="nav-item ml-2 mr-3">
-                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a> 
+                      <a class="nav-link" href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a>  
                     </li>
                     <li class="nav-item ml-3 mr-3">
                       <a class="nav-link text-center {{ Route::is('coinsult.index') ? 'text-info_' : '' }}" href="{{url('coinsult')}}"> 
@@ -78,12 +78,12 @@
         @guest
           
         @else  
-         <div class="col-lg-4 col-md-12 col-sm-12  text-center bg-white justify-content-center bg-info history">
+         <div class="col-lg-4 col-md-12 col-sm-12  text-center  justify-content-center  history">
           <div class="main-carousel  text-center " data-flickity='{ "cellAlign": "center", "contain": true }'>
             @if( Auth::user()->topMedicos() )
               @foreach(Auth::user()->topMedicos()->take(10) as $key=> $item)
                
-                  <div class="carousel-cell text-center @if($key==0) offset-md-1 @endif align-self-end mt-2">
+                  <div class="carousel-cell text-center @if($key==0) offset-md-1 @endif align-self-end mt-2 border-0">
                     <a class="navbar-brand text-center " onclick="getMedicoTop('{{encrypt($item->id)}}',`{{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}` )"   href="#"  >
                       @if(isset($item['img'] ) && $item['img']!=null )
                         <img 
@@ -96,7 +96,7 @@
                                   @endif
                                 " 
                               alt="{{$item->img}}"
-                              class="img-circle  mr-4 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;" 
+                              class="img-circle  mr-2 imgTop" width="60" height="60" style=" border: 3px solid #0FADCE;" 
                         >  
                       @else 
 
@@ -183,10 +183,41 @@
             </div>
           </div>
         </footer>
+      @else
+        <footer class="main-footer_ p-0  text-center m-auto" >
+         <div class="row text-center mt-2">
+           <div class="col-3  align-self-center d-flex flex-column">
+             <a href="/" class="mx-auto text-center p-0 {{ Route::is('home') ? 'text-info_' : '' }}">
+               <i class="fa fa-home  {{ Route::is('home') ? 'text-info_' : 'text-dark' }}"></i>
+               <span class="d-flex flex-column text_item_footer  ">Home</span>
+             </a>
+           </div>
+           <div class="col-3  align-self-center d-flex flex-column"> 
+             <a href="{{url('coinsult')}}" class="mx-auto text-center p-0">
+               <span class="ml-1  text-center mb-5">
+                 <img src="{{asset('img/icon-coins-gris.png')}}" style="width: 18px; margin-top: -4px;" class="p-0 " alt="icon-coins">
+               </span> 
+               <span class="d-flex flex-column text_item_footer {{ Route::is('coinsult.index') ? 'text-info_' : 'text-dark' }}">Coinsults</span>
+             </a>
+           </div>
+           <div class="col-3  align-self-center d-flex flex-column">
+             <a href="{{url('gestion/articulo_user')}}" class="mx-auto text-center p-0">
+               <i class="fas fa-fw fa-bookmark text-secondary {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : '' }}"></i>
+               <span class="d-flex flex-column text_item_footer {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : 'text-dark' }}">Guardados</span>
+             </a>
+           </div>
+           <div class="col-3  align-self-center d-flex flex-column">
+             <a href="{{url('biblioteca/show')}}" class="mx-auto text-center p-0">
+               <i class="fas fa-book-reader text-secondary {{ request()->is(['biblioteca/*']) ? 'text-info_' : '' }}"></i>
+               <span class="d-flex flex-column text_item_footer {{ request()->is(['biblioteca/*']) ? 'text-info_' : 'text-dark' }}">Biblioteca</span>
+             </a>
+           </div>
+         </div>
+        </footer> 
       @endguest
-     @include('modalInfoMedico') 
-     @include('modalTerminoCondiciones') 
-     @include('modalLogout')   
+      @include('modalInfoMedico') 
+      @include('modalTerminoCondiciones') 
+      @include('modalLogout')   
   	@stop
 
  @section('css') 

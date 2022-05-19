@@ -161,6 +161,7 @@ return array(
     'App\\UsuarioAreaModel' => $baseDir . '/app/UsuarioAreaModel.php',
     'App\\UsuarioEspecialidadModel' => $baseDir . '/app/UsuarioEspecialidadModel.php',
     'App\\biblioteca_virtualModel' => $baseDir . '/app/biblioteca_virtualModel.php',
+    'App\\config_email_receiverModel' => $baseDir . '/app/config_email_receiverModel.php',
     'Arcanedev\\LogViewer\\Commands\\CheckCommand' => $vendorDir . '/arcanedev/log-viewer/src/Commands/CheckCommand.php',
     'Arcanedev\\LogViewer\\Commands\\ClearCommand' => $vendorDir . '/arcanedev/log-viewer/src/Commands/ClearCommand.php',
     'Arcanedev\\LogViewer\\Commands\\Command' => $vendorDir . '/arcanedev/log-viewer/src/Commands/Command.php',

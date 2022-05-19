@@ -2,7 +2,7 @@
 .text-calibri{
     font-family: 'Calibri';
     font-style: normal;
-}
+} 
 
 .text-info{
     color:#12adce !important;
@@ -33,7 +33,9 @@
 }
 
 @media (min-width:100px) and (max-width: 767.98px) { 
-    
+    .ml-5, .mx-5 {
+        margin-left: 0px !important;
+    }
     .profile-user-img{
         margin-top: 20px;
         padding: 3px;

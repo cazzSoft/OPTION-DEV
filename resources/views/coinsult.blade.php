@@ -106,9 +106,7 @@
         
     
     @section('include_css') 
-     <style >
-         
-     </style>
+      <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')

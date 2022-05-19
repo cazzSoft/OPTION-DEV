@@ -8,7 +8,7 @@
     display: none;
 }
 .text-f1{
-    font-weight: 400;
+    font-weight: 400; 
     font-size: 10px;
     line-height: 12px;
     text-align: center;
@@ -25,6 +25,10 @@
    cursor: pointer;
 }
 @media (min-width:100px) and (max-width: 767.98px) { 
+    .ml-5, .mx-5 {
+        margin-left: 0px !important;
+    }
+
     .login-content{
         padding: 10px !important;
     }
@@ -48,7 +52,22 @@
       background: #0FADCE !important    ;
     }
     
-
+    .btn_registrate_sty {
+        margin-top: 12px !important;
+        margin-bottom: 50px !important;
+        padding: 0px !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 14.1031px !important;
+        line-height: 17px !important;
+        text-align: center !important;
+        text-decoration-line: underline !important;
+        color: #0FADCE !important;
+    }
+    .link_login{
+        margin-bottom: 70px !important;
+        margin-top: 12px !important;
+    }
 
     .btn-regresar{
         display: none;

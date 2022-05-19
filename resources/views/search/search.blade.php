@@ -440,6 +440,7 @@
     </div>   --}}  
 
     @section('include_css') 
+      <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
         <style>
             .ocult{
                 display: none;
@@ -456,6 +457,9 @@
                 width: 150px;
                 height: 140px;
                 object-fit: cover;
+            }
+            .nav_content{
+                display: none !important;
             }
         </style>
     @stop   

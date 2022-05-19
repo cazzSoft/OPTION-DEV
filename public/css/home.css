@@ -12,6 +12,22 @@
   font-style: normal !important;
   /*font-weight: 700;*/
 }
+.text-menu{
+  position: absolute;
+  width: 25px;
+  height: 12px;
+  left: 18px;
+  top: 35px;
+
+  font-family: 'Calibri';
+  font-style: normal; 
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #606060;
+}
+
 .btn-registrate-s{
   margin-left: 22px;
   margin-top: 123px;
@@ -20,16 +36,28 @@
   box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
+
 /*Boton registrarse*/
 .btn-registrate{
   width: 127px;
-  left: 1274px;
-  top: 24px;
+  height: 34px;
+  margin-right: 30px !important;
   background: #0FADCE;
   box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
+.bt_register_carrosel {
+  padding-top: 40px;
+}
+
+.bt_register_carrosel .btn-s3 .text-calibri{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+}
 /*estilos botones de medico y noticias*/
 .btn-tab{
   color: #4F4F4F;
@@ -46,6 +74,20 @@
   border-color: #dee2e6 #dee2e6 #fff;
 }
 
+/*boton flotante sidebar*/
+#dropdownMenuLink{ 
+ 
+  position: absolute !important;
+  width: 30px;
+  height: 30px;
+  left: 94%;
+  right: 6.7%;
+  top: 1.51%;
+  bottom: 92.17%;
+  border-radius: 200px;
+  border: 2px solid #0FADCE !important;
+  cursor: pointer;
+}
 
 
 /*Diseños y stilos de modal update user*/
@@ -64,13 +106,17 @@ input[type="file"] {
   cursor: pointer;
 }
 
-/*Botones*/
-  /*#dropdownMenuLink{
-    position: absolute;
-    margin-top:118px;
-    margin-left: -42px;
-    margin-right: auto;
-  }*/
+  /*navbar item*/
+  .search_item{
+    /*position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    width: 40px;
+    height: auto;*/
+    /*background: #606060;*/
+  }
 
   /*slider home*/
   .rounded-circle {
@@ -78,6 +124,7 @@ input[type="file"] {
     width: 12px !important;
     height: 12px  !important;
   }
+
   #img_doc{
     width: 220px;
     height: 220px;
@@ -105,14 +152,165 @@ input[type="file"] {
     font-size: 20px;
   }
   
+  /*estilos de sidebar left*/
+
+  .logut-btn{
+    display: none !important;
+  }
+  .navbar_sm{
+    display: none !important;
+    
+  }
+  .main-sidebar{
+    border-right: 2px solid #0FADCE !important;
+    border-top: 2px solid #0FADCE !important;
+    margin-left: -328 !important;
+    border-radius: 5px !important;
+   
+  }
+  .text-new-user{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
+    color: #0FADCE;
+  }
+
+  .btn-registrate-app{
+    width: 144px;
+    height: 38px;
+    background: #0FADCE;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #fff;
+    text-align: center;
+  }
+  .img_nav{
+    width: 55px;
+    height:auto ;
+
+    position: absolute;
+    left: 12.27%;
+    right: 70.67%;
+    top: 0.85%;
+    bottom: 98.2%;
+  }
+
+  .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
+      margin-left: -320px !important;
+  }
+
+ 
+  .bag{
+    
+    position: absolute !important;
+    width: 11px !important;
+    height: 12px !important;
+    left: 278px !important;
+    top: 42px !important;
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+
+    color: #FFFFFF;
+  }
+
+/* ____________________________________________________________________________________________ */
+
+  @media (min-width:100px) and (max-width: 767.98px) { 
+   
+    .imgl{
+          width: 120px;
+          margin:0px ;px;
+    }
+    .linkce{
+      text-align: center;
+      padding: 0px !important;
+      margin: auto;
+      text-align: center;
+    }
+    .ml-5{
+      margin: 0px !important;
+    }
+    .h1{
+      font-size: 2em;
+    }
 
 
+    /*stylo siderbar left*/
+    .btn_search{
+      width: 29.35px !important;
+      height: 30px !important;
+      left: 322px;
+      top: 34px;
+      padding: 0px;
+      background: #F5F5F5;
+      border-radius: 20px;
+      float: left;
+    }
+    .search_app{
+       background: #F5F5F5 !important;
+       border-radius: 20px 0px 0px 20px !important; 
+       width: 70% !important;
+       margin-left: 22px;
+       height: 27px !important;
+    }
 
-  @media (max-width: 575.98px) { 
+    .btn_icon_search{
+      border: 1px solid #ced4da;
+      background: #F5F5F5 !important;
+      border-radius: 0px 20px 20px 0px !important; 
+      height: 27px !important;
 
+    }
+    .dropdown-menu-lgz{
+      width: 100% !important;
+      top: 85px !important;
+      left: 4% !important;
+     
+      transform: translate3d(-12px, -44px, 0px) !important;
+    }
+    .fa_icon{
+      margin-left: -4px !important;
+      margin-top: -1114px !important;
+    }
+    .main-sidebar {
+      display:block !important;
+      overflow-y: visible !important; 
+    }
+   
+    
     .btn-registrate {
       display: none;
     }
+    .navbar_lg{
+      display: none;
+    }
+    .navbar_sm{
+      display: block !important;
+      /*position: fixed !important;
+      height: 51px !important;
+      margin-top: 22px;*/
+    }
+    .ocult{
+      display: none;
+    }
+
+    .logut-btn{
+      display: block !important;
+    }
+
+
     .btn_icon {
       text-align: right !important;
       /*float: right !important;*/
@@ -121,11 +319,12 @@ input[type="file"] {
     }
     /*estilos del slider de informacion*/
     .img-info{
-      width: 228px;
+      width: 200px;
       height: auto;
       object-fit: cover;
       margin: auto !important;
       padding: 0px;
+      margin-top: 21px !important;
     }
 
     .text-info-s1{
@@ -197,13 +396,23 @@ input[type="file"] {
     }
 
     .column3 .div-info-2 {
-      margin-left: 25px !important;
-      text-align: left !important;
       width: 100% !important;
-      /*background: #000; */
-      padding: 0px !important;
+      padding-left: 0px !important;
     }
 
+    .content_div_info{
+
+      font-size: 10px !important;
+      margin: 0px !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    .content_div_info .bt_register_carrosel .btn-s3{
+      width: 100%;
+    }
+    .bt_register_carrosel .btn-s3 {
+      margin-top: 18px !important;
+    }
     .text-info-s2{
       font-family: 'Calibri';
       font-style: normal;
@@ -280,12 +489,31 @@ input[type="file"] {
       }
       .column5 .div-info-3 {
         text-align: left !important;
-        padding-left: 36px !important;
-        padding-right: 36px !important;
+        padding: 0px !important;
         margin: 0px !important;
+        background: #000 !important;
+      }
+      .div_content_indo_s2{
+        background: #fff;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .div_content_indo_s2 .form-group{
+        
+        text-align: center;
+        margin: 0px !important;
+        padding: 0px !important;
+        width: 100% !important;
+      }
+      .div_content_indo_s2 .form-group .btn-s3{
+      
+        width: 100% !important;
       }
       .btn-s3{
-        width: 100%;
+        width: 90%;
+        background: #0FADCE;
+        box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
         margin-top: 3px !important;
       }
 
@@ -419,6 +647,11 @@ input[type="file"] {
         font-size: 7.06133px !important;
         line-height: 9px !important;
       }
+      .dropdown-menu-notify {
+        top: 70px !important; 
+        width: 420px !important;
+        right: -28px !important
+      }
       .carousel-control-next{
         width: 8% !important;
       }
@@ -431,6 +664,132 @@ input[type="file"] {
       font-size: 16px !important;
       line-height: 19px !important;
      
+     }
+
+     /*modal logout*/
+
+     .modal-dialog {
+        /* margin: 0px !important;
+         width:96% !important;
+         margin-right: 1px !important;
+         margin-left: 3px !important;
+         padding: 0px !important;*/
+     }
+     #modalLogout{
+      margin: 0px !important;
+     }
+     /*carrucel*/
+     .main-carousel{
+         padding: 0px !important;
+         margin: 0px !important;
+         border-radius: 22px;
+         height: 74px !important;
+      
+     }
+     .imgTop{
+      padding: 0px !important;
+       /*margin: 0px !important;*/
+     }
+     .nav_content{
+        margin-top: -11px !important;
+        padding: 0px !important;
+     }
+     .attachment_titulo{
+         font-size: 1em;
+     }
+     .attachment_desc{
+         font-size: 0.8em;
+     }
+     .content-item-carrosel{
+         margin: 0px !important;
+     }
+
+     /*perfil usuario*/
+     .user_block{
+        margin-top: 15px;
+        margin-left: 15px;
+        height: 173px;
+     }
+     #usernamePerfil{
+        margin-top: 8px !important;
+        width: 142.35px !important;
+        height: 20.68px !important;
+        left: 119.82px !important;
+        top: 55.03px !important;
+
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        line-height: 17px !important;
+        color: #4F4F4F;
+     }
+     #description{
+        width: 51.1px;
+        height: 18.25px;
+        left: 119.82px;
+        top: 76.93px;
+
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+
+        /* Gray 2 */
+
+        color: #4F4F4F;
+     }
+     .img_user_perfil_app{
+
+        width: 73px;
+        height: 73px;
+        left: 31px;
+        top: 38px;
+
+        background: #C4C4C4;
+     }
+
+      /*footer */
+     .main-footer_ {
+       display: block;
+        background: #fff;
+        border-top: 1px solid #dee2e6; 
+        color: #869099;
+        padding: 1rem; 
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: 1032;
+        padding: 1px;
+        height: 50px;
+     }
+     .text_item_footer{
+      
+      margin-top: -8px !important;
+      font-family: 'Calibri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px !important;
+      line-height: 22px;
+      /*color: #4F4F4F;*/
+     }
+     .badge_coins{
+       position: absolute;
+       width: 5%;
+       height: auto;
+       left: 288px;
+       top: 12px;
+       padding: 3px !important;
+       font-family: 'Calibri';
+       font-style: normal;
+       font-weight: 700;
+       font-size: 10px;
+       line-height: 12px;
+       background: #0FADCE;
+       color: #FFFFFF;
      }
   }
 

@@ -159,7 +159,7 @@ class ArticuloController extends Controller
 
     //metodo para mostrar resultado de busqueda
     public function resultadoSearch($value)
-    {
+    {  
         $getSearch=$this->getSearch($value); 
          // return $getSearch['medicos'];
         $text_info=null;
@@ -174,7 +174,7 @@ class ArticuloController extends Controller
 
     public function getArticulos(Request $request)
     {
-       
+        
         $getSearch=$this->getSearch($request->q);  
         
         //Registro evento search
@@ -220,7 +220,7 @@ class ArticuloController extends Controller
             $item=[];
             foreach ($data as $key => $value) {
                 $txt=Str::limit($value['titulo'], 40);
-                array_push($item,'<a href="'.url('/gestion/resul').'"  onclick="verResul(\' '.url('/gestion/resul/'.$value['titulo']).' \')" class="text-dark list-group-item list-group-item-action border-0 "><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$txt.'</dt></a>');
+                array_push($item,'<a   onclick="verResul(\' '.url('/gestion/resul/'.$value['titulo']).' \')" class="text-dark list-group-item list-group-item-action border-0 "><dt>  <i class="fa fa-search  p-1 mr-1  text-muted " ></i>'.$txt.'</dt></a>');
             }
 
             $listaPublicaciones='<span  class="dropdown-item2">

@@ -219,6 +219,7 @@
     
 
     @section('include_css') 
+       <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
         <style>
           .ocult{
             display: none;
@@ -242,10 +243,13 @@
             width: 67%;
           }
           #preViewImg{
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-            }
+              width: 150px;
+              height: 150px;
+              object-fit: cover;
+          }
+          .nav_content{
+            display: none;
+          }
         </style>
     @stop   
     {{-- Seccion para insertar js--}}

@@ -1,0 +1,343 @@
+/*estilos de sidebar left*/
+.text-calibri{
+  font-family: 'Calibri' !important;
+  font-style: normal !important;
+  /*font-weight: 700;*/
+}
+.text-menu{
+  position: absolute;
+  width: 25px;
+  height: 12px;
+  left: 18px;
+  top: 35px;
+
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #606060;
+}
+.logut-btn{
+  display: none !important;
+}
+.navbar_sm{
+  display: none !important;
+  
+}
+.main-sidebar{
+  border-right: 2px solid #0FADCE !important;
+  border-top: 2px solid #0FADCE !important;
+  margin-left: -328 !important;
+  border-radius: 5px !important;
+ 
+}
+.text-new-user{
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: #0FADCE;
+}
+
+.btn-registrate-app{
+  width: 144px;
+  height: 38px;
+  background: #0FADCE;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  text-align: center;
+}
+.img_nav{
+  width: 55px;
+  height:auto ;
+
+  position: absolute;
+  left: 12.27%;
+  right: 70.67%;
+  top: 0.85%;
+  bottom: 98.2%;
+}
+
+.sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
+    margin-left: -320px !important;
+}
+
+/*boton flotante sidebar*/
+#dropdownMenuLink{ 
+ 
+  position: absolute !important;
+  width: 30px;
+  height: 30px;
+  left: 94%;
+  right: 6.7%;
+  top: 1.51%;
+  bottom: 92.17%;
+  border-radius: 200px;
+  border: 2px solid #0FADCE !important;
+  cursor: pointer;
+}
+
+/*footer*/
+.main-footer_ {
+   display: none;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+ 
+  .linkce{
+    text-align: center;
+    padding: 0px !important;
+    margin: auto;
+    text-align: center;
+  }
+  .badge_coins{
+    position: absolute;
+    width: 11px;
+    height: 12px;
+    left: 3px;
+    top: 3px;
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+
+    /*color: #000;*/
+  }
+  .dropdown-menu-notify {
+    top: 70px !important; 
+    width: 420px !important;
+    right: -28px !important
+  }
+
+  /*stylo siderbar left*/
+  .btn_search{
+    width: 29.35px !important;
+    height: 30px !important;
+    left: 322px;
+    top: 34px;
+    padding: 0px;
+    background: #F5F5F5;
+    border-radius: 20px;
+    float: left;
+  }
+  .search_app{
+     background: #F5F5F5 !important;
+     border-radius: 20px 0px 0px 20px !important; 
+     width: 70% !important;
+     margin-left: 22px;
+     height: 27px !important;
+  }
+
+  .btn_icon_search{
+    border: 1px solid #ced4da;
+    background: #F5F5F5 !important;
+    border-radius: 0px 20px 20px 0px !important; 
+    height: 27px !important;
+
+  }
+  .dropdown-menu-lgz{
+    width: 100% !important;
+    top: 85px !important;
+    left: 4% !important;
+   
+    transform: translate3d(-12px, -44px, 0px) !important;
+  }
+  .fa_icon{
+    margin-left: -4px !important;
+    margin-top: -1114px !important;
+  }
+  .main-sidebar {
+    display:block !important;
+    overflow-y: visible !important; 
+  }
+ 
+  
+  .navbar_lg{
+    display: none;
+  }
+  .navbar_sm{
+    display: block !important;
+  }
+
+  .ocult{
+    display: none;
+  }
+
+  .logut-btn{
+    display: block !important;
+  }
+
+
+  .btn_icon {
+    text-align: right !important;
+    /*float: right !important;*/
+    margin-left: 55% !important;
+   
+  }
+  /*estilos del slider de informacion*/
+  .img-info{
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    margin: auto !important;
+    padding: 0px;
+    margin-top: 21px !important;
+  }
+
+ 
+
+    .btn-app {
+      font-size: 12px !important; 
+      height: 60px !important;
+      margin: 0 0 5px 5px !important; 
+      min-width: 40px !important;
+      
+      font-weight: 400 !important;
+      font-size: 7.06133px !important;
+      line-height: 9px !important;
+    }
+    .dropdown-menu {
+      min-width: auto !important; 
+      top: 0px; 
+      left: 0px; 
+      transform: translate3d(-16px, -30px, 0px) !important;
+    }
+    .dropdown-item {
+        
+      padding: .2rem 1rem !important;
+      /* background-color: transparent; */
+      font-family: 'Calibri' !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      font-size: 7.06133px !important;
+      line-height: 9px !important;
+    }
+    .carousel-control-next{
+      width: 8% !important;
+    }
+   
+   /*acerca de*/
+   .text-desc{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
+   
+   }
+
+  
+   #modalLogout{
+    margin: 0px !important;
+   }
+   /*carrucel*/
+   .main-carousel{
+       padding: 0px !important;
+       margin: 0px !important;
+       border-radius: 22px;
+       height: 74px !important;
+    
+   }
+   .imgTop{
+    padding: 0px !important;
+     /*margin: 0px !important;*/
+   }
+   .nav_content{
+      margin-top: -11px !important;
+      padding: 0px !important;
+   }
+   .attachment_titulo{
+       font-size: 1em;
+   }
+   .attachment_desc{
+       font-size: 0.8em;
+   }
+   .content-item-carrosel{
+       margin: 0px !important;
+   }
+
+   /*perfil usuario*/
+   .user_block{
+      margin-top: 15px;
+      margin-left: 15px;
+      height: 173px;
+   }
+   #usernamePerfil{
+      margin-top: 8px !important;
+      width: 142.35px !important;
+      height: 20.68px !important;
+      left: 119.82px !important;
+      top: 55.03px !important;
+
+      font-family: 'Calibri' !important;
+      font-style: normal !important;
+      font-weight: 700 !important;
+      font-size: 14px !important;
+      line-height: 17px !important;
+      color: #4F4F4F;
+   }
+   #description{
+      width: 51.1px;
+      height: 18.25px;
+      left: 119.82px;
+      top: 76.93px;
+
+      font-family: 'Calibri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      /* Gray 2 */
+
+      color: #4F4F4F;
+   }
+   .img_user_perfil_app{
+
+      width: 73px;
+      height: 73px;
+      left: 31px;
+      top: 38px;
+
+      background: #C4C4C4;
+   }
+
+   /*footer */
+   /*footer */
+  .main-footer_ {
+    display: block;
+     background: #fff;
+     border-top: 1px solid #dee2e6; 
+     color: #869099;
+     padding: 1rem; 
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     position: fixed;
+     right: 0;
+     z-index: 1032;
+     padding: 1px;
+     height: 50px;
+  }
+  .text_item_footer{
+   margin-top: -8px !important;
+   font-family: 'Calibri';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px !important;
+   line-height: 22px;
+   color: #4F4F4F;
+  }
+}

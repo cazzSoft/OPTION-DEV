@@ -1,5 +1,5 @@
-{{-- <li class="nav-item">
-    <a class="nav-link" data-widget="pushmenu" href="#"
+<li class="nav-item">
+    <a class="nav-link text-dark " data-widget="pushmenu" href="#"
         @if(config('adminlte.sidebar_collapse_remember'))
             data-enable-remember="true"
         @endif
@@ -11,11 +11,15 @@
         @endif>
         <i class="fas fa-bars"></i>
         <span class="sr-only">{{ __('adminlte::adminlte.toggle_navigation') }}</span>
-    </a>
-</li> --}}
 
-{{-- <li class="nav-item dropdown user-menu ">
-    <a href="#" class="nav-link dropdown-toggle mb-4" data-toggle="dropdown">
-        <img src="/img/logo2.png" class="img " alt="Option2health" width="88px"> 
     </a>
-</li> --}}
+    <span class="text-menu">Menú</span>
+</li>
+
+@guest
+    <li class="nav-item  user-menu ">
+        <a href="#" class="nav-link ">
+           <img src="/img/logo2.png" class="img_nav " alt="Option2health" >
+        </a>
+    </li>
+@endguest

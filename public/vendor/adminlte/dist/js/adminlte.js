@@ -716,7 +716,7 @@
     $(document).on('click', Selector.TOGGLE_BUTTON, function (event) {
       event.preventDefault();
       var button = event.currentTarget;
-
+      alert(1);
       if ($(button).data('widget') !== 'pushmenu') {
         button = $(button).closest(Selector.TOGGLE_BUTTON);
       }

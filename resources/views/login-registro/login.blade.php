@@ -15,7 +15,7 @@
                 <li class="nav-item dropdown" >
                     <div class="d-flex flex-row-reverse mr-3 idioma">
                         <div class="p-2">
-                            <form method="POST" action="{{url('lang')}}" id="form-language">
+                            <form method="POST" action="{{url('lang')}}" id="form-language"> 
                                 {{ csrf_field() }}
                                 <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
                                    <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
@@ -97,15 +97,15 @@
                                 </div>
 
                             </form>
-                            <p class="mt-4 text-center none">
-                                - O -
+                            <p class="mt-4 text-center ">
+                                - O - 
                             </p>
-                            <p  class="mb-2 mt-3 text-center h5" >
+                            <p  class="mb-2 mt-3 text-center h5 btn_registrate_sty" >
                                 <a disabled="false" style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
                                      {{trans('log-in-paciente.registrate') }}
                                 </a>
                             </p>
-
+                            <br>
                             <p  class="mb-2 mt-3 text-right h6 btn-regresar" >
                                 <a disabled="false" style="color: #13c6ef;" href="" class="">
                                    <i class="fas fa-sign-in-alt"></i>  {{trans('log-in-paciente.elegir-opcion') }}
@@ -149,10 +149,10 @@
                                       @enderror
                                 </div>
                                
-                                <div class="row  justify-content-md-center none">
+                                <div class="row  justify-content-md-center ">
                                   <div class="col-xl-10 col-md-12 col-sm-12 text-center">
                                     <button type="submit" class="btn btn-block btn-outline-secondary btn-md  mt-4"> {{trans('log-in-paciente.registrar') }} </button>
-                                    <div class="mt-3 ">
+                                    <div class="mt-3 none">
                                        <span class="text-muted">  {{trans('log-in-paciente.al-crear-cuenta') }}</span> <br>
                                         <a class="text-info_ btn"  onclick="openInfoTermiCondiciones()">{{trans('log-in-paciente.acepta-los') }}</a>
                                     </div>
@@ -161,11 +161,12 @@
                                 </div>
                             </form>
                             
-                            <p  class="mb-2 mt-5 text-center h5" >
+                            <p  class="mb-4 mt-5 text-center h5 link_login" >
                                 <a disabled="false" style="color: #13c6ef;" href="/log-in-paciente" class="link-login">
                                    <i class="fas fa-sign-in-alt"></i>  {{trans('log-in-paciente.iniciar-session') }}
                                 </a>
                             </p>
+
                       </div>
                     </div>
                     <div class="social-auth-links text-center mt-5 btn_sociales">
@@ -218,7 +219,7 @@
                             <p class="mt-4 text-center">
                                 - O -
                             </p>
-                            <p  class="mb-2 mt-3 text-center h5" >
+                            <p  class="mb-2 mt-3 text-center h5 btn_registrate_sty" >
                                 <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
                                       {{trans('log-in-paciente.registrate') }}
                                 </a>
@@ -280,7 +281,7 @@
                                 </div>
                             </form>
                             
-                            <p  class="mb-1 mt-3 text-center h5" >
+                            <p  class="mb-1 mt-3 text-center h5 link_login" >
                                 <a disabled="false" style="color: #13c6ef;" href="/log-in-medico" class="link-login">
                                    <i class="fas fa-sign-in-alt"></i> {{trans('log-in-paciente.iniciar-session') }}
                                 </a>
@@ -323,7 +324,7 @@
                             <p class="mt-4 text-center">
                                 - O -
                             </p>
-                            <p  class="mb-2 mt-3 text-center h5" >
+                            <p  class="mb-2 mt-3 text-center h5 btn_registrate_sty" >
                                 <a disabled="false"  style="color: #13c6ef;" class="btn_registrate btn " data-user="{{$data['tipo']}}">
                                      {{trans('log-in-paciente.registrate') }}
                                 </a>

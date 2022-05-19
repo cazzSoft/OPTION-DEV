@@ -743,6 +743,7 @@ class ComposerStaticInitedcc518e8a9f32ef137c08edbbe659f7
         'App\\UsuarioAreaModel' => __DIR__ . '/../..' . '/app/UsuarioAreaModel.php',
         'App\\UsuarioEspecialidadModel' => __DIR__ . '/../..' . '/app/UsuarioEspecialidadModel.php',
         'App\\biblioteca_virtualModel' => __DIR__ . '/../..' . '/app/biblioteca_virtualModel.php',
+        'App\\config_email_receiverModel' => __DIR__ . '/../..' . '/app/config_email_receiverModel.php',
         'Arcanedev\\LogViewer\\Commands\\CheckCommand' => __DIR__ . '/..' . '/arcanedev/log-viewer/src/Commands/CheckCommand.php',
         'Arcanedev\\LogViewer\\Commands\\ClearCommand' => __DIR__ . '/..' . '/arcanedev/log-viewer/src/Commands/ClearCommand.php',
         'Arcanedev\\LogViewer\\Commands\\Command' => __DIR__ . '/..' . '/arcanedev/log-viewer/src/Commands/Command.php',
