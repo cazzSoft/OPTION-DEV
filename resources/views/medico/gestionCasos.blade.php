@@ -96,7 +96,7 @@
   @section('include_css') 
       <!-- Ionicons -->
       <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-       <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
+      {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
       <style >
         .btn-info_{
           width: 229px;

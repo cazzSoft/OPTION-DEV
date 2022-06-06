@@ -179,7 +179,7 @@
        
 
     @section('include_css') 
-       <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
+       {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
       <style>
         .medico {
             position: absolute;

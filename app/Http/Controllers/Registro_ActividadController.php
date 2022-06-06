@@ -11,8 +11,11 @@ use App\Events\HomeEventShare;
 use App\Events\MedicoEventSeguirSociales;
 use App\Events\MedicoEventTabsChange;
 use App\Events\PerfilUserEventUsuarioEdit;
+
 use App\Events\UserEventBibliotecaAction;
 use App\Events\UserEventPreguntaIntere;
+
+
 use App\Events\userRegistro;
 use App\PruebaModel;
 use App\Registro_ActividadModel;
@@ -73,25 +76,10 @@ class Registro_ActividadController extends Controller
         // return 'success';
     }
 
-    public function prueba($value)
+    public function prueba()
     {
-       // dd($value);
-
-        // $exists= Storage::disk('diskDocumentosPerfilUser')->exists($value);
-        // if($exists){
-        //     $url= Storage::disk('diskDocumentosPerfilUser')->url($value);
-        //     $prueba= new PruebaModel();
-        //     $prueba->des=$url.'de prueba  '.$exists;
-        //     $prueba->save();
-
-        //    return $url;
-        //      return ' <img src="'.\Storage::disk('diskDocumentosPerfilUser')->get('FotoPerfil/'.$value).'" alt="eww"  class=" img-circle img-fluid p-0 elevation-1">';
-        // }
-      
-        //     $prueba= new PruebaModel();
-        //     $prueba->des=$exists.'no hay';
-        //     $prueba->save();
-       return 'no hay';
+        // return 2;
+        return redirect('/log-in-paciente')->with(['info'=>'s']);
        
     }
 

@@ -83,48 +83,6 @@ class RegisterController extends Controller
                         'password' => ['required', 'string', 'min:8'],
                     ], $messages);
        
-
-        // if($ver=='M'){
-        //     return Validator::make($data, [
-        //         'name' => ['required', 'string', 'max:255'],
-        //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //         'telefono' => ['required', 'string', 'max:10'],
-        //         'fecha_nacimiento' => ['required'],
-        //         'termino' => ['required'],
-        //         'idtitulo_profesional' => ['required'],
-        //         'cedula' => ['required','max:13'],
-        //         'nom_referido' => ['required'],
-        //         'detalle_estudio' => ['required'],
-        //         'idespecialidades' => ['required'],
-        //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        //     ]);
-        // }elseif($ver=='empre'){
-        //     return Validator::make($data, [
-        //         'name' => ['required', 'string', 'max:255'],
-        //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //         'telefono' => ['required', 'string', 'max:10'],
-        //         'fecha_nacimiento' => ['required'],
-        //         'razon_socila' => ['required'],
-        //         'cedula' => ['required', 'string', 'max:13'],
-        //         'genero' => ['required'],
-        //         'nom_comercial' => ['required'],
-        //         'idarea' => ['required'],
-        //         'termino' => ['required'],
-        //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        //     ]);
-        // }else{
-        //     return Validator::make($data, [
-        //         'name' => ['required', 'string', 'max:255'],
-        //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //         'telefono' => ['required', 'string', 'max:10'],
-        //         'fecha_nacimiento' => ['required'],
-        //         'genero' => ['required', 'integer'],
-        //         'idciudad' => ['required', 'string', 'max:11'],
-        //         'termino' => ['required'],
-        //         'tine_hijo' => ['required'],
-        //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        //     ]);
-        // }
         
     }
 

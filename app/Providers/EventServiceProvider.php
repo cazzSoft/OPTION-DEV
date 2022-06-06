@@ -239,7 +239,7 @@ class EventServiceProvider extends ServiceProvider
                     ],
                     [
                       'text' => '¿Qué Somos?',
-                      'url'  => 'nosotros_',
+                      'url'  => 'nosotros',
                       'icon' => 'fa fa-notes-medical',
                     ],
                     [

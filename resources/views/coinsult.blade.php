@@ -10,6 +10,10 @@
                     <a href="/">  <p class=" text-lead h2 text-info_ ">  <i class="fas fa-chevron-left mr-3 text-info_"></i>  Coinsults  </p></a>    
                 </div>
             </div>
+
+            @movil
+
+            @else
             <div class="col-lg-7  col-sm-12">
                 <div class="d-flex justify-content-start ml-4 flex_content_coinsul">
                     <div class="card  border-0">
@@ -17,7 +21,7 @@
                             
                             <div class="row">
                                 <!-- /.col -->
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
+                                <div class="col-lg-4 col-md-6 ">
                                     <div class="description-block info-box mb-3 border border-info p-0">
                                         <span class="description-text text-info_">Coinsults Actuales</span>
                                         <h4 class="description-text text-secondary">{{Auth::user()->coins()}}</h4>
@@ -25,7 +29,7 @@
                                     <!-- /.description-block -->
                                 </div>
                                 <!-- /.col -->
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 ">
                                     <div class="description-block info-box mb-3 border border-info">
                                         <span class="description-text text-info_">Movimientos</span>
                                         <h4 class="description-text text-secondary">{{Auth::user()->coins_movimiento()}}</h4>
@@ -99,6 +103,7 @@
                     @endif
                 </div>
             </div>
+            @endmovil
         </div>
     </div>
 
@@ -106,22 +111,16 @@
         
     
     @section('include_css') 
-      <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
+       {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('css/coinsults.css') }}">
+      <style>
+        
+          
+      </style>
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
-        <style>
-           .card {
-               box-shadow: 0 0 0px rgb(0 0 0 / 0%), 0 1px 3px rgb(0 0 0 / 0%) !important;
-               margin-bottom: 1rem !important;
-           }  
 
-           .timeline>div>.timeline-item>.timeline-header {
-               border-bottom: 0px solid rgba(0,0,0,.125);
-               
-           }
-            
-        </style>
     @stop
     
 

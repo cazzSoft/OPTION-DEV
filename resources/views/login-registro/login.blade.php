@@ -1,14 +1,15 @@
 
 @extends('layouts.baseLogin')
+{{-- @extends('homeOption2h') --}}
 @section('title','Registro')
 
-{{-- @section('plugins.toastr',true) --}}
+@section('plugins.toastr',true)
 {{-- class="hold-transition login-page" --}}
 @section('content')
     <div class="container-fluid  p-1 nav-login-info">
       <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
         <div class=" container-fluid ">
-          <a href="{{url('session')}}" class="navbar-brand ml-4 ">
+          <a href="{{url('/')}}" class="navbar-brand ml-4 ">
             <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
           </a>
             <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
@@ -417,9 +418,15 @@
     @include('modalTerminoCondiciones')
 @endsection
 
-
- @section('adminlte_js')
+{{-- Seccion para insertar css--}}    
+@section('include_css')
     <link rel="stylesheet" href="{{ asset('css/login-registro/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@stop 
+
+@section('adminlte_js')
+    <script src="{{ asset('/js/confOption2h.js') }}"></script>
+   
     <script >
         // variavle global
         var txt_tit=`{{trans('log-in-paciente.registrate') }}`;
@@ -469,12 +476,12 @@
         
     @if(session()->has('info'))
          <script >
-
-            alert('{{session('info')}}');
-           // mostrar_toastr('{{session('info')}}','{{session('estado')}}')
-         </script>
+           mostrar_toastr('{{session('info')}}','{{session('estado')}}',7000);
+        </script>
     @endif
+
+  
     {{-- <script > mostrar_toastr('qweqwe','error')</script> --}}
-    <script src="{{ asset('/js/register.js') }}"></script>
+     <script src="{{ asset('/js/register.js') }}"></script>
      <script src="{{ asset('/js/global.js') }}"></script>
  @stop

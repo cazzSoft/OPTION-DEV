@@ -71,7 +71,7 @@ class ListenerRegistered
 
         $result=$this->actividad->historialUser($dataActividad,$dataRegistro);
 
-        //envio de mensaje de bienvenida email
+        //envio de mensaje de bienvenida email 
             try {
 
                 $de=$user->email;
@@ -88,7 +88,7 @@ class ListenerRegistered
                 logger('send email'.$th->getMessage());
                 // return $th->getMessage();
             }
-        
+            
         logger($result);
         $event->user->last_login = new \DateTime();
         $event->user->online = 1;

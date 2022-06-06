@@ -1,5 +1,5 @@
-<div id="carouselExampleIndicators" class="carousel slide  border-bottom  ml-5 mr-5" data-ride="carousel">
-  <ol class="carousel-indicators ">
+<div id="carouselExampleIndicators" class="carousel slide  border-bottom  ml-5 mr-5 mb-4" data-ride="carousel">
+  <ol class="carousel-indicators carousel-indicators_noti mt-5">
     @if(isset($listaNoticia))
       @foreach($listaNoticia as $key=>$noti)
         @if($loop->iteration-1==0)
@@ -10,7 +10,7 @@
       @endforeach   
     @endif
   </ol>
-  <div class="carousel-inner ">
+  <div class="carousel-inner mb-5" >
     @if(isset($listaNoticia)) 
       @foreach($listaNoticia as $key=>$noti)
           <div class="carousel-item  @if($loop->iteration==1) active @endif ">
@@ -18,50 +18,74 @@
               <div class="card-body row text-dark">
                 <div class="col-md-7 col-sm-12 text-center ">
                   <div class="ml-5 mr-5 ">
-                      <div   class="w-75 mx-auto    border border-white ">
-                        <img class=" card-img-top img-not" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}@else{{ asset('img/error.png')}} @endif " alt="Photo">
-                      </div>
-                      <h3 class="mt-4 title-notice">
-                        <strong>
-                          <p>{{$noti[0]['titulo']}} | {{$noti[0]['autor']}}</p>
-                        </strong> 
-                      </h3>
-                      <p class="lead mb-5 mt-3 text-justify detalle-notice">
-                        {{ Str::limit($noti[0]['descripcion'], 228,'.') }}... <br>
-                        <a href="{{url('noticia/ver/'.$noti[0]['idnoticia_encryp'])}}">ver mas...</a>
-                      </p>
-                    
+                    <div  class="w-75 mx-auto    border border-white ">
+                      <img class=" card-img-top img-not" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}@else{{ asset('img/error.png')}} @endif " alt="Photo">
+                    </div>
+                    <h3 class="mt-4 title-notice">
+                      <strong>
+                        <p>{{$noti[0]['titulo']}} | {{ Str::limit($noti[0]['autor'], 38,'...')}}</p>
+                      </strong> 
+                    </h3>
+                    <p class=" mb-3 mt-3 text-justify detalle-notice">
+                      {{ Str::limit($noti[0]['descripcion'], 228,'...') }}<br>
+                      <a href="{{url('noticia/ver/'.$noti[0]['idnoticia_encryp'])}}">ver mas...</a>
+                    </p>
                   </div>   
                 </div>
-                <div class="col-lg-5 col-md-5 col-sm-12 {{-- pre-scrollable --}}" {{-- style="max-height: 640px;" --}}>
-                  @if(isset($noti))
-                    @foreach($noti->take(4) as $key=>$item)
-                      
-                      <div class="row ">
-                        <div class="col-4">
-                          <img class="img-fluid mb-3" src="{{$img=\Storage::disk('wasabi')->temporaryUrl( $item['img'], now()->addMinutes(3600))}}" alt="Photo">
+                @movil
+                  <div class="col-lg-5 col-md-5 col-sm-12  ">
+                    @if(isset($noti))
+                      <div id="slider_noticia" class="draggable-slider slider_noticia" >
+                        <div class="inner">
+                          @foreach($noti as $key=>$item)
+                            {{-- @if($key!=0) --}}
+                              <div class="slide">
+                                <img src="{{$img=\Storage::disk('wasabi')->temporaryUrl( $item['img'], now()->addMinutes(3600))}}" class="img_slide_noti" alt="">
+                                <span class="slide_title_noti">{{ Str::limit($item['titulo'],20,'.')}}</span><br>
+                                <span class="slide_des_noti">  <small> {{ Str::limit($noti[0]['autor'], 38,'.') }}</small></span>
+                              </div>
+                             
+                            {{-- @endif  --}}
+                          @endforeach   
                         </div>
-                       
-                        <div class="col-8 ">
-                          <div class="row justify-content-md-center mr-5 content-item-carrosel">
-                            <p class="attachment-heading  align-content-md-center h4 attachment_titulo title-notice"> 
-                              <a href="{{url('noticia/ver/'.$item['idnoticia_encryp'])}}" class="text-dark">{{$item['titulo']}}</a>
-                            </p>
-                            <p class="attachment-heading  align-content-md-left h5 text-muted attachment_desc">  {{ Str::limit($noti[0]['descripcion'], 68,'.') }}...</p>
-                          </div>
-                         
-                        </div>
-                      </div>  
-                    @endforeach
-                  @endif
-                </div>
+                      </div>
+                    @endif 
+                  
+                  </div>
+                @else
+                  <div class="col-lg-5 col-md-5 col-sm-12  ">
+                    @if(isset($noti))
+                      @foreach($noti->take(4) as $key=>$item)
+                        @if($key!=0)
+                          <div class="row {{$key}}">
+                            <div class="col-4">
+                              <img class="img-fluid mb-3" src="{{$img=\Storage::disk('wasabi')->temporaryUrl( $item['img'], now()->addMinutes(3600))}}" alt="Photo">
+                            </div>
+                           
+                            <div class="col-8 m-auto">
+                              <div class="row  mr-5 content-item-carrosel m-auto">
+                                <p class="attachment-heading  align-content-md-left h5 text-muted attachment_desc">
+                                  <a href="{{url('noticia/ver/'.$item['idnoticia_encryp'])}}" class="text-dark">
+                                    <b>{{$item['titulo']}}</b> <br>
+                                    {{ Str::limit($item['autor'], 30,'...')}}
+                                  </a>
+                                  {{-- {{ Str::limit($noti[0]['descripcion'], 68,'.') }}...</p> --}}
+                              </div>
+                             
+                            </div>
+                          </div>  
+                        @endif  
+                      @endforeach
+                    @endif
+                  </div>
+                @endmovil
               </div>
             </div>
           </div>
       @endforeach   
     @endif
   </div>
-  <a class="carousel-control-prev text-dark " style="width:60px; " href="#carouselExampleIndicators" role="button" data-slide="prev">
+  <a class="carousel-control-prev text-dark d-none" style="width:60px; " href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-custom-icon d-none" aria-hidden="true">
       <i class="fas fa-chevron-left"></i>
     </span>
@@ -74,3 +98,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+

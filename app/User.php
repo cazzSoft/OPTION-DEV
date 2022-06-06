@@ -36,13 +36,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
- //    public function persona(){
-	//     return $this->hasMany('App\PersonaModel', 'idpersona', 'idpersona');
-	// }
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    //obtener img del perfil del usuario
     public function adminlte_image()
     {
        try {
@@ -67,24 +66,24 @@ class User extends Authenticatable
        }
     }
 
+    // descripcion del tipo de usuario
     public function adminlte_desc()
     {
         if(isset(auth()->user()->idtipo_user)){
             $us=TipoUserModel::find(auth()->user()->idtipo_user)->descripcion;    
             return $us;   
-        }
-        
+        } 
     }
 
     //obtener notificaciones
     public function notify()
     {
-         if(isset(auth()->user()->id)){
+        if(isset(auth()->user()->id)){
             $listNotify=Notificacion::with('detalle_notificacion')->where('activo',1)->where('iduser',auth()->user()->id)->get();
             $count_notify=Notificacion::where('estado',1)->where('activo',1)->where('iduser',auth()->user()->id)->get()->count();
              return ['count_notify'=>$count_notify ,'listaNotify'=>$listNotify]; 
-         }
-         return null;
+        }
+        return null;
     }
    
     //coinsult actuales count
@@ -106,13 +105,14 @@ class User extends Authenticatable
     //coinsult movimientos count
     public function coins_movimiento()
     {
-         if(isset(auth()->user()->id)){
+        if(isset(auth()->user()->id)){
             $id=auth()->user()->id;
             $cant=CoinsultModel::where('iduser',$id)->count();
             return $cant;
-         }
+        }
     }
 
+    // obtener ruta ruta del perfil medico
     public function adminlte_profile_url()
     {
         
@@ -142,14 +142,15 @@ class User extends Authenticatable
     // obtener top doctores
     public function topMedicos()
     {
-         if(isset(auth()->user()->id)){
+        if(isset(auth()->user()->id)){
             $tipo=TipoUserModel::where('abr','dr')->first();
-            $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->get();
+            $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->where('estado_registro',1)->get();
             return $listaTopMedico;
-         }
+        }
          
-         return null;
+        return null;
     }
+
     public function ciudad()
     {
         return $this->hasOne('App\CiudadModel', 'idciudad', 'idciudad');
@@ -170,12 +171,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\TituloModel', 'idtitulo_profesional', 'idtitulos');
     }
 
-    /**
-     * Send the password reset notification.
-     *
-     * @param  string  $token
-     * @return void
-     */
+    
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

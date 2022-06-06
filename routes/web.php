@@ -180,6 +180,6 @@ use Illuminate\Support\Facades\Auth;
     
      // Route::get('/colas', 'Registro_ActividadController@colas');
 
-    Route::get('/prueba/{img}', 'Registro_ActividadController@prueba');
+    // Route::get('/prueba', 'Registro_ActividadController@prueba');
    
 

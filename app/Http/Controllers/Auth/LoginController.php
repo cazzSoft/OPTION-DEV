@@ -12,7 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Session;
 use Log;
+use Mail;
+use Illuminate\Auth\Events\Registered ;
 
 class LoginController extends Controller
 {
@@ -50,7 +53,7 @@ class LoginController extends Controller
       return 'email';
     }
 
-    public function redirectToProvider($driver)
+    public function redirectToProvider($driver) 
     {
         return Socialite::driver($driver)->redirect();
     }
@@ -68,25 +71,35 @@ class LoginController extends Controller
                     auth()->login($usuario);
                     return redirect('coinsultIn');  
                 }else{
-                     // dd ($user);
+                   
+                    // validaciones requeridas y unicas del campo email
+                    $request=[
+                       'email' =>$user->getEmail(),
+                         // 'email' =>'',
+                    ];
 
-                    //validaciones requeridas y unicas del campo email
-                    // $request=[
-                    //    'email' =>$user->getEmail(),
-                    // ];
+                    //REGLAS
+                     if(Session::get('language')=='en'){
+                        $messages = [ 
+                            'email.required' => 'Registration has ended with an error, could not get your email',
+                        ];
+                     }else{
+                        $messages = [
+                            'email.required' => 'El registro ha finalizado con un error, no se pudo obtener su correo electrónico',
+                        ];
+                     }
 
-                    // $collection = collect($request);
+                    $collection = collect($request);
+                    $validator = Validator::make($collection->all(), [
+                         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    ],$messages);
 
-
-                    //     $validator = Validator::make($collection->all(), [
-                    //          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                    //     ]);
-
-                    //     if ($validator->fails()) {
-                    //         $error= $validator->errors()->first();
-                    //         return redirect('log-in')->with(['info'=>'Option2Health, '.$error,'estado'=>'error']);
-                    //     }
-
+                  
+                    if ($validator->fails()) {
+                        $error= $validator->errors()->first();
+                        return redirect('/log-in-paciente')->with(['info'=>$error,'estado'=>'error']);
+                    }
+                    
                     //registro de usuario paciente
                         $usuario= User::create([
                                 'social_id' => $user->getId(),
@@ -108,6 +121,24 @@ class LoginController extends Controller
                         $datos_medico->save();
 
                         auth()->login($usuario);
+
+                        //envio de mensaje de bienvenida email 
+                            try {
+
+                                $de=$usuario->email;
+                                Mail::send('mail.send-mail-bienvenida', ['data'=>$usuario], function ($m) use ($de,$usuario) {
+                                    $m->to($usuario->email)
+                                    ->from('info@option2health.com', 'Option2Health')
+                                    ->subject('¡Te damos una cordial bienvenida a la comunidad de Option2Health!');
+                                });
+                                 logger('send email'.$de);
+                                
+
+                            } catch (\Throwable $th) {
+                             
+                                logger('send email desde register '.$th->getMessage());
+                                // return $th->getMessage();
+                            }
                        return redirect('coinsultIn'); 
                 }
         } catch (\Throwable $th ) {

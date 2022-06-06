@@ -1,0 +1,45 @@
+
+.card {
+    box-shadow: 0 0 0px rgb(0 0 0 / 0%), 0 1px 3px rgb(0 0 0 / 0%) !important;
+    margin-bottom: 1rem !important;
+}  
+
+.timeline>div>.timeline-item>.timeline-header {
+    border-bottom: 0px solid rgba(0,0,0,.125);
+    
+}
+
+.nav_content {
+ display: none;
+}
+
+ @media (min-width:100px) and (max-width: 767.98px) { 
+
+    .container-fluid{
+        padding: 0px !important;
+    }
+    .flex_titulo{
+        margin: 0px !important;
+    }
+    .flex_content_coinsul{
+        margin: 0px !important;
+    }
+    .flex_titulo a p{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: #4F4F4F !important;
+    }
+    .description-block {
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        font-size: 9.43827px !important;
+        line-height: 12px !important;
+        color: #0281A9 !important;
+        margin: auto;
+    }
+
+ }

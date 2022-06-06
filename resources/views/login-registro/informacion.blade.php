@@ -1,14 +1,14 @@
-
-@extends('layouts.baseLogin')
+@extends('homeOption2h')
+{{-- @extends('layouts.baseLogin') --}}
 @section('title','info')
 
 
 @section('content')
     <!-- Just an image -->
-   <div class="container-fluid  p-1">
+  {{--  <div class="container-fluid  p-1">
      <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
        <div class=" container-fluid ">
-         <a href="{{url('session')}}" class="navbar-brand ml-4 imgSecion">
+         <a href="{{url('/')}}" class="navbar-brand ml-4 imgSecion">
            <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
          </a>
            <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
@@ -33,7 +33,7 @@
            </ul>
        </div>
      </nav>     
-   </div>
+   </div> --}}
    
     <div class="row" style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;">
         <div class=" @if($data['tp']=='CO') container-fluid  @else container @endif">
@@ -73,7 +73,7 @@
   
 @endsection
 
-@section('adminlte_css') 
+@section('include_css') 
 	<style>
 		.text-info{
 			color:#12adce !important;
@@ -85,6 +85,6 @@
 @stop
 
 @section('adminlte_js') 
-    <script src="{{ asset('/js/global.js') }}"></script>
+    {{-- <script src="{{ asset('/js/global.js') }}"></script> --}}
 @stop
 

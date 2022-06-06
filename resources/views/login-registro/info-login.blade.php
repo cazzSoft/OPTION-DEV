@@ -3,6 +3,7 @@
 @section('title','Registro')
 
 @section('plugins.Select2',true)
+@section('plugins.toastr',true)
 {{-- class="hold-transition login-page" --}}
 @section('content')
     <div class="container-fluid  p-1 nav-login-info">
@@ -43,6 +44,7 @@
                        <h5 class=" h5 text-center mb-3  tex" style="color: #13c6ef !important;"><b>{{trans('session.medicina en tus manos') }}</b></h5>
                        <p class="card-text text-justify"> 
                         {{trans('session.text-medicina en tus manos') }}
+
                        </p>
                     </div>
                     <img class="card-img-top" src="/img/op1.svg" alt="Card image cap">

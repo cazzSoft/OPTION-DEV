@@ -1,59 +1,6 @@
 
- <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg shadow-sm">
-    <div class=" container-fluid ml-5">
-      <a href="/" class="navbar-brand">
-        <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
-      </a>
-      <button class="navbar-toggler btn-lg  btn-flat btn-default btn_icon " style="border-radius:500px; height: 42px; margin-left: -34px;" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="fas fa-search "></span>
-      </button>
-      <div class="collapse navbar-collapse order-3  mb-3 mt-1 " id="navbarCollapse">
-        <form class="ml-0 ml-md-3" id="form_searc_general" >
-          {{ csrf_field() }}  
-          <input type="hidden" id="tpch" value="@if(Auth::user()) 1 @else 0 @endif">
-          <div class="input-group input-group-lg dropdown mt-2" data-toggle="dropdown">
-            <div class="input-group-append">
-              <button class="btn btn-navbar  btn-search" type="button" id="btn_submit_search">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-            <input class="form-control form-control-navbar search dropdown " id="inputSearch_" type="search" placeholder="Search Option2health" aria-label="Search" autocomplete="of">
-            <div class="dropdown-menu dropdown-menu-lgz dropdown-menu-right " id="dropdown-menu1">
-            </div>
-          </div>
-        </form>
-      </div>
-        <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
-         
-          @if(Auth::user())
-            <li class=" mt-2 text-right">
-              <div class="d-inline  bgz-info text-white bt_coins btn text-center" style="margin-top: -111px;">
-                <span class="">{{Auth::user()->coins() }} </span>
-                <span class="ml-1">
-                  <img src="{{asset('img/icon-coins.png')}}" style="width: 20%;margin-top: -6px;" class="p-0" alt="icon-coins">
-                </span>
-              </div>
-            </li>
-
-              @if(config('adminlte.usermenu_enabled'))
-                  @include('adminlte::partials.navbar.menu-item-dropdown-user-menu') 
-              @else
-                  @include('adminlte::partials.navbar.menu-item-logout-link')
-              @endif
-          @else
-               <li class="mr-2  p-0 item-nav">
-                  <p class="text-info">¿Listo para tomar el control de tu salud y de los demás? INGRESA AQUÍ</p>
-               </li>
-               <li class="mr-2" >
-                 <a class="btn  text-light  border-0 text-center btn-registrate "   href="session"> <span>Registrate</span> </a>
-               </li>
-           
-          @endif
-        </ul>
-    </div>
-  </nav>
-  
+ 
+@movil 
   <nav class="main-header navbar  navbar-expand   navbar-white navbar_sm shadow-sm"> 
       <ul class="navbar-nav float-left">
           @include('adminlte::partials.navbar.menu-item-left-sidebar-toggler')
@@ -113,5 +60,74 @@
         </div>
       </div>
   </nav>
+@else
+  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg shadow-sm">
+    <div class=" container-fluid ml-5">
+      <a href="/" class="navbar-brand">
+        <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
+      </a>
+      <button class="navbar-toggler btn-lg  btn-flat btn-default btn_icon " style="border-radius:500px; height: 42px; margin-left: -34px;" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="fas fa-search "></span>
+      </button>
+      <div class="collapse navbar-collapse order-3  mb-3 mt-1 " id="navbarCollapse">
+        <form class="ml-0 ml-md-3" id="form_searc_general" >
+          {{ csrf_field() }}  
+          <input type="hidden" id="tpch" value="@if(Auth::user()) 1 @else 0 @endif">
+          <div class="input-group input-group-lg dropdown mt-2" data-toggle="dropdown">
+            <div class="input-group-append">
+              <button class="btn btn-navbar  btn-search" type="button" id="btn_submit_search">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <input class="form-control form-control-navbar search dropdown " id="inputSearch_" type="search" placeholder="Search Option2health" aria-label="Search" autocomplete="of">
+            <div class="dropdown-menu dropdown-menu-lgz dropdown-menu-right " id="dropdown-menu1">
+            </div>
+          </div>
+        </form>
+      </div>
+        <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
+         
+          @if(Auth::user())
+            <li class=" mt-2 text-right">
+              <div class="d-inline  bgz-info text-white bt_coins btn text-center" style="margin-top: -111px;">
+                <span class="">{{Auth::user()->coins() }} </span>
+                <span class="ml-1">
+                  <img src="{{asset('img/icon-coins.png')}}" style="width: 20%;margin-top: -6px;" class="p-0" alt="icon-coins">
+                </span>
+              </div>
+            </li>
 
- 
+              @if(config('adminlte.usermenu_enabled'))
+                  @include('adminlte::partials.navbar.menu-item-dropdown-user-menu') 
+              @else
+                  @include('adminlte::partials.navbar.menu-item-logout-link')
+              @endif
+          @else
+               <li class=" item-nav m-auto">
+                  <p class="mt-1 text-register">¿Listo para tomar el control de tu salud y de tu Familia? <span class="text-info_">INGRESA AQUÍ</span></p>
+               </li>
+               <li class="item-nav" >
+                 <a class="btn ml-3 text-light  border-0 text-center btn-registrate "   href="session"> <span>Registrate</span> </a>
+               </li>
+               {{-- <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto "> --}}
+                   <li class="item-nav" >
+                       <div class="d-flex flex-row-reverse ml-0  mr-2 idioma">
+                           <div class="p-0">
+                                <form method="POST" action="{{url('lang')}}" id="form-language">
+                                    {{ csrf_field() }}
+                                    <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
+                                       <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
+                                       <option @if(Session::get('language')=='en') selected @endif value="en"> EN</option>
+                                   </select>
+                                </form>
+                           </div>
+                           <div class="p-0 lead text-mutex"> {{trans('informacion-view.Language') }}</div>
+                       </div>
+
+                  </li>
+               {{-- </ul> --}}
+          @endif
+        </ul>
+    </div>
+  </nav>
+@endmovil

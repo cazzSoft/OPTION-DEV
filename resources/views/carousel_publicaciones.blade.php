@@ -1,6 +1,6 @@
-<div id="sliderPubli" class="carousel slide   ml-5 mr-5 " data-ride="carousel">
+<div id="sliderPubli" class="carousel slide  " data-ride="carousel">
   
-  <ol class="carousel-indicators mt-5">
+  <ol class="carousel-indicators ">
     @if(isset($articulos))
       @foreach($articulos as $key=>$art)
         @if($loop->iteration-1==0)
@@ -11,13 +11,13 @@
       @endforeach   
     @endif
   </ol>
-  <div class="carousel-inner">
+  <div class="carousel-inner  ">
     @if(isset($articulos)) 
       @foreach($articulos as $key=>$art)
-          <div class="carousel-item  @if($loop->iteration==1) active @endif mb-5">
+          <div class="carousel-item  @if($loop->iteration==1) active @endif ">
             @if(isset($art['medico'][0]['img']))
                 <div class="card card-widget border-0 shadow w-50 m-auto ">
-                  <div class="card-header border-0">
+                  <div class="card-header border-0 ">
                     <div class="user-block text-dark">
                       <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
                       <img class="img-circle" 
@@ -45,7 +45,7 @@
                   </div>
                   <div class="card-body ">
                       <p class="text-justify text-dark text-descript-publicaciones">
-                        {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
+                        {{ Str::limit($art['descripcion'], 198,'.') }} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
                       </p> 
                       <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
                         <iframe id=""  width="560" height="315" src="{{$art['url_video']}}"  frameborder="0" allowtransparency="true" allowfullscreen ></iframe>
@@ -89,16 +89,16 @@
                   </div>
                 </div>
             @endif
-          </div>
+          </div> 
       @endforeach   
     @endif
   </div>
 
-  <a class="carousel-control-prev " href="#sliderPubli" role="button" data-slide="prev">
+  <a class="carousel-control-prev d-none" href="#sliderPubli" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon d-none" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#sliderPubli" role="button" data-slide="next">
+  <a class="carousel-control-next d-none" href="#sliderPubli" role="button" data-slide="next">
     <span class="carousel-control-next-icon d-none" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
