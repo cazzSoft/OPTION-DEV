@@ -1,12 +1,12 @@
-
-@extends('layouts.baseLogin')
+@extends('homeOption2h')
+{{-- @extends('layouts.baseLogin') --}}
 @section('title','Registro')
 
 @section('plugins.Select2',true)
 @section('plugins.toastr',true)
 {{-- class="hold-transition login-page" --}}
-@section('content')
-    <div class="container-fluid  p-1 nav-login-info">
+@section('contenido')
+    {{-- <div class="container-fluid  p-1 nav-login-info">
       <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
         <div class=" container-fluid ">
           <a href="{{url('/')}}" class="navbar-brand ml-4 imgSecion">
@@ -34,7 +34,7 @@
             </ul>
         </div>
       </nav>     
-    </div>
+    </div> --}}
     <div class="container col-md-12 ">
         <div class="row mt-5">
             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12  div-info-session">
@@ -109,10 +109,10 @@
 @endsection
 
 
-@section('adminlte_css') 
+@section('include_css') 
     <link rel="stylesheet" href="{{ asset('css/login-registro/info-login.css') }}">
 @stop
 
-@section('adminlte_js') 
-    <script src="{{ asset('/js/global.js') }}"></script>
+@section('include_js') 
+    {{-- <script src="{{ asset('/js/global.js') }}"></script> --}}
 @stop

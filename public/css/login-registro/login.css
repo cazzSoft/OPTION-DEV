@@ -118,4 +118,11 @@
     .main-footer{
         display: block;
     }
+
+    .main-footer_{
+        display: none !important;
+    }
+    .foot1{
+        display: none !important;
+    }
 }

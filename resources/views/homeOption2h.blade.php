@@ -116,7 +116,7 @@
   @section('content')
  		@yield('contenido')
       @guest
-        <footer class="main-footer border-info">
+        <footer class="main-footer foot1 border-info">
           <div class="row">
             <div class="col-md-3 col-sm-12 text-center footer-div-1">
               <img src="{{asset('img/logo2.svg')}}" alt="" class="mt-2 img-logo-f">

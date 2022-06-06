@@ -13,7 +13,7 @@
 
 .main-footer{
     display: none;
-}
+} 
 .text-f1{
     font-weight: 400;
     font-size: 10px;
@@ -87,4 +87,12 @@
     .main-footer{
         display: block;
     }
+    
+    .main-footer_{
+        display: none;
+    }
+    .foot1{
+        display: none !important;
+    }
+
 }

@@ -103,15 +103,18 @@
                   @include('adminlte::partials.navbar.menu-item-logout-link')
               @endif
           @else
+              @if( !request()->is(['session','log-in-medico','log-in-paciente']))
+    
                <li class=" item-nav m-auto "> 
                   <p class="mt-2 text-register ">¿Listo para tomar el control de tu salud y de tu Familia? <span class="text-info_">INGRESA AQUÍ</span></p>
                </li>
                <li class="item-nav  " >
                  <a class="btn ml-2 mr-0 text-light  border-0 text-center btn-registrate "   href="session"> <span>Registrate</span> </a>
                </li>
+              @endif
                {{-- <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto "> --}}
-                   <li class="item-nav" >
-                       <div class="d-flex flex-row-reverse ml-0  mr-2 idioma">
+                   <li class="item-nav " >
+                       <div class="d-flex flex-row-reverse ml-0  mr-3 idioma">
                            <div class="p-0">
                                 <form method="POST" action="{{url('lang')}}" id="form-language">
                                     {{ csrf_field() }}
