@@ -103,7 +103,7 @@
                   @include('adminlte::partials.navbar.menu-item-logout-link')
               @endif
           @else
-               <li class=" item-nav m-auto">
+               <li class=" item-nav m-auto"> 
                   <p class="mt-1 text-register">¿Listo para tomar el control de tu salud y de tu Familia? <span class="text-info_">INGRESA AQUÍ</span></p>
                </li>
                <li class="item-nav" >
