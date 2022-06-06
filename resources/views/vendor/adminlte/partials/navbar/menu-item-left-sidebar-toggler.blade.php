@@ -18,7 +18,7 @@
 
 @guest
     <li class="nav-item  user-menu ">
-        <a href="#" class="nav-link ">
+        <a href="/" class="nav-link ">
            <img src="/img/logo2.png" class="img_nav " alt="Option2health" >
         </a>
     </li>

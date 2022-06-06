@@ -232,9 +232,9 @@ class EventServiceProvider extends ServiceProvider
                $event->menu->add(
                     [
                       'text' => 'Inicio',
-                      'url'  => '/home',
+                      'url'  => '/',
                       'icon' => 'fas fa-fw fa-home',
-                      'active' => ['home']
+                      'active' => ['/']
                       
                     ],
                     [

@@ -3,7 +3,7 @@
 @section('title','info')
 
 
-@section('content')
+@section('contenido')
     <!-- Just an image -->
   {{--  <div class="container-fluid  p-1">
      <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
@@ -37,11 +37,11 @@
    
     <div class="row" style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;">
         <div class=" @if($data['tp']=='CO') container-fluid  @else container @endif">
-            <div class="col-md-12 mt-5">
+            <div class="col-md-12 mt-0">
                <a href="{{url('session')}}">  <p class="ml-5 text-lead h1 text-info_ tex-sty text-center">  @if(isset($data))  {{$data['titulo']}} @endif </p>
                </a>
             </div>
-            <div class="col-md-12 mt-3 mb-2 text-center">
+            <div class="col-md-12 mt-3 mb-2 text-center detalle">
                 @if(isset($data['detalle']))
                     {!!$data['detalle']!!}
                 @endif 
@@ -74,14 +74,7 @@
 @endsection
 
 @section('include_css') 
-	<style>
-		.text-info{
-			color:#12adce !important;
-		}
-        .tex-sty{
-            font-family: calibri;
-        }
-	</style>
+	<link rel="stylesheet" href="{{ asset('css/login-registro/informacion.css') }}">
 @stop
 
 @section('adminlte_js') 

@@ -1,0 +1,44 @@
+.text-info{
+    color:#12adce !important;
+}
+.tex-sty{
+    font-family: calibri;
+    font-style: normal;
+}
+.main-footer {
+    display: none;
+}
+
+
+/*// Medium devices (tablets, less than 992px)*/
+@media (max-width: 991.98px) { 
+
+  .lead {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .content-header {
+    display: none;
+  }
+  .ml-5{
+    margin: 0px !important;
+    margin-top: 5px !important;
+  }
+  body {
+      margin: 0;
+      /*font-family: "ca";*/
+      /*font-size: 1rem;*/
+      line-height: 1.2;
+      font-family: 'Calibri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      /*line-height: 19px;*/
+      text-align: justify;
+  }
+  .h1{
+   
+    font-weight: 700;
+    font-size: 31px;
+  }
+}
