@@ -137,6 +137,17 @@
 
     /*color: #000;*/
   }
+  .item_noti{
+    width: 30px;
+    margin: auto;
+    height: 34px !important;
+  }
+  #badgeNoty_app{
+    position: absolute;
+    top: -3px;
+    margin-left: 2px;
+
+  }
   .dropdown-menu-notify {
     top: 70px !important; 
     width: 420px !important;
