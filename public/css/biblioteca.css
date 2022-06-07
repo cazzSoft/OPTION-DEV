@@ -1,0 +1,25 @@
+@media (min-width:100px) and (max-width: 767.98px) { 
+
+    .container-fluid{
+        padding: 0px !important;
+        margin-top: 0px !important;
+    }
+    .flex_titulo{
+        margin: 0px !important;
+    }
+    .flex_content_coinsul{
+        margin: 0px !important;
+    }
+    .flex_titulo a p{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: #4F4F4F !important;
+    }
+   .nav_content {
+   	display: none;
+   }
+
+ }

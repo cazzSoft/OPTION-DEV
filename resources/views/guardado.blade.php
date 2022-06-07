@@ -10,14 +10,24 @@
 {{-- cuerpo de la pagina --}}
 @section('contenido') 
     <div class="container-fluid ">
-      <div class="row mt-4 mb-5">
-        <div class="col-lg-1 col-xs-1">
-          <a href="/" class="text-center " >  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-4"></i></a>    
+      @movil
+        <div class="row">
+          <div class="col-md-12 ">
+              <div class=" flex_titulo">
+               <a href="/">  <p class=" text-lead h2 text-info_ ">  <i class="fas fa-chevron-left mr-3 text-info_"></i>  Publicaciones Guardadas  </p></a>    
+              </div>
+          </div>
         </div>
-        <div class="col-lg-10">
-          <a href="/" class="text-center " > <p class=" text-lead h4 text-info_  text-center">   Publicaciones Guardadas  </p></a> 
+      @else
+        <div class="row mt-4 mb-5">
+          <div class="col-lg-1 col-xs-1">
+            <a href="/" class="text-center " >  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-4"></i></a>    
+          </div>
+          <div class="col-lg-10">
+            <a href="/" class="text-center " > <p class=" text-lead h4 text-info_  text-center">   Publicaciones Guardadas  </p></a> 
+          </div>
         </div>
-      </div>
+      @endmovil
       <div class="row mt-4 mb-4">
         <div class="col-md-3">
           <form action="{{url('gestion/search_user_art')}}" method="POST" class="ml-4 mb-3"> 
@@ -96,7 +106,7 @@
                 @endforeach
             @else 
               
-              <div class="alert alert-light alert-dismissible fade show h4" role="alert">
+              <div class="alert alert-light alert-dismissible fade show h4 text-justify" role="alert">
                 Aún no dispones de publicaciones guaradas. Para guardar las publicaciones que te gusten solo debes darle click al botón de guardar
                 <button type="button" class="close " data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -177,9 +187,9 @@
        
 
     @section('include_css') 
-       {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
+       <link rel="stylesheet" href="{{ asset('css/guardado.css') }}">
       <style>
-        .medico {
+        /*.medico {
             position: absolute;
             border: 1px solid #10ADCF;
             text-align: center;
@@ -193,10 +203,10 @@
             font-size: 1em;
             -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
             box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-        }
-        .img2{
+        }*/
+       /* .img2{
           width: 67%;
-        }
+        }*/
       </style>
     @stop   
     {{-- Seccion para insertar js--}}

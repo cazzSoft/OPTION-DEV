@@ -12,14 +12,24 @@
 @section('contenido')
   
 <div class="container-fluid mt-4">
-  <div class="row mt-4 mb-5">
-    <div class="col-lg-1 col-xs-1">
-      <a href="/" class="text-center " >  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-4"></i></a>    
+  @movil
+    <div class="row mb-4">
+      <div class="col-md-12 ">
+          <div class=" flex_titulo">
+           <a href="/">  <p class=" text-lead h2 text-info_ ">  <b class="h4"><i class="fas fa-chevron-left mr-3 text-info_ "></i></b>  Biblioteca  </p></a> 
+          </div>
+      </div>
     </div>
-    <div class="col-lg-10">
-      <a href="/" class="text-center " > <h4 class="text-center text-info_"><b>Biblioteca</b></h4></a> 
+  @else
+    <div class="row mt-4 mb-5">
+      <div class="col-lg-1 col-xs-1">
+        <a href="/" class="text-center " >  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-4"></i></a>    
+      </div>
+      <div class="col-lg-10">
+        <a href="/" class="text-center " > <h4 class="text-center text-info_"><b>Biblioteca</b></h4></a> 
+      </div>
     </div>
-  </div>
+  @endmovil
   <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 ">
       <form id="form_search_filtro" >
@@ -120,7 +130,7 @@
 
 {{-- Seccion para insertar css--}}
   @section('include_css') 
-    {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/biblioteca.css') }}">
       <!-- Ionicons -->
     <style >
       .objetfit{
