@@ -24,6 +24,10 @@
     margin: 0px !important;
     margin-top: 5px !important;
   }
+  ./*container-fluid{
+    margin-bottom: 112px !important;
+  }*/
+
   body {
       margin: 0;
       /*font-family: "ca";*/
@@ -40,5 +44,12 @@
    
     font-weight: 700;
     font-size: 31px;
+  }
+  .detalle{
+    /*margin-bottom: 122px !important;*/
+  }
+
+  .conten-info   {
+    margin-bottom: 122px !important;
   }
 }

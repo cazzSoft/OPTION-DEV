@@ -103,7 +103,7 @@
                 </button>
               </div>
                 @if (isset($mostrar))
-                    @foreach ($mostrar as $art )
+                   {{--  @foreach ($mostrar as $art )
                       @if(isset($art['medico'][0]['img']))
                         <div class="card card-widget border-0 ">
                             <div class="card-header">
@@ -115,16 +115,14 @@
                                 <span class="description"><a href="{{url('medico/info/'.encrypt($art['iduser']))}}">{{$art['medico'][0]['name']}} </a>- @if(isset($art->created_at)) {{$art->created_at->isoFormat('lll') }} @endif </span>
                               </div>
                               <div class="card-tools">
-                                {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                  <i class="fas fa-minus"></i>
-                                </button> --}}
+                               
                               </div> 
                             </div>
                             <div class="card-body ">
                         <p class="   text-justify text-dark">
                             {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
                           </p> 
-                        <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
+                        <div class="embed-responsive embed-responsive-16by9"  >
                           <iframe id=""  width="560" height="315" src="{{$art['url_video']}}"  frameborder="0" allowtransparency="true" allowfullscreen ></iframe>
                         </div>
                             </div>
@@ -133,7 +131,7 @@
                               <div class="row justify-content-end">
                                 <div class="col-lg-12 text-right p-0">
                                   <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class=" btn btn-app border-0">
-                                    <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  {{-- {{$art['like_count']}} Me gusta --}}
+                                    <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  
                                     <span >{{$art['like_count']}} </span> Me gusta 
                                   </button>
                                   
@@ -166,9 +164,9 @@
                           </div>
                         </div>
                         @endif
-                    @endforeach
+                    @endforeach --}}
                   <div class="form-group text-center mx-auto ">
-                     {{-- {{ $articulos->links() }} --}}
+                    
                   </div>
                 @endif
             @endif

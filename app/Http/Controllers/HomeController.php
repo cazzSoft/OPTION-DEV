@@ -119,7 +119,7 @@ class HomeController extends Controller
                 ->where('estado','1')
                 ->Where('afecta_desc','like','%'.$sexop1.'%')
                 ->orderBy('idarticulo','desc')
-                ->get()->take(6);
+                ->get()->take(16);
         
         //array principales
         $array1=[];
@@ -435,11 +435,11 @@ class HomeController extends Controller
                 $nombre= '00'.auth()->user()->id.'-'.date('Ymd_h_s').'.'.$extension;
 
                 // \Storage::disk('wasabi')->put('FotoPortada/'.$nombre,\File::get($img));
-                 \Storage::disk('diskDocumentosPerfilUser')->put('FotoPerfil/'.$nombre,\File::get($img));
+                \Storage::disk('diskDocumentosPerfilUser')->put('FotoPerfil/'.$nombre,\File::get($img));
 
-                 event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
+                event(new SaveImgEvent(['nombreDoc'=>'FotoPerfil/'.$nombre] ));  
                 
-                  $user->img='FotoPerfil/'.$nombre;
+                $user->img='FotoPerfil/'.$nombre;
             }
 
            

@@ -13,40 +13,31 @@
         <div class="row  justify-content-start mt-3">
             <div class="col-xl-5 col-md-5 col-sm-12 ">
                 <div class="row ">
-                    <div class="col-12 p-4 ml-2">
+                    <div class="col-12 p-3 ml-2">
                         <p class="h4"><strong>Datos Personales </strong></p> 
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 p-3 text-center">
-                       <div class="text-center button-container dropdown show  ">
-                             <img class=" img-fluid img-circle img-bordered-xs " src="{{auth()->user()->adminlte_image()}}" alt="{{asset(auth()->user()->adminlte_image())}}" id="preViewImg2">
-                             <span  class="bg-white p-2 img-circle elevation-3" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-plus text-info p-2 "></i></span> 
+                    <div class="col-lg-6 col-md-12 col-sm-12 p-2 text-center">
+                       <div class="text-center button-container dropdown show ">
+                             <img class=" img-fluid img-circle " src="{{auth()->user()->adminlte_image()}}" alt="{{asset(auth()->user()->adminlte_image())}}" id="preViewImg2">
+                             <label for="file-upload" class="custom-file-upload p-0 bg-white p-2 img-circle elevation-2" id="dropdownMenuLinkImg">
+                                 <i class="fas fa-plus text-info p-1 fa-lg"></i>
+                             </label>
+                            {{--  <span  class="bg-white p-2 img-circle elevation-3" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fas fa-plus text-info p-2 "></i></span>  --}}
                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                  <div class="dropdown-item bg-white mx-auto" >
                                     <form  method="POST" id="update_img_perfil" action="{{url('profile/update_photo')}}"  enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="POST">
-                                        <label for="file-upload" class="custom-file-upload p-0">
-                                            <i class="fa fa-cloud-upload"></i> Añadir foto
-                                        </label>
                                         <input id="file-upload" name="img" class="p-0" type="file"/>
                                     </form>
                                  </div> 
                              </div>
                        </div>
-                       {{-- <div class="dropdown show dropleft" >
-                         <a class="btn btn-secondary " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                           <i class="fas fa-plus text-info p-2 "></i>
-                         </a>
-
-                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                           <a class="dropdown-item" href="#">Action</a>
-                           <a class="dropdown-item" href="#">Another action</a>
-                           <a class="dropdown-item" href="#">Something else here</a>
-                         </div>
-                       </div> --}}
                     </div>
                     <div class="col col-lg-6 bg-white p-3 ">
-                        <p class="h4" >  <b>{{$data->name}}</b>  <i class="far fa-edit ml-3 " style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user"></i></p>
+                       {{--  <span class=" h4  text-truncate bg-info" style="max-width: 40px;"> <b>{{$data->name}}</b>  </span> --}}
+                        {{-- <span class="h4 d-inline-block"><i class="far fa-edit ml-3 " style="cursor:pointer;"  id="btn_action" data-toggle="modal" data-target="#modal-edit-user"></i></span> --}}
+                        <p class="h4">  <i class="far fa-edit ml-3 " style="cursor:pointer;"  id="btn_action" data-toggle="modal" data-target="#modal-edit-user"></i></p>
                         <div class="p-1 text-left info_p">
                             @if(isset($data))
                                 <dl>
@@ -353,7 +344,7 @@
         .ocult{
                 display: none;
         }
-        .medico {
+       /* .medico {
             position: absolute;
             border: 1px solid #10ADCF;
             text-align: center;
@@ -367,19 +358,20 @@
             font-size: 1em;
             -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
             box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-        }
-        .img2{
+        }*/
+        /*.img2{
           width: 67%;
-        }
+        }*/
         .button-container{
             display:inline-block;
             position:relative;
             text-align: center;
+            width: 240px;
         }
           
         .button-container span{
             position: absolute;
-            bottom:1em;
+            bottom:0.1em;
             right:1em;
             background-color:#8F0005;
             border-radius:1.5em;
@@ -398,12 +390,17 @@
             cursor: pointer;
         }
         #preViewImg2{
-            width: 250px;
-            height: 250px;
+            width: 180px;
+            height: 180px;
             object-fit: cover;
            
           }
-
+          #dropdownMenuLinkImg{
+            position: relative;
+            left: -42px;
+            top: 51px;
+            
+          }
         /*estilos botones de medico y noticias*/
           .btn-tab{
             color: #4F4F4F;
@@ -419,6 +416,10 @@
             background-color: #0FADCE !important;
             border-color: #dee2e6 #dee2e6 #fff;
         } 
+
+        .nav_content {
+            display: none;
+        }
       </style>
     @stop   
     {{-- Seccion para insertar js--}}

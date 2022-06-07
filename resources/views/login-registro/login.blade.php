@@ -59,7 +59,7 @@
         </div>
         <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12 "></div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 ">
-            <a href="/session">
+            <a href="/">
                 <img src="{{asset('/img/logo2.svg')}}" alt="o2hLogo" class="profile-user-img border-0 img-fluid d-none" >
             </a>
             <p class=" text-center text-info h4 mb-4 txt_log" style="color: #13c6ef !important;"> @if(isset($data)) {!!$data['icono']!!} @endif  {{trans('log-in-paciente.iniciar-session') }} </p> 

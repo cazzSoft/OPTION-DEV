@@ -231,11 +231,11 @@
 
     </style>
     
-  @stop 
+  @stop  
 
   {{-- Seccion para insertar js--}}
   @section('include_js')
-    <script src="{{ asset('/js/slider.js') }}"></script>
+    <script src="{{ asset('/js/slider.js') }}"></script> 
      <script >
       
        const mySlider = new DraggableSlider('slider_noticia');

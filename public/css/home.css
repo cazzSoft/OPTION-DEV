@@ -105,35 +105,58 @@
 }
 
 /*boton flotante sidebar*/
-#dropdownMenuLink{ 
+/*#dropdownMenuLink{ 
  
   position: absolute !important;
-  width: 30px;
+  width: 30px !important;
   height: 30px;
   left: 94%;
   right: 6.7%;
   top: 1.51%;
   bottom: 92.17%;
-  border-radius: 200px;
+  border-radius: 200px !important;
   border: 2px solid #0FADCE !important;
   cursor: pointer;
-}
+}*/
+
 
 
 /*Diseños y stilos de modal update user*/
+.img-up-per{
+  margin-left: 33px !important;
+}
+
+#dropdownMenuLinkImg{
+  position: relative;
+  left: -42px;
+  top: 51px;
+  
+}
 #preViewImg2{
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
 }
 input[type="file"] {
   display: none;
 }
 .custom-file-upload {
-  /*border: 1px solid #ccc;*/
+ 
   display: inline-block;
   padding: 1px ;
   cursor: pointer;
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 17px;
+  /* identical to box height */
+
+  text-align: center;
+
+  /* Gray 2 */
+
+  color: #4F4F4F;
 }
 
   /*slider home*/

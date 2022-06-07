@@ -46,23 +46,24 @@ class User extends Authenticatable
     {
        try {
            
-           if(isset(auth()->user()->social_avatar)){
-                return auth()->user()->social_avatar;
-           }else if (isset(auth()->user()->img) && auth()->user()->img!=null) {
+            if( isset(auth()->user()->img) && auth()->user()->img!=null ){
                 //verificamos foto en local
                 $img=\Storage::disk('diskDocumentosPerfilUser')->exists(auth()->user()->img);
                 if($img){
-                   return asset(auth()->user()->img);     
+                    return asset(auth()->user()->img);  
                 }
-             return  $url=\Storage::disk('wasabi')->temporaryUrl(
-                     auth()->user()->img,
-                     now()->addMinutes(3600)
-                 );
-           }else{
-             return 'img/user.png';
-           }
+                return  $url=\Storage::disk('wasabi')->temporaryUrl(
+                    auth()->user()->img,
+                    now()->addMinutes(3600)
+                );
+            }else if (isset(auth()->user()->social_avatar)) {
+                return auth()->user()->social_avatar;
+                
+            }else{
+                return  asset('img/user.png');
+            }
        } catch (\Throwable $th) {
-            return 'img/user.png';
+            return asset('img/user.png');
        }
     }
 

@@ -1,7 +1,8 @@
 
  
 @movil 
-  <nav class="main-header navbar  navbar-expand   navbar-white navbar_sm shadow-sm"> 
+  @if(!request()->is(['session','log-in-medico','log-in-paciente']))
+    <nav class="main-header navbar  navbar-expand   navbar-white navbar_sm shadow-sm"> 
       <ul class="navbar-nav float-left">
           @include('adminlte::partials.navbar.menu-item-left-sidebar-toggler')
       </ul>
@@ -59,7 +60,8 @@
           </ul>
         </div>
       </div>
-  </nav>
+    </nav>
+  @endif
 @else
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg shadow-sm">
     <div class=" container-fluid ml-5">

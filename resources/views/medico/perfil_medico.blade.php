@@ -563,6 +563,9 @@
                 height: 150px;
                 object-fit: cover;
             }
+            .nav_content {
+                display: none;
+            }
         </style>
     @stop   
     {{-- Seccion para insertar js--}}

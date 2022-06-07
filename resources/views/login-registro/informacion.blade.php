@@ -36,12 +36,12 @@
    </div> --}}
    
     <div class="row" style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;">
-        <div class=" @if($data['tp']=='CO') container-fluid  @else container @endif">
+        <div class=" conten-info @if($data['tp']=='CO') container-fluid  @else container @endif ">
             <div class="col-md-12 mt-0">
                <a href="{{url('session')}}">  <p class="ml-5 text-lead h1 text-info_ tex-sty text-center">  @if(isset($data))  {{$data['titulo']}} @endif </p>
                </a>
             </div>
-            <div class="col-md-12 mt-3 mb-2 text-center detalle">
+            <div class="col-md-12 mt-3 mb-2 text-center detalle ">
                 @if(isset($data['detalle']))
                     {!!$data['detalle']!!}
                 @endif 
@@ -60,7 +60,7 @@
                     </p> 
                 </div>
                 <div class="col-md-12 mt-3 mb-5">
-                    <div class="lead ml-5 mr-5 p-2 mt-5 text-center">
+                    <div class="lead ml-5 mr-5 p-2 mt-5 text-center mb-4 ">
                         <p class="text-info_ h4 mb-3"><b> {{trans('informacion-view.que-busca') }}</b></p>
                         <p ><b class="text-info_">{{trans('informacion-view.prevencion') }}</b>: {{trans('informacion-view.text-prevencion') }}</p>
                         <p ><b class="text-info_">{{trans('informacion-view.diagnostico') }}</b>: {{trans('informacion-view.text-diagnostico') }}</p>
