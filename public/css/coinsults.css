@@ -41,5 +41,36 @@
         color: #0281A9 !important;
         margin: auto;
     }
+    .info-box {
+        height: 38px !important;
+        margin-bottom: 0.1rem !important;
+        min-height: 20px !important;
+        padding: .2rem !important;
+        width: 100%;
+        border: 0.858025px solid #0FADCE;
+        border-radius: 2.57407px;
+    }
+    .description-text{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12.8704px;
+        line-height: 16px;
+        text-align: center;
+        color: #606060;
+    }
+    .text-lead{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        /* identical to box height */
+
+
+        /* O2H Turq */
+
+        color: #0FADCE;
+    }
 
  }

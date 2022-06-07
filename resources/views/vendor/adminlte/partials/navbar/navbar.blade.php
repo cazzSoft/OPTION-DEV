@@ -30,8 +30,10 @@
             </li>
             @if(Auth::user())
               <li class="nav-link mr-0 text-right item_coins">
+                <a href="{{url('coinsult')}}">
                   <span class="fa "> <img src="{{asset('img/icon-coins-gris.png')}}" class="" style="width: 24px;"  class="p-0 " alt="icon-coins"> </span>
                   <span class="badge  navbar-badge  badge-info" >{{Auth::user()->coins() }}</span>
+                </a>
               </li>
               <li class="nav-link p-0 mt-1 ml-0 mr-0 item_noti">
                   <a class="nav-link dropdown p-0 mt-2" data-toggle="dropdown" href="#" onclick="notyfyEstado_app()">
