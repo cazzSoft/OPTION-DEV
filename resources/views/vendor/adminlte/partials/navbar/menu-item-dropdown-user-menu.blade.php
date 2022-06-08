@@ -43,11 +43,13 @@
     <a class="nav-link mr-1" data-toggle="dropdown" href="#" onclick="notyfyEstado()">
         <i class="far fa-bell "></i>
         @if(Auth::user()->notify()['count_notify']!=0)
-            <span class="badge badge-danger navbar-badge" id="badgeNoty">{{Auth::user()->notify()['count_notify']}}</span>
+            <span class="badge badge-danger navbar-badge" id="badgeNoty"> {{Auth::user()->notify()['count_notify']}} </span>
+        @else
+            <span class="badge badge-danger navbar-badge d-none" id="badgeNoty">  </span>
         @endif
        
     </a>
-    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="listNotify">
         <span class="dropdown-header">{{-- {{Auth::user()->notify()['count_notify']}}  --}}Notificaciones</span>
         @if(isset(Auth::user()->notify()['listaNotify']))
             @foreach(Auth::user()->notify()['listaNotify'] as $item)

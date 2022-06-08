@@ -45,7 +45,7 @@
                       <div class="card-body">
                         <div class="input-group mb-3">
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imgU">
+                            <input type="file" class="custom-file-input border border-white shadow-sm" id="imgU">
                             <label class="custom-file-label" for="imgU">Logo</label>
                           </div>
                         </div>
@@ -59,7 +59,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label class="text-muted" for="telefono"> @if($user_=='dr')Teléfono (que tenga habilitado whatsapp) @elseif($user_=='us')Teléfono @elseif($user_=='em') Teléfono de contacto @endif <span class="text-red">*</span></label>
-                        <input class="form-control  @error('telefono') is-invalid @enderror" name="telefono" id="telefono"
+                        <input class="form-control border border-white shadow-sm  @error('telefono') is-invalid @enderror" name="telefono" id="telefono"
                             placeholder="Número de teléfono " value="{{auth()->user()->telefono }}"  autocomplete="telefono" autofocus required>
                         @error('telefono')
                             <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label class="text-muted" for="cedula">@if($user_=="em" ) Ruc de la Empresa @else Cédula de identidad @endif<span class="text-red">*</span></label>
-                        <input class="form-control  @error('cedula') is-invalid @enderror" name="cedula" id="cedula"
+                        <input class="form-control border border-white shadow-sm @error('cedula') is-invalid @enderror" name="cedula" id="cedula"
                             placeholder="@if($user_=="em" ) Ruc de la Empresa @else Cédula de identidad @endif" value="{{auth()->user()->cedula}}"  autocomplete="cedula" autofocus required>
                         @error('cedula')
                             <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="idtitulo_profesional" class="text-muted">Seleccione Título Profesional <span class="text-red">*</span></label>
-                        <select  class="form-control  select2 @error('idtitulo_profesional') is-invalid @enderror" style="width: 100%;"
+                        <select  class="form-control  select2 border border-white shadow-sm @error('idtitulo_profesional') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione su Título Profesional" name="idtitulo_profesional" id="idtitulo_profesional" required>
                             <option></option>
                             @if(isset($lista_titu))
@@ -106,7 +106,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="razon_socila" class="text-muted">Razón Social  <span class="text-red">*</span></label>
-                            <input type="text" class="form-control  @error('razon_socila') is-invalid @enderror" name="razon_socila" id="razon_socila"  placeholder="Razón Social"
+                            <input type="text" class="form-control border border-white shadow-sm  @error('razon_socila') is-invalid @enderror" name="razon_socila" id="razon_socila"  placeholder="Razón Social"
                                 value="{{ auth()->user()->razon_socila }}" required>
                             @error('razon_socila')
                                 <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="fecha_nacimiento" class="text-muted">@if($user_=="em") Fecha de Nacimiento de la persona de contacto @else Fecha de Nacimiento @endif  <span class="text-red">*</span></label>
-                        <input type="date" class="form-control  @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" id="fecha_nacimiento"
+                        <input type="date" class="form-control border border-white shadow-sm @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento" id="fecha_nacimiento"
                             value="{{ auth()->user()->fecha_nacimiento  }}" required>
                         @error('fecha_nacimiento')
                             <span class="invalid-feedback" role="alert">
@@ -135,7 +135,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="genero" class="text-muted">@if($user_=="em") Género del administrador de la cuenta @else Género @endif<span class="text-red">*</span></label>
-                        <select class="form-control  select2  @error('genero') is-invalid @enderror" style="width: 100%;"
+                        <select class="form-control  select2 border border-white shadow-sm @error('genero') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione su género" name="genero" id="genero"  value="{{ auth()->user()->genero  }}" required>
                             <option  ></option>
                             <option @if(auth()->user()->genero ==1) selected @endif  value="1">Masculino</option>
@@ -154,7 +154,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="idciudad" class="text-muted">Ciudad <span class="text-red">*</span></label>
-                        <select class="form-control  select2 @error('idciudad') is-invalid @enderror" style="width: 100%;"
+                        <select class="form-control  select2 border border-white shadow-sm @error('idciudad') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione su ciudad" name="idciudad" id="idciudad" >
                             <option></option>
                             @if(isset($ciudades))
@@ -176,7 +176,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="nom_comercial" class="text-muted">Nombre Comercial <span class="text-red">*</span></label>
-                        <input class="form-control  @error('nom_comercial') is-invalid @enderror" type="text" name="nom_comercial" id="nom_comercial"
+                        <input class="form-control border border-white shadow-sm @error('nom_comercial') is-invalid @enderror" type="text" name="nom_comercial" id="nom_comercial"
                             placeholder="Nombre de la Empresa" value="{{ old('nom_comercial') }}">
                         @error('nom_comercial')
                             <span class="invalid-feedback" role="alert">
@@ -194,7 +194,7 @@
                 <div class="col-xs-12 col-sm-12   col-md-6 ">
                     <div class="form-group">
                         <label for="nom_referido" class="text-muted">Nombres de tu Referido</label>
-                        <input class="form-control  @error('nom_referido') is-invalid @enderror" type="text" name="nom_referido" id="nom_referido"
+                        <input class="form-control border border-white shadow-sm @error('nom_referido') is-invalid @enderror" type="text" name="nom_referido" id="nom_referido"
                             placeholder="Nombres de tu Referido" value="{{ auth()->user()->nom_referido }}">
                         @error('nom_referido')
                             <span class="invalid-feedback" role="alert">
@@ -207,7 +207,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="idciudad" class="text-muted">Ciudad <span class="text-red">*</span></label>
-                        <select class="form-control  select2 @error('idciudad') is-invalid @enderror" style="width: 100%;"
+                        <select class="form-control  select2 border border-white shadow-sm @error('idciudad') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione su ciudad" name="idciudad" id="idciudad" >
                             <option></option>
                             @if(isset($ciudades))
@@ -229,7 +229,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="tine_hijo" class="text-muted">Tienes Hijos? <span class="text-red">*</span></label>
-                        <select class="form-control  select2 @error('tine_hijo') is-invalid @enderror" style="width: 100%;"
+                        <select class="form-control border border-white shadow-sm select2 @error('tine_hijo') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione " name="tine_hijo" id="tine_hijo" >
                             <option ></option>
                             <option @if(auth()->user()->tine_hijo ==1)  selected="selected" @endif value="1">Si</option>
@@ -248,7 +248,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 ">
                     <div class="form-group">
                         <label for="link_web" class="text-muted">Pagina web</label>
-                        <input class="form-control  @error('link_web') is-invalid @enderror" type="url" name="link_web" id="link_web"
+                        <input class="form-control border border-white shadow-sm @error('link_web') is-invalid @enderror" type="url" name="link_web" id="link_web"
                             placeholder="Url del sitio web" value="{{ old('link_web') }}">
                         @error('link_web')
                             <span class="invalid-feedback" role="alert">
@@ -260,7 +260,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <label for="idarea" class="text-muted">Áreas relacionadas al giro de negocio de la empresa <span class="text-red">*</span></label>
-                        <select multiple class="form-control  select2 @error('idarea') is-invalid @enderror" style="width: 100%;"
+                        <select multiple class="form-control border border-white shadow-sm select2 @error('idarea') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione Áreas" name="idarea[]" id="idarea" >
                             <option></option>
                             @if(isset($lista_area))
@@ -283,7 +283,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="link_fb" class="text-muted">Facebook</label>
-                        <input class="form-control  @error('link_fb') is-invalid @enderror" type="url" name="link_fb" id="link_fb"
+                        <input class="form-control border border-white shadow-sm  @error('link_fb') is-invalid @enderror" type="url" name="link_fb" id="link_fb"
                             placeholder="Url Facebook" value="{{ old('link_fb') }}">
                         @error('link_fb')
                             <span class="invalid-feedback" role="alert">
@@ -295,7 +295,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="link_tw" class="text-muted">Twitter</label>
-                        <input class="form-control  @error('link_tw') is-invalid @enderror" type="url" name="link_tw" id="link_tw"
+                        <input class="form-control border border-white shadow-sm @error('link_tw') is-invalid @enderror" type="url" name="link_tw" id="link_tw"
                             placeholder="Url Twitter" value="{{ old('link_tw') }}">
                         @error('link_tw')
                             <span class="invalid-feedback" role="alert">
@@ -309,7 +309,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="link_lkd" class="text-muted">Linkedin</label>
-                        <input class="form-control  @error('link_lkd') is-invalid @enderror" type="url" name="link_lkd" id="link_lkd"
+                        <input class="form-control border border-white shadow-sm @error('link_lkd') is-invalid @enderror" type="url" name="link_lkd" id="link_lkd"
                             placeholder="Url Linkedin" value="{{ old('link_lkd') }}">
                         @error('link_lkd')
                             <span class="invalid-feedback" role="alert">
@@ -321,7 +321,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-6">
                     <div class="form-group">
                         <label for="link_stg" class="text-muted">Instagram</label>
-                        <input class="form-control  @error('link_stg') is-invalid @enderror" type="url" name="link_stg" id="link_stg"
+                        <input class="form-control border border-white shadow-sm @error('link_stg') is-invalid @enderror" type="url" name="link_stg" id="link_stg"
                             placeholder="Url Instagram" value="{{ old('link_stg') }}">
                         @error('link_stg')
                             <span class="invalid-feedback" role="alert">
@@ -337,7 +337,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <label for="idespecialidades" class="text-muted">Seleccione Áreas o especialidades de su interés <span class="text-red">*</span></label>
-                        <select multiple class="form-control  select2 @error('idespecialidades') is-invalid @enderror" style="width: 100%;"
+                        <select multiple class="form-control  select2 border border-white shadow-sm @error('idespecialidades') is-invalid @enderror" style="width: 100%;"
                             data-placeholder="Seleccione su ciudad" name="idespecialidades[]" id="idespecialidades" >
                             <option></option>
                             @if(isset($lista_especialidad))
@@ -357,7 +357,7 @@
                     <div class="form-group">
                         <label class="text-muted" for="detalle_estudio">Ingrese una introducción de su perfil (se mostrará en la ficha personal) <span class="text-red">*</span></label>
                         
-                        <textarea class="form-control @error('detalle_estudio') is-invalid @enderror"  rows="3" placeholder="Ej: soy una persona..."  value=" " name="detalle_estudio" id="detalle_estudio"  autocomplete="detalle_estudio" autofocus ></textarea>
+                        <textarea class="form-control border border-white shadow-sm @error('detalle_estudio') is-invalid @enderror"  rows="3" placeholder="Ej: soy una persona..."  value=" " name="detalle_estudio" id="detalle_estudio"  autocomplete="detalle_estudio" autofocus ></textarea>
                         @error('detalle_estudio')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -368,7 +368,7 @@
                  <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <label class="text-muted" for="detalle_experiencia">Ingrese su experiencia profesional</label>
-                        <textarea class="form-control @error('detalle_experiencia') is-invalid @enderror"  rows="3" placeholder="Ej: Médico especialista..."  value=" " 
+                        <textarea class="form-control border border-white shadow-sm @error('detalle_experiencia') is-invalid @enderror"  rows="3" placeholder="Ej: Médico especialista..."  value=" " 
                             name="detalle_experiencia" id="detalle_experiencia"  autocomplete="detalle_experiencia" autofocus required></textarea>
                         @error('detalle_experiencia')
                             <span class="invalid-feedback" role="alert">
@@ -379,7 +379,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                    <div class="form-group ">
-                       <label class="text-muted" for="direccion" > Dirección de su consultorio</label>
+                       <label class="text-muted border border-white shadow-sm" for="direccion" > Dirección de su consultorio</label>
                        <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{auth()->user()->direccion}}" placeholder="Ingrese dirección de su consultorio"  autocomplete="direccion" autofocus required>
 
                        @error('direccion')

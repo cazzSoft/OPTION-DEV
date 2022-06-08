@@ -16,7 +16,6 @@
   font-weight: 700;
   font-size: 10px;
   line-height: 12px;
-
   color: #606060;
 }
 .logut-btn{
@@ -108,6 +107,24 @@
   cursor: pointer;
 }
 
+/*boton de coins*/
+a .bt_coins{
+  background: #0FADCE;
+  border-radius: 5px;
+ 
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+/*.bt_coins :hover{
+  background: #0FADCE;
+  border-radius: 5px;
+  color: #fff;
+}*/
 /*footer*/
 .main-footer_ {
    display: none;

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Notificacion;
 use App\NotificacionDetalleModel;
 use Illuminate\Http\Request;
-
+use Log;
 class NotificacionController extends Controller
 {
     /**
@@ -39,9 +39,37 @@ class NotificacionController extends Controller
     }
 
 
-    public function create()
+    public function getNotificacion()
     {
-        //
+        if(isset(auth()->user()->id)){
+            $listNotify=Notificacion::with('detalle_notificacion')->where('activo',1)->where('iduser',auth()->user()->id)->get();
+            $count_notify=Notificacion::where('estado',1)->where('activo',1)->where('iduser',auth()->user()->id)->get()->count();
+            
+            $lista=[];
+            if(isset($listNotify)){
+                foreach ($listNotify as $key => $items) {
+                    $item='
+                        <div class="dropdown-divider"></div>
+                        <a href="'.asset($items["detalle_notificacion"][0]["url"]).'" class="dropdown-item2 text-dark " onclick="notify('.$items['detalle_notificacion'][0]['code'].')"> 
+                          <i class="'.$items['detalle_notificacion'][0]['icon'].' mr-2 text-warning"></i>'.$items['detalle_notificacion'][0]['descripcion'].'
+                          <span class="float-right text-muted text-sm">'.$items['created_at']->isoFormat('l').'</span>
+                        </a> ';
+                    array_push($lista,$item);
+                }
+            }
+
+           
+
+            return response()->json([
+               'jsontxt'=> ['msm'=>'Datos obtenidos','estado'=>'success'],
+               'request'=> ['count_notify'=>$count_notify ,'listaNotify'=>$lista]
+            ],200);
+
+        }
+
+        return response()->json([
+            'jsontxt'=> ['msm'=>'Lo sentimos no se pudo completar la acción','estado'=>'error']
+        ],501);//Not Implemented
     }
 
     /**

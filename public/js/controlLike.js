@@ -9,15 +9,16 @@ function putLike_poin(id,est) {
             $(est).children('i').attr('class','fa fa-heartbeat icon-info');  
             
             $(est).children('span').html(parseInt(con)+1);
-            
+           
        }
        if(data.jsontxt.estado=='warning'){
             $(est).children('i').attr('class','fa fa-heartbeat ');  
             $(est).children('span').html(parseInt(con)-1);
+            
        }
        
         mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)
-    
+        upNotify();
     }).fail(function (data) {
         var data = data.responseJSON;
         // mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)

@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="card-body ">
-                                <p class="   text-justify text-dark">
+                                <p class=" text-justify text-dark">
                                     {{$art->articulo_user[0]['descripcion']}} <a href="{{$art->articulo_user[0]['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art->articulo_user[0]['idarticulo'])}}')">Ver más... </a>
                                 </p> 
                                 <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>

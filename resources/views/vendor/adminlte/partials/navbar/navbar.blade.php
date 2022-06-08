@@ -36,12 +36,11 @@
                 </a>
               </li>
               <li class="nav-link p-0 mt-1 ml-0 mr-0 item_noti">
-                  <a class="nav-link dropdown p-0 mt-2" data-toggle="dropdown" href="#" onclick="notyfyEstado_app()">
+                  <a class="nav-link dropdown p-0 mt-2" data-toggle="dropdown" href="#" onclick="notyfyEstado()">
                       <i class="far fa-bell fa-lg text-gray"></i>
                       @if(Auth::user()->notify()['count_notify']!=0)
-                          <span class="badge badge-danger navbar-badge" id="badgeNoty_app">{{Auth::user()->notify()['count_notify']}}</span>
+                          <span class="badge badge-danger navbar-badge" id="badgeNoty">{{Auth::user()->notify()['count_notify']}}</span>
                       @endif
-                     
                   </a>
                   <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right dropdown-menu-notify">
                       <span class="dropdown-header">{{-- {{Auth::user()->notify()['count_notify']}}  --}}Notificaciones</span>
@@ -68,7 +67,7 @@
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg shadow-sm">
     <div class=" container-fluid ml-5">
       <a href="/" class="navbar-brand">
-        <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
+        <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo2">
       </a>
       <button class="navbar-toggler btn-lg  btn-flat btn-default btn_icon " style="border-radius:500px; height: 42px; margin-left: -34px;" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
         <span class="fas fa-search "></span>
@@ -92,11 +91,11 @@
         <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
          
           @if(Auth::user())
-            <li class=" mt-2 text-right">
-               <a href="{{url('coinsult')}}">
-                <div class="d-inline  bgz-info text-white bt_coins btn text-center" style="margin-top: -111px;">
+            <li class="nav-item  {{-- text-right  --}} m-auto2 mt-2 text-right">
+               <a href="{{url('coinsult')}}" class="" >
+                <div class="d-inline shadow-sm bt_coins btn text-light text-center" {{-- style="margin-top: -111px;" --}}>
                   <span class="">{{Auth::user()->coins() }} </span>
-                  <span class="ml-1">
+                  <span class="ml-1 mr-0">
                     <img src="{{asset('img/icon-coins.png')}}" style="width: 20%;margin-top: -6px;" class="p-0" alt="icon-coins">
                   </span>
                 </div>

@@ -1,5 +1,9 @@
 //Este archivo es para definir funciones globales
 
+//variable globales para obtener direccion raiz del server
+var url=window.location.protocol+'//'+window.location.host;
+
+
 //evento para cambiar el idioma a la vista
 $('#language').change(function (e) {
     $('#form-language').submit();
@@ -160,31 +164,53 @@ function getSearch_app() {
 
  //funcion para recorrer resultado del search
  function verResul(rul) {
-    console.log(rul);
-  
+    // console.log(rul);
     window.location.href=rul;
  }
 
+//obtener noticicaciones refresh
+function upNotify() {
+    $.get("/notify/getNotify", function (data) {
+       if( data.jsontxt.estado=='success'){
+            // activamos icon notificacion
+            if(data.request['count_notify']!=0){
+               $('#badgeNoty').html(data.request['count_notify']); 
+               $('#badgeNoty').removeClass('d-none');
+            }else{
+                $('#badgeNoty').html("");  
+            
+            }
+
+            // actualizamos la lista de notificaciones
+            // $('#listNotify').html("");
+            $('#listNotify').html(data.request['listaNotify']);
+       }
+       
+    }).fail(function (data) {
+        var data = data.responseJSON;
+        console.log(data.jsontxt.msm);
+        // mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)
+    });
+}
 
  // funcion para cambiar el estado de visto a las notificaciones
  function notyfyEstado() {
     $.get("/notify/estado/"+0+'/edit', function (data) {
-      $('#badgeNoty').remove();
-       
+      $('#badgeNoty').html("");  
     }).fail(function(data){
        console.log(data);
     });
  }
 
  // funcion para cambiar el estado de visto a las notificaciones
- function notyfyEstado_app() {
-    $.get("/notify/estado/"+0+'/edit', function (data) {
-      $('#badgeNoty_app').remove();
+ // function notyfyEstado_app() {
+ //    $.get("/notify/estado/"+0+'/edit', function (data) {
+ //      $('#badgeNoty_app').remove();
        
-    }).fail(function(data){
-       console.log(data);
-    });
- }
+ //    }).fail(function(data){
+ //       console.log(data);
+ //    });
+ // }
 
  //funcion de acciones de la notificaion
  function notify(code) {

@@ -168,6 +168,8 @@ use Illuminate\Support\Facades\Auth;
         //rutas para gestion de Notificacion
         Route::prefix('notify')->group(function () {
             Route::resource('estado', 'NotificacionController');
+            Route::get('getNotify', 'NotificacionController@getNotificacion');
+            
         });
         
         // RUTA PARA RECUPERAR CONTRASEÑAS

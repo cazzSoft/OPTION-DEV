@@ -8,21 +8,18 @@
         @auth
           <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ocult">
             <header>
-               <nav class="navbar navbar-expand-lg navbar-light bg-white  mx-auto mt-3 mb-2 ocult">
-                  <a  class="navbar-brand ml-2 navbar-toggler border-0 text-secondary "
-                        href="#" data-toggle="collapse" data-target="#navbarNav" >
-                         <b class="text-muted h6"> <span class="navbar-toggler-icon mr-3"></span> Menu </b>
-                  </a>
+               <nav class="navbar navbar-expand   mx-auto mt-3 mb-2 ocult ">
+              
                   <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav text-center">
-                      <li class="nav-item ml-4 mr-2">
-                        <a class="nav-link  {{ Route::is('home') ? 'text-info_' : '' }}" href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
+                      <li class="nav-item ml-5">
+                        <a class="nav-link  {{ Route::is('home') ? 'text-info_' : 'text-muted' }}" href="/"><i class="fa fa-home"></i> <b>Inicio </b> </a>
                       </li>
-                      <li class="nav-item ml-2 mr-3">
-                        <a class="nav-link {{ Route::is('nosotros_.index') ? 'text-info_' : '' }} " href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a>  
+                      <li class="nav-item ">
+                        <a class="nav-link {{ Route::is('nosotros_.index') ? 'text-info_' : 'text-muted' }} " href="{{url('nosotros_')}}"><i class="fa fa-notes-medical"></i> <b>¿Qué Somos?</b></a>  
                       </li>
                       <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link text-center {{ Route::is('coinsult.index') ? 'text-info_' : '' }}" href="{{url('coinsult')}}"> 
+                        <a class="nav-link text-center {{ Route::is('coinsult.index') ? 'text-info_' : 'text-muted' }}" href="{{url('coinsult')}}"> 
                           <span class="ml-1  text-center mb-5">
                             <img src="{{asset('img/icon-coins-gris.png')}}" style="width: 18px; margin-top: -4px;" class="p-0 " alt="icon-coins">
                           </span> 
@@ -30,10 +27,10 @@
                         </a>
                       </li>
                       <li class="nav-item ml-2 mr-3">
-                        <a class="nav-link {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : '' }} " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> <b>Guardados</b></a>
+                        <a class="nav-link {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : 'text-muted' }} " href="{{url('gestion/articulo_user')}}"><i class="fas fa-fw fa-bookmark"></i> <b>Guardados</b></a>
                       </li>
                       <li class="nav-item ml-2 mr-3">
-                        <a class="nav-link {{ request()->is(['biblioteca/*']) ? 'text-info_' : '' }} " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
+                        <a class="nav-link {{ request()->is(['biblioteca/*']) ? 'text-info_' : 'text-muted' }} " href="{{url('biblioteca/show')}}"><i class="fas fa-book-reader "></i> <b>Biblioteca</b></a>
                       </li>
 
                       @if(Auth::user()->type_user()=='dr' || Auth::user()->type_user()=='ad')
@@ -43,7 +40,7 @@
                       @endif
                       @if( Auth::user()->type_user()=='ad')
                       <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link  {{ request()->is(['noticia/*']) ? 'text-info_' : '' }}  " href="{{url('noticia/new')}}"><i class="fas fa-book-reader "></i> <b>Noticia</b></a>
+                        <a class="nav-link  {{ request()->is(['noticia/*']) ? 'text-info_' : 'text-muted' }}  " href="{{url('noticia/new')}}"><i class="fas fa-book-reader "></i> <b>Noticia</b></a>
                       </li>
                       @endif
                     </ul>
@@ -80,7 +77,7 @@
        
       @auth  
        <div class="col-lg-4 col-md-12 col-sm-12  text-center  justify-content-center  history">
-        <div class="main-carousel  text-center main-carousel-dr" data-flickity='{ "cellAlign": "center", "contain": true }'>
+        <div class="main-carousel  text-center main-carousel-dr" data-flickity='{ "cellAlign": "left", "contain": true }'>
           @if( Auth::user()->topMedicos() )
             @foreach(Auth::user()->topMedicos()->take(10) as $key=> $item)
              
@@ -273,9 +270,12 @@
 @stop
 
  @section('js') 
- 	{{--  cinfiguraciones globales js --}}
+ 	
+  {{--  configuraciones globales js --}}
+  
  	<script src="{{ asset('/js/confOption2h.js') }}"></script>
 	<script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
+  
   {{-- controlar imagen de rotas --}}
   <script type='text/javascript'>
     function ImagenOk(img) {
@@ -303,6 +303,8 @@
       }
     })
   </script>
+  
+
 	{{--  apartado para incluir mas js  --}}
 	@yield('include_js')
  @stop
