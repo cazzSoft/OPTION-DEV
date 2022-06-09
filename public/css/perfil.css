@@ -33,14 +33,12 @@ input[type="file"] {
     width: 180px;
     height: 180px;
     object-fit: cover;
-   
-  }
-  #dropdownMenuLinkImg{
+}
+#dropdownMenuLinkImg{
     position: relative;
     left: -42px;
     top: 51px;
-    
-  }
+}
 /*estilos botones de medico y noticias*/
   .btn-tab{
     color: #4F4F4F;
@@ -95,13 +93,94 @@ input[type="file"] {
         border-bottom: 2px solid #0FADCE;
         border-right: 0px !important;
         border-left: 0px;
-        padding-bottom: 21px;
+        /*padding-bottom: 21px;*/
     } 
-  /*  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-        color: #0FADCE !important;
-        background-color: #fff !important;
+  
+    /*img perfil*/
+    #preViewImg2{
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+
+    }
+    #dropdownMenuLinkImg{
+        position: relative;
+        left: -31px;
+        top: 25px;
+
+    }
+
+    .button-container{
+        display:inline-block;
+        position:relative;
+        text-align: right;
+        width: 110px;
        
-        border-bottom: 2px solid #0FADCE;
-        width: 50% !important;
-    } */
+    }
+      
+    .button-container span{
+        position: absolute;
+        bottom:0.1em;
+        right:1em;
+      
+        border-radius:1.5em;
+        color:white;
+        text-transform:uppercase;
+        padding:1em 1.5em;
+    }
+    .text-content{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #4F4F4F;
+    }
+
+    /*publicaciones guardada*/
+    .username {
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        font-size: 12px !important;
+        line-height: 15px !important;
+        color: #000000 !important;
+    }
+    .description{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        font-size: 9px !important;
+        line-height: 11px !important;
+        color: #000000 !important;
+    }
+    .text-descripcion{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 12px;
+        text-align: justify;
+
+        color: #000000;
+    }
+
+   
+    
+    .dropdown-menu {
+      min-width: auto !important; 
+      top: 0px; 
+      left: 0px; 
+      transform: translate3d(-16px, -30px, 0px) !important;
+    }
+    .dropdown-item {
+        
+      padding: .2rem 1rem !important;
+      /* background-color: transparent; */
+      font-family: 'Calibri' !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      font-size: 7.06133px !important;
+      line-height: 9px !important;
+    }
 }

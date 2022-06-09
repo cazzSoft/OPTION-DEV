@@ -13,43 +13,101 @@
         @movil
             <div class="row">
                 <div class="col-12 p-0"> 
-                    {{-- <nav class=""> --}}
-                      <div class="nav nav-tabs   border-0 " id="product-tab" role="tablist">
-                        <a class="nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> Perfil</a>
-                        <a class="nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> Publicaciones guardadas</a>
-                      </div>
-                    {{-- </nav> --}}
-                   {{--  <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Profile</a>
-                      </li>
-                      
-                    </ul> --}}
-                    <div class="tab-content p-0 mt-4" id="nav-tabContent">
+                    <nav class="">
+                        <div class="nav nav-tabs   border-0 " id="product-tab" role="tablist">
+                            <a class="nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> 
+                                Perfil
+                            </a>
+                            <a class="nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> 
+                                Publicaciones guardadas
+                            </a>
+                        </div>
+                    </nav>
+                    <div class="tab-content mt-1" id="nav-tabContent">
                         <div class="tab-pane  show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
-                            <div class="card card-widget widget-user shadow-md mb-5">
-                               
-                                <div class="card-body elevation-1">
-                                    <p class="h5"><b>Datos Médicos</b>  <i class="far fa-edit ml-3 " style="cursor:pointer;"  data-toggle="modal" data-target="#modal-edit-user-dc"></i></p>   
-                                    <div class="row invoice-info mt-3 p-1">
+                            <div class="row mt-3">
+                                <div class="col-3  p-0 m-0">
+                                    <div class=" button-container dropdown show ">
+                                        <img class="img-fluid img-circle " src="{{auth()->user()->adminlte_image()}}" alt="{{asset(auth()->user()->adminlte_image())}}" id="preViewImg2">
+                                        <label for="file-upload" class="custom-file-upload p-0 bg-white  img-circle elevation-1" id="dropdownMenuLinkImg">
+                                            <i class="fas fa-plus text-info p-1 "></i>
+                                        </label>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-item bg-white mx-auto" >
+                                                <form  method="POST" id="update_img_perfil" action="{{url('profile/update_photo')}}"  enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="POST">
+                                                    <input id="file-upload" name="img" class="p-0" type="file"/>
+                                                </form>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col  p-0 m-auto">
+                                    <p class="text-left ml-3">  <b>{{  Str::limit($data->name, 22) }}</b> <i class="far fa-edit ml-1 " style="cursor:pointer;"  id="btn_action" data-toggle="modal" data-target="#modal-edit-user"></i></p>
+                                </div>
+                                <div class="col-12 text-content pl-2 pr-2">
+                                    <p class="text-muted mt-2">Datos Personales</p>
+                                    <div class="row">
+                                       @if(isset($data)) 
+                                        <div class="col ">
+                                          <address>
+                                            <b>Email:</b>
+                                            {{$data->email}}
+                                          </address>
+                                        </div>
+                                        <div class="col text-left">
+                                          <address>
+                                            <b>Genero:</b>
+                                             <span class=" text-muted">@if($data->genero=='1') Masculino @elseif($data->genero=='0') Femenino @else Indefinido @endif </span>
+                                          </address>
+                                        </div>
+                                        <div class="col ">
+                                          <address>
+                                            <b>Fecha de Nacimiento:</b>
+                                            {{$data->fecha_nacimiento}} Tienes: {{ \Carbon\Carbon::parse($data->fecha_nacimiento)->age}} años
+                                          </address>
+                                        </div>
+                                        <div class="col text-left">
+                                          <address>
+                                            <b>Télefono:</b>
+                                            {{$data->telefono}}
+                                          </address>
+                                        </div>
+                                        
+                                        @if($sigues!=0)
+                                            <div class="product-info">
+                                                <a  class="product-title username direct-chat-name hover">Personas a las que Sigues
+                                                    <span class="text-muted float-right text-red">
+                                                       <span class=" btn btn-sm img-fluid img-rounded bg-white border-info " id="btnModalSg"> <b>@if(isset($sigues)) {{$sigues}} @endif</b></span>
+                                                       
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        @endif
+                                       @endif
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="card card-widget widget-user shadow-md mt-3">
+                                <div class="card-body shadow-sm border-white text-content">
+                                    <p class="h6"><b>Datos Médicos</b>  <i class="far fa-edit ml-3 " style="cursor:pointer;"  data-toggle="modal" data-target="#modal-edit-user-dc"></i></p>   
+                                    <div class="row invoice-info ">
                                        @if(isset($datos_m)) 
-                                        <div class="col-sm-4 invoice-col">
+                                        <div class="col-4 invoice-col">
                                           <address>
                                             <dd>Tipo de sangre</dd>
                                             {{$datos_m['tipo_sangre']}}
                                           </address>
                                         </div>
                                         <!-- /.col -->
-                                        <div class="col-sm-4 invoice-col text-left">
+                                        <div class="col-4 invoice-col text-left">
                                           <address>
                                             <dd>Talla</dd>
                                             {{$datos_m['talla']}} m
                                           </address>
                                         </div>
-                                        <div class="col-sm-4 invoice-col text-left">
+                                        <div class="col-4 invoice-col text-left">
                                           <address>
                                             <dd>Peso</dd>
                                             {{$datos_m['peso']}} kg
@@ -68,12 +126,10 @@
                                           </address>
                                         </div>
                                     </div>
-                                  
                                 </div>
                             </div>
-                         
                         </div>
-                        <div class="tab-pane fade " id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
+                        <div class="tab-pane fade mt-3" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab">
                             @if (isset($listaGuar) && $listaGuar!='[]') 
                                 @foreach ($listaGuar as $art )
                                     @if(isset($art->articulo_user[0]))
@@ -83,13 +139,16 @@
                                                     <a href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}" >
                                                         <img class="img-circle" src="@if(isset($art->articulo_user[0]['medico'][0]['img']) && $art->articulo_user[0]['medico'][0]['img'] !=null) {{\Storage::disk('wasabi')->temporaryUrl($art->articulo_user[0]['medico'][0]['img'], now()->addMinutes(3600)  )}} @else {{asset('img/user.png')}} @endif" alt="User Image">
                                                     
-                                                        <span class="username text-dark">{{$art->articulo_user[0]['titulo']}}| Tratamiento</span>
-                                                        <span class="description "><a class="text-dark" href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}">{{$art->articulo_user[0]['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>
+                                                        <span class="username text-dark">{{$art->articulo_user[0]['titulo']}}| <small>Tratamiento</small></span>
+                                                        <a class="text-dark description" href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}">
+                                                            {{$art->articulo_user[0]['medico'][0]['name']}} {{$art->created_at->isoFormat('lll') }}
+                                                        </a> 
+                                                        
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="card-body ">
-                                                <p class="   text-justify text-dark">
+                                                <p class="text-descripcion">
                                                     {{$art->articulo_user[0]['descripcion']}} <a href="{{$art->articulo_user[0]['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art->articulo_user[0]['idarticulo'])}}')">Ver más... </a>
                                                 </p> 
                                                 <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
@@ -104,9 +163,9 @@
                                                       <span >{{$art->articulo_user[0]['like_count']}} </span> Me gusta 
                                                     </button>
                                                    
-                                                    <div class="dropdown text-right float-right mr-4">
+                                                    <div class="{{-- dropdown text-right float-right mr-4 --}} btn-group dropup text-right float-right mr-4">
                                                       <button class="btn border-0 btn-app dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                      <i class=" fa fa-bookmark"></i>Guardar
+                                                      <i class=" fa fa-bookmark "></i>Guardar
                                                       </button>
                                                       <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                         <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
@@ -114,11 +173,11 @@
                                                         <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
                                                       </div>
                                                     </div>
-                                                    <div class="dropdown text-right float-right">
-                                                      <button class="btn btn-app border-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
-                                                      <i class="fa fa-share-alt"></i>  Compartir
+                                                    <div class="{{-- dropdown text-right float-right --}} btn-group dropup text-right float-right">
+                                                      <button class="btn btn-app border-0 dropdown-toggle " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
+                                                      <i class="fa fa-share-alt "></i>  Compartir
                                                       </button>
-                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                      <div class="dropdown-menu " aria-labelledby="dropdownMenu1">
                                                         <a onclick="acctionCompartirF('{{encrypt($art->articulo_user[0]['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art->articulo_user[0]['url_video']}}" target="_blank">
                                                           <i class="fab fa-facebook" ></i> Facebook
                                                         </a>
@@ -131,7 +190,7 @@
                                                   
                                                 </div>
                                             </div>
-                                       </div>
+                                        </div>
                                     @endif   
                                 @endforeach
                             @else 
@@ -140,7 +199,6 @@
                                     <p class="lead text-center">Aun no tienes publicaciones guardadas</p>
                                 </div>
                             </div>
-                           
                             @endif 
                         </div>
                     </div>
