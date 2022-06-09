@@ -58,6 +58,7 @@
                       <div class="dropdown-divider"></div>
                       <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
                   </div>
+                  
               </li>
             @endif
           </ul>

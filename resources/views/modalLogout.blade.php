@@ -22,7 +22,7 @@
          <div class="form-group ">
              <button class="btn btn-block bgz-info btn-lg lead mt-1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Recordarme y Cerrar sesión</button>
          </div>
-
+         
 
       </div>
       

@@ -1,4 +1,14 @@
 @movil
+
+    @php( $logout_url = View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout') )
+    @if (config('adminlte.use_route_url', false))
+       {{--  @php( $profile_url = $profile_url ? route($profile_url) : '' ) --}}
+        @php( $logout_url = $logout_url ? route($logout_url) : '' )
+    @else
+        {{-- @php( $profile_url = $profile_url ? url($profile_url) : '' ) --}}
+        @php( $logout_url = $logout_url ? url($logout_url) : '' )
+    @endif
+
     <aside class="main-sidebar   mt-2  elevation-2 d-none  {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}" >
         <span  class=" bg-white ribbon text-center d-none" data-widget="pushmenu" id="dropdownMenuLink" >
             <i class="fas fa-angle-left fa-lg text-info_ mt-1 mr-1 ml-1"></i>
@@ -43,6 +53,13 @@
                                 <a href="#" onclick="logout_session()" class=" text-muted d-block mt-3 logut-btn d-none">Cerrar sesión </a> 
                             @endauth                    
                         </div>
+
+                        <form id="logout-form" action="{{ $logout_url }}" method="POST" style="display: none;">
+                            @if(config('adminlte.logout_method'))
+                                {{ method_field(config('adminlte.logout_method')) }}
+                            @endif
+                            {{ csrf_field() }}
+                        </form> 
                     </li>
                 </ul>
 

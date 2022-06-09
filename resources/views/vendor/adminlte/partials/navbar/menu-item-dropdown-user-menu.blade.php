@@ -97,6 +97,6 @@
                 {{ method_field(config('adminlte.logout_method')) }}
             @endif
             {{ csrf_field() }}
-        </form>
+        </form> 
     </div>
 </li>
