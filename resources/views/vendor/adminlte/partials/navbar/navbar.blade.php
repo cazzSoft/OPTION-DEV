@@ -32,17 +32,19 @@
               <li class="nav-link mr-0 text-right item_coins">
                 <a href="{{url('coinsult')}}">
                   <span class="fa "> <img src="{{asset('img/icon-coins-gris.png')}}" class="" style="width: 24px;"  class="p-0 " alt="icon-coins"> </span>
-                  <span class="badge  navbar-badge  badge-info" >{{Auth::user()->coins() }}</span>
+                  <span class="badge  navbar-badge  badge-info idcoins" >{{Auth::user()->coins() }}</span>
                 </a>
               </li>
               <li class="nav-link p-0 mt-1 ml-0 mr-0 item_noti">
                   <a class="nav-link dropdown p-0 mt-2" data-toggle="dropdown" href="#" onclick="notyfyEstado()">
                       <i class="far fa-bell fa-lg text-gray"></i>
                       @if(Auth::user()->notify()['count_notify']!=0)
-                          <span class="badge badge-danger navbar-badge" id="badgeNoty">{{Auth::user()->notify()['count_notify']}}</span>
+                        <span class="badge badge-danger navbar-badge" id="badgeNoty"> {{Auth::user()->notify()['count_notify']}} </span>
+                      @else
+                        <span class="badge badge-danger navbar-badge d-none" id="badgeNoty">  </span>
                       @endif
                   </a>
-                  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right dropdown-menu-notify">
+                  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right dropdown-menu-notify" id="listNotify">
                       <span class="dropdown-header">{{-- {{Auth::user()->notify()['count_notify']}}  --}}Notificaciones</span>
                       @if(isset(Auth::user()->notify()['listaNotify']))
                           @foreach(Auth::user()->notify()['listaNotify'] as $item)

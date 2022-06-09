@@ -7,8 +7,8 @@
 	}
    .container-fluid{
        /*padding: 0px !important;*/
-       margin-top: 100px !important;
-       /*padding-top: 122px !important;*/
+       margin-top: 80px !important;
+       padding-bottom: 100px !important;
    }
    .flex_titulo{
        margin: 0px !important;
