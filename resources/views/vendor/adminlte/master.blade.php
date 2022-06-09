@@ -24,7 +24,8 @@
 
     {{-- Base Stylesheets --}}
     @if(!config('adminlte.enabled_laravel_mix'))
-        <link rel="stylesheet" href="{{ secure_asset('vendor/fontawesome-free/css/all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
+        {{-- <link rel="stylesheet" href="{{ secure_asset('vendor/fontawesome-free/css/all.min.css') }}"> --}}
         <link rel="stylesheet" href="{{ secure_asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
         {{-- Configured Stylesheets --}}
@@ -52,7 +53,7 @@
     @if(config('adminlte.use_ico_only'))
         <link rel="shortcut icon" href="{{ secure_asset('favicons/favicon.ico') }}" />
     @elseif(config('adminlte.use_full_favicon'))
-        <link rel="shortcut icon" href="{{ secure_asset('favicons/favicon.ico') }}" />
+        {{-- <link rel="shortcut icon" href="{{ secure_asset('favicons/favicon.ico') }}" />
         <link rel="apple-touch-icon" sizes="57x57" href="{{ secure_asset('favicons/apple-icon-57x57.png') }}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ secure_asset('favicons/apple-icon-60x60.png') }}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ secure_asset('favicons/apple-icon-72x72.png') }}">
@@ -66,7 +67,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{{ secure_asset('favicons/favicon-32x32.png') }}">
         <link rel="icon" type="image/png" sizes="96x96" href="{{ secure_asset('favicons/favicon-96x96.png') }}">
         <link rel="icon" type="image/png" sizes="192x192"  href="{{ secure_asset('favicons/android-icon-192x192.png') }}">
-        <link rel="manifest" href="{{ secure_asset('favicons/manifest.json') }}">
+        <link rel="manifest" href="{{ secure_asset('favicons/manifest.json') }}"> --}}
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ secure_asset('favicon/ms-icon-144x144.png') }}">
     @endif

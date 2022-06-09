@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -67,6 +68,7 @@ class Kernel extends HttpKernel
         'validarUser'=>\App\Http\Middleware\ControlUser::class,
         'web2'=>\App\Http\Middleware\SoloWeb::class,
         'translate' => \App\Http\Middleware\CheckLanguage::class,
+        "cors" => \App\Http\Middleware\Cors::class,
 
 
     ];
