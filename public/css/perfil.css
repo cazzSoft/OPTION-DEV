@@ -1,0 +1,71 @@
+.ocult{
+    display: none;
+}
+
+.button-container{
+    display:inline-block;
+    position:relative;
+    text-align: center;
+    width: 240px;
+}
+  
+.button-container span{
+    position: absolute;
+    bottom:0.1em;
+    right:1em;
+    background-color:#8F0005;
+    border-radius:1.5em;
+    color:white;
+    text-transform:uppercase;
+    padding:1em 1.5em;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    /*border: 1px solid #ccc;*/
+    display: inline-block;
+    padding: 1px ;
+    cursor: pointer;
+}
+#preViewImg2{
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+   
+  }
+  #dropdownMenuLinkImg{
+    position: relative;
+    left: -42px;
+    top: 51px;
+    
+  }
+/*estilos botones de medico y noticias*/
+  .btn-tab{
+    color: #4F4F4F;
+    background: #fff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    text-align: center;
+    height: 44px;
+  }
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff !important;
+    background-color: #0FADCE !important;
+    border-color: #dee2e6 #dee2e6 #fff;
+} 
+
+.nav_content {
+    display: none;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+    .content-header {
+        display: none;
+    }
+   
+   
+
+}

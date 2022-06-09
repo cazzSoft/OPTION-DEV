@@ -65,7 +65,7 @@
     </div>
 </li>
 <li class=" ">
-    <div class="user-block">
+    <div class="user-block user-block_">
         @if(config('adminlte.usermenu_image'))
         <a href="{{ $profile_url }}"> 
             <img class="img-circle  direct-chat-img" src="{{Auth::user()->adminlte_image()}}" alt="{{ Auth::user()->name }}">
@@ -77,15 +77,15 @@
         <span class="description" id="description" > {{ Auth::user()->adminlte_desc() }}</span>
     </div>
 </li>
-<li class="nav-item dropdown" style="margin-top: 8px;">
-    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+<li class="nav-item dropdown ">
+    <a class="p-1 mr-3 dropdown-toggle text-info_ btn-lg" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2" >
-        <a class="dropdown-item   btn-block text-info_"
+        <a class="dropdown-item   btn-block text-info_ pt-0 pb-0 mt-0 mb-0"
            href="#" onclick="openInfoTermiCondiciones()">
          {{--   <i class="far fa-closed-captioning"></i> --}}
             Términos & Condiciones
         </a>
-         <a class="dropdown-item   btn-block text-info_"
+         <a class="dropdown-item   btn-block text-info_ pt-0 pb-0 mt-0 mb-0"
            href="#" onclick="logout_session()">
          {{--   <i class="far fa-closed-captioning"></i> --}}
             Cerrar sesión

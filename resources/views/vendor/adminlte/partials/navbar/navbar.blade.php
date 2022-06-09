@@ -94,7 +94,7 @@
             <li class="nav-item  {{-- text-right  --}} m-auto2 mt-2 text-right">
                <a href="{{url('coinsult')}}" class="" >
                 <div class="d-inline shadow-sm bt_coins btn text-light text-center" {{-- style="margin-top: -111px;" --}}>
-                  <span class="">{{Auth::user()->coins() }} </span>
+                  <span class="idcoins">{{Auth::user()->coins() }} </span>
                   <span class="ml-1 mr-0">
                     <img src="{{asset('img/icon-coins.png')}}" style="width: 20%;margin-top: -6px;" class="p-0" alt="icon-coins">
                   </span>

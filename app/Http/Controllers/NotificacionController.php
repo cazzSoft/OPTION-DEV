@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CoinsultModel;
 use App\Notificacion;
 use App\NotificacionDetalleModel;
 use Illuminate\Http\Request;
@@ -46,23 +47,33 @@ class NotificacionController extends Controller
             $count_notify=Notificacion::where('estado',1)->where('activo',1)->where('iduser',auth()->user()->id)->get()->count();
             
             $lista=[];
-            if(isset($listNotify)){
-                foreach ($listNotify as $key => $items) {
-                    $item='
-                        <div class="dropdown-divider"></div>
-                        <a href="'.asset($items["detalle_notificacion"][0]["url"]).'" class="dropdown-item2 text-dark " onclick="notify('.$items['detalle_notificacion'][0]['code'].')"> 
-                          <i class="'.$items['detalle_notificacion'][0]['icon'].' mr-2 text-warning"></i>'.$items['detalle_notificacion'][0]['descripcion'].'
-                          <span class="float-right text-muted text-sm">'.$items['created_at']->isoFormat('l').'</span>
-                        </a> ';
-                    array_push($lista,$item);
+            // lista de notificaciones
+                if(isset($listNotify)){
+                    foreach ($listNotify as $key => $items) {
+                        $item='
+                            <div class="dropdown-divider"></div>
+                            <a href="'.asset($items["detalle_notificacion"][0]["url"]).'" class="dropdown-item2 text-dark " onclick="notify('.$items['detalle_notificacion'][0]['code'].')"> 
+                              <i class="'.$items['detalle_notificacion'][0]['icon'].' mr-2 text-warning"></i>'.$items['detalle_notificacion'][0]['descripcion'].'
+                              <span class="float-right text-muted text-sm">'.$items['created_at']->isoFormat('l').'</span>
+                            </a> ';
+                        array_push($lista,$item);
+                    }
                 }
-            }
 
-           
+            // total de coins
+               $id=auth()->user()->id;
+               $coins=CoinsultModel::where('iduser',$id)->with('detalle_coinsult')->get();
+               $sum=00;
+               foreach ($coins as $key => $value) {
+                   if (isset($value['detalle_coinsult'])) {
+                        $sum=$sum + $value['detalle_coinsult'][0]->punto;
+                    } 
+               }
+             
 
             return response()->json([
                'jsontxt'=> ['msm'=>'Datos obtenidos','estado'=>'success'],
-               'request'=> ['count_notify'=>$count_notify ,'listaNotify'=>$lista]
+               'request'=> ['count_notify'=>$count_notify ,'listaNotify'=>$lista,'t_coins'=>$sum]
             ],200);
 
         }

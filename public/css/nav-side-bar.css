@@ -400,6 +400,28 @@ a .bt_coins{
   .text-register{
     display: none;
   }
+  #usernamePerfil{
+     margin-top: 8px !important;
+     width: 142.35px !important;
+     height: 20.68px !important;
+     left: 119.82px !important;
+     top: 55.03px !important;
+
+     font-family: 'Calibri' !important;
+     font-style: normal !important;
+     font-weight: 700 !important;
+     font-size: 12px !important;
+     line-height: 17px !important;
+    
+  }
+  .user-block_{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 164px !important;
+  }
+  #inputSearch_{
+    width: 200px !important;
+  }
 }
 
 /*Extra large devices (large desktops, 1200px and up)*/
@@ -409,4 +431,6 @@ a .bt_coins{
     margin-left: 30px;
     line-height: 17px;
   }
+
+  
 }

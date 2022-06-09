@@ -182,8 +182,9 @@ function upNotify() {
             }
 
             // actualizamos la lista de notificaciones
-            // $('#listNotify').html("");
             $('#listNotify').html(data.request['listaNotify']);
+            $('.idcoins').html(data.request['t_coins']);
+            // data.request['t_coins'] 
        }
        
     }).fail(function (data) {

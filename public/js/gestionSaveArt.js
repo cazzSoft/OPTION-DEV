@@ -118,24 +118,24 @@ $('#btnModalSg').click(function () {
 
 //evento para controlar la informacion de perfil
 //variavle control
-var show=0;
-$('#btn_action').click(function () {
-    console.log(2)
-    if(show==0){
-        $('.form_p').removeClass('d-none');
-        $('.info_p').addClass('d-none');
-        $('#btn_action').removeClass('far fa-edit');
-        $('#btn_action').addClass('fas fa-arrow-left');
-        show=1;
-    }else{
-        $('.form_p').addClass('d-none');
-        $('.info_p').removeClass('d-none');
-        $('#btn_action').removeClass('far fa-arrow-alt-circle-left');
-        $('#btn_action').addClass('far fa-edit');
-        show=0;
-    }
+// var show=0;
+// $('#btn_action').click(function () {
+//     console.log(2)
+//     if(show==0){
+//         $('.form_p').removeClass('d-none');
+//         $('.info_p').addClass('d-none');
+//         $('#btn_action').removeClass('far fa-edit');
+//         $('#btn_action').addClass('fas fa-arrow-left');
+//         show=1;
+//     }else{
+//         $('.form_p').addClass('d-none');
+//         $('.info_p').removeClass('d-none');
+//         $('#btn_action').removeClass('far fa-arrow-alt-circle-left');
+//         $('#btn_action').addClass('far fa-edit');
+//         show=0;
+//     }
    
-});
+// });
 
 //evento para registrar actividad//////////////////////////////
 function acctionVideo(idar,ste) {

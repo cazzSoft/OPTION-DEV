@@ -11,9 +11,9 @@
 @section('contenido')
     <div class="container-fluid ">
         <div class="row  justify-content-start mt-3">
-            <div class="col-xl-5 col-md-5 col-sm-12 ">
+            <div class="col-xl-5 col-md-12 col-sm-12 ">
                 <div class="row ">
-                    <div class="col-12 p-3 ml-2">
+                    <div class="col-12 p-3 ml-2 col-md-12">
                         <p class="h4"><strong>Datos Personales </strong></p> 
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 p-2 text-center">
@@ -34,10 +34,8 @@
                              </div>
                        </div>
                     </div>
-                    <div class="col col-lg-6 bg-white p-3 ">
-                       {{--  <span class=" h4  text-truncate bg-info" style="max-width: 40px;"> <b>{{$data->name}}</b>  </span> --}}
-                        {{-- <span class="h4 d-inline-block"><i class="far fa-edit ml-3 " style="cursor:pointer;"  id="btn_action" data-toggle="modal" data-target="#modal-edit-user"></i></span> --}}
-                        <p class="h4">  <i class="far fa-edit ml-3 " style="cursor:pointer;"  id="btn_action" data-toggle="modal" data-target="#modal-edit-user"></i></p>
+                    <div class="col-lg-6 col-md-12 col-sm-12 bg-white p-3 ">
+                        <p class="h4">  <b>{{  Str::limit($data->name, 17) }}</b> <i class="far fa-edit ml-3 " style="cursor:pointer;"  id="btn_action" data-toggle="modal" data-target="#modal-edit-user"></i></p>
                         <div class="p-1 text-left info_p">
                             @if(isset($data))
                                 <dl>
@@ -130,11 +128,11 @@
                     
                 </div>
             </div>
-            <div class="col-xl-6 col-md-7 col-sm-12"> 
+            <div class="col-xl-6 col-md-12 col-sm-12"> 
                 <nav class="w-100 ">
                   <div class="nav nav-tabs d-flex justify-content-left tab_perfil nav nav-tabs border-0" id="product-tab" role="tablist">
-                    <a class=" h5 nav-item nav-link   mr-3 active border-0 btn-tab " id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
-                    <a class="h5 nav-item nav-link  border-0 ml-3 btn-tab " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
+                    <a class="nav-link   mr-3 active border-0 btn-tab " id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
+                    <a class="nav-link  border-0 ml-3 btn-tab " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
                   </div>
                 </nav>
                 <div class="tab-content p-0 mt-4" id="nav-tabContent">
@@ -241,8 +239,8 @@
                                                 <a href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}" >
                                                     <img class="img-circle" src="@if(isset($art->articulo_user[0]['medico'][0]['img']) && $art->articulo_user[0]['medico'][0]['img'] !=null) {{\Storage::disk('wasabi')->temporaryUrl($art->articulo_user[0]['medico'][0]['img'], now()->addMinutes(3600)  )}} @else {{asset('img/user.png')}} @endif" alt="User Image">
                                                 
-                                                    <span class="username">{{$art->articulo_user[0]['titulo']}}| Tratamiento</span>
-                                                    <span class="description"><a href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}">{{$art->articulo_user[0]['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>
+                                                    <span class="username text-dark">{{$art->articulo_user[0]['titulo']}}| Tratamiento</span>
+                                                    <span class="description "><a class="text-dark" href="{{url('medico/info/'.encrypt($art->articulo_user[0]['iduser']))}}">{{$art->articulo_user[0]['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -339,88 +337,7 @@
     @include('modal_edit_user')
     @include('modal-edit-datos-clinico')
     @section('include_css') 
-        {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
-      <style>
-        .ocult{
-                display: none;
-        }
-       /* .medico {
-            position: absolute;
-            border: 1px solid #10ADCF;
-            text-align: center;
-            right: -3vh;
-            top: -3.8vh;
-            background: #fff;
-            border-radius: 4px;
-            padding: 1vh;
-            width: 7em;
-            height: 6em;
-            font-size: 1em;
-            -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-        }*/
-        /*.img2{
-          width: 67%;
-        }*/
-        .button-container{
-            display:inline-block;
-            position:relative;
-            text-align: center;
-            width: 240px;
-        }
-          
-        .button-container span{
-            position: absolute;
-            bottom:0.1em;
-            right:1em;
-            background-color:#8F0005;
-            border-radius:1.5em;
-            color:white;
-            text-transform:uppercase;
-            padding:1em 1.5em;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-        .custom-file-upload {
-            /*border: 1px solid #ccc;*/
-            display: inline-block;
-            padding: 1px ;
-            cursor: pointer;
-        }
-        #preViewImg2{
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-           
-          }
-          #dropdownMenuLinkImg{
-            position: relative;
-            left: -42px;
-            top: 51px;
-            
-          }
-        /*estilos botones de medico y noticias*/
-          .btn-tab{
-            color: #4F4F4F;
-            background: #fff;
-            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
-            border-radius: 5px;
-            text-align: center;
-            height: 44px;
-          }
-
-        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-            color: #fff !important;
-            background-color: #0FADCE !important;
-            border-color: #dee2e6 #dee2e6 #fff;
-        } 
-
-        .nav_content {
-            display: none;
-        }
-      </style>
+       <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
