@@ -263,8 +263,8 @@
       }
     </style>
   {{--  configuraciones globales css --}}
-  <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/appO2h.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('css/nav-side-bar.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('css/appO2h.css') }}">
   <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css">
   @yield('include_css')
 @stop
