@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Auth;
 
 //RUTAS DE INFORMACION PUBLICA SIN LOGIN
     Route::group(['middleware'=>'web2'],function (){ 
-        Route::get('', 'PrincipalController@index')->middleware('cors');
+        Route::get('', 'PrincipalController@index');
         Route::get('/session', 'PrincipalController@infoLogin')->middleware('translate');
         Route::get('/log-in-paciente', 'PrincipalController@login_paciente')->middleware('translate');
         Route::get('/log-in-medico', 'PrincipalController@login_medico')->middleware('translate');

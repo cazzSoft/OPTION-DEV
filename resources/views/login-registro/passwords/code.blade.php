@@ -1,9 +1,9 @@
-
-@extends('layouts.baseLogin')
+@extends('homeOption2h')
+{{-- @extends('layouts.baseLogin') --}}
 @section('title','Password Reset')
 
-@section('content')
-    <div class="container-fluid  p-1 ">
+@section('contenido')
+   {{--  <div class="container-fluid  p-1 ">
       <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
         <div class=" container-fluid ">
           <a href="{{url('/')}}" class="navbar-brand ml-4 imgSecion">
@@ -31,7 +31,7 @@
             </ul>
         </div>
       </nav>     
-    </div>
+    </div> --}}
 
     <div class="container mt-5 ">
         <div class="row justify-content-center ">
@@ -100,7 +100,7 @@
 
 @endsection
 
-@section('adminlte_css') 
+@section('include_css') 
 <style>
     .tex-stile{
         font-family: 'Calibri';
@@ -119,10 +119,16 @@
     	font-style: normal;
     	
     }
+    .container{
+        margin-top: 100px !important;
+    }
+    .foot1, .nav_content  {
+        display: none;
+    }
     
 </style>
 @stop
-@section('adminlte_js') 
+@section('include_js') 
     <script src="{{ asset('/js/global.js') }}"></script>
     <script src="{{ asset('/js/password-reset.js') }}"></script>
 @stop

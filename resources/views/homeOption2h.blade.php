@@ -35,7 +35,7 @@
 
                       @if(Auth::user()->type_user()=='dr' || Auth::user()->type_user()=='ad')
                       <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link  {{ request()->is(['gestion/user_casos*','medico/casos_ex*','gestion/search_caso*','gestion/caso*']) ? 'text-info_' : '' }}  " href="{{url('gestion/user_casos')}}"><i class="fas fa-briefcase-medical"></i> <b>caso</b></a>
+                        <a class="nav-link  {{ request()->is(['gestion/user_casos*','medico/casos_ex*','gestion/search_caso*','gestion/caso*']) ? 'text-info_' : 'text-muted' }}  " href="{{url('gestion/user_casos')}}"><i class="fas fa-briefcase-medical"></i> <b>caso</b></a>
                       </li>
                       @endif
                       @if( Auth::user()->type_user()=='ad')

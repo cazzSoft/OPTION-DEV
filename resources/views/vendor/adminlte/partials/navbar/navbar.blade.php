@@ -111,7 +111,7 @@
                   @include('adminlte::partials.navbar.menu-item-logout-link')
               @endif
           @else
-              @if( !request()->is(['session','log-in-medico','log-in-paciente']))
+              @if( !request()->is(['session','log-in-medico','log-in-paciente','password_reset/*']))
     
                <li class=" item-nav m-auto "> 
                   <p class="mt-2 text-register ">¿Listo para tomar el control de tu salud y de tu Familia? <span class="text-info_">INGRESA AQUÍ</span></p>
