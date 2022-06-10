@@ -6,7 +6,7 @@ class DraggableSlider {
    * @param {String} slideClass the className of the slider slides
    * @returns
    */
-  constructor(sliderID, innerClass = 'inner', slideClass = 'slider') {
+  constructor(sliderID, innerClass = 'inner', slideClass = 'slide') {
     // Grab the elements
     this.elem = document.getElementById(sliderID)
     if (this.elem == null) return DraggableSlider.InvalidSliderStructure(sliderID)

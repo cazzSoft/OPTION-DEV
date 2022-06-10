@@ -52,7 +52,7 @@
                 <div id="slider_medicos" class="draggable-slider slide">
                   <div class="inner">
                     @foreach($list_top_medico as $key=> $item) 
-                      <div class="slider text-center">
+                      <div class="slide text-center">
                         @if(isset($item->img) && $item['img']!=null) 
                           <a href="{{url('medico/info/'.encrypt($item['id']))}}">
                             <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
@@ -237,17 +237,17 @@
       /**
        * These styles can be adapted as you see fit.
        */
-      .draggable-slider .inner .slider {
+      .draggable-slider .inner .slide {
         width: 127px;
         height: 100px;
       
       }
 
-      #slider_medicos .inner .slider {
+      #slider_medicos .inner .slide {
          margin-right: 7px !important;
           /*word-wrap: break-word;*/
       }
-      .slider {
+      .slide {
         margin-right: 3px;
         word-wrap: break-word;
       }

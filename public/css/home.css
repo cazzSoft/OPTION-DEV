@@ -267,7 +267,7 @@ input[type="file"] {
   }
 
   /*stilo de slider imagen noticias*/
-  .slider .slide_title_noti{
+  .slide .slide_title_noti{
     font-family: 'Calibri';
     font-style: normal;
     font-weight: 700;
