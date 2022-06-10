@@ -49,17 +49,23 @@
           <div class="row mt-5  justify-content-start text-center m-auto">
             @if(isset($list_top_medico))
               @movil
-                <div id="slider_medicos" class="draggable-slider ">
+                <div id="slider_medicos" class="draggable-slider slide">
                   <div class="inner">
                     @foreach($list_top_medico as $key=> $item) 
                       <div class="slider text-center">
                         @if(isset($item->img) && $item['img']!=null) 
-                         <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
+                          <a href="{{url('medico/info/'.encrypt($item['id']))}}">
+                            <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
+                          </a>
                         @else  
-                          <img src="{{asset('img/user.png') }}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
+                          <a href="{{url('medico/info/'.encrypt($item['id']))}}">
+                            <img src="{{asset('img/user.png') }}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
+                          </a>
                         @endif  
-                        <br>
-                         <a href="{{url('medico/info/'.encrypt($item['id']))}}" class=" text-medico-slide">{{$item->name}}</a>
+                        <div class=" text-medico-slide text-dark">
+                           <a href="{{url('medico/info/'.encrypt($item['id']))}}" class="text-muted" >{{$item->name}} </a>
+                        </div>
+                        
                       </div>
                     
                   @endforeach
@@ -200,6 +206,15 @@
         cursor: grab;
         text-align: left;
       }
+       #slider_medicos {
+        position: relative !important;
+        overflow: hidden !important;
+        width: 100% !important;
+        height: 140px !important;
+        cursor: grab !important;
+        text-align: left !important;
+      
+      }
 
       .draggable-slider.active {
         cursor: grabbing;
@@ -222,16 +237,19 @@
       /**
        * These styles can be adapted as you see fit.
        */
-      .draggable-slider .inner .slide {
+      .draggable-slider .inner .slider {
         width: 127px;
         height: 100px;
-        /*line-height: 400px;*/
+      
       }
 
+      #slider_medicos .inner .slider {
+         margin-right: 7px !important;
+          /*word-wrap: break-word;*/
+      }
       .slider {
         margin-right: 3px;
         word-wrap: break-word;
-
       }
 
     </style>
@@ -252,7 +270,6 @@
     @endmovil 
 
      <script >
-       // const mySlider = new DraggableSlider('slider_noticia');
        const mySlider2 = new DraggableSlider('slider_medicos');
      </script>
     {{-- Mensaje de informacion --}}

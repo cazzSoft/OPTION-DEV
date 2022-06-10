@@ -288,10 +288,10 @@ input[type="file"] {
     font-family: 'Calibri';
     font-style: normal;
     font-weight: 700 !important;
-    font-size: 8px;
-    line-height: -22px;
+    font-size: 12px;
+    line-height: 10px;
     text-align: center;
-    color: #000000;
+    margin-top: 5px;
   }
 
   /*noticia*/
