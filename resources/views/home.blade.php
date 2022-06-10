@@ -260,16 +260,17 @@
   @section('include_js')
     <script src="{{ asset('/js/slider.js') }}"></script> 
     
-      @if(isset($listaNoticia))
+      {{-- @if(isset($listaNoticia))
          @foreach($listaNoticia as $key=>$noti)
            <script>
               const mySlider_{{$key}} = new DraggableSlider('slider_noticia_{{$key}}');
            </script>
          @endforeach
-      @endif
+      @endif --}}
     
 
      <script >
+       const mySlider = new DraggableSlider('slider_noticia');
        const mySlider2 = new DraggableSlider('slider_medicos');
      </script>
     {{-- Mensaje de informacion --}}

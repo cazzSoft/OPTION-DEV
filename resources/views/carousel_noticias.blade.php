@@ -35,7 +35,7 @@
                 @movil
                   <div class="col-lg-5 col-md-5 col-sm-12  ">
                     @if(isset($noti))
-                      <div id="slider_noticia_{{$key}}" class="draggable-slider " >
+                      <div id="slider_noticia" class="draggable-slider " >
                         <div class="inner">
                           @foreach($noti as $key=>$item)
                             {{-- @if($key!=0) --}}
