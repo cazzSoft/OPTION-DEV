@@ -51,7 +51,7 @@
               @movil
                 <div id="slider_medicos" class="draggable-slider ">
                   <div class="inner">
-                    @foreach($list_top_medico->take(5) as $key=> $item) 
+                    @foreach($list_top_medico as $key=> $item) 
                       <div class="slider text-center">
                         @if(isset($item->img) && $item['img']!=null) 
                          <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
