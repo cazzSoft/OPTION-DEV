@@ -35,14 +35,19 @@
                 @movil
                   <div class="col-lg-5 col-md-5 col-sm-12  ">
                     @if(isset($noti))
-                      <div id="slider_noticia" class="draggable-slider slider_noticia" >
+                      <div id="slider_noticia_{{$key}}" class="draggable-slider " >
                         <div class="inner">
                           @foreach($noti as $key=>$item)
                             {{-- @if($key!=0) --}}
-                              <div class="slide">
+                              <div class="slider">
                                 <img src="{{$img=\Storage::disk('wasabi')->temporaryUrl( $item['img'], now()->addMinutes(3600))}}" class="img_slide_noti" alt="">
-                                <span class="slide_title_noti">{{ Str::limit($item['titulo'],20,'.')}}</span><br>
-                                <span class="slide_des_noti">  <small> {{ Str::limit($noti[0]['autor'], 38,'.') }}</small></span>
+                                <div class="slide_title_noti" >
+                                  {{ Str::limit($item['titulo'],55,'... ')}}
+                                </div>
+                                <div class="slide_des_noti">
+                                  <small> {{ Str::limit($noti[0]['autor'], 50,'..') }}</small>
+                                </div>
+                                {{-- <span class="slide_des_noti">  </span> --}}
                               </div>
                              
                             {{-- @endif  --}}

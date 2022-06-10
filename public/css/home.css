@@ -77,7 +77,7 @@
 
 
 
-.bt_register_carrosel {
+.bt_register_carrosel { 
   padding-top: 1px;
 }
 
@@ -267,21 +267,21 @@ input[type="file"] {
   }
 
   /*stilo de slider imagen noticias*/
-  .slide .slide_title_noti{
+  .slider .slide_title_noti{
     font-family: 'Calibri';
     font-style: normal;
-    font-weight: 800;
-    font-size: 14px;
-    line-height: normal;
-    /*line-height: 1px !important;*/
-    color: #000;
+    font-weight: 700;
+    font-size: 14px !important;
+    line-height: normal !important;
+
+   
   }
   .slide_des_noti{
-    font-family: 'Calibri';
+   /* font-family: 'Calibri';
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
-    line-height: 10px;
+    font-size: 12px;*/
+
   }
 
   .text-medico-slide{
@@ -431,7 +431,7 @@ input[type="file"] {
       display: none ;
     }
 
-    .btn-s3{
+    /*.btn-s3{
       text-align: center;
      
       font-family: 'Calibri';
@@ -442,14 +442,14 @@ input[type="file"] {
       background: #0FADCE;
       box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
       border-radius: 5px;
-    }
+    }*/
     .img-info{
       width: 140px;
       height: auto;
       /*object-fit: cover;*/
       margin: auto !important;
       padding: 0px;
-      margin-top: 21px !important;
+      margin-top: 2px !important;
     }
 
     .text-cuida-s2{
@@ -682,7 +682,7 @@ input[type="file"] {
      .attachment_titulo{
          font-size: 1.5vw;
          line-height: 1.9vw;
-         color: red;
+         /*color: red;*/
      }
      .attachment_desc{
          font-size: 0.8em;
@@ -792,6 +792,8 @@ input[type="file"] {
        padding: 0px !important;
        margin: 0px !important;
      }
+
+     
   }
 
   /*slider de informacion */
@@ -811,8 +813,9 @@ input[type="file"] {
       margin-top:170px !important;
     }
     .bt_register_carrosel .btn-s3 .text-calibri {
-        font-size: 18px;
+        font-size: 17px;
     }
+    
   }
 
   @media (min-width: 767.98px) and (max-width: 1377.98px) { 

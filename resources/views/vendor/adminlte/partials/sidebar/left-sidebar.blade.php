@@ -42,12 +42,7 @@
                         <a href="#" class="ml-2 @if(Session::get('language')=='en') text-info_ @endif"><b>En</b></a>
                         <div class="p2 mt-5 text-muted">
                             <a href="{{url('nosotros')}}" class=" text-muted d-block">ACERCA DE NOSOTROS </a>
-                            @guest
-                                <a href="{{url('info-coinsults')}}" class=" text-muted d-block">COINSULTS </a>
-                            @else
-                                <a href="{{url('coinsult')}}" class=" text-muted d-block">COINSULTS </a>
-                            @endguest
-                           
+                            <a href="{{url('info-coinsults')}}" class=" text-muted d-block">COINSULTS </a>
                             <a href="#" onclick="openInfoTermiCondiciones()" class=" text-muted d-block">TÉRMINOS Y CONDICIONES </a>
                             @auth  
                                 <a href="#" onclick="logout_session()" class=" text-muted d-block mt-3 logut-btn d-none">Cerrar sesión </a> 

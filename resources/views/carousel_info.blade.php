@@ -9,12 +9,12 @@
       <div class="carousel-item active ">
         <div class="card  shadow-none " >
           <div class="card-body row text-dark border-white card-info">
-            <div class="col-12  text-center div-info">
+            <div class="col-12  text-center div-info ">
                 <img class="img-info" src="{{asset('/img/slider/s1doctor.png')}}" alt="Photo">
             </div>
             <div class="col-12 " >
               <div class="div_conten_info ">
-                <h2 class=" text-info-s1 "> ¿Listo para tomar el control de tu salud y de tu Familia?  
+                <h2 class=" text-info-s1 mt-1"> ¿Listo para tomar el control de tu salud y de tu Familia?  
                   <br><span class="text-info-s1 text-info_ text-calibri"><b>INGRESA AQUÍ</b></span>
                 </h2>
               </div>

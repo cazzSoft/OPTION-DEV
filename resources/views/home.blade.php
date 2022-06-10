@@ -52,7 +52,7 @@
                 <div id="slider_medicos" class="draggable-slider ">
                   <div class="inner">
                     @foreach($list_top_medico->take(5) as $key=> $item) 
-                      <div class="slide text-center">
+                      <div class="slider text-center">
                         @if(isset($item->img) && $item['img']!=null) 
                          <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
                         @else  
@@ -198,7 +198,7 @@
         width: 100%;
         height: 170px;
         cursor: grab;
-        text-align: center;
+        text-align: left;
       }
 
       .draggable-slider.active {
@@ -228,9 +228,10 @@
         /*line-height: 400px;*/
       }
 
-      .slide {
+      .slider {
         margin-right: 3px;
         word-wrap: break-word;
+
       }
 
     </style>
@@ -240,9 +241,18 @@
   {{-- Seccion para insertar js--}}
   @section('include_js')
     <script src="{{ asset('/js/slider.js') }}"></script> 
+    @movil
+      @if(isset($listaNoticia))
+         @foreach($listaNoticia as $key=>$noti)
+           <script>
+              const mySlider_{{$key}} = new DraggableSlider('slider_noticia_{{$key}}');
+           </script>
+         @endforeach
+      @endif
+    @endmovil 
+
      <script >
-      
-       const mySlider = new DraggableSlider('slider_noticia');
+       // const mySlider = new DraggableSlider('slider_noticia');
        const mySlider2 = new DraggableSlider('slider_medicos');
      </script>
     {{-- Mensaje de informacion --}}
