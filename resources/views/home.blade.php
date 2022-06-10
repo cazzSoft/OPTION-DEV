@@ -259,7 +259,7 @@
   {{-- Seccion para insertar js--}}
   @section('include_js')
     <script src="{{ asset('/js/slider.js') }}"></script> 
-    @movil
+    
       @if(isset($listaNoticia))
          @foreach($listaNoticia as $key=>$noti)
            <script>
@@ -267,7 +267,7 @@
            </script>
          @endforeach
       @endif
-    @endmovil 
+    
 
      <script >
        const mySlider2 = new DraggableSlider('slider_medicos');
