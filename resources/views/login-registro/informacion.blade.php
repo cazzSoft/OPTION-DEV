@@ -4,42 +4,16 @@
 
 
 @section('contenido')
-    <!-- Just an image -->
-  {{--  <div class="container-fluid  p-1">
-     <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
-       <div class=" container-fluid ">
-         <a href="{{url('/')}}" class="navbar-brand ml-4 imgSecion">
-           <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
-         </a>
-           <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
-               <li class="nav-item dropdown" >
-                   <div class="d-flex flex-row-reverse mr-3 idioma">
-                       <div class="p-2">
-                            <form method="POST" action="{{url('lang')}}" id="form-language">
-                                {{ csrf_field() }}
-                                <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
-                                   <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
-                                   <option @if(Session::get('language')=='en') selected @endif value="en"> EN</option>
-                               </select>
-                            </form>
-                       </div>
-                       <div class="p-2 lead text-mutex"> {{trans('informacion-view.Language') }}</div>
-                   </div>
-                   <div class="d-flex justify-content-end mr-3 options">
-                     <div class="p-2 mr-3 "><a class="{{ request()->is(['nosotros','nosotros_']) ? 'text-info_' : 'text-muted' }} "  href="{{url('nosotros')}}"> {{trans('informacion-view.acerca de Nosotros') }}  </a></div>
-                     <div class="p-2"><a class=" {{ request()->is('info-coinsults') ? 'text-info_' : 'text-muted' }} " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
-                   </div>
-              </li>
-           </ul>
-       </div>
-     </nav>     
-   </div> --}}
-   
     <div class="row" style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;">
         <div class=" conten-info @if($data['tp']=='CO') container-fluid  @else container @endif ">
             <div class="col-md-12 mt-0">
-               <a href="{{url('session')}}">  <p class="ml-5 text-lead h1 text-info_ tex-sty text-center">  @if(isset($data))  {{$data['titulo']}} @endif </p>
-               </a>
+                <a href="{{url('/')}}">
+                    @movil
+                        <p class=" text-lead h2 text-info_ ">  <i class="fas fa-chevron-left mr-3 text-info_"></i>  <b>@if(isset($data))  {{$data['titulo']}} @endif</b>  </p>
+                    @else 
+                        <p class="ml-5 text-lead h1 text-info_ tex-sty text-center">  @if(isset($data))  {{$data['titulo']}} @endif </p>
+                    @endmovil
+               </a> 
             </div>
             <div class="col-md-12 mt-3 mb-2 text-center detalle ">
                 @if(isset($data['detalle']))
@@ -47,19 +21,19 @@
                 @endif 
             </div>
             @if( $data['tp']=='AN')
-                <div class="col-md-12 mt-1">
+                <div class="col-md-12 mt-1 detalle">
                     <h3 class="text-info_ text-center"><b> {{trans('informacion-view.vision') }}</b></h3>
-                    <p class="lead ml-5 mr-5 p-2 text-center">
+                    <p class="lead ml-5 mr-5 p-2 text-center ">
                       {{trans('informacion-view.text-vision') }}
                     </p> 
                 </div>
-                <div class="col-md-12 mt-5">
+                <div class="col-md-12 mt-5 detalle">
                     <h3 class="text-info_ text-center"><b> {{trans('informacion-view.mision') }}</b></h3>
                     <p class="lead ml-5 mr-5 p-2 text-center">
                         {{trans('informacion-view.text-mision') }} 
                     </p> 
                 </div>
-                <div class="col-md-12 mt-3 mb-5">
+                <div class="col-md-12 mt-3 mb-5 detalle">
                     <div class="lead ml-5 mr-5 p-2 mt-5 text-center mb-4 ">
                         <p class="text-info_ h4 mb-3"><b> {{trans('informacion-view.que-busca') }}</b></p>
                         <p ><b class="text-info_">{{trans('informacion-view.prevencion') }}</b>: {{trans('informacion-view.text-prevencion') }}</p>

@@ -17,6 +17,32 @@
     margin: 0px !important;
     padding: 0px !important;
   }
+  .text-lead {
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 22px;
+    color: #4F4F4F !important;
+  }
+  
+  .detalle p, div{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    /*font-weight: 700 !important;*/
+    font-size: 12px !important;
+    line-height: 15px !important;
+    /*color: #4F4F4F;*/
+  }
+  .detalle h3{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #0FADCE;
+  }
   .content-header {
     display: none;
   }
@@ -29,14 +55,14 @@
   }*/
 
   body {
-      margin: 0;
+      /*margin: 1;*/
       /*font-family: "ca";*/
       /*font-size: 1rem;*/
-      line-height: 1.2;
+      /*line-height: 1.2;*/
       font-family: 'Calibri';
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 12px;
       /*line-height: 19px;*/
       text-align: justify;
   }
@@ -45,11 +71,10 @@
     font-weight: 700;
     font-size: 31px;
   }
-  .detalle{
-    /*margin-bottom: 122px !important;*/
-  }
+  
 
   .conten-info   {
     margin-bottom: 122px !important;
-  }
+    margin-top: 30px;
+  } 
 }
