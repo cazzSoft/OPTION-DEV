@@ -13,7 +13,7 @@
                 <img class="img-info" src="{{asset('/img/slider/s1doctor.png')}}" alt="Photo">
             </div>
             <div class="col-12 " >
-              <div class="div_conten_info ">
+              <div class="div_conten_info m-auto">
                 <h2 class=" text-info-s1 mt-1"> ¿Listo para tomar el control de tu salud y de tu Familia?  
                   <br><span class="text-info-s1 text-info_ text-calibri"><b>INGRESA AQUÍ</b></span>
                 </h2>

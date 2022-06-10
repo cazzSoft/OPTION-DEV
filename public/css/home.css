@@ -267,7 +267,7 @@ input[type="file"] {
   }
 
   /*stilo de slider imagen noticias*/
-  .slide .slide_title_noti{
+  .slider .slide_title_noti{
     font-family: 'Calibri';
     font-style: normal;
     font-weight: 700;
@@ -475,7 +475,8 @@ input[type="file"] {
     }
     /*dimencion del detalle*/
     .div_conten_info{
-      height: 110px;
+      height: 120px;
+      padding: 3px;
     }
     #sliderInfo{
       height:370px ;

@@ -25,7 +25,7 @@
   <section class="content">
     <div class="row ">
       <div class="col-lg-12 col-xs-12 text-center">
-        <p class="h4 text-info text-center mt-3 " style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias nuevas</b></p>
+        <p class="h4 text-info text-center mt-2 " style="font-family:  Calibri; color: #13c6ef !important;"><b>Noticias nuevas</b></p>
         <p class="h4 text-center lead mb-2 desc-noticia" style="width: 680px; margin:auto;">
           En esta seccion encontraras las más novedosas noticias sobre la comunidad medica, desde nuevos descubrimientos hasta datos curiosos.
         </p>
@@ -49,10 +49,10 @@
           <div class="row mt-5  justify-content-start text-center m-auto">
             @if(isset($list_top_medico))
               @movil
-                <div id="slider_medicos" class="draggable-slider slide">
+                <div id="slider_medicos" class="draggable-slider slider">
                   <div class="inner">
                     @foreach($list_top_medico as $key=> $item) 
-                      <div class="slide text-center">
+                      <div class="slider text-center">
                         @if(isset($item->img) && $item['img']!=null) 
                           <a href="{{url('medico/info/'.encrypt($item['id']))}}">
                             <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
@@ -62,7 +62,7 @@
                             <img src="{{asset('img/user.png') }}" class="img_slide_medico img-circle img-fluid p-0 elevation-1" alt="">
                           </a>
                         @endif  
-                        <div class=" text-medico-slide text-dark">
+                        <div class="text-medico-slide text-dark mt-3">
                            <a href="{{url('medico/info/'.encrypt($item['id']))}}" class="text-muted" >{{$item->name}} </a>
                         </div>
                         
@@ -237,17 +237,17 @@
       /**
        * These styles can be adapted as you see fit.
        */
-      .draggable-slider .inner .slide {
+      .draggable-slider .inner .slider {
         width: 127px;
         height: 100px;
       
       }
 
-      #slider_medicos .inner .slide {
+      #slider_medicos .inner .slider {
          margin-right: 7px !important;
           /*word-wrap: break-word;*/
       }
-      .slide {
+      .slider {
         margin-right: 3px;
         word-wrap: break-word;
       }
@@ -259,18 +259,17 @@
   {{-- Seccion para insertar js--}}
   @section('include_js')
     <script src="{{ asset('/js/slider.js') }}"></script> 
-    
-      {{-- @if(isset($listaNoticia))
+    @movil
+      @if(isset($listaNoticia))
          @foreach($listaNoticia as $key=>$noti)
            <script>
               const mySlider_{{$key}} = new DraggableSlider('slider_noticia_{{$key}}');
            </script>
          @endforeach
-      @endif --}}
-    
+      @endif
+    @endmovil 
 
      <script >
-       const mySlider = new DraggableSlider('slider_noticia');
        const mySlider2 = new DraggableSlider('slider_medicos');
      </script>
     {{-- Mensaje de informacion --}}
