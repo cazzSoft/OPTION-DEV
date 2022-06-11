@@ -33,7 +33,9 @@
 
         <link rel="stylesheet" href="{{ secure_asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
         {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> --}}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calibri:300,400,600,700,300calibri,400calibri,600calibri">
+        {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calibri"> --}}
+        
+    
     @else
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     @endif
@@ -75,7 +77,7 @@
 
 </head>
 
-<body class="@yield('classes_body')"  @yield('body_data')>
+<body class="@yield('classes_body')"  @yield('body_data') style="font-family: 'Calibri'">
  
     {{-- Body Content --}}
     @yield('body')
