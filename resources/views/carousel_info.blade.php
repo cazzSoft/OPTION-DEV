@@ -37,7 +37,7 @@
               <div class="text-left div_conten_info"> 
                 <span class="text-s2 ">Mantente fuerte, vive mucho.</span><br>
                 <span class="text-cuida-s2 text-left"> Cuida tu cuerpo y él  cuidara de ti. </span> <br>
-                <span class="text-s2  ">Podras monitorear los signos vitales de ti y tu familia desde cualquier dispositivo</span> 
+                <span class="text-s2  ">Podrás monitorear los signos vitales de ti y tu familia desde cualquier dispositivo</span> 
               </div>
               <div class="form-group  text-center">
                 <a class="btn bgz-info rounded  shadow-sm  btn-sm btn-block"    href="session" >
@@ -58,7 +58,7 @@
             <div class="col-12">
               <div class=" text-left div_conten_info">
                 <p class="text-cuida-s2 text-left"> Miles de <span class="text-info_">Médicos</span> especialistas a tu alcance en cualquier momento </p>
-                <span class="text-s2 text-left">Tendrás a tu disposición medicos de cualquier especialidad.</span>
+                <span class="text-s2 text-left">Tendrás a tu disposición médicos de cualquier especialidad.</span>
               </div>
               <div class="form-group ">
                 <a class="btn bgz-info rounded shadow-sm btn-sm text-center btn-block"  href="session" >
