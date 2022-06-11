@@ -100,7 +100,7 @@
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Publicaciones</b></p>
           <p class="h4 text-center lead mb-2 desc-publica" style="width: 680px; margin:auto;">
-           En esta seccion encontraras las publicaciones e investigaciones realizadas por nuestros médicos
+           En esta sección encontraras las publicaciones e investigaciones realizadas por nuestros médicos
           </p>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -122,7 +122,7 @@
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Publicaciones</b></p>
           <p class="h4 text-center lead mb-2 desc-publica" style="width: 680px; margin:auto;">
-           En esta seccion encontraras las publicaciones e investigaciones realizadas por nuestros médicos
+           En esta sección encontraras las publicaciones e investigaciones realizadas por nuestros médicos
           </p>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
