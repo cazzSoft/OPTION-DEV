@@ -117,7 +117,7 @@
                   <p class="mt-2 text-register ">¿Listo para tomar el control de tu salud y de tu Familia? <span class="text-info_">INGRESA AQUÍ</span></p>
                </li>
                <li class="item-nav  " >
-                 <a class="btn ml-2 mr-0 text-light  border-0 text-center btn-registrate "   href="session"> <span>Registrate</span> </a>
+                 <a class="btn ml-2 mr-0 text-light  border-0 text-center btn-registrate "   href="session"> <span>Regístrate</span> </a>
                </li>
               @endif
                {{-- <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto "> --}}

@@ -20,7 +20,7 @@
               </div>
               <div class="form-group  text-center ">
                 <a class="btn bgz-info rounded  shadow-sm  btn-sm btn-block"    href="session" >
-                  <b class="text-calibri">Registrate</b>
+                  <b class="text-calibri">Regístrate</b>
                 </a>
               </div>
             </div>
@@ -41,7 +41,7 @@
               </div>
               <div class="form-group  text-center">
                 <a class="btn bgz-info rounded  shadow-sm  btn-sm btn-block"    href="session" >
-                  <b class="text-calibri">Registrate</b>
+                  <b class="text-calibri">Regístrate </b>
                 </a>
               </div> 
             </div>
@@ -62,7 +62,7 @@
               </div>
               <div class="form-group ">
                 <a class="btn bgz-info rounded shadow-sm btn-sm text-center btn-block"  href="session" >
-                 Registrate
+                 Regístrate 
                 </a>
               </div>   
             </div>
@@ -95,7 +95,7 @@
                 </h2>
                 <div class="form-group   bt_register_carrosel text-center ">
                   <a class="btn pr-5 pl-5  bgz-info rounded  shadow-sm mt-5 btn-s3 btn-sm "    href="session" >
-                    <b class="h4 text-calibri">Registrate</b>
+                    <b class="h4 text-calibri">Regístrate </b>
                   </a>
                 </div>  
               </div>
@@ -117,7 +117,7 @@
                  <span class="text-info-s2 h3 mb-4">Podras monitorear los signos vitales de ti y tu familia desde cualquier dispositivo</span>
                  <div class="form-group   bt_register_carrosel text-center">
                    <a class="btn pr-5 pl-5  bgz-info rounded  shadow-sm mt-5 btn btn-s3 btn-sm" Width="308px"    href="session" >
-                     <b class="h4 text-calibri">Registrate</b>
+                     <b class="h4 text-calibri">Regístrate </b>
                    </a>
                  </div>  
                </div>
@@ -136,10 +136,10 @@
               <div class="  text-right  ">
                 <div class=" text-right div_3_text">
                   <h2 class=" text-info-s1"> Miles de <span class="text-info_">Médicos</span> especialistas a tu alcance en cualquier momento </h2><br>
-                  <span class="text-right text-info_"><b>Tendrás a tu disposición medicos de cualquier especialidad.</b></span>
+                  <span class="text-right text-info_"><b>Tendrás a tu disposición médicos de cualquier especialidad.</b></span>
                   <div class="form-group ml-5  mt-5 text-left bt_register_carrosel">
                     <a class="btn   bgz-info rounded  shadow-sm mt-5  btn-sm btn-s3 text-center teca" Width="308px"    href="session" >
-                     Registrate
+                     Regístrate 
                     </a>
                   </div>  
                 </div>
