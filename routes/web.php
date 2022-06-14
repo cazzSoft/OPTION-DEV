@@ -115,8 +115,9 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/casos_ex', 'DoctoresController@casos_ex');
             Route::resource('/seguir', 'SeguirController');
             Route::post('/update_portada', 'DoctoresController@update_photo_portada');
+            Route::get('/guia', 'DoctoresController@getGuiaMedico');
+            Route::get('/getMedico_filtro/{esp?}', 'DoctoresController@getGuiaMedico_esp');
             
-
          });
 
         //CONSULTAS DE REGISTRO USERS

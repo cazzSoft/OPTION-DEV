@@ -76,11 +76,27 @@ class DoctoresController extends Controller
         event(new HomeEventPerfilUser(['page'=>'Ayudanos a ayudar','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'CAEX'])]));
         return view('medico.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos]);
     }
-    public function create()
+
+    //get guia medica 
+    public function getGuiaMedico()
     {
-        //
+         $especialidades=EspecialidadesModel::orderBy('descripcion', 'Asc')->get();
+       
+        $tipo_m=TipoUserModel::where('abr','dr')->first();
+        // $listaTopMedico=User::where('idtipo_user',$tipo_m['idtipo_user'])->where('estado_registro',1)->get();
+        $listaTopMedico=User::with('titulo')->where('idtipo_user',$tipo_m['idtipo_user'])->get();
+        return view('medico.guiaMedica',['medicos'=>$listaTopMedico,'lista_espec'=>$especialidades]);
     }
 
+    //get guia medica por especialidad
+    public function getGuiaMedico_esp($value)
+    {
+        return decrypt($value);
+        $tipo_m=TipoUserModel::where('abr','dr')->first();
+        // $listaTopMedico=User::where('idtipo_user',$tipo_m['idtipo_user'])->where('estado_registro',1)->get();
+        $listaTopMedico=User::with('titulo')->where('idtipo_user',$tipo_m['idtipo_user'])->get();
+        return view('medico.guiaMedica',['medicos'=>$listaTopMedico,'lista_espec'=>$especialidades]);
+    }
     
     public function show($id)
     {

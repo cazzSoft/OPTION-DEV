@@ -1,0 +1,100 @@
+body{
+	font-family: 'Calibri' !important;
+	font-style: normal !important;	
+	font-weight: 700 !important;
+}
+.guia{
+	box-sizing: border-box;
+	width: 190px;
+	height: 215px;
+	background: #FFFFFF;
+	border: 0.475177px solid #BDBDBD;
+	border-radius: 4.75177px;
+	margin-right: 3px;
+	/*text-align: center;*/
+}
+
+.name_medico{
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 9px;
+	
+	padding: 10px;
+	align-items: center;
+	text-align: center;
+	color: #4F4F4F;
+}
+.detalle_guia_medico{
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 12px;
+	text-align: justify;
+}
+.text-filtro {
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 700;
+	font-size:20px;
+	line-height: 17px;
+	display: flex;
+	align-items: center;
+	color: #0FADCE !important;
+	margin-left: 15px;
+}
+.img-size-32 {
+    width: 48px;
+    height: 48px;
+}
+ .btn_filtro_espe{
+	box-sizing: border-box;
+	display: block;
+	width: 30px;
+	height: 30px;
+	border: 0.189011px solid lightgrey;
+	border-radius: 1.89011px;
+	background: #F1F1F1 !important;
+	cursor: pointer;
+	margin: 10px;
+	color: #000 !important;
+}
+.btn_filtro_espe b{
+	
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	text-align: center;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: auto;
+	padding-bottom: auto;
+	
+
+}	
+.btn_filtro_espe :hover{
+	color: #2DB7D4 !important;
+	/*background: #F1F1FF !important;*/
+}
+.botones{
+	/*background: blue !important;*/
+	width: 80%;
+}
+
+.list_esp{
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 19px;
+	display: flex;
+	align-items: flex-end;
+	text-decoration-line: underline;
+	cursor: pointer;
+}
+.list_esp a:hover{
+	color: #0FADCE !important;
+}
