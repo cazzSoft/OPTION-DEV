@@ -30,7 +30,7 @@
               <h5 class="widget-user-desc text-right">Web Designer</h5> --}}
           </div>
           <div class="widget-user-image p-0  mr-5 " style="/*margin-left:-46%*/;">
-            @if(asset($datos_p->img) && $datos_p['img']!=null)
+            @if(asset($datos_p['img']) && $datos_p['img']!=null)
               <img class="img-circle img-fluid p-1" id="preViewImg" 
                 src="
                       @if(\Storage::disk('diskDocumentosPerfilUser')->exists($datos_p->img)) 

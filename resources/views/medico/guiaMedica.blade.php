@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 col-md-8 col-sm-12">
+            <div class="col-9 col-md-8 col-sm-12">
                 <div class="row  m-auto">
                     @if(isset($medicos))
                         @foreach( $medicos as $key=>$item)
@@ -100,7 +100,7 @@
                                             
                                             <div class="form-group row mt-3">
                                                 <div class="col-md-12 offset-md-12">
-                                                    <a href="{{url('medico/info/'.encrypt(4))}}" type="submit" class="btn btn-info btn-block text_url btn-xs" style="background-color:#0FADCE;">
+                                                    <a href="{{url('medico/info/'.encrypt($item->id))}}" type="submit" class="btn btn-info btn-block text_url btn-xs" style="background-color:#0FADCE;">
                                                         {{ __('Visitar perfil') }} 
                                                     </a>
                                                 </div>
