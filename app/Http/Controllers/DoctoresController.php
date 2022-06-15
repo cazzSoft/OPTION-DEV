@@ -84,18 +84,34 @@ class DoctoresController extends Controller
        
         $tipo_m=TipoUserModel::where('abr','dr')->first();
         // $listaTopMedico=User::where('idtipo_user',$tipo_m['idtipo_user'])->where('estado_registro',1)->get();
-        $listaTopMedico=User::with('titulo')->where('idtipo_user',$tipo_m['idtipo_user'])->get();
-        return view('medico.guiaMedica',['medicos'=>$listaTopMedico,'lista_espec'=>$especialidades]);
+        $listapMedico=User::with('titulo')->where('idtipo_user',$tipo_m['idtipo_user'])->get();
+        return view('medico.guiaMedica',['medicos'=>$listapMedico,'lista_espec'=>$especialidades]);
     }
 
     //get guia medica por especialidad
     public function getGuiaMedico_esp($value)
     {
-        return decrypt($value);
-        $tipo_m=TipoUserModel::where('abr','dr')->first();
-        // $listaTopMedico=User::where('idtipo_user',$tipo_m['idtipo_user'])->where('estado_registro',1)->get();
-        $listaTopMedico=User::with('titulo')->where('idtipo_user',$tipo_m['idtipo_user'])->get();
-        return view('medico.guiaMedica',['medicos'=>$listaTopMedico,'lista_espec'=>$especialidades]);
+        $value= decrypt($value);
+        $especialidades=EspecialidadesModel::orderBy('descripcion', 'Asc')->get();
+        
+        $consul =UsuarioEspecialidadModel::with(
+                ['especialidades'=>function ($q) use($value){
+                    $q->where("descripcion","like", $value."%")->orderBy('descripcion', 'Asc')->get();
+                            }]
+        )->with('usuario')->get();
+
+        $array=[];
+        if( $consul!=null && $consul!="[]"){
+            foreach ($consul as $key => $item) {
+               if($item['especialidades']!=null){
+                
+                    array_push($array,$item['usuario'][0]);
+               }
+            }
+        }
+        
+       
+        return view('medico.guiaMedica',['medicos'=>$array,'lista_espec'=>$especialidades,'value'=>$value]);
     }
     
     public function show($id)

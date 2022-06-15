@@ -41,8 +41,8 @@
       <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-5">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Médicos</b></p>
-          <p class="h4 text-center lead mb-2 desc-noticia" style="width: 680px; margin:auto;">
-           En esta sección encontraras un directorio con todos los médicos especialistas disponibles <br> <a href="{{url('medico/guia')}}" class="text-info_">ver todos</a>
+          <p class="h4 text-center lead mb-2 desc-noticia mb-4" style="width: 680px; margin:auto;">
+           En esta sección encontraras un directorio con todos los médicos especialistas disponibles. <a href="{{url('medico/guia')}}" class="text-info_">ver todos</a>
           </p>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 text-center m-auto">
@@ -74,16 +74,18 @@
               @else
                 @foreach($list_top_medico->take(5) as $key=> $item)
                   <div class="col-md-2 col-sm-3 col-xs-12 text-left  @if($key<1) offset-md-1  @endif  text-center mb-3">
-                    @if(isset($item->img) && $item['img']!=null) 
-                      <a href="{{url('medico/info/'.encrypt($item['id']))}}">
-                        <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" alt="{{$item->img}}" id="img_doc" class=" img-circle img-fluid p-0 elevation-1">
-                      </a>
-                    @else 
-                      <a href="{{url('medico/info/'.encrypt($item['id']))}}">  
-                        <img src="{{asset('img/user.png') }}" alt="{{$item->img}}" id="img_doc"  class=" img-circle img-fluid p-0 elevation-1">
-                      </a>
-                    @endif
-                    <a class="users-list-name mt-3 mb-2" href="{{url('medico/info/'.encrypt($item['id']))}}"><b class="h5">{{$item->name}}</b></a>
+                   
+                      @if(isset($item->img) && $item['img']!=null) 
+                        <a href="{{url('medico/info/'.encrypt($item['id']))}}">
+                          <img src="{{ \Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}" alt="{{$item->img}}" id="img_doc" class="bg-light img-circle {{-- img-fluid --}} p-0 elevation-0">
+                        </a>
+                      @else 
+                        <a href="{{url('medico/info/'.encrypt($item['id']))}}">  
+                          <img src="{{asset('img/user.png') }}" alt="{{$item->img}}" id="img_doc"  class=" img-circle {{-- img-fluid --}} p-0 elevation-0 bg-light">
+                        </a>
+                      @endif
+                      <a class="users-list-name mt-3 mb-2 text-truncate" href="{{url('medico/info/'.encrypt($item['id']))}}"><b class="h5">{{$item->name}}</b></a>
+                   
                   </div>
                 @endforeach
               @endmovil

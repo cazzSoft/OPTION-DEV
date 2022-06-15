@@ -12,6 +12,12 @@ class UsuarioEspecialidadModel extends Model
 
     public function especialidades()
     {
-         return $this->belongsTo('App\EspecialidadesModel', 'idespecialidades', 'idespecialidades');
+        return $this->belongsTo('App\EspecialidadesModel', 'idespecialidades', 'idespecialidades');
     }
+
+    public function usuario()
+    {
+        return $this->hasMany('App\User', 'id', 'iduser')->with('titulo');
+    }
+
 }

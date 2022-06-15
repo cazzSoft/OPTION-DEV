@@ -3,6 +3,9 @@ body{
 	font-style: normal !important;	
 	font-weight: 700 !important;
 }
+a {
+    color: #000 !important;
+}
 .guia{
 	box-sizing: border-box;
 	width: 190px;
@@ -59,7 +62,7 @@ body{
 	background: #F1F1F1 !important;
 	cursor: pointer;
 	margin: 10px;
-	color: #000 !important;
+	/*color: #000 !important;*/
 }
 .btn_filtro_espe b{
 	
@@ -73,7 +76,6 @@ body{
 	padding-top: auto;
 	padding-bottom: auto;
 	
-
 }	
 .btn_filtro_espe :hover{
 	color: #2DB7D4 !important;
@@ -97,4 +99,80 @@ body{
 }
 .list_esp a:hover{
 	color: #0FADCE !important;
+}
+
+ @media (min-width:100px) and (max-width: 767.98px) { 
+	.container-fluid{
+	    padding: 0px !important;
+	}
+    .flex_titulo{
+        margin: 0px !important;
+    }
+   
+    .flex_titulo a p{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: #4F4F4F !important;
+    }
+
+    .text-filtro {
+    	font-family: 'Calibri';
+    	font-style: normal;
+    	font-weight: 700;
+    	font-size: 14px;
+    	line-height: 17px;
+    	display: flex;
+    	align-items: center;
+    	color: #0FADCE;
+    }
+    .botones{
+    	background: blue !important;
+    	width: 100%;
+    }
+
+     .btn_filtro_espe{
+    	
+    	width: 22px;
+    	height: 22px;
+    	margin: 6px;
+    	/*color: #000 !important;*/
+    }
+    .btn_filtro_espe span{
+    	font-weight: 600;
+    	font-size: 15px;
+    	margin-left: 4px;
+    	text-align: center;
+    	padding: 0px;
+    }
+    .guia{
+    	
+    	width: 160px;
+    	height: 180px;
+    	margin: auto;
+    }
+
+    .detalle_guia_medico{
+    	font-family: 'Calibri';
+    	font-style: normal;
+    	font-weight: 400;
+    	font-size: 10px;
+    	line-height: 7px;
+    	text-align: justify;
+    	
+    	height: 60px;
+    	padding-left: 10px;
+    	padding-right: 10px;
+    }
+
+    .img-size-32 {
+        width: 45px;
+        height: 45px;
+    }
+
+    .content{
+    	margin-bottom: 122px;
+    }
 }

@@ -167,8 +167,8 @@ input[type="file"] {
   }
 
   #img_doc{
-    width: 220px;
-    height: 220px;
+    width: 190px;
+    height: 190px;
     object-fit: cover;
 
   }
@@ -843,7 +843,12 @@ input[type="file"] {
       width: 75%!important;
     }
 
-     
+     #img_doc{
+       width: 140px;
+       height: 140px;
+       object-fit: cover;
+
+     }
 
   }
 
@@ -855,6 +860,14 @@ input[type="file"] {
     .div_3_text{
       width: 100%;
       margin: auto;
+    }
+
+    #img_doc{
+      width: 100px;
+      height: 100px;
+      padding: 5px;
+      object-fit: cover;
+
     }
     
   }
