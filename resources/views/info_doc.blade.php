@@ -108,7 +108,11 @@
           <p class="title-segn"><b>Acerca de mi</b></p>
           <p class="description">{{$datos_p->detalle_experiencia}} {{$datos_p->institucion}}</p>
           <p class="title-segn"><b>Experiencia</b></p>
-          <p class="description"><li class="description">{{$datos_p->detalle_experiencia}} {{$datos_p->des_perfil}}</li></p>
+          <p class="description">
+            @if(isset($datos_p->des_perfil)  )
+              <li class="description"> {{$datos_p->des_perfil}}</li>
+            @endif
+          </p>
         </div>
       </div>
       <div class="card card-widget widget-user shadow-md  card_perf border-white">
