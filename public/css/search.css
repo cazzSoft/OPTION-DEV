@@ -1,0 +1,186 @@
+
+.cuadro{
+    width: 180px;
+    height: 180px;
+    background: #C4C4C4;
+    text-align: center;
+}
+
+.img_doc{
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+  
+}
+
+.nav_content{
+    display: none !important;
+}
+
+
+.text-title{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #0FADCE;
+}
+
+
+.draggable-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 170px;
+  cursor: grab;
+  text-align: left;
+}
+ #slider_medicos {
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 140px !important;
+  cursor: grab !important;
+  text-align: left !important;
+
+}
+
+.draggable-slider.active {
+  cursor: grabbing;
+}
+
+.draggable-slider .inner {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  height: inherit;
+  /*transition: left 0.3s ease;*/
+}
+.draggable-slider.active .inner {
+  transition: none;
+}
+
+/**
+ * These styles can be adapted as you see fit.
+ */
+.draggable-slider .inner .slider {
+  width: 127px;
+  height: 100px;
+
+}
+
+#slider_medicos .inner .slider {
+   margin-right: 7px !important;
+    /*word-wrap: break-word;*/
+}
+.slider {
+  margin-right: 3px;
+  word-wrap: break-word;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+    .content{
+        margin-bottom: 111px;
+    }
+    .img_slide_medico {
+        width: 100px;
+        height: 100px;
+    }
+    .text-medico-slide{
+      font-family: 'Calibri';
+      font-style: normal;
+      font-weight: 700 !important;
+      font-size: 12px;
+      line-height: 10px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .flex_titulo{
+        margin: 0px !important;
+    }
+    .flex_titulo a p{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        color: #4F4F4F !important;
+    }
+    .lead-search{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center;
+        color: #4F4F4F;
+    }
+    .text-secu {
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        color: #4F4F4F;
+    }
+    .conten_publicaciones_search{
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    .username{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        font-size: 12px !important;
+        line-height: 15px !important;
+        color: #000000;
+    }
+    .description, .description a{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        font-size: 9px !important;
+        line-height: 11px !important;
+        color: #000000 !important;
+    }
+    .text-descript-publicaciones{
+     
+      font-family: 'Calibri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 12px;
+      text-align: justify;
+    }
+    .search_publi .card .card-body{
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-bottom: 0px;
+    }
+}
+
+@media (min-width: 767.98px) and (max-width: 1377.98px) { 
+    .img_doc{
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1016px) { 
+    .img_doc{
+      width: 100px;
+      height: 100px;
+      padding: 5px;
+      object-fit: cover;
+     
+    }
+}

@@ -20,8 +20,8 @@
 									" 
 								alt="User Image">
 	            		</a>
-	            		<span class="username">{{$art['titulo']}}| <Tratam></Tratam>iento</span>
-	            		<span class="description"><a href="{{url('medico/info/'.encrypt($art['iduser']))}}">{{$art['medico'][0]['name']}} </a>- @if(isset($art->created_at)) {{$art->created_at->isoFormat('lll') }} @endif </span>
+	            		<span class="username">{{$art['titulo']}}| <small><b>Tratamiento</b></small> </span>
+	            		<span class="description text-dark"><a href="{{url('medico/info/'.encrypt($art['iduser']))}}">{{$art['medico'][0]['name']}} </a>- @if(isset($art->created_at)) {{$art->created_at->isoFormat('lll') }} @endif </span>
 	            	</div>
 	            	<div class="card-tools">
 	            		{{-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -30,7 +30,7 @@
 	            	</div> 
 	            </div>
 	          	<div class="card-body ">
-					<p class="text-justify text-dark text-descript-publicaciones">
+					<p class="text-justify text-dark text-descript-publicaciones ">
 				  		{{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
 				  	</p> 
 					<div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>

@@ -138,7 +138,7 @@
                                                     @else
                                                         {{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}
                                                     @endif
-                                                "  alt="Product 1" class="img-circle img-size-32 mt-1 bg-light"> 
+                                                "  alt="img medico" class="img-circle img-size-32 mt-1 bg-light"> 
                                     </div>
                                     <div class="detalle_guia_medico ">
                                        
@@ -173,7 +173,7 @@
             <div class="col">
                 <p class=" text-lead h3 text-info text-center mb-3">  
                    <a href="/"> <i class="fas fa-chevron-left  text-info float-left ml-5"></i></a>
-                   <b class="text-center mr-5">  Guía Médica   </b>
+                   <b class="text-center mr-5">  Guía Médica   </b> 
                 </p>
             </div>
         </div>
