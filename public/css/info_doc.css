@@ -1,0 +1,145 @@
+
+.content-header {
+  display: none;
+}
+.content{
+  margin-top: 90px  !important;
+}
+.col-lg-8 {
+  -ms-flex: 0 0 70.666667% !important;
+  flex: 0 0 100% !important;
+  max-width: 1150px !important;
+}
+
+#preViewImg{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.nav_content{
+  display: none;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+  .content-header{
+    display: none;
+  }
+  .content{
+    margin-bottom: 111px;
+    padding-right: 5px !important; 
+    padding-left: 5px !important;
+    margin-top: 40px  !important;
+  }
+  
+  .widget-user .widget-user-header {
+      height: 90px;
+  }
+  #preViewImg{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    /*margin-top: -110px; */
+    border: 3px solid #0FADCE;
+
+  }
+  .widget-user .widget-user-image {
+    top: 50px !important;
+  }
+  .mt-3, .my-3 {
+    margin-top: 0rem!important; 
+  }
+  .profile-username{
+    margin-top: 17px !important;
+    padding: 0px !important;
+    margin-left: 0px !important;
+
+    
+    font-weight: 700;
+    font-size: 17px;
+   
+  }
+  .detalle-perfil{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 15px !important;
+    /*padding: 0px !important;*/
+
+    color: #4F4F4F;
+  }
+  .redes-icons{
+    text-align: center;
+  }
+  .fa-2x {
+      font-size: 120%;
+  }
+
+  .btn_seg{
+    width: 171px !important;
+    height: 34px !important;
+    background: #0FADCE !important;
+    box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  .align-self-end{
+    margin-top: 10px;
+    padding-bottom: 0px !important;
+  }
+  .title-segn{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+  }
+  .description{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px !important;
+    line-height: 15px;
+    color: #4F4F4F;
+  }
+  .username{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    line-height: 15px !important;
+  }
+  .description a{
+      font-family: 'Calibri' !important;
+      font-style: normal !important;
+      font-weight: 700 !important;
+      font-size: 9px !important;
+      line-height: 11px !important;
+      color: #000000 !important;
+  }
+
+  .card_perf .card {
+    padding: 0px !important;
+    margin-bottom: 11px !important;
+
+  }
+  .text-descript-publicaciones{
+   
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: justify;
+  }
+  .card-body-perf{
+    padding-bottom: 0px !important;
+  }
+}
+@media (min-width: 767.98px) and (max-width: 1377.98px) { 
+    
+}
+
+@media (min-width: 768px) and (max-width: 1016px) { 
+   
+}

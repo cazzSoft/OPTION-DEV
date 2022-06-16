@@ -8,12 +8,11 @@
 {{-- cuerpo de la pagina --}}
 @section('contenido')
   
-  <div class="row mt-1">
-    <div class="col-md-3 col-sm-12 col-xs-12 ">
+  <div class="row mt-0 justify-content-md-center">
+    {{-- <div class="col-lg-3 col-md-1 col-sm-12 col-xs-12 ">
       
-    </div>
-    <div class="col-md-6 col-sm-12 col-xs-12 {{-- offset-md-2 --}} "> 
-     
+    </div> --}}
+    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 div-perfil " > 
       <div class="card card-widget widget-user ">
           <div class="widget-user-header text-white text-left" 
             style=" 
@@ -31,7 +30,7 @@
           </div>
           <div class="widget-user-image p-0  mr-5 " style="/*margin-left:-46%*/;">
             @if(asset($datos_p['img']) && $datos_p['img']!=null)
-              <img class="img-circle img-fluid p-1" id="preViewImg" 
+              <img class="img-circle img-fluid p-1 bg-light" id="preViewImg" 
                 src="
                       @if(\Storage::disk('diskDocumentosPerfilUser')->exists($datos_p->img)) 
                         {{ asset($datos_p->img)}}
@@ -46,34 +45,34 @@
             @endif
           </div>
         
-          <div class="widget-user-header bg-white text-left mt-3" style="height: auto;">
+          <div class="widget-user-header  text-left mt-3" style="height: auto;">
              @if(isset($datos_p))
               <div class="row">
-                    <div class="col-sm-12 mt-2">
-                        <p class=" mt-5 ml-2 mb-3 h3 profile-username ">
-                            <b>{{$datos_p->name}} 
-                            </b>
-                        </p>
-                        <h6 class="widget-user-desc mx-0 ml-2">
-                          @if(isset( $datos_p['idtitulo_profesional'] ))
-                            {{$datos_p->titulo['descripcion']}}
-                          @endif  |
-                            <span class="ml-2 well well-sm shadow-none">Especialista en: </span>
-                             @if(isset($especialidad))
-                                 @foreach($especialidad as $key=>$item)
-                                     <span class="text-muted ">
-                                         @if($key!=0), @endif {{$item['especialidades']['descripcion']}}   
-                                     </span>
-                                 @endforeach <br>
-                             @endif  
-                        </h6>   
-                    </div>
+                <div class="col-sm-12 mt-2 ">
+                    <p class=" mt-5 ml-2 mb-3 h3 profile-username text-truncate">
+                        <b>{{$datos_p->name}} 
+                        </b>
+                    </p>
+                    <h6 class="widget-user-desc mx-0 ml-2 detalle-perfil">
+                      @if(isset( $datos_p['idtitulo_profesional'] ))
+                        {{$datos_p->titulo['descripcion']}}
+                      @endif  |
+                        <span class="ml-2 well well-sm shadow-none">Especialista en: </span>
+                         @if(isset($especialidad))
+                             @foreach($especialidad as $key=>$item)
+                                 <span class="text-muted ">
+                                     @if($key!=0), @endif {{$item['especialidades']['descripcion']}}   
+                                 </span>
+                             @endforeach <br>
+                         @endif  
+                    </h6>   
                 </div>
+              </div>
               <div class="row">
-                  <div class="col-md-7  col-sm-12 ">
+                  <div class="col-md-7  col-sm-12 detalle-perfil">
                       <h6 class="widget-user-desc mx-0 ml-2">
-                          <b>@if(isset($publicaciones)) {{$publicaciones}} @endif</b> publicaciones   
-                          <span class="ml-4"><b>@if(isset($seguidores)) {{$seguidores}} @endif</b> @if($seguidores==1)seguidor @else seguidores @endif</span>
+                          <span class="detalle-perfil">@if(isset($publicaciones))  <b>{{$publicaciones}}</b> @endif</span> publicaciones   
+                          <span class="ml-4 detalle-perfil"><b>@if(isset($seguidores)) {{$seguidores}} @endif</b> @if($seguidores==1)seguidor @else seguidores @endif</span>
                       </h6>
                       <span class="ml-2 well well-sm shadow-none">Teléfono: {{$datos_p->telefono}}</span><br>
                       <span class="ml-2 well well-sm shadow-none">Email: {{$datos_p->email}}</span><br>
@@ -81,8 +80,8 @@
                       
                   </div>
                   <div class="col-md-5  mt-2 align-self-end col-sm-12  ">
-                      <p class="text-muted text-leth">Sígueme en:</p>
-                      <div class="text-leth mb-3 ">
+                      <p class="text-muted text-letf ml-2 detalle-perfil">Sígueme en:</p>
+                      <div class="text-leth mb-3 redes-icons">
                           <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 p-1" ng-if="doctorsee.Twitter!==''">
                             <i class="fab fa-instagram text-info fa-2x"></i>
                           </a>
@@ -104,102 +103,80 @@
             @endif
           </div>
       </div>
-      <div class="card card-widget widget-user shadow-md">
-        <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="card card-widget widget-user shadow-md border-white">
         <div class="card-body">
-          <p><b>Acerca de mi</b></p>
+          <p class="title-segn"><b>Acerca de mi</b></p>
           <p class="description">{{$datos_p->detalle_experiencia}} {{$datos_p->institucion}}</p>
-
-          <p><b>Experiencia</b></p>
-          <p class="description"><li>{{$datos_p->detalle_experiencia}} {{$datos_p->des_perfil}}</li></p>
-
+          <p class="title-segn"><b>Experiencia</b></p>
+          <p class="description"><li class="description">{{$datos_p->detalle_experiencia}} {{$datos_p->des_perfil}}</li></p>
         </div>
-        
       </div>
-      <div class="card card-widget widget-user shadow-md">
-        <div class="card-header">
-          <p class="h3">Publicaciones </p>
+      <div class="card card-widget widget-user shadow-md  card_perf border-white">
+        <div class="card-header border-white">
+          <p class="h3 title-segn">Publicaciones </p>
           <small>Aqui tendras un listado de todas las publicaciones que has subido a O2H.</small>
         </div>
           @if (isset($listaArt))
-              @foreach ($listaArt as $art )
-                  <div class="card card-widget border-0 p-3 mx-3 mt-2">
-                    
-                      <div class="card-header">
-                        <div class="user-block text-dark">
-                          <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
-                            <img class="img-circle img-md" src="@if(isset($art['medico'][0]['img']) && $art['medico'][0]['img'] !=null){{  \Storage::disk('wasabi')->temporaryUrl($art['medico'][0]['img'], now()->addMinutes(3600)  )}} @else {{asset('img/user.phg')}} @endif" alt="User Image">
-                          </a>
-                          <span class="username">{{$art['titulo']}}| Tratamiento</span>
-                          <span class="description"><a href="">{{$art['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>
-                        </div>
-                        <div class="card-tools">
-                          {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                          </button> --}}
-                        </div> 
-                      </div>
+            @foreach ($listaArt as $art )
+              <div class="card card-widget  p-3 mx-3 mt-2 border-white shadow-md">
+                <div class="card-header border-0 pb-0">
+                  <div class="user-block text-dark">
+                    <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
+                      <img class="img-circle img-md" src="@if(isset($art['medico'][0]['img']) && $art['medico'][0]['img'] !=null){{  \Storage::disk('wasabi')->temporaryUrl($art['medico'][0]['img'], now()->addMinutes(3600)  )}} @else {{asset('img/user.phg')}} @endif" alt="User Image">
+                    </a>
+                    <span class="username">{{$art['titulo']}}| <small><b>Tratamiento</b></small></span>
+                    <span class="description"><a href="#">{{$art['medico'][0]['name']}} </a>- {{$art->created_at->isoFormat('lll') }}</span>
+                  </div> 
+                </div>
 
-                      <div class="card-body ">
-                    <p class="   text-justify text-dark">
-                      {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
-                    </p> 
+                <div class="card-body card-body-perf">
+                  <p class="text-justify text-dark text-descript-publicaciones">
+                    {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
+                  </p> 
                   <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
                     <iframe id=""  width="560" height="315" src="{{$art['url_video']}}"  frameborder="0" allowtransparency="true" allowfullscreen ></iframe>
                   </div>
-                      
+                </div>
+                
+                <div class="card-footer p-0">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-12 text-right p-0 ">
+                      <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class=" btn btn-app border-0">
+                        <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  {{-- {{$art['like_count']}} Me gusta --}}
+                        <span >{{$art['like_count']}} </span> Me gusta 
+                      </button>
+                    
+                    
+                      <div class="dropdown text-right float-right mr-4">
+                        <button class="btn btn-app border-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
+                        <i class="fa fa-share-alt"></i>  Compartir
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <a onclick="acctionCompartirF('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art['url_video']}}" target="_blank">
+                            <i class="fab fa-facebook" ></i> Facebook
+                          </a>
+                           <a onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://api.whatsapp.com/send/?phone&text=Hola!.%20Te%20acabo%20de%20compartir%20*{{$art['titulo']}}*%20creo%20que%20te%20podria%20interesar.%20Rev%C3%ADsala:%20https://option2health.com/share.html?prodId={{ $art['idarticulo_encryp']}}%20%20*Option2health*.&app_absent=0" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Whatsapp 
+                          </a>
+                        </div>
                       </div>
                     
-                    <div class="card-footer">
-                        <div class="row float-right">
-                          <div class="col-lg-4 col-md-6 col-sm-12 card-outline ">
-                            <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class=" btn btn-app border-0">
-                              <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  {{-- {{$art['like_count']}} Me gusta --}}
-                              <span >{{$art['like_count']}} </span> Me gusta 
-                            </button>
-                           
-                          </div>
-                          <div class="col-lg-4 col-md-6 col-sm-12  ">
-                            <div class="dropdown text-right">
-                              <button class="btn btn-app border-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
-                              <i class="fa fa-share-alt"></i>  Compartir
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <a onclick="acctionCompartirF('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art['url_video']}}" target="_blank">
-                                  <i class="fab fa-facebook" ></i> Facebook
-                                </a>
-                                 <a onclick="acctionCompartirW('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://api.whatsapp.com/send/?phone&text=Hola!.%20Te%20acabo%20de%20compartir%20*{{$art['titulo']}}*%20creo%20que%20te%20podria%20interesar.%20Rev%C3%ADsala:%20https://option2health.com/share.html?prodId={{ $art['idarticulo_encryp']}}%20%20*Option2health*.&app_absent=0" target="_blank">
-                                  <i class="fab fa-whatsapp"></i> Whatsapp 
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-md-6 col-sm-12  ">
-                            <div class="dropdown text-right">
-                              <button class="btn border-0 btn-app dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class=" fa fa-bookmark"></i>Guardar
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
-                                <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
-                                <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
-                              </div>
-                            </div>
-                          </div>
+                    
+                      <div class="dropdown text-right float-right">
+                        <button class="btn border-0 btn-app dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class=" fa fa-bookmark"></i>Guardar
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
+                          <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
+                          <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
                         </div>
-                        {{-- <div class="bg-primary float-right">
-                          <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class="@if(isset($art['like'][0]))btn btn-default btn-sm float-right  @else btn btn-outline-info btn-block @endif "><i class=" fa fa-heartbeat"></i> <br>
-                            <span class="badge ">{{$art['like_count']}}</span>
-                            Me gusta 
-                          </button>
-
-                        </div> --}}
-                        
-                        
-                        {{-- <span class="float-right text-muted">127 likes - 3 comments</span> --}}
+                      </div>
                     </div>
                   </div>
-              @endforeach
+                </div>
+              </div>
+            @endforeach
              
             <div class="form-group text-center mx-auto ">
                {{-- {{ $articulos->links() }} --}}
@@ -207,57 +184,21 @@
           @endif
       </div>
     </div>
-    <div class="col-md-3 col-sm-12 col-xs-12 {{-- offset-md-2 --}} ">
-      
-    </div>
   </div>
 
 
 
-    
-        
-    
-
     @section('include_css') 
-       {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
+       <link rel="stylesheet" href="{{ asset('css/info_doc.css') }}">
         <style>
-          .ocult{
-            display: none;
-          }
-          .medico {
-              position: absolute;
-              border: 1px solid #10ADCF;
-              text-align: center;
-              right: -3vh;
-              top: -3.8vh;
-              background: #fff;
-              border-radius: 4px;
-              padding: 1vh;
-              width: 7em;
-              height: 6em;
-              font-size: 1em;
-              -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
-              box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-          }
-          .img2{
-            width: 67%;
-          }
-          #preViewImg{
-              width: 150px;
-              height: 150px;
-              object-fit: cover;
-          }
-          .nav_content{
-            display: none;
-          }
+         
         </style>
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
       <script src="{{ asset('/js/controlLike.js') }}"></script>
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
-      
     @stop
 
 
- @stop
+@stop
