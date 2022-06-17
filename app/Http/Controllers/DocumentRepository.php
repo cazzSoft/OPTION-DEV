@@ -108,15 +108,38 @@ class DocumentRepository extends Controller
     //consulta obtener archivos por especialidades
     public function show($id)
     {
+        if ($id==0) {
+           $documento=  biblioteca_virtualModel::with(['especialidad'])->get();
+        }else{
+            $documento=  biblioteca_virtualModel::with(['especialidad'])->where('idespecialidades',$id)->get();
+        }
 
-       $documento=  biblioteca_virtualModel::with(['especialidad'])->where('idespecialidades',$id)->get();
+        // return $documento;
+        
         if(isset($documento)){
 
             //Registro evento search documento
-            event(new UserEventSearchBibliotecaFiltro(['tipo'=>'filter','idfiltro'=>$id,'iduser'=>auth()->user()->id,'seccion'=>'FLT','sec'=> session(['seccion_tipo'=>'BBL'])]));
+            // event(new UserEventSearchBibliotecaFiltro(['tipo'=>'filter','idfiltro'=>$id,'iduser'=>auth()->user()->id,'seccion'=>'FLT','sec'=> session(['seccion_tipo'=>'BBL'])]));
+            $array=[];
+            foreach ($documento as $key => $value) {
+                
+                $ruta=\Storage::disk('wasabi')->temporaryUrl($value->ruta, now()->addMinutes(3600) );
+                
+                $item=[
+                        'idespecialidades'=>$value->idespecialidades,
+                        'titulo'=>$value->titulo,
+                        'descripcion'=>$value->descripcion,
+                        'tipo'=>$value->tipo,
+                        'ruta'=>$ruta,
+                        'idbibliotecavirtual_encryp'=>$value->idbibliotecavirtual_encryp,
+                        'especialidad'=>$value->especialidad,
+                ];
+
+                array_push($array,$item);
+            }
            return response()->json([
                'jsontxt'=>['msm'=>'success','estado'=>'success'],
-               'request'=>$documento
+               'request'=>$array
            ],200);
         }else{
           return response()->json([
@@ -138,10 +161,29 @@ class DocumentRepository extends Controller
       
         if(isset($documento)){
             //Registro evento search documento
-            event(new UserEventSearchBibliotecaFiltro(['tipo'=>'search','data_search'=>$request,'iduser'=>auth()->user()->id,'seccion'=>'SEA','sec'=>  session(['seccion_tipo'=>'BBL'])]));
+            // event(new UserEventSearchBibliotecaFiltro(['tipo'=>'search','data_search'=>$request,'iduser'=>auth()->user()->id,'seccion'=>'SEA','sec'=>  session(['seccion_tipo'=>'BBL'])])); 
+            $array=[];
+            foreach ($documento as $key => $value) {
+                
+                $ruta=\Storage::disk('wasabi')->temporaryUrl($value->ruta, now()->addMinutes(3600) );
+                
+                $item=[
+                        'idespecialidades'=>$value->idespecialidades,
+                        'titulo'=>$value->titulo,
+                        'descripcion'=>$value->descripcion,
+                        'tipo'=>$value->tipo,
+                        'ruta'=>$ruta,
+                        'idbibliotecavirtual_encryp'=>$value->idbibliotecavirtual_encryp,
+                        'especialidad'=>$value->especialidad,
+                ];
+
+                array_push($array,$item);
+            }
+
+            
             return response()->json([
                'jsontxt'=>['msm'=>'success','estado'=>'success'],
-               'request'=>$documento
+               'request'=>$array
             ],200);
         }else{
           return response()->json([

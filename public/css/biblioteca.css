@@ -1,3 +1,61 @@
+/*input del modal update datos user*/
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #0FADCE transparent transparent transparent !important;
+ 
+}
+.select2-container--default .select2-selection--single {
+  border-top: 1px solid #ced4da;
+  border-right: 1px solid #ced4da;
+  border-left: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #0FADCE; 
+    color: #fff;
+}
+
+.modal-image{
+     display: none;
+     position: fixed;
+     z-index: 1000;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgb(0,0,0);
+     background-color: rgba(0,0,0,0.9);
+ }
+
+ .modal-content-img{
+     margin-top: 60px;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+     max-width: 85%;
+     max-height: 95%;
+     animation-name: zoom;
+     animation-duration: 0.6s;
+ }
+
+ @keyframes zoom{
+     from{transform:scale(0)}
+     to{transform:scale(1)}
+ }
+
+ .modal-nav{
+     display: flex;
+     justify-content: center;
+ }
+
+ .objetfit{
+     width: auto;
+     height: 164px;
+     object-fit: cover;
+     /*background-color: #0fadce7a;*/
+   }
+
 @media (min-width:100px) and (max-width: 767.98px) { 
 
     .container-fluid{
@@ -17,9 +75,59 @@
         font-size: 18px;
         line-height: 22px;
         color: #4F4F4F !important;
+        padding: 0px;
     }
-   .nav_content {
-   	display: none;
-   }
+   .content-header  {
+   	    display: none;
+    } 
+    .content{
+        margin-top: 80px !important;
+        padding-bottom: 100px !important;
+    }
+    #form_search_filtro .ml-2{
+        margin-left: 0px !important;
+    }
+    
+    .modal-content-img {
+        margin: auto !important;
+        max-width: 100%; 
+    }
 
+    .card{
+        box-sizing: border-box !important;
+        background: #FFFFFF !important;
+        border: 1px solid #0FADCE !important;
+        border-radius: 5px !important;
+        width: 164px !important;
+        min-width: 100% !important;
+        height: 240 !important;
+    }
+    .mailbox-attachment-size{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 12px !important;
+        line-height: 15px !important;
+        text-align: left; !important;
+        color: #000000;
+    }
+    .mailbox-attachment-icon{
+        height: 240px !important;
+    }
+    .objetfit {
+        width: auto !important;
+        height: 140px !important;
+        
+    }
+   .fa-2x {
+       font-size: 1em;
+   }
+   /*.card-footer{
+        margin: 0px !important;
+        padding: 0px !important;
+   }*/
+   .fa-i{
+        padding-bottom: 22px !important;
+        background: red !important;
+   }
  }

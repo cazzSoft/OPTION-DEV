@@ -61,12 +61,14 @@ function gestionSeguir(idm,ste) {
         success: function (data ) {
             if(data.jsontxt.estado=='success'){
                 
-                $(ste).html('<i class="fa fa-check"></i> Dejar de seguir.');
-                 $('.btn_seg').removeClass('bgz-info text-white');
-                $('.btn_seg').addClass('btn-outline-info');
+                $(ste).html(' Dejar de seguir');
+                $('#btn_seg').removeClass('btn_seg1');
+                $('#btn_seg').addClass('btn_seg2');
             }
             if(data.jsontxt.estado=='info'){
-                $(ste).html('<i class="fa fa-check-circle"></i> Seguir.');
+                $(ste).html(' Seguir');
+                $('#btn_seg').removeClass('btn_seg2');
+                $('#btn_seg').addClass('btn_seg1');
             }
             mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
            

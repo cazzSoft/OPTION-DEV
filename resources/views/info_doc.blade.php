@@ -92,7 +92,7 @@
                             <i class="fab fa-youtube text-info fa-2x "></i>
                           </a>
                           @if(auth()->user()->id!=$datos_p->id )
-                            <a  onclick="gestionSeguir('{{encrypt($datos_p->id)}}',this)" class="btn text-info btn_seg @if(isset($sigue)) btn-outline-info @else bgz-info text-white @endif btn-sm pr-5 pl-5 ml-3">
+                            <a  onclick="gestionSeguir('{{encrypt($datos_p->id)}}',this)" id="btn_seg" class="btn @if(isset($sigue)) btn_seg2 @else btn_seg1 text-white @endif btn-sm pr-5 pl-5 ml-3">
                               <b>    @if(isset($sigue)) Dejar de seguir @else Seguir @endif</b>  
                             </a>
                             

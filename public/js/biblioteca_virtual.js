@@ -91,9 +91,13 @@ var url=window.location.protocol+'//'+window.location.host;
 $('#idespecialidades_filtro').change( function () {
 	var id=$('#idespecialidades_filtro').val();
 	$.get("/biblioteca/show/" + id , function (data) {
-	    console.log(data.request);
- 			mostrarArchivosFiltro(data.request);
+	    var div_class=$('#contetResulFiltro').children('div').prop('class');
+	    if(div_class===undefined){
+	    		div_class='col text-center m-auto ';
+	    }
 	    
+ 			mostrarArchivosFiltro(data.request,div_class);
+	  
 
 	}).fail(function (data) {
 	    var data = data.responseJSON;
@@ -102,29 +106,35 @@ $('#idespecialidades_filtro').change( function () {
 });
 
 //funcion para mostrar resultado del filtro y del search
-function mostrarArchivosFiltro(data) {
+function mostrarArchivosFiltro(data,div_class) {
 	$('#contetResulFiltro').html("");
-	$.each(data, function (i, item) {
+
+	
+
+	$.each(data, function (i, item) { 
 		let titulo = item['titulo'].substring(0, 27);
 		if(item['tipo']=='IMG'){
 			var con=`
-					<img class="card-img-top objetfit" src="${url}/DocumentosBiblioteca/${item['ruta']}" alt="Card image ">
+					<img class="card-img-top objetfit btn btn-outline-light p-0" src="${item['ruta']}" alt="Card image "  onclick="showModal('${item['ruta']}','${item['titulo']}')">
 					<div class="card-footer text-muted p-2">
-					    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-size text-muted clearfix"><i class="fas fa-camera"></i> ${titulo}</a>
+					    <a href="${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-size text-muted clearfix"><i class="fas fa-camera"></i> ${titulo}</a>
 					  <span class="mailbox-attachment-size clearfix mt-0 ">
 					    <span>${item['especialidad']['descripcion']}</span>
-					    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" download="proposed_file_name" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt "></i></a>
+					    <a href="${item['ruta']}" download="proposed_file_name" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt "></i></a>
 					  </span>
 					</div>`;
 			
 		}else{
 			var con=`
-				<span class="mailbox-attachment-icon mb-3"><i class="far fa-file-pdf fa-2x"></i></span>
-				<div class="card-footer mt-3 p-2">
-				    <a href="${url}/DocumentosBiblioteca/${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-size text-muted "><i class="fas fa-paperclip"></i> ${titulo}.pdf</a>
+				<a href="${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class=" btn fa-i">
+				  <span class="mailbox-attachment-icon mb-2"><i class="far fa-file-pdf fa-2x"></i></span>
+				</a>
+				
+				<div class="card-footer mt-2 p-2">
+				    <a href="${item['ruta']}" onclick="eventDocumeto('${item['idbibliotecavirtual_encryp']}')" target="_blank" class="mailbox-attachment-size text-muted "><i class="fas fa-paperclip"></i> ${titulo}.pdf</a>
 				    <span class="mailbox-attachment-size clearfix mt-0">
 				      <span>${item['especialidad']['descripcion']}</span>
-				      <a href="${url}/DocumentosBiblioteca/${item['ruta']}" download="proposed_file_name" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
+				      <a href="${item['ruta']}" download="proposed_file_name" class="btn bgz-info btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
 				    </span>
 				</div>
 				
@@ -132,7 +142,7 @@ function mostrarArchivosFiltro(data) {
 		}
 
 		var items=`
-			<div class=" col-md-2 col-xs-12 col-sm-12 ">
+			<div class="${div_class}">
 			    <div class="card " >
 			      ${con}
 			    </div>
@@ -163,8 +173,13 @@ $("#form_search_filtro").on("submit", function (e) {
     	    data: FrmData, 
     	    dataType: "json",
     	    success: function (data) {
-    	      console.log(data);
-    	      	mostrarArchivosFiltro(data.request);
+    	       // console.log($('#contetResulFiltro').children('div').prop('class'));
+    	       var div_class=$('#contetResulFiltro').children('div').prop('class');
+    	       if(div_class===undefined){
+    	       		div_class='col text-center m-auto ';
+    	       }
+    	      	mostrarArchivosFiltro(data.request,div_class);
+
     	    },
 
     	    error: function (data) {
