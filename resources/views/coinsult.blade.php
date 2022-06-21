@@ -65,7 +65,7 @@
                         @endif
                     </div>
                     <div class="card-body pt-0 mb-5">
-                        <div class="lead  text-justify text-muted">
+                        <div class="lead  text-justify text-muted description">
                             <dl>
                                 <dt> ¿Sabes qué son los Coinsults?</dt>
                                 <dd class="mb-3"> Son los puntos que ganas cada vez que interactúas con esta plataforma.</dd>

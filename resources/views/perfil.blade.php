@@ -78,9 +78,8 @@
                                         @if($sigues!=0)
                                             <div class="product-info">
                                                 <a  class="product-title username direct-chat-name hover">Personas a las que Sigues
-                                                    <span class="text-muted float-right text-red">
+                                                    <span class="text-muted float-right bt-sigue">
                                                        <span class=" btn btn-sm img-fluid img-rounded bg-white border-info " id="btnModalSg"> <b>@if(isset($sigues)) {{$sigues}} @endif</b></span>
-                                                       
                                                     </span>
                                                 </a>
                                             </div>

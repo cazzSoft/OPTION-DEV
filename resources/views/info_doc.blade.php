@@ -118,11 +118,12 @@
       <div class="card card-widget widget-user shadow-md  card_perf border-white">
         <div class="card-header border-white">
           <p class="h3 title-segn">Publicaciones </p>
-          <small>Aqui tendras un listado de todas las publicaciones que has subido a O2H.</small>
+          <div class="description_">Aqui tendras un listado de todas las publicaciones que has subido a O2H.</div>
+          {{-- <span class="description_">Aqui tendras un listado de todas las publicaciones que has subido a O2H.</span> --}}
         </div>
           @if (isset($listaArt))
             @foreach ($listaArt as $art )
-              <div class="card card-widget  p-3 mx-3 mt-2 border-white shadow-md">
+             {{--  <div class="card card-widget  p-3 mx-3 mt-2 border-white shadow-md">
                 <div class="card-header border-0 pb-0">
                   <div class="user-block text-dark">
                     <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
@@ -137,7 +138,7 @@
                   <p class="text-justify text-dark text-descript-publicaciones">
                     {{$art['descripcion']}} <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a>
                   </p> 
-                  <div class="embed-responsive embed-responsive-16by9"  {{-- onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)"  --}}>
+                  <div class="embed-responsive embed-responsive-16by9"  onmouseleave ="acctionVideo('{{encrypt($art['idarticulo'])}}',this)" >
                     <iframe id=""  width="560" height="315" src="{{$art['url_video']}}"  frameborder="0" allowtransparency="true" allowfullscreen ></iframe>
                   </div>
                 </div>
@@ -146,7 +147,7 @@
                   <div class="row justify-content-end">
                     <div class="col-lg-12 text-right p-0 ">
                       <button type="button"  onclick="putLike_poin('{{encrypt($art['idarticulo'])}}',this )" class=" btn btn-app border-0">
-                        <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i>  {{-- {{$art['like_count']}} Me gusta --}}
+                        <i class=" fa fa-heartbeat @if(isset($art['like'][0])) icon-info    @else   @endif  "></i> 
                         <span >{{$art['like_count']}} </span> Me gusta 
                       </button>
                     
@@ -179,7 +180,22 @@
                     </div>
                   </div>
                 </div>
+              </div> --}}
+
+              <div class="jumbotron jumbotron-fluid m-4">
+                {{-- <div class="container p-0"> --}}
+                  <h1 class="titulo_publicacion m-0 p-0">  
+                    <span class="username">{{$art['titulo']}}</span><br>
+                  </h1>
+                  <span class="description mt-4 mb-4">
+                   <small>{{$art->created_at->isoFormat('lll') }}</small>
+                  </span>
+                  <p class="description mt-3">{{$art['descripcion']}} {{-- <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a> --}}</p>
+                  <p class="description mt-3">{{$art->causas}} </p>
+                  <p class="description mt-3"> Afecta {{$art->afecta_desc}} </p>
+                {{-- </div> --}}
               </div>
+
             @endforeach
              
             <div class="form-group text-center mx-auto ">

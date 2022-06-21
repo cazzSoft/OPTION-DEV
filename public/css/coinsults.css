@@ -59,18 +59,23 @@
         text-align: center;
         color: #606060;
     }
+
     .text-lead{
         font-family: 'Calibri';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 17px;
-        /* identical to box height */
-
-
-        /* O2H Turq */
-
         color: #0FADCE;
+    }
+    .description{
+        font-family: 'Calibri';
+        font-style: normal;
+        /*font-weight: 700;*/
+        font-size: 14px;
+        line-height: 17px;
+        text-align: justify;
+        color: #4F4F4F;
     }
 
  }

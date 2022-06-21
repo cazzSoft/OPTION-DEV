@@ -208,6 +208,8 @@
                  <span class="d-flex flex-column text_item_footer {{ request()->is(['biblioteca/*']) ? 'text-info_' : 'text-dark' }}">Biblioteca</span>
                </a>
              </div>
+             
+             
            </div>
           </footer> 
         @endmovil
@@ -215,32 +217,44 @@
         @movil
           <footer class="main-footer_ p-0  text-center m-auto" >
            <div class="row text-center mt-2">
-             <div class="col-3  align-self-center d-flex flex-column">
-               <a href="/" class="mx-auto text-center p-0 {{ Route::is('home') ? 'text-info_' : '' }}">
-                 <i class="fa fa-home  {{ Route::is('home') ? 'text-info_' : 'text-dark' }}"></i>
+             <div class="col  align-self-center d-flex flex-column">
+               <a href="/" class="mx-auto text-center p-0 text-muted">
+                 <i class="fa fa-home text-muted"></i>
                  <span class="d-flex flex-column text_item_footer  ">Home</span>
+                 <div class="linea-icon  {{ Route::is('home') ? 'bgz-info' : '' }}"></div> 
                </a>
              </div>
-             <div class="col-3  align-self-center d-flex flex-column"> 
+             <div class="col align-self-center d-flex flex-column"> 
                <a href="{{url('coinsult')}}" class="mx-auto text-center p-0">
                  <span class="ml-1  text-center mb-5">
                    <img src="{{asset('img/icon-coins-gris.png')}}" style="width: 18px; margin-top: -4px;" class="p-0 " alt="icon-coins">
                  </span> 
-                 <span class="d-flex flex-column text_item_footer {{ Route::is('coinsult.index') ? 'text-info_' : 'text-dark' }}">Coinsults</span>
+                 <span class="d-flex flex-column text_item_footer ">Coinsults</span>
+                 <div class="linea-icon {{ Route::is('coinsult.index') ? 'bgz-info' : '' }}"></div> 
                </a>
              </div>
-             <div class="col-3  align-self-center d-flex flex-column">
+             <div class="col  align-self-center d-flex flex-column">
                <a href="{{url('gestion/articulo_user')}}" class="mx-auto text-center p-0">
-                 <i class="fas fa-fw fa-bookmark text-secondary {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : '' }}"></i>
-                 <span class="d-flex flex-column text_item_footer {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'text-info_' : 'text-dark' }}">Guardados</span>
+                 <i class="fas fa-fw fa-bookmark text-muted"></i>
+                 <span class="d-flex flex-column text_item_footer ">Guardados</span>
+                 <div class="linea-icon {{ request()->is(['gestion/articulo_user*','gestion/search_user_art*']) ? 'bgz-info' : ' ' }}"></div> 
                </a>
              </div>
-             <div class="col-3  align-self-center d-flex flex-column">
+             <div class="col  align-self-center d-flex flex-column">
                <a href="{{url('biblioteca/show')}}" class="mx-auto text-center p-0">
-                 <i class="fas fa-book-reader text-secondary {{ request()->is(['biblioteca/*']) ? 'text-info_' : '' }}"></i>
-                 <span class="d-flex flex-column text_item_footer {{ request()->is(['biblioteca/*']) ? 'text-info_' : 'text-dark' }}">Biblioteca</span>
+                 <i class="fas fa-book-reader text-secondary "></i>
+                 <span class="d-flex flex-column text_item_footer">Biblioteca</span>
+                 <div class="linea-icon {{ request()->is(['biblioteca/*']) ? 'bgz-info' : '' }}"></div> 
                </a>
              </div>
+              <div class="col-3 align-self-center d-flex flex-column ">
+               <a href="#" class="mx-auto text-center p-0">
+                 <i class="fas fa-hand-holding-medical text-muted"></i>
+                 <span class="d-flex flex-column text_item_footer ">Empoderate</span>
+                 <div class="linea-icon"></div> 
+               </a>
+             </div>
+
            </div>
           </footer> 
         @endmovil
@@ -281,19 +295,23 @@
     function ImagenOk(img) {
        if (!img.complete) return false;
        if (typeof img.naturalWidth != 'undefined' && img.naturalWidth == 0) return false;
+      
        return true;
     }
 
     function RevisarImagenesRotas() {
-       var replacementImg = `https://option2health.test/img/user.png`;
+    
+       var replacementImg = `{{asset('img/error.png')}}`;
        for (var i = 0; i < document.images.length; i++) {
         if (!ImagenOk(document.images[i])) {
           document.images[i].src = replacementImg;
         }
       }
     }
-    window.onload=RevisarImagenesRotas;
+   
+    window.onload=RevisarImagenesRotas();
   </script>
+  
   <script>
     $(function () {
       var nua = navigator.userAgent

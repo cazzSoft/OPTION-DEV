@@ -130,6 +130,12 @@ a .bt_coins{
    display: none;
 }
 
+.linea-icon{
+  width: 52px;
+  height: 6px;
+  background: #F5F5F5;
+  border-radius: 3px;
+}
 
 @media (min-width:100px) and (max-width: 767.98px) { 
  
@@ -368,18 +374,18 @@ a .bt_coins{
    /*footer */
   .main-footer_ {
     display: block;
-     background: #fff;
-     border-top: 1px solid #dee2e6; 
-     color: #869099;
-     padding: 1rem; 
-     position: fixed;
-     bottom: 0;
-     left: 0;
-     position: fixed;
-     right: 0;
-     z-index: 1032;
-     padding: 1px;
-     height: 50px;
+    background: #fff;
+    border-top: 1px solid #dee2e6; 
+    color: #869099;
+    padding: 1rem; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1032 !important;
+    padding: 1px !important;
+    height: 64px !important;
   }
   .text_item_footer{
    margin-top: -8px !important;

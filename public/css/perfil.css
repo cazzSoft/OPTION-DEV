@@ -183,4 +183,18 @@ input[type="file"] {
       font-size: 7.06133px !important;
       line-height: 9px !important;
     }
+    .bt-sigue span{
+       /*width: 112px !important;*/
+       margin-left: 12px;
+       margin-top: -7px;
+       text-align: center;
+       padding: 2px;
+       height: 22px;
+       width: auto;
+    }
+    .bt-sigue{
+        padding: 0px;
+        margin: 0px;
+        text-align: right;
+    }
 }

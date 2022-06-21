@@ -19,7 +19,7 @@
                 <div class="col-md-7 col-sm-12 text-center ">
                   <div class="ml-5 mr-5 ">
                     <div  class="w-75 mx-auto    border border-white ">
-                      <img class=" card-img-top img-not" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}@else{{ asset('img/error.png')}} @endif " alt="Photo">
+                      <img class=" card-img-top img-not" src=" @if(isset($noti[0]->img)){{ $img=\Storage::disk('wasabi')->temporaryUrl( $noti[0]->img, now()->addMinutes(3600))}}  @else{{ asset('img/error.png')}} @endif " alt="Photo">
                     </div>
                     <h3 class="mt-4 title-notice">
                       <strong>
@@ -38,7 +38,7 @@
                       <div id="slider_noticia_{{$key}}" class="draggable-slider slider" >
                         <div class="inner">
                           @foreach($noti as $key=>$item)
-                            {{-- @if($key!=0) --}}
+                            <a href="{{url('noticia/ver/'.$item['idnoticia_encryp'])}}" class="text-dark">
                               <div class="slider">
                                 <img src="{{$img=\Storage::disk('wasabi')->temporaryUrl( $item['img'], now()->addMinutes(3600))}}" class="img_slide_noti" alt="">
                                 <div class="slide_title_noti" >
@@ -47,10 +47,8 @@
                                 <div class="slide_des_noti">
                                   <small> {{ Str::limit($noti[0]['autor'], 50,'..') }}</small>
                                 </div>
-                                {{-- <span class="slide_des_noti">  </span> --}}
                               </div>
-                             
-                            {{-- @endif  --}}
+                            </a>
                           @endforeach   
                         </div>
                       </div>
@@ -74,6 +72,7 @@
                                     <b>{{$item['titulo']}}</b> <br>
                                     {{ Str::limit($item['autor'], 30,'...')}}
                                   </a>
+                                </p>
                                   {{-- {{ Str::limit($noti[0]['descripcion'], 68,'.') }}...</p> --}}
                               </div>
                              

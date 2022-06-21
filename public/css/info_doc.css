@@ -36,6 +36,30 @@
   color: #0FADCE !important;
   border: 1px solid  #0FADCE;
 }
+
+.titulo_publicacion{
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px !important;
+  line-height: 24px !important;
+}
+.description_{
+  font-family: 'Calibri' i`!important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  line-height: 14px !important;
+ 
+}
+
+.jumbotron {
+    padding: 0.8rem 1rem 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #E3EAEF !important;
+    border-radius: .3rem;
+}
+
 @media (min-width:100px) and (max-width: 767.98px) { 
   .content-header{
     display: none;
@@ -47,7 +71,7 @@
     margin-top: 40px  !important;
   }
   
-  .widget-user .widget-user-header {
+  .widget-user .widget-user-header { 
       height: 90px;
   }
   #preViewImg{
@@ -133,7 +157,28 @@
     font-style: normal;
     font-weight: 700 !important;
     font-size: 12px !important;
-    line-height: 15px !important;
+    line-height: 2px !important;
+    padding: 0px !important;
+  }
+  .titulo_publicacion{
+
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 14px !important;
+
+    color: #000000;
+  }
+  .description {
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: justify;
+    color: #4F4F4F;
   }
   .description a{
       font-family: 'Calibri' !important;
@@ -160,6 +205,12 @@
   }
   .card-body-perf{
     padding-bottom: 0px !important;
+  }
+
+  .jumbotron {
+     margin-left: 2px !important;
+     margin-right: 2px !important;
+     margin-bottom: 5px !important;
   }
 }
 @media (min-width: 767.98px) and (max-width: 1377.98px) { 

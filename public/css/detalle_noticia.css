@@ -1,0 +1,145 @@
+
+.flex_titulo  {
+   font-family: 'Calibri';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 30px;
+   line-height: 37px;
+   text-align: center;
+   color: #0FADCE;
+}
+.description{
+    white-space: pre-line;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+
+   .content-header{
+       padding: 0px !important;
+       display: none;
+    
+   }
+   .flex_titulo{
+      margin-top: 22px;
+      padding: 0px !important;
+   }
+   .content{ 
+       margin-bottom: 111px !important;
+   }
+  
+  .flex_titulo  a p{
+     font-family: 'Calibri';
+     font-style: normal;
+     font-weight: 700;
+     font-size: 18px;
+     line-height: 22px;
+     color: #4F4F4F !important;
+  }
+
+  .title_notice{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+    color: #0FADCE;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  .cita_notice{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: left !important;
+    color: #4F4F4F;
+  }
+  .w-75{
+    width: 100% !important;
+  }
+  .fa-ul{
+    margin-left: 0px !important;
+  }
+
+  .description{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: justify;
+    color: #4F4F4F;
+  }
+  .align-self-end{
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #4F4F4F;
+  }
+
+  .img_slide_noti{
+    width: 127px;
+    height: 100px;
+    object-fit: cover;
+  }
+  .draggable-slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 170px;
+    cursor: grab;
+    text-align: left;
+  }
+   
+
+  .draggable-slider.active {
+    cursor: grabbing;
+  }
+
+  .draggable-slider .inner {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: inherit;
+    /*transition: left 0.3s ease;*/
+  }
+  .draggable-slider.active .inner {
+    transition: none;
+  }
+
+ 
+  .draggable-slider .inner .slider {
+    width: 127px;
+    height: 100px;
+  
+  }
+
+  
+  .slider {
+    margin-right: 5px;
+    word-wrap: break-word;
+  }
+
+  /*stilo de slider imagen noticias*/
+  .slider .slide_title_noti{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px !important;
+    line-height: normal !important;
+
+   
+  }
+  
+
+
+}
