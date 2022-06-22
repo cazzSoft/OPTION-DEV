@@ -25,11 +25,49 @@
   display: none !important;
   
 }
+.navbar_lg{
+ 
+  height: 72px !important;
+}
 .main-sidebar{
-  border-right: 2px solid #0FADCE !important;
-  border-top: 2px solid #0FADCE !important;
-  margin-left: -328 !important;
-  border-radius: 5px !important;
+  border: 0px !important;
+  margin-top: 72px !important;
+  width: 170px;
+ 
+}
+.sidebar_ {
+  position: static !important;
+  margin-top: 14px;
+  padding: 7px;
+}
+.nav-web .nav-item>.nav-link{
+    margin-bottom: 1rem;
+   
+}
+.sidebar-light-info .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #fff;
+    color: #0FADCE;
+    box-shadow:0px !important;
+}
+
+.nav-sidebar>.nav-item>.nav-link.active {
+    color: #000;
+    border: 0px !important;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 1%), 0 1px 2px rgb(0 0 0 / 1%) !important;
+    
+}
+.nav-sidebar>.nav-item>.nav-link :hover {
+  color: #0FADCE;
+}
+.nav-web .nav-item :hover{
+  background: #fff !important;
+}
+.nav-web ul li:hover{
+  background: #fff !important;
+}
+.inter_content{
+   margin: 0px 0px 0px 160px;
+   width: 82%;
  
 }
 .text-new-user{
@@ -57,7 +95,7 @@
   text-align: center;
 }
 
-/*texto navbar*/
+/*texto navbar
 .text-register{
   font-size: 18px;
   line-height: 17px;
@@ -89,7 +127,7 @@
   border-radius: 5px;
 }
 .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
-    margin-left: -320px !important;
+    /*margin-left: -320px !important;*/
 }
 
 /*boton flotante sidebar*/
@@ -138,7 +176,12 @@ a .bt_coins{
 }
 
 @media (min-width:100px) and (max-width: 767.98px) { 
- 
+  .inter_content{
+     width: 100% !important;
+     margin-left: 0px !important;
+
+  }
+  
   .linkce{
     text-align: center;
     padding: 0px !important;
@@ -217,8 +260,12 @@ a .bt_coins{
   .main-sidebar {
     display:block !important;
     overflow-y: visible !important; 
+    border-right: 2px solid #0FADCE !important;
+    border-top: 2px solid #0FADCE !important;
+    margin-top: 6px !important;
+    border-radius: 5px !important;
+    width: 220px;
   }
- 
   
   .navbar_lg{
     display: none;

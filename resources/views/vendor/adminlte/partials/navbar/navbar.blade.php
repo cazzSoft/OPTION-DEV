@@ -67,7 +67,7 @@
     </nav>
   @endif
 @else
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg shadow-sm">
+  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg ">
     <div class=" container-fluid ml-5">
       <a href="/" class="navbar-brand">
         <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo2">

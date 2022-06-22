@@ -203,10 +203,10 @@ input[type="file"] {
     
   }
   .main-sidebar{
-    border-right: 2px solid #0FADCE !important;
+   /* border-right: 2px solid #0FADCE !important;
     border-top: 2px solid #0FADCE !important;
     margin-left: -328 !important;
-    border-radius: 5px !important;
+    border-radius: 5px !important;*/
    
   }
   .text-new-user{
@@ -245,7 +245,7 @@ input[type="file"] {
   }
 
   .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
-      margin-left: -320px !important;
+      /*margin-left: -320px !important;*/
   }
 
  

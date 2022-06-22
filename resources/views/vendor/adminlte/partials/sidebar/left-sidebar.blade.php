@@ -1,11 +1,8 @@
 @movil
-
     @php( $logout_url = View::getSection('logout_url') ?? config('adminlte.logout_url', 'logout') )
     @if (config('adminlte.use_route_url', false))
-       {{--  @php( $profile_url = $profile_url ? route($profile_url) : '' ) --}}
         @php( $logout_url = $logout_url ? route($logout_url) : '' )
     @else
-        {{-- @php( $profile_url = $profile_url ? url($profile_url) : '' ) --}}
         @php( $logout_url = $logout_url ? url($logout_url) : '' )
     @endif
 
@@ -62,6 +59,27 @@
         
         </div>
     </aside>
+@else
+    <aside class="main-sidebar {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}">
+
+        <div class=" sidebar_">
+            <nav class="nav-web">
+                <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
+                    data-widget="treeview" role="menu"
+                    @if(config('adminlte.sidebar_nav_animation_speed') != 300)
+                        data-animation-speed="{{ config('adminlte.sidebar_nav_animation_speed') }}"
+                    @endif
+                    @if(!config('adminlte.sidebar_nav_accordion'))
+                        data-accordion="false"
+                    @endif>
+                  
+                    @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
+                </ul>
+            </nav>
+        </div>
+
+    </aside>
+
 @endmovil
 
 

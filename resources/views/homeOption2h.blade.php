@@ -1,7 +1,7 @@
 
 @extends('adminlte::page')
   
-  @section('content_header')
+ {{--  @section('content_header')
     <div class="row   nav_content " >
       @movil
       @else
@@ -52,7 +52,6 @@
         <div class="col-lg-12 col-md-12 col-sm-12  ">
           <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-white  mx-auto mt-3 mb-2 ocult">
-             {{--  <a  class="navbar-brand ml-2 navbar-toggler border-0 text-secondary " href="#" data-toggle="collapse" data-target="#navbarNav" ><b class="text-muted"> <span class="navbar-toggler-icon mr-3"></span> Menu </b></a> --}}
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ">
                   <li class="nav-item  ml-3 mr-3">
@@ -89,7 +88,6 @@
                                 @if(\Storage::disk('diskDocumentosPerfilUser')->exists($item->img)) 
                                     {{asset($item->img)}}
                                 @else
-                                  {{-- {{\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(9600)  )}} --}}
                                     {{$img}}
                                 @endif
                               " 
@@ -108,7 +106,7 @@
        </div>
       @endauth
     </div>
-  @endsection
+  @endsection --}}
 
   @section('content')
  		@yield('contenido')
