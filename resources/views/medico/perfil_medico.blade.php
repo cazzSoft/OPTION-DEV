@@ -566,10 +566,19 @@
             .nav_content {
                 display: none;
             }
+            /*para quitar el sidebar*/
+            .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+                margin-left: 0px !important;
+            }
+            .sidebar_{
+                margin-left: -250px;
+            }   
         </style>
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
+        {{-- controlar imagen de rotas --}}
+          <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
         {{-- textarea estan raros --}}
         @if( isset($datos_p) )
            <script>

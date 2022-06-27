@@ -4,58 +4,120 @@
   font-style: normal !important;
   /*font-weight: 700;*/
 }
+#imaLogo2{
+  width: 70px !important;
+}
+
+/*la parte del logo*/
+.navbar-brand{
+  height: 72px !important;
+  border-bottom: 1px solid #dee2e6;
+  color: rgba(0,0,0,.8);
+  width: 260px !important;
+  background: transparent;
+}
+
+/*la parte del menu sidebar*/
+.nav-sidebar-lg {
+  margin-top: 30px !important;
+}
+.nav-sidebar-lg li i{
+  margin-right: 6px;
+  
+}
+.nav-sidebar-lg li{
+  margin-bottom: 22px !important;
+  font-family: 'Calibri' !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+ 
+}
+/*.nav-sidebar-lg li .nav-link{
+  color: #4F4F4F !important;
+  background: #fff !important;
+}*/
+
+.sidebar-light-info .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: transparent !important;
+    color: #0FADCE;
+    box-shadow:0px !important;
+}
+
+.nav-sidebar>.nav-item>.nav-link.active {
+    border: 0px !important;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 1%), 0 1px 2px rgb(0 0 0 / 1%) !important; 
+}
+.nav-sidebar-lg li .nav-link:hover{
+  color: #0FADCE !important;
+  background: transparent; !important;
+}
+/*.nav-sidebar-lg li:hover {
+  color: #0FADCE !important;
+  background: transparent !important;
+
+}*/
+.nav-sidebar-lg :hover {
+  color: #0FADCE !important;
+  background: transparent !important;
+
+}
+
+
+
 .text-menu{
   position: absolute;
   width: 25px;
   height: 12px;
   left: 18px;
-  top: 35px;
+  top: 32px;
 
   font-family: 'Calibri';
   font-style: normal;
   font-weight: 700;
   font-size: 10px;
   line-height: 12px;
-  color: #606060;
-}
+  /*color: red !important;*/
+} 
 .logut-btn{
   display: none !important;
 }
 .navbar_sm{
-  display: none !important;
-  
-}
-.navbar_lg{
- 
-  height: 72px !important;
-}
-.main-sidebar{
-  border: 0px !important;
-  margin-top: 72px !important;
-  width: 170px;
- 
-}
-.sidebar_ {
-  position: static !important;
-  margin-top: 14px;
-  padding: 7px;
-}
-.nav-web .nav-item>.nav-link{
-    margin-bottom: 1rem;
-   
-}
-.sidebar-light-info .nav-sidebar>.nav-item>.nav-link.active {
-    background-color: #fff;
-    color: #0FADCE;
-    box-shadow:0px !important;
+   height: 60px !important;
 }
 
-.nav-sidebar>.nav-item>.nav-link.active {
-    color: #000;
-    border: 0px !important;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 1%), 0 1px 2px rgb(0 0 0 / 1%) !important;
-    
+.navbar_lg{
+  height: 72px !important;
 }
+
+/*modifica tamaño del sidebar izquierda*/
+.main-sidebar, .main-sidebar::before {
+    width: 180px;
+    
+
+}
+
+/*tamaño del wrapper*/
+.content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    margin-left: 160px !important;
+}
+
+.sidebar.sidebar-focused, .sidebar-mini.sidebar-collapse .main-sidebar:hover {
+    width: 180px !important;
+}
+
+.sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar::before { 
+   width: 6.6rem !important;
+}
+/*las opciones del sidebar*/
+.sidebar_{
+  background: transparent !important;
+  overflow: hidden !important;
+  min-height: 30% !important;
+  height: 700px !important;
+}
+
 .nav-sidebar>.nav-item>.nav-link :hover {
   color: #0FADCE;
 }
@@ -65,11 +127,8 @@
 .nav-web ul li:hover{
   background: #fff !important;
 }
-.inter_content{
-   margin: 0px 0px 0px 160px;
-   width: 82%;
- 
-}
+
+
 .text-new-user{
   font-family: 'Calibri';
   font-style: normal;
@@ -95,7 +154,7 @@
   text-align: center;
 }
 
-/*texto navbar
+/*texto navbar*/
 .text-register{
   font-size: 18px;
   line-height: 17px;
@@ -113,8 +172,8 @@
   position: absolute;
   left: 12.27%;
   right: 70.67%;
-  top: 0.85%;
-  bottom: 98.2%;
+  top: -11% !important;
+  /*bottom: 98.2%;*/
 }
 
 /*Boton registrarse*/
@@ -168,6 +227,16 @@ a .bt_coins{
    display: none;
 }
 
+ /*footer */
+/*.main-footer {
+  background-color: black;
+  position: relative; !important;
+  left: -159px;
+  width: 100% !important;
+  right: -1px !important;
+  margin-right: 0px !important;
+}*/
+
 .linea-icon{
   width: 52px;
   height: 6px;
@@ -176,11 +245,21 @@ a .bt_coins{
 }
 
 @media (min-width:100px) and (max-width: 767.98px) { 
-  .inter_content{
-     width: 100% !important;
-     margin-left: 0px !important;
+ .text-menu{
+  position: absolute;
+  width: 25px;
+  height: 12px;
+  left: 18px;
+  top: 35px;
 
-  }
+  font-family: 'Calibri';
+  font-style: normal; 
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+
+  /*color: red !important;*/
+}
   
   .linkce{
     text-align: center;
@@ -257,7 +336,7 @@ a .bt_coins{
     margin-left: -4px !important;
     margin-top: -1114px !important;
   }
-  .main-sidebar {
+  .main-sidebar-app{
     display:block !important;
     overflow-y: visible !important; 
     border-right: 2px solid #0FADCE !important;
@@ -267,9 +346,7 @@ a .bt_coins{
     width: 220px;
   }
   
-  .navbar_lg{
-    display: none;
-  }
+  
   .navbar_sm{
     display: block !important;
   }
@@ -450,9 +527,7 @@ a .bt_coins{
 /*// Medium devices (tablets, less than 992px)*/
 @media (max-width: 991.98px) { 
 
-  .text-register{
-    display: none;
-  }
+  
   #usernamePerfil{
      margin-top: 8px !important;
      width: 142.35px !important;
@@ -480,10 +555,41 @@ a .bt_coins{
 /*Extra large devices (large desktops, 1200px and up)*/
 @media (max-width: 1199.98px) { 
   .text-register{
-    font-size: 14px;
+    font-size: 12px;
     margin-left: 30px;
-    line-height: 17px;
-  }
+    line-height: 13px;
+  }  
+}
 
+@media (max-width: 806px){ 
+  .text-register{
+    display: none;
+  }
+}
+
+
+
+@media (max-width: 992px){
+ .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    margin-left: 0px !important;
+  }
+.sidebar_{
+    background: #fff !important;
+  }
+}
+
+@media (min-width: 992px){
+  .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .main-footer, .sidebar-mini.sidebar-collapse .main-header {
+      margin-left: 6.3rem!important;
+      /*background: #000 !important;*/
+  }
+  .main-footer_f {
+    /*width: 100% !important;*/
+    /*margin-left: 0px !important;*/
+    display: none;
+    
+  /*  background: #000;
+    position:absolute !important; top:0; left:0;*/
+  }
   
 }

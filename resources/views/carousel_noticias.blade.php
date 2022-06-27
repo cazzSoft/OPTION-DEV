@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide  border-bottom  ml-5 mr-5 mb-4" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide  border-bottom   mb-4" data-ride="carousel">
   <ol class="carousel-indicators carousel-indicators_noti mt-5">
     @if(isset($listaNoticia))
       @foreach($listaNoticia as $key=>$noti)

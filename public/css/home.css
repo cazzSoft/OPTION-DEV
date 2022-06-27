@@ -6,7 +6,6 @@
 #sliderInfo .carousel-control-next,  .carousel-control-prev{
   width: 40px; 
   background: #0FADCE;
-  /*transform: rotate(180deg);*/
   border-radius: 200px;
   height: 40px;
   margin-top: 230px !important;
@@ -63,7 +62,7 @@
   font-size: 10px;
   line-height: 12px;
 
-  color: #606060;
+  /*color: red !important;*/
 }
 
 .btn-registrate-s{
@@ -138,7 +137,7 @@
   object-fit: cover;
 }
 input[type="file"] {
-  display: none;
+  display: none; 
 }
 .custom-file-upload {
  
@@ -186,7 +185,8 @@ input[type="file"] {
     box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: auto !important;
-    width:24vw ;
+    width:80% ;
+
     font-family: 'Calibri';
     font-style: normal;
     font-weight: 700;
@@ -202,13 +202,13 @@ input[type="file"] {
     display: none !important;
     
   }
-  .main-sidebar{
-   /* border-right: 2px solid #0FADCE !important;
+  /*.main-sidebar{
+    border-right: 2px solid #0FADCE !important;
     border-top: 2px solid #0FADCE !important;
     margin-left: -328 !important;
-    border-radius: 5px !important;*/
+    border-radius: 5px !important;
    
-  }
+  }*/
   .text-new-user{
     font-family: 'Calibri';
     font-style: normal;
@@ -233,7 +233,7 @@ input[type="file"] {
     color: #fff;
     text-align: center;
   }
-  .img_nav{
+  /*.img_nav{
     width: 55px;
     height:auto ;
 
@@ -242,11 +242,11 @@ input[type="file"] {
     right: 70.67%;
     top: 0.85%;
     bottom: 98.2%;
-  }
+  }*/
 
-  .sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
-      /*margin-left: -320px !important;*/
-  }
+  /*.sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
+      margin-left: -320px !important;
+  }*/
 
  
   .bag{
@@ -332,7 +332,10 @@ input[type="file"] {
 /* ____________________________________________________________________________________________ */
 
   @media (min-width:100px) and (max-width: 767.98px) { 
-    
+    .foot1   {
+      margin-bottom: 16px !important;
+     /* background: red !important;*/
+    }
     /*slide medico*/
     .img_slide_medico{
       width: 100px;
@@ -393,10 +396,10 @@ input[type="file"] {
       margin-left: -4px !important;
       margin-top: -1114px !important;
     }
-    .main-sidebar {
+    /*.main-sidebar {
       display:block !important;
-      overflow-y: visible !important; 
-    }
+      overflow-y: hidden !important;
+    }*/
    
     
     .btn-registrate {
@@ -878,3 +881,4 @@ input[type="file"] {
   }
 
 
+ 

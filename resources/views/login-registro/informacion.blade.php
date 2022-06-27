@@ -4,7 +4,7 @@
 
 
 @section('contenido')
-    <div class="row" style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;">
+    <div class="row" {{-- style="background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;" --}}>
         <div class=" conten-info @if($data['tp']=='CO') container-fluid  @else container @endif ">
             <div class="col-md-12 mt-0">
                 <a href="{{url('/')}}">
@@ -52,6 +52,7 @@
 @stop
 
 @section('adminlte_js') 
-    {{-- <script src="{{ asset('/js/global.js') }}"></script> --}}
+    {{-- controlar imagen de rotas --}}
+      <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
 @stop
 

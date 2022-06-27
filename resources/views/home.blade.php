@@ -38,7 +38,7 @@
 
   @auth
     <section>
-      <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-5">
+      <div class="row mt-4 mb-5  border-bottom mb-5">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Médicos</b></p>
           <p class="h4 text-center lead mb-2 desc-noticia mb-4" style="width: 680px; margin:auto;">
@@ -98,7 +98,7 @@
    
   @auth
     <section>
-      <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-5">
+      <div class="row mt-4 mb-5  border-bottom  mb-5">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Publicaciones</b></p>
           <p class="h4 text-center lead mb-2 desc-publica" style="width: 680px; margin:auto;">
@@ -120,7 +120,7 @@
 
   @guest
     <section class="content">
-      <div class="row mt-4 mb-5  border-bottom ml-5 mr-5 mb-1">
+      <div class="row mt-4 mb-5  border-bottom  mb-1">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Publicaciones</b></p>
           <p class="h4 text-center lead mb-2 desc-publica" style="width: 680px; margin:auto;">
@@ -136,7 +136,7 @@
 
   @guest
     <section class="content">
-      <div class="row mt-1 mb-5   ml-5 mr-5 mb-5">
+      <div class="row mt-1 mb-5   mb-5">
         <div class="col-lg-12 col-xs-12 text-center">
           <p class="h4 text-info text-center mt-5" style="font-family:  Calibri; color: #13c6ef !important;"><b>Acerca de Nosotros</b></p>
          
@@ -147,7 +147,7 @@
               <div class="card-deck ml-4 mr-4 border-0 mb-5 card-deck_">
                
                 <div class="card ml-5 border-0 shadow-none" >
-                    <img class="card-img-top" src="/img/a2.png" alt="Card image cap">
+                    <img class="card-img-top" src="{{asset('/img/a2.png')}}" alt="Card image cap">
                     <div class="card-body border-0">
                      <h5 class=" h4 text-center mb-3 text-info_">¿Sabes cuál es el estado de tu salud? </h5>
                      <p class="card-text text-justify text-desc mb-3">
@@ -157,7 +157,7 @@
                    </div>
                 </div>
                 <div class="card ml-5 border-0 shadow-none">
-                  <img class="card-img-top" src="/img/a3.png" alt="Card image cap">
+                  <img class="card-img-top" src=" {{asset('/img/a3.png')}} " alt="Card image cap">
                   <div class="card-body border-0">
                      <h5 class=" h4 text-center mb-3 text-info_">¡Los pacientes llegarán a ti a llenar tu agenda!</h5>
                      <p class="card-text text-justify text-desc mb-3">Los pacientes están buscándote ahora mismo.
@@ -166,7 +166,7 @@
                   </div>
                 </div>
                 <div class="card ml-5 mr-5 border-0 shadow-none">
-                  <img class="card-img-top" src="/img/a4.png" alt="Card image cap">
+                  <img class="card-img-top" src="{{asset('/img/a4.png')}}" alt="Card image cap">
                   <div class="card-body border-0">
                    <h5 class=" h4 text-center mb-3 text-info_">Lleva tu marca empresarial al siguiente nivel con Option2health.</h5>
                    <p class="card-text text-justify text-desc mb-3">Nuestra plataforma te permitirá posicionar tu marca, obtener datos y estadísticas de tu alcance, encontrar al cliente ideal, optimizando recursos y conectando con aliados estratégicos del sector de la salud.
@@ -260,7 +260,13 @@
 
   {{-- Seccion para insertar js--}}
   @section('include_js')
-    <script src="{{ asset('/js/slider.js') }}"></script> 
+    {{-- controlar imagen de rotas --}}
+     <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
+     
+    {{--sliders  --}}
+      <script src="{{ asset('/js/slider.js') }}"></script> 
+
+    {{-- invocacion de slider para movil --}}
     @movil
       @if(isset($listaNoticia))
          @foreach($listaNoticia as $key=>$noti)
@@ -309,6 +315,8 @@
       @endif 
      @endif
      
+    
+
 
       <script src="{{ asset('/js/controlLike.js') }}"></script>
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
@@ -316,7 +324,7 @@
       <script src="{{ asset('/js/actionEvent.js') }}"></script>
       
       {{-- para dar stilos responsive --}}
-      <script src="{{ asset('/js/screen/screen_home.js') }}"></script>
+      {{-- <script src="{{ asset('/js/screen/screen_home.js') }}"></script> --}}
   @stop
     
 @stop

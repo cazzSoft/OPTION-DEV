@@ -15,7 +15,7 @@
     </div>
   @else 
   <div class="row">
-    <div class="col">
+    <div class="col mt-4 mb-3">
         <p class=" text-lead  text-info_ text-center mb-3 text-truncate flex_titulo">  
            <a href="/"> <i class="fas fa-chevron-left  text-info_ float-left  mr-2 mt-1"></i></a>
            <b class="text-center mr-5"> @if(isset($noticia)) {{$noticia['titulo']}} @endif </b>
@@ -116,7 +116,8 @@
 
   {{-- Seccion para insertar js--}}
   @section('include_js')
-
+    {{-- controlar imagen de rotas --}}
+      <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
     {{-- script para la gestion de noticias --}}
     <script src="{{ asset('/js/noticia.js') }}"></script>
     <script src="{{ asset('/js/slider.js') }}"></script> 

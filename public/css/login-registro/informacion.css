@@ -8,8 +8,15 @@
 .main-footer {
     display: none;
 }
-
-
+.wrapper{
+  background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;
+}
+.navbar-brand  {
+  background: #fff !important;
+}
+.nav_content {
+  display: none;
+}
 /*// Medium devices (tablets, less than 992px)*/
 @media (max-width: 991.98px) { 
 
@@ -26,13 +33,21 @@
     color: #4F4F4F !important;
   }
   
-  .detalle p, div{
+  .detalle p{
     font-family: 'Calibri' !important;
     font-style: normal !important;
-    /*font-weight: 700 !important;*/
+   
     font-size: 12px !important;
     line-height: 15px !important;
-    /*color: #4F4F4F;*/
+   
+  }
+  .detalle div{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+   
+    font-size: 12px !important;
+    line-height: 15px !important;
+   
   }
   .detalle h3{
     font-family: 'Calibri';
@@ -54,18 +69,15 @@
     margin-bottom: 112px !important;
   }*/
 
-  body {
-      /*margin: 1;*/
-      /*font-family: "ca";*/
-      /*font-size: 1rem;*/
-      /*line-height: 1.2;*/
+  /*body {
+      
       font-family: 'Calibri';
       font-style: normal;
       font-weight: 400;
       font-size: 12px;
-      /*line-height: 19px;*/
+     
       text-align: justify;
-  }
+  }*/
   .h1{
    
     font-weight: 700;

@@ -125,7 +125,13 @@
     .foot1, .nav_content  {
         display: none;
     }
-    
+    .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+        margin-left: 0px !important;
+    }
+    .sidebar_{
+        /*display: none;*/
+        margin-left: -250px;
+    }
 </style>
 @stop
 @section('include_js') 

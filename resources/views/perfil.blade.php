@@ -537,6 +537,10 @@
            </script>
         @endif
 
+        {{-- controlar imagen de rotas --}}
+         <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
+
+         
         {{-- textarea estan raros --}}
         @if( isset($datos_m) )
            <script>

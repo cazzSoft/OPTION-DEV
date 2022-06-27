@@ -244,7 +244,7 @@ class EventServiceProvider extends ServiceProvider
                     ],
                     [
                       'text' => 'Coinsults',
-                      'url'  => 'info-coinsult',
+                      'url'  => 'info-coinsults',
                       'icon' => 'far fa-copyright',
                     
                     ],

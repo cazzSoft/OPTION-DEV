@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         {{-- <link rel="stylesheet" href="{{ secure_asset('vendor/fontawesome-free/css/all.min.css') }}"> --}}
         <link rel="stylesheet" href="{{ secure_asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css">
         {{-- Configured Stylesheets --}}
         @include('adminlte::plugins', ['type' => 'css'])
 
@@ -77,13 +77,22 @@
 
 </head>
 
-<body class="@yield('classes_body')"  @yield('body_data') style="font-family: 'Calibri'">
+<body 
+        @if(!request()->is(['session','log-in-medico','log-in-paciente','password_reset/*','profile/perfil','medico/info*','/medico/perfil'])) 
+            class=" layout-fixed layout-navbar-fixed  sidebar-mini" 
+        @else 
+            class="layout-fixed layout-navbar-fixed layout-top-nav" 
+        @endif 
+        @yield('body_data') style=" font-family: 'Calibri'; font-style: normal;">
  
     {{-- Body Content --}}
     @yield('body')
+    @yield('footer_')
 
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))
+        {{-- <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script> --}}
+         <script src="{{ secure_asset('/js/flickity@2.3.0.js') }}"></script>
         <script src="{{ secure_asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ secure_asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>

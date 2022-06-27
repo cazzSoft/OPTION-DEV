@@ -83,8 +83,8 @@ return [
     |
     */
 
-    'layout_topnav' => false,
-    'layout_boxed' => false,
+    'layout_topnav' => null,
+    'layout_boxed' => null,
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
     'layout_fixed_footer' => false, //footer habilita
@@ -120,11 +120,11 @@ return [
     |
     */
 
-    'classes_body' => ' hold-transition layout-top-nav', //hold-transition layout-top-nav layout-top-nav
-    'classes_brand' => 'navbar-brand   text-dark',
-    'classes_brand_text' => '', //brand-text
+    'classes_body' => 'hold-transition ', 
+    'classes_brand' => 'navbar-brand   text-dark ',
+    'classes_brand_text' => 'brand-text', //brand-text
     'classes_content_wrapper' => 'bg-white ',
-    'classes_content_header' => 'bg-info mt-4',
+    'classes_content_header' => ' mt-1',
     'classes_content' => ' ',
     'classes_sidebar' => 'sidebar-light-info ',
     'classes_sidebar_nav' => '', //nav-child-indent

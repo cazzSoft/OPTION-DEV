@@ -32,6 +32,10 @@
    cursor: pointer;
 }
 
+.nav_content {
+    display: none;
+}
+
 @media (min-width:100px) and (max-width: 767.98px) { 
     .ml-5, .mx-5 {
         margin-left: 0px !important;
@@ -95,4 +99,27 @@
         display: none !important;
     }
 
+}
+
+ @media (min-width: 768px) and (max-width: 990px) { 
+    .profile-username{
+        font-family: 'Calibri';
+        color: red !important;
+        margin-top: 40px ;
+    }
+    
+    .div-info-session{
+        order: 11 !important;
+    }
+
+    .ml-5, .mx-5 {
+         margin-left: 0rem !important; 
+    }
+
+    .content {
+        margin-bottom: 122px !important;
+    }
+    .btn-regresar{
+        display: none;
+    }
 }

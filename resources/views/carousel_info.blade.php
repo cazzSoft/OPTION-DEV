@@ -95,7 +95,7 @@
                 </h2>
                 <div class="form-group   bt_register_carrosel text-center ">
                   <a class="btn pr-5 pl-5  bgz-info rounded  shadow-sm mt-5 btn-s3 btn-sm "    href="session" >
-                    <b class="h4 text-calibri">Regístrate </b>
+                   Regístrate
                   </a>
                 </div>  
               </div>

@@ -6,7 +6,7 @@
         @php( $logout_url = $logout_url ? url($logout_url) : '' )
     @endif
 
-    <aside class="main-sidebar   mt-2  elevation-2 d-none  {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}" >
+    <aside class="main-sidebar main-sidebar-app   mt-2  elevation-2 d-none  {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}" >
         <span  class=" bg-white ribbon text-center d-none" data-widget="pushmenu" id="dropdownMenuLink" >
             <i class="fas fa-angle-left fa-lg text-info_ mt-1 mr-1 ml-1"></i>
         </span>
@@ -60,11 +60,19 @@
         </div>
     </aside>
 @else
-    <aside class="main-sidebar {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}">
 
-        <div class=" sidebar_">
-            <nav class="nav-web">
-                <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
+    <aside class="main-sidebar sidebar-light-info sidebar_  {{-- {{ config('adminlte.classes_sidebar', 'sidebar-light-info') }} --}}">
+
+        @if(config('adminlte.logo_img_xl'))
+            @include('adminlte::partials.common.brand-logo-xl')
+        @else
+            @include('adminlte::partials.common.brand-logo-xs')
+        @endif
+
+   
+        <div class="sidebar_2 sidebar m-0">
+            <nav class="ml-1 mt-3">
+                <ul class="nav nav-pills nav-sidebar flex-column nav-sidebar-lg {{ config('adminlte.classes_sidebar_nav', '') }}"
                     data-widget="treeview" role="menu"
                     @if(config('adminlte.sidebar_nav_animation_speed') != 300)
                         data-animation-speed="{{ config('adminlte.sidebar_nav_animation_speed') }}"
@@ -72,13 +80,14 @@
                     @if(!config('adminlte.sidebar_nav_accordion'))
                         data-accordion="false"
                     @endif>
-                  
+                   
                     @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item')
                 </ul>
             </nav>
         </div>
 
     </aside>
+
 
 @endmovil
 

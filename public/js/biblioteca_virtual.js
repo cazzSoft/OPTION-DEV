@@ -13,6 +13,7 @@ function visor_show(tipo,contenido,titulo) {
 	}
 
 	$('#modal-visor').modal('show');
+	RevisarImagenesRotas();
 }
 
 //eliminara archivo
@@ -98,7 +99,7 @@ $('#idespecialidades_filtro').change( function () {
 	    
  			mostrarArchivosFiltro(data.request,div_class);
 	  
-
+ 			RevisarImagenesRotas();
 	}).fail(function (data) {
 	    var data = data.responseJSON;
 	    mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
@@ -179,7 +180,7 @@ $("#form_search_filtro").on("submit", function (e) {
     	       		div_class='col text-center m-auto ';
     	       }
     	      	mostrarArchivosFiltro(data.request,div_class);
-
+    	      	RevisarImagenesRotas();
     	    },
 
     	    error: function (data) {
@@ -216,7 +217,7 @@ function downloade(ste,id) {
 
 // funcion para abrir imagen el biblioteca
 function showModal(doc,titulo){
-	console.log(doc);
+	
   $('#modal-image-content').html(" ");
   $('#modal-image-content').html(`<img src="${doc}" class="modal-content-img img-fluid"> <div class="modal-nav">
   <button id="close" class="btn btn-info btn-sm mt-3">Cerrar</button>
@@ -246,6 +247,7 @@ function showModal(doc,titulo){
       document.removeEventListener('keydown', hideModal);
     }
   }
+  RevisarImagenesRotas();
 }
 
 

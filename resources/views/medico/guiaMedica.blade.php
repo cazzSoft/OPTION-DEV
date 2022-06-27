@@ -172,13 +172,13 @@
         <div class="row">
             <div class="col">
                 <p class=" text-lead h3 text-info text-center mb-3">  
-                   <a href="/"> <i class="fas fa-chevron-left  text-info float-left ml-5"></i></a>
+                   <a href="/"> <i class="fas fa-chevron-left  text-info float-left "></i></a>
                    <b class="text-center mr-5">  Guía Médica   </b> 
                 </p>
             </div>
         </div>
 
-        <div class="container-fluid  ml-5 mt-4">
+        <div class="container-fluid   mt-4">
             <div class="row">
                 <div class="col-3 ">
                     <div class="row">
@@ -347,5 +347,6 @@
 @stop
 
 @section('include_js')
-
+    {{-- controlar imagen de rotas --}}
+       <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
 @stop

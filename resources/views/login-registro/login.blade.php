@@ -422,6 +422,15 @@
 @section('include_css')
     <link rel="stylesheet" href="{{ asset('css/login-registro/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <style>
+        .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+            margin-left: 0px !important;
+        }
+        .sidebar_{
+            /*display: none;*/
+            margin-left: -250px;
+        }
+    </style>
 @stop 
 
 @section('include_js')

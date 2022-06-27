@@ -144,9 +144,16 @@ class DoctoresController extends Controller
 
     public function show_info($id)
     {
-
+        
         //informacion del perfil del medico
        $id=decrypt($id);
+
+       //verificamos del medico logeado si es el mismo de la publicacion
+        
+        if(auth()->user()->id==$id){
+           return redirect('medico/perfil');
+        }
+
        $listaArt=ArticuloModel::withCount(['like'])
                 ->with(['like'=>function($q){
                             $q->select(['*'])->where('iduser',auth()->user()->id)->get();

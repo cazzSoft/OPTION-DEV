@@ -231,6 +231,9 @@
         table, tr, td,thead{
           border:none !important;
         }
+        .nav_content {
+          display: none;
+        }
       </style>
   @stop   
 
@@ -243,7 +246,9 @@
        mostrar_toastr('{{session('info')}}','{{session('estado')}}')
       </script>
     @endif
-    
+    {{-- controlar imagen de rotas --}}
+      <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
+
     <script >
        $(document).ready(function() {
            $('.select22').select2();

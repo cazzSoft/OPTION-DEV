@@ -3,36 +3,7 @@
 @section('title','Password Reset')
 
 @section('contenido')
-    {{-- <div class="container-fluid  p-1 ">
-      <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
-        <div class=" container-fluid ">
-          <a href="{{url('/')}}" class="navbar-brand ml-4 imgSecion">
-            <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
-          </a>
-            <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
-                <li class="nav-item dropdown" >
-                    <div class="d-flex flex-row-reverse mr-3 idioma">
-                        <div class="p-2">
-                            <form method="POST" action="{{url('lang')}}" id="form-language">
-                                {{ csrf_field() }}
-                                <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
-                                   <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
-                                   <option @if(Session::get('language')=='en') selected @endif value="en"> EN</option>
-                               </select>
-                            </form>
-                        </div>
-                        <div class="p-2 lead text-mutex">{{trans('informacion-view.Language') }}</div>
-                    </div>
-                    <div class="d-flex justify-content-end mr-3 options">
-                      <div class="p-2 mr-3 "><a class=" text-muted "  href="{{url('nosotros')}}">{{trans('informacion-view.acerca de Nosotros') }}  </a></div>
-                      <div class="p-2"><a class=" text-muted " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
-                    </div>
-               </li>
-            </ul>
-        </div>
-      </nav>     
-    </div> --}}
-
+   
     <div class="container mt-5 ">
         <div class="row justify-content-center ">
             <div class="col-md-6">
@@ -106,7 +77,12 @@
         display: none;
     }
     
-    
+    .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+        margin-left: 0px !important;
+    }
+    .sidebar_{
+        margin-left: -250px;
+    }
 </style>
 @stop
 @section('include_js') 

@@ -141,5 +141,8 @@
 
 {{-- Seccion para insertar js--}}
 @section('include_js')
-       <script src="{{ asset('/js/casos_ex.js') }}"></script>
+  {{-- controlar imagen de rotas --}}
+    <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
+  
+  <script src="{{ asset('/js/casos_ex.js') }}"></script>
 @stop

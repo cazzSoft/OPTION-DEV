@@ -277,7 +277,7 @@ $('.btn_search_in').click(function (argument) {
 $(document).ready(function(){
       $("#dropdownMenuLink").css("display:none");
       $("#dropdownMenuLink").addClass("d-none");
-
+       // $('.history').addClass('d-none');
 
 });
 
@@ -287,5 +287,6 @@ window.onload = function(){
 
     $('.footer_sidebar').removeClass('d-none');
     // $('.nav_content').removeClass('d-none');
-
+    $('.history').removeClass('d-none');
+     $('.history').css('height:123px');
 };  

@@ -88,8 +88,8 @@
 
     //evento para obtener datos del medico
     function getMedicoTop(id,img) {
+
         $.get("/medico/getMedico/"+id , function (data) {
-            
             // console.log(data.request); return ;
             if(data.request['idtitulo_profesional']!=null){
                 var descrip=data.request['titulo']['descripcion'];
@@ -117,6 +117,7 @@
             console.log(data);
 
             $('#modal-info-medico').modal('show');
+             RevisarImagenesRotas();
         }).fail(function (data) {
             var data = data.responseJSON;
             mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)

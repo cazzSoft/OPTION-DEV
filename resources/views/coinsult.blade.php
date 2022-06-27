@@ -205,7 +205,8 @@
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
-
+        {{-- controlar imagen de rotas --}}
+          <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
     @stop
     
 

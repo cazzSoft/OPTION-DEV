@@ -6,40 +6,11 @@
 @section('plugins.toastr',true)
 {{-- class="hold-transition login-page" --}}
 @section('contenido')
-    {{-- <div class="container-fluid  p-1 nav-login-info">
-      <nav class=" navbar navbar-expand-lg navbar-light navbar-white p-0 border-bottom border-info ">
-        <div class=" container-fluid ">
-          <a href="{{url('/')}}" class="navbar-brand ml-4 imgSecion">
-            <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo">
-          </a>
-            <ul class="order-1 order-md-4  navbar-nav navbar-no-expand ml-auto ">
-                <li class="nav-item dropdown" >
-                    <div class="d-flex flex-row-reverse mr-3 idioma">
-                        <div class="p-2">
-                            <form method="POST" action="{{url('lang')}}" id="form-language">
-                                {{ csrf_field() }}
-                                <select  class="form-control form-control-sm  d-inline  lead border-0"  name="language" id="language" >
-                                   <option @if(Session::get('language')=='es') selected @endif value="es"> ES</option>
-                                   <option @if(Session::get('language')=='en') selected @endif value="en"> EN</option>
-                               </select>
-                            </form>
-                        </div>
-                        <div class="p-2 lead text-mutex">{{trans('informacion-view.Language') }}</div>
-                    </div>
-                    <div class="d-flex justify-content-end mr-3 options">
-                      <div class="p-2 mr-3 "><a class=" text-muted "  href="{{url('nosotros')}}">{{trans('informacion-view.acerca de Nosotros') }} </a></div>
-                      <div class="p-2"><a  class="text-muted " href="{{url('info-coinsults')}}">COINSULTS</a> </div>
-                    </div>
-               </li>
-            </ul>
-        </div>
-      </nav>     
-    </div> --}}
     <div class="container col-md-12 ">
         <div class="row mt-5">
             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12  div-info-session">
                 <div class="card-deck ml-5 mr-4 ">
-                  <div class="card  border-0 col-sm-6">
+                  <div class="card  border-0 col-sm-6 pl-0 pr-0">
                     <div class="card-body  border-0">
                        <h5 class=" h5 text-center mb-3  tex" style="color: #13c6ef !important;"><b>{{trans('session.medicina en tus manos') }}</b></h5>
                        <p class="card-text text-justify"> 
@@ -47,7 +18,7 @@
 
                        </p>
                     </div>
-                    <img class="card-img-top" src="/img/op1.svg" alt="Card image cap">
+                    <img class="card-img-top" src="{{asset('/img/op1.svg')}}" alt="Card image cap">
                   </div>
                   <div class="card  border-0 col-sm-6">
                       <div class="card-body border-0 ">
@@ -56,7 +27,7 @@
                          {{trans('session.text-estado de salud') }} 
                        </p>
                      </div>
-                      <img class="card-img-top" src="/img/op2.svg" alt="Card image cap">
+                      <img class="card-img-top" src="{{asset('/img/op2.svg')}}" alt="Card image cap">
                   </div>
                   <div class="card  border-0 col-sm-6">
                    
@@ -66,7 +37,7 @@
                         {{trans('session.text-llegaran a ti') }} 
                        </p>
                     </div>
-                     <img class="card-img-top" src="/img/op3.svg" alt="Card image cap">
+                     <img class="card-img-top" src="{{asset('/img/op3.svg')}} " alt="Card image cap">
                   </div>
                  
                 </div>
@@ -111,8 +82,18 @@
 
 @section('include_css') 
     <link rel="stylesheet" href="{{ asset('css/login-registro/info-login.css') }}">
+    <style>
+        .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+            margin-left: 0px !important;
+        }
+        .sidebar_{
+            /*display: none;*/
+            margin-left: -250px;
+        }
+    </style>
 @stop
 
 @section('include_js') 
+   
     {{-- <script src="{{ asset('/js/global.js') }}"></script> --}}
 @stop

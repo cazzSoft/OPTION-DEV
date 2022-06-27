@@ -188,30 +188,13 @@
 
     @section('include_css') 
        <link rel="stylesheet" href="{{ asset('css/guardado.css') }}">
-      <style>
-        /*.medico {
-            position: absolute;
-            border: 1px solid #10ADCF;
-            text-align: center;
-            right: -3vh;
-            top: -3.8vh;
-            background: #fff;
-            border-radius: 4px;
-            padding: 1vh;
-            width: 7em;
-            height: 6em;
-            font-size: 1em;
-            -moz-box-shadow: 0px 0px 9px -8px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 19px -8px rgb(0 0 0 / 75%);
-        }*/
-       /* .img2{
-          width: 67%;
-        }*/
-      </style>
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
-     <script src="{{ asset('/js/controlLike.js') }}"></script>
+      {{-- controlar imagen de rotas --}}
+        <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
+        
+      <script src="{{ asset('/js/controlLike.js') }}"></script>
       <script src="{{ asset('/js/gestionSaveArt.js') }}"></script>
     @stop
     

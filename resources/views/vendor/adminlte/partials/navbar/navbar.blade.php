@@ -68,13 +68,31 @@
   @endif
 @else
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg ">
-    <div class=" container-fluid ml-5">
-      <a href="/" class="navbar-brand">
-        <img src="/img/logo2.svg" alt="o2hLogo" class="profile-user-img border-0 img-fluid" id="imaLogo2">
-      </a>
-      <button class="navbar-toggler btn-lg  btn-flat btn-default btn_icon " style="border-radius:500px; height: 42px; margin-left: -34px;" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="fas fa-search "></span>
-      </button>
+    <div class=" container-fluid ml-0">
+      {{-- Left sidebar toggler link --}}
+      @if(request()->is(['session','log-in-medico','log-in-paciente','password_reset','password_reset*','profile/perfil','medico/info*','medico/perfil']) )
+        <a href="/"  class="navbar-brand2 ">
+            <img src="{{asset('/img/logo2.svg')}}"
+                 alt="{{ config('adminlte.logo_img_alt', 'AdminLTE') }}"
+                 class="ml-4 mt-2"
+                id="imaLogo2">
+        </a>
+      @else
+        <a class="nav-link text-dark " data-widget="pushmenu" style="cursor: pointer;" 
+            @if(config('adminlte.sidebar_collapse_remember'))
+                data-enable-remember="true"
+            @endif
+            @if(!config('adminlte.sidebar_collapse_remember_no_transition'))
+                data-no-transition-after-reload="false"
+            @endif
+            @if(config('adminlte.sidebar_collapse_auto_size'))
+                data-auto-collapse-size="{{ config('adminlte.sidebar_collapse_auto_size') }}"
+            @endif>
+            <i class="fas fa-bars"></i>
+        </a>
+      @endif
+     
+      
       <div class="collapse navbar-collapse order-3  mb-3 mt-1 " id="navbarCollapse">
         <form class="ml-0 ml-md-3" id="form_searc_general" >
           {{ csrf_field() }}  
