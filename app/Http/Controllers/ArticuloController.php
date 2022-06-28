@@ -617,7 +617,7 @@ class ArticuloController extends Controller
                 $consul=ArticuloModel::find($id);
 
                 //registro de evento edit articulo
-                event(new PerfilUserEventUsuarioEdit(['idarticulo'=>$id,'sub_a'=>'0','tipo_s'=>'PER','descripcion'=>' "Icono Editar Publicacion "','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
+                // event(new PerfilUserEventUsuarioEdit(['idarticulo'=>$id,'sub_a'=>'0','tipo_s'=>'PER','descripcion'=>' "Icono Editar Publicacion "','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])]));
 
                 if(isset($consul)){
                     return response()->json([
@@ -687,7 +687,7 @@ class ArticuloController extends Controller
 
             if($actArt->save()){
                 //registro de evento update publicacion
-                event(new MedicoEventPublicacion(['objPublicacion'=>$art_Aux,'objPublicacionUpdate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
+                // event(new MedicoEventPublicacion(['objPublicacion'=>$art_Aux,'objPublicacionUpdate'=>$request,'iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'PER'])] ));
 
                  return response()->json([
                     'jsontxt'=> ['msm'=>'Datos actualizado con éxito..','estado'=>'success']

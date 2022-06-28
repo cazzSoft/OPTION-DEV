@@ -1,12 +1,12 @@
 @extends('homeOption2h')
-@section('title','Doctors')
+@section('title','Médico-info')
 
 
 {{--para activar los plugin en la view  --}}
 @section('plugins.toastr',true)
 
 {{-- cuerpo de la pagina --}}
-@section('contenido')
+@section('contenido') 
   
   <div class="row mt-0 justify-content-md-center">
     {{-- <div class="col-lg-3 col-md-1 col-sm-12 col-xs-12 ">
@@ -209,10 +209,7 @@
 
 
     @section('include_css') 
-       <link rel="stylesheet" href="{{ asset('css/info_doc.css') }}">
-        <style>
-         
-        </style>
+      <link rel="stylesheet" href="{{ asset('css/info_doc.css') }}">
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')

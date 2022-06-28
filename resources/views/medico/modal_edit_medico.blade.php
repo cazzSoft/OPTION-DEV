@@ -2,10 +2,15 @@
  <div class="modal-dialog modal-lg">
    <div class="modal-content">
      <div class="modal-header text-center">
-        <h4 class="modal-title text-center mx-auto ml-5">
-            <span class=" text-center ml-5 pl-5">   Editar Datos del perfil medico</span> 
-        </h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        @movil
+            <h4> Editar Datos del perfil medico</h4>
+        @else
+            <h4 class="modal-title text-center mx-auto ml-5">
+                <span class=" text-center ml-5 pl-5">   Editar Datos del perfil medico</span> 
+            </h4>
+        @endmovil
+        
+        <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
             <i class="fas fa-times-circle"></i>
         </button>
      </div>

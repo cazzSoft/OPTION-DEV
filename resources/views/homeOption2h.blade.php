@@ -80,14 +80,15 @@
             @if( Auth::user()->topMedicos() )
               @foreach(Auth::user()->topMedicos()->take(10) as $key=> $item)
                   <div class="carousel-cell text-center align-self-end mt-2 border-0">
-                    <a class="navbar-brand_ text-center mr-3" onclick="getMedicoTop('{{encrypt($item->id)}}',`{{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}` )"   href="#"  >
+                    <a class="navbar-brand_ text-center mr-3" 
+                      onclick="getMedicoTop('{{encrypt($item->id)}}',`@if(\Storage::disk('diskDocumentosPerfilUser')->exists($item->img)){{asset($item->img)}} @else {{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600))}} @endif`)"   href="#"  >
                       @if(isset($item['img'] ) && $item['img']!=null )
                         <img 
                             src="
                                   @if(\Storage::disk('diskDocumentosPerfilUser')->exists($item->img)) 
                                       {{asset($item->img)}}
                                   @else
-                                      {{$img}}
+                                      {{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}
                                   @endif
                                 " 
                               alt="{{$item->img}}"

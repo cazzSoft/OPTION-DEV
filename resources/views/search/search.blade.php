@@ -29,8 +29,8 @@
                 <div class="col mt-3">
                     <p class=" text-title text-info_ text-center mb-3">  
                        <a href="/"> <i class="fas fa-chevron-left  float-left ml-5 text-info_ "></i></a>
-                       <b class="text-center mr-5 ">  Guía Médica   </b> 
-                        {{-- <b>Resultados para @if(isset($text_search)) {{$text_search}} @endif</b>  --}}
+                        {{-- <b class="text-center mr-5 ">  Guía Médica   </b>  --}}
+                        <b>Resultados para @if(isset($text_search)) {{$text_search}} @endif</b> 
                     </p>
                 </div>
             
@@ -129,6 +129,8 @@
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
+        {{-- controlar imagen de rotas --}}
+        <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
         <script src="{{ asset('/js/slider.js') }}"></script> 
         {{-- textarea estan raros --}}
         @if( isset($datos_p) )

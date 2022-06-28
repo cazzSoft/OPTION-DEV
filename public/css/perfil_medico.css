@@ -1,10 +1,37 @@
 
-.content-header {
-  display: none;
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #01b9e9;
+    border-color: #c0cddc;
+    color: #fff;
 }
-.content{
-  margin-top: 90px  !important;
+input[type="file"] {
+    display: none;
 }
+.custom-file-upload {
+    /*border: 1px solid #ccc;*/
+    display: inline-block;
+    padding: 1px ;
+    cursor: pointer;
+}
+
+#preViewImg{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+.nav_content {
+    display: none;
+}
+/*para quitar el sidebar*/
+.content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    margin-left: 0px !important;
+}
+.sidebar_{
+    margin-left: -250px;
+}  
+
+/*sssssssssssssssssssssssssssssssssssss*/
+
 .col-lg-8 {
   -ms-flex: 0 0 70.666667% !important;
   flex: 0 0 100% !important;
@@ -16,26 +43,7 @@
     height: 150px;
     object-fit: cover;
 }
-.nav_content{
-  display: none;
-}
-.btn_seg1{
-  width: auto !important;
-  height: 34px !important;
-  background: #0FADCE !important;
-  box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  color: #fff !important;
-}
-.btn_seg2{
-  width: auto !important;
-  height: 34px !important;
-  background: #fff !important;
-  box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  color: #0FADCE !important;
-  border: 1px solid  #0FADCE;
-}
+
 
 .titulo_publicacion{
   font-family: 'Calibri';
@@ -78,7 +86,9 @@
     padding-left: 5px !important;
     margin-top: 40px  !important;
   }
-  
+  .container-fluid {
+    padding: 0px !important;
+  }
   .widget-user .widget-user-header { 
       height: 90px;
   }
@@ -214,11 +224,39 @@
   .card-body-perf{
     padding-bottom: 0px !important;
   }
+  .username_perfil{
+    margin-left: 111px;
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 5px !important;
+    
+  }
 
   .jumbotron {
      margin-left: 2px !important;
      margin-right: 2px !important;
      margin-bottom: 5px !important;
+  }
+
+  .ribbon-wrapper {
+      height: 48px !important;
+      top: 40px !important;
+      left: 30px !important;
+      width: 8;
+      padding: 1px; 
+      border-radius: 200px;
+      transform: rotate(44deg);
+  }
+  .dropdown-menu{
+    top: 90px;
+    left: -41px;
+  }
+  .dropdown-item {
+    font-size: 9px !important;
+    line-height: 4px !important;
   }
 }
 @media (min-width: 767.98px) and (max-width: 1377.98px) { 

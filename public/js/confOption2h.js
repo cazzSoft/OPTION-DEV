@@ -111,13 +111,13 @@
             $('.txt_direc').html(`<i class="far fa-address-book"></i> Dirección: ${data.request['direccion']}`);
             var url=window.location.protocol+'//'+window.location.host;
             $('.text_url').attr('href',`${ data.request['url']}`);
-            $('.img_txt').attr('src',`${ data.request['img']}`);
+            $('.img_txt').attr('src',`${img}`);
             
             
             console.log(data);
 
             $('#modal-info-medico').modal('show');
-             RevisarImagenesRotas();
+             // RevisarImagenesRotas();
         }).fail(function (data) {
             var data = data.responseJSON;
             mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado)

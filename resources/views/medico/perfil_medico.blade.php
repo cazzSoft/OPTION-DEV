@@ -8,15 +8,15 @@
 @section('plugins.toastr',true)
 @section('plugins.Select2',true)
 {{-- cuerpo de la pagina --}}
-@section('contenido')
+@section('contenido') 
     
-    <div class="row mt-1">
-      <div class="col-md-3 col-sm-12 col-xs-12 "> 
+    <div class="row mt-0 justify-content-md-center">
+      {{-- <div class="col-md-3 col-sm-12 col-xs-12 "> 
         
-      </div>
-      <div class="col-md-6 col-sm-12 col-xs-12 {{-- offset-md-2 --}} ">
-        <div class="card card-widget widget-user ">
-            <div class="widget-user-header text-white text-left" id="preViewPortada"
+      </div> --}}
+      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 div-perfil ">
+        <div class="card card-widget widget-user @movil  shadow-none border-0 @endmovil ">
+            <div class="widget-user-header text-white text-left  " id="preViewPortada"
                 style="
                     @if(isset($datos_p->img_portada) && $datos_p->img_portada!=null ) 
                         @if(\Storage::disk('diskDocumentosPerfilUser')->exists($datos_p->img_portada)) 
@@ -27,25 +27,21 @@
                     @else
                         background-color:#E0E0E0 !important
                     @endif">
-               {{--  <h3 class="widget-user-username text-right">Elizabeth Pierce</h3>
-                <h5 class="widget-user-desc text-right">Web Designer</h5> --}}
             </div>
-            <div class="widget-user-image p-0  mr-5 " style="/*margin-left:-46%*/;">
-                <img class="img-circle img-fluid p-1" id="preViewImg" src="{{auth()->user()->adminlte_image()}}" alt="{{$datos_p->img}}" >
+            <div class="widget-user-image p-0  mr-5 " >
+                <img class="img-circle img-fluid p-1 bg-light" id="preViewImg" src="{{auth()->user()->adminlte_image()}}" alt="{{$datos_p->img}}" >
                 <div class="ribbon-wrapper ">
                   <div class="ribbon border-0" > 
-                    <span  onclick="menu_perfil()" class="fas fa-plus elevation-2 p-1  img-circle text-info bz-white "  style="cursor: pointer;" ></span>
+                    <span  onclick="menu_perfil()" class="fas fa-plus elevation-1 p-1  img-circle text-info bz-white @movil fa-xs @endmovil "  style="cursor: pointer;" ></span>
                   </div>
                 </div>
                 <div class="dropdown-menu  " id="myDropdown" style="margin-left: 110px; position: absolute;" >
-                   {{--  <a href="#" class="dropdown-item nav-link text-info_"> Subir Foto de Portada</a>
-                    <a href="#" class="dropdown-item nav-link text-info_"> Subir Foto de Perfil</a> --}}
-                    {{-- <a href="#" class="dropdown-item nav-link text-info_"> Subir Historia</a> --}}
+                   
                     <div class="dropdown-item bg-white mx-auto" >
                        <form  method="POST" id="update_img_perfil" action="{{url('profile/update_photo')}}"  enctype="multipart/form-data">
                            {{ csrf_field() }}
                            <input type="hidden" name="_method" value="POST">
-                           <label for="file-upload" class="custom-file-upload p-0 text-info_">
+                           <label for="file-upload" class="custom-file-upload p-0 text-info_ p-0 m-0 ">
                                <i class="fas fa-user-circle"></i> Subir Foto de Perfil
                            </label>
                            <input id="file-upload" name="img" class="p-0" type="file"/>
@@ -55,7 +51,7 @@
                        <form  method="POST" id="update_img_portada" action="{{url('medico/update_portada')}}"  enctype="multipart/form-data">
                            {{ csrf_field() }}
                            <input type="hidden" name="_method" value="POST">
-                           <label for="file2" class="custom-file-upload p-0 text-info_">
+                           <label for="file2" class="custom-file-upload p-0 text-info_ p-0 m-0">
                             <i class="fas fa-cloud-upload-alt"></i> Subir Foto de Portada
                            </label>
                            <input id="file2" name="img_portada" class="p-0" type="file"/>
@@ -63,16 +59,45 @@
                     </div>
                 </div> 
             </div>
-          
+            {{-- nombre del medico --}}
+            @movil
+                <div class="username_perfil text-truncate ">
+                    {{-- <p class=" mt-5 ml-2 mb-3 h3  "> --}}
+                        <b> {{ Str::limit($datos_p->name, 22) }}  <span> <i class="fa fa-edit ml-3 fa-2x text-info_" style="cursor:pointer;"  data-toggle="modal" data-target="#modal-edit-user-md"></i></span>
+                        </b>
+                    {{-- </p> --}}
+                </div>
+            @endmovil
             <div class="widget-user-header bg-white text-left " style="height: auto;">
                @if(isset($datos_p))
                 <div class="row">
-                    <div class="col-sm-12 mt-2">
-                        <p class=" mt-5 ml-2 mb-3 h3 profile-username ">
+                    <div class="col-sm-12 mt-2 ">
+                        @movil
+                            <div class="row">
+                                <div class="col ">
+                                    Datos Personales
+                                </div>
+                                <div class="col-xs-12">
+                                    {{-- <div class="text-leth mb-3 "> --}}
+                                        <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 " ng-if="doctorsee.Twitter!==''">
+                                          <i class="fab fa-instagram text-info fa-2x"></i>
+                                        </a>
+                                        <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn  " ng-if="doctorsee.Facebook!==''">
+                                            <i class="fab fa-facebook text-info fa-2x"></i>
+                                        </a>
+                                        <a href="{{$datos_p->link_yt}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','YouTube')" target="”_blank”" class="btn  " ng-if="doctorsee.YouTube!==''" >
+                                          <i class="fab fa-youtube text-info fa-2x "></i>
+                                        </a>
+                                    {{-- </div> --}}
+                                </div>
+                            </div>
+                        @else
+                        <p class=" mt-5  mb-3 h3 profile-username ">
                             <b>{{$datos_p->name}}  <small> <i class="fa fa-cog ml-3 text-info_" style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user-md"></i></small>
                             </b>
                         </p>
-                        <h6 class="widget-user-desc mx-0 ml-2">
+                        @endmovil
+                        <h6 class="widget-user-desc mx-0  detalle-perfil @movil mt-3 @endmovil">
                             @if(isset($datos_p['idtitulo_profesional'])) {{$datos_p->titulo['descripcion']}}  | @endif
                             <span class="ml-2 well well-sm shadow-none">Especialista en: </span>
                              @if(isset($especialidad))
@@ -86,30 +111,33 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8  col-sm-12">
-                        <h6 class="widget-user-desc mx-0 ml-2">
+                    <div class="col-md-8  col-sm-12 detalle-perfil">
+                        <h6 class="widget-user-desc mx-0  detalle-perfil">
                             <b>@if(isset($publicaciones)) {{$publicaciones}} @endif</b> publicaciones   
                             <span class="ml-4"><b>@if(isset($seguidores)) {{$seguidores}} @endif</b> @if($seguidores==1)seguidor @else seguidores @endif</span>
                         </h6>
-                        <span class="ml-2 well well-sm shadow-none">Teléfono: {{$datos_p->telefono}}</span><br>
-                        <span class="ml-2 well well-sm shadow-none">Email: {{$datos_p->email}}</span><br>
-                        <span class="ml-2 tag tag-info">Dirección: {{$datos_p->direccion}}</span>
+                        <span class="ml-0 well well-sm shadow-none">Teléfono: {{$datos_p->telefono}}</span><br>
+                        <span class="ml-0 well well-sm shadow-none">Email: {{$datos_p->email}}</span><br>
+                        <span class="ml-0tag tag-info">Dirección: {{$datos_p->direccion}}</span>
                         
                     </div>
-                    <div class="col-md-4  mt-2 align-self-end col-sm-12">
-                        <p class="text-muted text-leth">Sígueme en:</p>
-                        <div class="text-leth mb-3 ">
-                            <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 " ng-if="doctorsee.Twitter!==''">
-                              <i class="fab fa-instagram text-info fa-2x"></i>
-                            </a>
-                            <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn  " ng-if="doctorsee.Facebook!==''">
-                                <i class="fab fa-facebook text-info fa-2x"></i>
-                            </a>
-                            <a href="{{$datos_p->link_yt}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','YouTube')" target="”_blank”" class="btn  " ng-if="doctorsee.YouTube!==''" >
-                              <i class="fab fa-youtube text-info fa-2x "></i>
-                            </a>
+                    @movil
+                    @else
+                        <div class="col-md-4  mt-2 align-self-end col-sm-12">
+                            <p class="text-muted text-leth">Sígueme en:</p>
+                            <div class="text-leth mb-3 ">
+                                <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 " ng-if="doctorsee.Twitter!==''">
+                                  <i class="fab fa-instagram text-info fa-2x"></i>
+                                </a>
+                                <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn  " ng-if="doctorsee.Facebook!==''">
+                                    <i class="fab fa-facebook text-info fa-2x"></i>
+                                </a>
+                                <a href="{{$datos_p->link_yt}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','YouTube')" target="”_blank”" class="btn  " ng-if="doctorsee.YouTube!==''" >
+                                  <i class="fab fa-youtube text-info fa-2x "></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endmovil
                 </div>
               @endif
             </div>
@@ -118,30 +146,37 @@
         <div class="card card-widget widget-user shadow-md">
           <!-- Add the bg color to the header using any of the bg-* classes -->
           <div class="card-body">
-            <p class=" h3 profile-username "><b>Acerca de mi</b> <i class="far fa-edit ml-3 text-info_ fa-sm" style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user-md-dt"></i></p>
-            <p class="description mb-2">{{$datos_p->detalle_estudio}} {{-- {{$datos_p->institucion}} --}}</p>
+            <p class=" h3 profile-username title-segn "><b>Acerca de mi</b> <i class="far fa-edit ml-3 text-info_ fa-sm" style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user-md-dt"></i></p>
+            <p class="description mb-2 ">{{$datos_p->detalle_estudio}} {{-- {{$datos_p->institucion}} --}}</p>
 
-            <p class="h3 card-title profile-username "><b>Experiencia</b></p>
-            <p class="description mb-5 ml-5 mt-5"><li class="ml-5 mt-5 mb-2">{{$datos_p->detalle_experiencia}}</li></p>
+            <p class="h2 card-title profile-username "><b>Experiencia</b></p>
+            <p class=" mb-5 ml-1 mt-5 detalle-perfil"><li class="ml-1 mt-5 mb-2 detalle-perfil">{{$datos_p->detalle_experiencia}}</li></p>
           </div>
         </div>
-        <div class="card card-widget widget-user shadow-md ">
+
+        @movil 
+            <div class="ml-4 mr-4 mb-3 mt-2"> <a  class="btn btn-sm bgz-info nav-link" href="{{url('gestion/articulo')}}">Agrear Publicación</a></div>
+        @endmovil
+        <div class="card card-widget widget-user @movil shadow-none @else shadow-md @endmovil">
             <div class="card-header border-0">
                 <h3 class="card-title h1"><b>Publicaciones</b>
                     <a href="{{url('gestion/listaPublicaciones')}}"><i class="far fa-edit ml-3 text-info_ fa-sm" style="cursor:pointer;"></i></a>
                      
                 </h3>
-
+                @movil
+                @else
                 <div class="card-tools">
                     <a  class="btn btn-sm bgz-info nav-link" href="{{url('gestion/articulo')}}">Agrear Publicación</a>
-                </div><br>
-                  <small>Aqui tendras un listado de todas las publicaciones que has subido a O2H.</small>
+                </div>
+                @endmovil
+                <br>
+                <small class="description">Aqui tendras un listado de todas las publicaciones que has subido a O2H.</small>
             </div>
             <div class="card-body ">
                
                 @if (isset($listaArt))
-                    @foreach ($listaArt as $key=>$art )
-                        <div class="card card-widget border-0 p-3 mx-3 mt-2 attachment-block clearfix mb-3">
+                    @foreach ($listaArt->take(50) as $key=>$art )
+                       {{--  <div class="card card-widget border-0 p-3 mx-3 mt-2 attachment-block clearfix mb-3">
                             <div class="card-header ">
                               <div class="user-block text-dark">
                                 <a href="{{url('medico/info/'.encrypt($art['iduser']))}}" >
@@ -162,6 +197,21 @@
                                 </p> 
                                
                             </div>
+                        </div> --}}
+                        <div class="jumbotron jumbotron-fluid m-4">
+                          {{-- <div class="container p-0"> --}}
+                            <h1 class="titulo_publicacion m-0 p-0">  
+                              <span class="username">{{$art['titulo']}}</span>
+                              <button class="btn btn-xs o text-ligth   btn-tool" onclick="getModalInfo('{{$art['idarticulo_encryp']}}',{{$key}})"> <i class="fas fa-edit text-ligth  text-info_"></i> </button>
+                            </h1>
+
+                            <span class="description mt-4 mb-4">
+                             <small>Publicado el {{$art->created_at->isoFormat('lll') }}</small>
+                            </span>
+                            <p class="description mt-3">{{$art['descripcion']}} {{-- <a href="{{$art['vinculo_art']}}" target="_blank" onclick="acctionVermas('{{encrypt($art['idarticulo'])}}')">Ver más... </a> --}}</p>
+                            <p class="description mt-3">{{$art->causas}} </p>
+                            <p class="description mt-3"> Afecta {{$art->afecta_desc}} </p>
+                          {{-- </div> --}}
                         </div>
                     @endforeach
                    
@@ -172,9 +222,7 @@
             </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-12 col-xs-12 {{-- offset-md-2 --}} ">
-        
-      </div>
+     
     </div>
     
    {{--  <div class="row">
@@ -538,42 +586,7 @@
      
     @include('medico.modal_edit_medico')
     @section('include_css') 
-    {{-- <link rel="stylesheet" href="{{ asset('css/nav-side-bar.css') }}"> --}}
-        <style >
-            .ocult{
-              display: none;
-            }
-            .select2-container--default .select2-selection--multiple .select2-selection__choice {
-                background-color: #01b9e9;
-                border-color: #c0cddc;
-                color: #fff;
-            }
-            input[type="file"] {
-                display: none;
-            }
-            .custom-file-upload {
-                /*border: 1px solid #ccc;*/
-                display: inline-block;
-                padding: 1px ;
-                cursor: pointer;
-            }
-
-            #preViewImg{
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-            }
-            .nav_content {
-                display: none;
-            }
-            /*para quitar el sidebar*/
-            .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-                margin-left: 0px !important;
-            }
-            .sidebar_{
-                margin-left: -250px;
-            }   
-        </style>
+         <link rel="stylesheet" href="{{ asset('css/perfil_medico.css') }}">
     @stop   
     {{-- Seccion para insertar js--}}
     @section('include_js')
