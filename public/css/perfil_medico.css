@@ -126,12 +126,12 @@ input[type="file"] {
 
     color: #4F4F4F;
   }
-  .redes-icons{
+  /*.redes-icons{
     text-align: center;
   }
   .fa-2x {
-      font-size: 120%;
-  }
+      font-size: 100%;
+  }*/
 
   .btn_seg1{
     width: auto !important;
@@ -232,7 +232,7 @@ input[type="file"] {
     font-size: 15px;
     line-height: 18px;
     margin-top: 5px !important;
-    
+
   }
 
   .jumbotron {
@@ -257,6 +257,13 @@ input[type="file"] {
   .dropdown-item {
     font-size: 9px !important;
     line-height: 4px !important;
+  }
+  .modal-body{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    /*font-weight: 700 !important;*/
+    font-size: 15px !important;
+    line-height: 14px !important;
   }
 }
 @media (min-width: 767.98px) and (max-width: 1377.98px) { 

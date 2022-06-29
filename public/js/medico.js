@@ -55,7 +55,7 @@ function getModalInfo(idar,ste) {
 }
 
 //evento para actulizar datos del articulo en el modulo perfil medico
-$("#form_art").on("submit", function (e) {
+$("#form_art").on("submit", function (e) { 
     e.preventDefault();
     $.ajaxSetup({
         headers: {
@@ -138,16 +138,17 @@ function limpiarFormArt() {
 	//validacion de cambos por medio del evento submit Principal
 	$("#form_1").on("submit", function (e) {
 		//validamos info
-	    e.preventDefault();
+	    e.preventDefault(); 
 	    //validar url
 	    if(!validURL($('#vinculo_art').val())){
 	     	$('#vinculo_art').val(" ");
 	     	$('#vinculo_art').removeClass('is-invalid');
 	    }
-
-	    if($('#url_video').prop('class')=='form-control'){
+	    var  carat=$('#url_video').prop('class')
+	    if( $('#url_video').prop('class').substr(0,12)=='form-control'){
 	    	stepper.next();
 	    }
+	    // alert(carat.substr(0,12)); 
 	    return 0;
 	});
 	//validacion de cambos por medio del evento submit Complementaria
@@ -359,7 +360,7 @@ function limpiarFormArt() {
     			    data: FrmData, 
     			    dataType: "json",
     			    success: function (data) {
-
+    			    	
     	    			var btn=`<button type="button" class="btn btn-sm ${data.request.clr}"
     	    	            	    onclick="confi_pub('${idar}', this,${data.request.p})">
     	    	    	       		<i class="${data.request.icon}"></i> ${data.request.txt}        

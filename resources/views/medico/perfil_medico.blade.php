@@ -31,8 +31,8 @@
             <div class="widget-user-image p-0  mr-5 " >
                 <img class="img-circle img-fluid p-1 bg-light" id="preViewImg" src="{{auth()->user()->adminlte_image()}}" alt="{{$datos_p->img}}" >
                 <div class="ribbon-wrapper ">
-                  <div class="ribbon border-0" > 
-                    <span  onclick="menu_perfil()" class="fas fa-plus elevation-1 p-1  img-circle text-info bz-white @movil fa-xs @endmovil "  style="cursor: pointer;" ></span>
+                  <div class="ribbon border-0 " > 
+                    <span  onclick="menu_perfil()" class="fas fa-plus elevation-1 p-1  img-circle text-info bz-white @movil fa-sm @endmovil "  style="cursor: pointer;" ></span>
                   </div>
                 </div>
                 <div class="dropdown-menu  " id="myDropdown" style="margin-left: 110px; position: absolute;" >
@@ -63,7 +63,7 @@
             @movil
                 <div class="username_perfil text-truncate ">
                     {{-- <p class=" mt-5 ml-2 mb-3 h3  "> --}}
-                        <b> {{ Str::limit($datos_p->name, 22) }}  <span> <i class="fa fa-edit ml-3 fa-2x text-info_" style="cursor:pointer;"  data-toggle="modal" data-target="#modal-edit-user-md"></i></span>
+                        <b> {{ Str::limit($datos_p->name, 22) }}  <span> <i class="fa fa-edit ml-3 fa-sm text-info_" style="cursor:pointer;"  data-toggle="modal" data-target="#modal-edit-user-md"></i></span>
                         </b>
                     {{-- </p> --}}
                 </div>
@@ -74,26 +74,26 @@
                     <div class="col-sm-12 mt-2 ">
                         @movil
                             <div class="row">
-                                <div class="col ">
+                                <div class="col m-auto">
                                     Datos Personales
                                 </div>
                                 <div class="col-xs-12">
                                     {{-- <div class="text-leth mb-3 "> --}}
                                         <a  href="{{$datos_p->link_stg}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Twitter')" target="”_blank”" class="btn  border-0 " ng-if="doctorsee.Twitter!==''">
-                                          <i class="fab fa-instagram text-info fa-2x"></i>
+                                          <i class="fab fa-instagram text-info fa-lg"></i>
                                         </a>
                                         <a href="{{$datos_p->link_fb}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','Facebook')" target="”_blank”" class="btn  " ng-if="doctorsee.Facebook!==''">
-                                            <i class="fab fa-facebook text-info fa-2x"></i>
+                                            <i class="fab fa-facebook text-info fa-lg"></i>
                                         </a>
                                         <a href="{{$datos_p->link_yt}}" onclick="acctionSociales('{{encrypt($datos_p['id'])}}','YouTube')" target="”_blank”" class="btn  " ng-if="doctorsee.YouTube!==''" >
-                                          <i class="fab fa-youtube text-info fa-2x "></i>
+                                          <i class="fab fa-youtube text-info fa-lg "></i>
                                         </a>
                                     {{-- </div> --}}
                                 </div>
                             </div>
                         @else
                         <p class=" mt-5  mb-3 h3 profile-username ">
-                            <b>{{$datos_p->name}}  <small> <i class="fa fa-cog ml-3 text-info_" style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user-md"></i></small>
+                            <b>{{$datos_p->name}}  <small> <i class="fa fa-edit ml-3 text-info_" style="cursor:pointer;" {{--  id="btn_action" --}} data-toggle="modal" data-target="#modal-edit-user-md"></i></small>
                             </b>
                         </p>
                         @endmovil
@@ -160,8 +160,7 @@
         <div class="card card-widget widget-user @movil shadow-none @else shadow-md @endmovil">
             <div class="card-header border-0">
                 <h3 class="card-title h1"><b>Publicaciones</b>
-                    <a href="{{url('gestion/listaPublicaciones')}}"><i class="far fa-edit ml-3 text-info_ fa-sm" style="cursor:pointer;"></i></a>
-                     
+                    <a href="{{url('gestion/listaPublicaciones')}}"><i class="far fa-edit ml-3 text-info_ fa-md" style="cursor:pointer;"></i></a>   
                 </h3>
                 @movil
                 @else
@@ -172,7 +171,7 @@
                 <br>
                 <small class="description">Aqui tendras un listado de todas las publicaciones que has subido a O2H.</small>
             </div>
-            <div class="card-body ">
+            <div class="card-body @movil p-0 @endmovil">
                
                 @if (isset($listaArt))
                     @foreach ($listaArt->take(50) as $key=>$art )
@@ -202,7 +201,7 @@
                           {{-- <div class="container p-0"> --}}
                             <h1 class="titulo_publicacion m-0 p-0">  
                               <span class="username">{{$art['titulo']}}</span>
-                              <button class="btn btn-xs o text-ligth   btn-tool" onclick="getModalInfo('{{$art['idarticulo_encryp']}}',{{$key}})"> <i class="fas fa-edit text-ligth  text-info_"></i> </button>
+                              <button class="btn btn-xs o text-ligth   btn-tool" onclick="getModalInfo('{{$art['idarticulo_encryp']}}',{{$key}})"> <i class="fas fa-edit text-ligth  text-info_ fa-lg"></i> </button>
                             </h1>
 
                             <span class="description mt-4 mb-4">
@@ -613,7 +612,6 @@
         </script>
         <script src="{{ asset('/js/actionEvent.js') }}"></script>
         
-       
     @stop
 
 

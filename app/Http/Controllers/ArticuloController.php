@@ -67,7 +67,7 @@ class ArticuloController extends Controller
                         event(new MedicoEventPublicacionesSave(['tipo'=>'publicar','descripcion'=>' ha quitado la publicación del artículo','articulo'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'ART']));
                         return response()->json([
                             'jsontxt'=>['msm'=>'Se ha cambiado el estado a la publicación. ','estado'=>'info'],
-                            'request'=>['clr'=>'btn-success','txt'=>'Publicar','icon'=>'fa fa-notes-medical','p'=>'0']
+                            'request'=>['clr'=>'btn-info','txt'=>'Publicar','icon'=>'fa fa-notes-medical','p'=>'0']
                         ],200);
                     }elseif ($consul->publicar==0) {
                         $consul->publicar=1;
@@ -76,7 +76,7 @@ class ArticuloController extends Controller
                         event(new MedicoEventPublicacionesSave(['tipo'=>'publicar','descripcion'=>' ha publicado el artículo','articulo'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'ART']));
                         return response()->json([
                             'jsontxt'=>['msm'=>'Publicación habilitada.','estado'=>'success'],
-                            'request'=>['clr'=>'btn-info','txt'=>'Quitar publicación ','icon'=>'fa fa-eye-slash','p'=>'1']
+                            'request'=>['clr'=>'btn-outline-info ','txt'=>'Quitar publicación ','icon'=>'fa fa-eye-slash','p'=>'1']
                         ],200);
                     }
                     
