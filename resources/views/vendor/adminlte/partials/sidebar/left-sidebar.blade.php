@@ -6,7 +6,7 @@
         @php( $logout_url = $logout_url ? url($logout_url) : '' )
     @endif
 
-    <aside class="main-sidebar main-sidebar-app   mt-2  elevation-2 d-none  {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}" >
+    <aside class="main-sidebar main-sidebar-app  d-none mt-2  elevation-2  {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }}" >
         <span  class=" bg-white ribbon text-center d-none" data-widget="pushmenu" id="dropdownMenuLink" >
             <i class="fas fa-angle-left fa-lg text-info_ mt-1 mr-1 ml-1"></i>
         </span>
@@ -21,7 +21,7 @@
         {{-- Sidebar menu --}}
         <div class="sidebar " >
             <nav class="mt-3">
-                <ul class="nav nav-pills nav-sidebar flex-column {{ config('adminlte.classes_sidebar_nav', '') }}"
+                <ul class="nav nav-pills nav-sidebar flex-column nav-sidebar-app {{ config('adminlte.classes_sidebar_nav', '') }}"
                     data-widget="treeview" role="menu"
                     @if(config('adminlte.sidebar_nav_animation_speed') != 300)
                         data-animation-speed="{{ config('adminlte.sidebar_nav_animation_speed') }}"
@@ -61,7 +61,7 @@
     </aside>
 @else
 
-    <aside class="main-sidebar sidebar-light-info sidebar_  {{-- {{ config('adminlte.classes_sidebar', 'sidebar-light-info') }} --}}">
+    <aside class="main-sidebar main-sidebar_ sidebar-light-info sidebar_  {{-- {{ config('adminlte.classes_sidebar', 'sidebar-light-info') }} --}}">
 
         @if(config('adminlte.logo_img_xl'))
             @include('adminlte::partials.common.brand-logo-xl')

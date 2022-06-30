@@ -2,6 +2,11 @@
 $('#btn_casos').click(function () {
 	$('#modal_caso_ex').modal('show');
 });
+//evento para habilitar la modal para registrar caso
+$('.btn_casos').click(function () {
+	$('#modal_caso_ex').modal('show');
+});
+
 
 //funcio para obtener los datos del caso
 var idcaso;

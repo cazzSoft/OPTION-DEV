@@ -1,0 +1,131 @@
+.flex_titulo {
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 700;
+    font-size: 20px !important;
+    color: #13c6ef !important;
+}
+
+.btn-info_{
+  width: 229px;
+  height: 34px;
+  left: 111px;
+  top: 424px;
+  background: #0FADCE;
+  box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.small-box {
+  border-radius: 10px !important;
+}
+.history{
+  display: none;
+}
+.callout.callout-info {
+    border-left-color: #0FADCE !important;
+
+}
+.callout {
+    border-radius: .56rem !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+    border-left: 10px solid #e9ecef !important;
+}
+.inner{
+  height: 12em;
+}
+.progress {
+
+  border-radius: 9px !important;
+}
+
+.progress-sm {
+    height: 28px;
+}
+.progress-bar {
+     background: linear-gradient(270deg, #FFFFFF 6.37%, #0FADCE 100%) !important;
+    transition: width .6s ease;
+}
+@media (min-width:100px) and (max-width: 767.98px) { 
+  .content-header{
+    display: none;
+  }
+  .content{
+    margin-bottom: 120px !important;
+    padding-right: 5px !important; 
+    padding-left: 5px !important;
+    margin-top: 70px  !important;
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+  }
+  .flex_titulo{
+      margin-top: 12px !important;
+  }
+  .flex_content_coinsul{ 
+      margin: 0px !important;
+  }
+  .flex_titulo a p{
+      font-family: 'Calibri';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 22px;
+      color: #4F4F4F !important;
+      text-align: center;
+  }
+  .media-body{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+   /* font-weight: 700;*/
+    font-size: 16px;
+    line-height: 22px;
+    text-align: justify;
+  }
+  .small-box {
+    text-align: justify !important; 
+    margin: 0px !important;
+  }
+  .inner{
+    padding: 0px !important;
+    height: 10em;
+  }
+  .inner h5 b{
+   font-style: 14px !important;
+  }
+  .shadow {
+      box-shadow: none !important;
+  }
+  .text-muted{
+    color: #4F4F4F!important;
+  }
+  .progress {
+
+    border-radius: 9px !important;
+  }
+  .progress-group{
+    margin: 0px !important;
+  }
+  .progress-sm {
+      height: 28px;
+  }
+  .progress-bar {
+       background: linear-gradient(270deg, #FFFFFF 6.37%, #0FADCE 100%) !important;
+      transition: width .6s ease;
+  }
+  .post p{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 15px !important;
+    color: #4F4F4F !important;
+    text-align: justify !important;
+  }
+  
+}
+@media (min-width: 767.98px) and (max-width: 1377.98px) { 
+    
+}
+
+@media (min-width: 768px) and (max-width: 1016px) { 
+   
+}

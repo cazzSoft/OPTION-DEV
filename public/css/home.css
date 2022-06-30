@@ -17,7 +17,7 @@
   font-weight: 700;
   font-size: 60px;
   line-height: 61px;
-  color: #4F4F4F;
+  color: #4F4F4F; 
 }
 .text-info-s2{
   font-family: 'Calibri';
@@ -385,17 +385,11 @@ input[type="file"] {
       height: 27px !important;
 
     }
-    .dropdown-menu-lgz{
-      width: 100% !important;
-      top: 85px !important;
-      left: 4% !important;
-     
-      transform: translate3d(-12px, -44px, 0px) !important;
-    }
-    .fa_icon{
+    
+   /* .fa_icon{
       margin-left: -4px !important;
       margin-top: -1114px !important;
-    }
+    }*/
     /*.main-sidebar {
       display:block !important;
       overflow-y: hidden !important;
@@ -625,14 +619,13 @@ input[type="file"] {
         font-size: 7.06133px !important;
         line-height: 9px !important;
       }
-      .dropdown-menu {
+     /* .dropdown-menu {
         min-width: auto !important; 
         top: 0px; 
         left: 0px; 
         transform: translate3d(-16px, -30px, 0px) !important;
-      }
+      }*/
       .dropdown-item {
-          
         padding: .2rem 1rem !important;
         /* background-color: transparent; */
         font-family: 'Calibri' !important;
@@ -641,11 +634,11 @@ input[type="file"] {
         font-size: 7.06133px !important;
         line-height: 9px !important;
       }
-      .dropdown-menu-notify {
+      /*.dropdown-menu-notify {
         top: 70px !important; 
         width: 420px !important;
         right: -28px !important
-      }
+      }*/
       .carousel-control-next{
         width: 8% !important;
       }
@@ -802,6 +795,31 @@ input[type="file"] {
        margin: 0px !important;
      }
 
+     #modal-default .modal-dialog .modal-content .modal-header h4{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        /*font-weight: 700 !important;*/
+        font-size: 16px !important;
+        /*line-height: 12px;*/
+     }
+     #modal-default .modal-dialog .modal-content .modal-header h4 p{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        /*font-weight: 700 !important;*/
+        font-size: 16px !important;
+        /*line-height: 12px;*/
+     }
+
+     #modal-default .modal-dialog .modal-content {
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-size: 13px !important;
+     }
+     #modal-default .modal-dialog .modal-content .modal-body form div .form-control {
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-size: 13px !important;
+     }
      
   }
 

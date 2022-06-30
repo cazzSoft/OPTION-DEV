@@ -22,7 +22,11 @@
   margin-top: 30px !important;
 }
 .nav-sidebar-lg li i{
-  margin-right: 6px;
+  margin-right: 6px; 
+  
+}
+.nav-sidebar-app li i{
+  margin-right: 10px; 
   
 }
 .nav-sidebar-lg li{
@@ -92,22 +96,38 @@
 }
 
 /*modifica tamaño del sidebar izquierda*/
-.main-sidebar, .main-sidebar::before {
+.main-sidebar_, .main-sidebar_::before {
     width: 180px;
-    
-
 }
 
+.main-sidebar-app{
+  display:block !important;
+  overflow-y: visible !important; 
+  border-right: 2px solid #0FADCE !important;
+  border-top: 2px solid #0FADCE !important;
+  margin-top: 6px !important;
+  border-radius: 5px !important;
+  width: 220px;
+ 
+}
+
+/*.main-sidebar-app{
+  border-right: 2px solid #0FADCE !important;
+  border-top: 2px solid #0FADCE !important;
+  margin-left: -328 !important;
+  border-radius: 5px !important;
+ 
+}*/
 /*tamaño del wrapper*/
 .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
     margin-left: 160px !important;
 }
 
-.sidebar.sidebar-focused, .sidebar-mini.sidebar-collapse .main-sidebar:hover {
+.sidebar.sidebar-focused, .sidebar-mini.sidebar-collapse .main-sidebar_:hover {
     width: 180px !important;
 }
 
-.sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar::before { 
+.sidebar-mini.sidebar-collapse .main-sidebar_, .sidebar-mini.sidebar-collapse .main-sidebar_::before { 
    width: 6.6rem !important;
 }
 /*las opciones del sidebar*/
@@ -185,9 +205,7 @@
   box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
-.sidebar-collapse .main-sidebar, .sidebar-collapse .main-sidebar::before {
-    /*margin-left: -320px !important;*/
-}
+
 
 /*boton flotante sidebar*/
 #dropdownMenuLink{ 
@@ -294,10 +312,17 @@ a .bt_coins{
 
   }
   .dropdown-menu-notify {
-    top: 70px !important; 
-    width: 420px !important;
-    right: -28px !important
+    top: 32px !important; 
+    min-width: auto !important;
+    width: 250px !important;
+    right: -10px !important;
+
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+     font-size: 12px !important;
   }
+
+
 
   /*stylo siderbar left*/
   .btn_search{
@@ -325,25 +350,25 @@ a .bt_coins{
     height: 27px !important;
 
   }
+  /*.dropdown-menu-lgz{
+    min-width: auto !important; 
+    top: 0px; 
+    left: 0px; 
+    transform: translate3d(-16px, -30px, 0px) !important;
+
+  
+  }*/
+  /*search del buscador global*/
   .dropdown-menu-lgz{
     width: 100% !important;
-    top: 85px !important;
-    left: 4% !important;
+    top: 55px !important;
+    left: 0px !important;
    
-    transform: translate3d(-12px, -44px, 0px) !important;
+    /*transform: translate3d(-22px, -44px, 0px) !important;*/
   }
   .fa_icon{
     margin-left: -4px !important;
     margin-top: -1114px !important;
-  }
-  .main-sidebar-app{
-    display:block !important;
-    overflow-y: visible !important; 
-    border-right: 2px solid #0FADCE !important;
-    border-top: 2px solid #0FADCE !important;
-    margin-top: 6px !important;
-    border-radius: 5px !important;
-    width: 220px;
   }
   
   
@@ -376,7 +401,11 @@ a .bt_coins{
     margin-top: 21px !important;
   }
 */
- 
+ .main-sidebar-app{
+  
+   margin-left: -328 !important;
+    
+ }
 
     .btn-app {
       font-size: 12px !important; 
@@ -388,22 +417,22 @@ a .bt_coins{
       font-size: 7.06133px !important;
       line-height: 9px !important;
     }
-    .dropdown-menu {
+   /* .dropdown-menu {
       min-width: auto !important; 
       top: 0px; 
       left: 0px; 
       transform: translate3d(-16px, -30px, 0px) !important;
-    }
-    .dropdown-item {
+    }*/
+    /*.dropdown-item {
         
       padding: .2rem 1rem !important;
-      /* background-color: transparent; */
+     
       font-family: 'Calibri' !important;
       font-style: normal !important;
       font-weight: 400 !important;
       font-size: 7.06133px !important;
       line-height: 9px !important;
-    }
+    }*/
     .carousel-control-next{
       width: 8% !important;
     }
@@ -450,9 +479,11 @@ a .bt_coins{
 
    /*perfil usuario*/
    .user_block{
-      margin-top: 15px;
-      margin-left: 15px;
-      height: 173px;
+      margin-top: 0px;
+      margin-left: 0px;
+      height: auto !important;
+      /*background: red !important;*/
+      padding-bottom: 0px !important;
    }
    #usernamePerfil{
       margin-top: 8px !important;

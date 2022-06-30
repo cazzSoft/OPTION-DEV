@@ -1,5 +1,6 @@
 <div class="row ">
-  
+ @movil
+ @else 
   <div class="col-md-4 mt-3 mb-5">
     <form action="{{url('gestion/search_caso')}}" method="POST">
       {{ csrf_field() }}
@@ -14,8 +15,8 @@
   </div>
   <div class="col-md-2 mb-2 mt-3">
     <div class="btn-group b" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btnx-info dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Filtrar
+        <button id="btnGroupDrop1" type="button" class="btn  dropdown-toggle btn-block text-info_" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-stream"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
             <a class="dropdown-item" href="{{url('gestion/last_month')}}">Ultimo mes</a>
@@ -24,13 +25,13 @@
         </div>
     </div>
   </div>
+ @endmovil
   <div class="col-12">
    
       @if(isset($lista_casos))
         @foreach($lista_casos as $item)
           <div class="post callout clearfix callout-info shadow  bg-white ">
             
-
             <div class="user-block comment-text">
               <img class="img-circle img-bordered-sm" src=" @if(isset($item['medico'][0]['img']) && $item['medico'][0]['img']!=null){{ \Storage::disk('wasabi')->temporaryUrl($item['medico'][0]['img'], now()->addMinutes(3600)  ) }} @else {{asset('ava1.png') }} @endif" alt="{{$item['medico'][0]['img']}}">
               <span class="username">

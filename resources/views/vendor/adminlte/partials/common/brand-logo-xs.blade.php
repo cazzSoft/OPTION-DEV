@@ -14,7 +14,7 @@
         @if (config('adminlte.usermenu_profile_url', false))
             @php( $profile_url = Auth::user()->adminlte_profile_url() )
         @endif
-        <div class="user-block user_block mb-5 ">
+        <div class="user-block user_block  ">
             @if(config('adminlte.usermenu_image'))
             <a href="{{ url($profile_url) }}"> 
                 <img class="img-circle direct-chat-img img_user_perfil_app" src="{{Auth::user()->adminlte_image()}}" alt="{{ Auth::user()->name }}">

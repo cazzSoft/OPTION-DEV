@@ -4,7 +4,7 @@
      <div class="modal-header text-center">
         <h4 class="modal-title text-center mx-auto "> 
             <i class="far fa-laugh-beam"></i> <span class="text-info_ text-center"> Bienvenido</span>
-            @if(!Auth::guest()) {{auth()->user()->name}} @endif a <span class="text-info">Option2health</span>
+            @if(!Auth::guest()) {{auth()->user()->name}} @endif a <span class="text-info_">Option2health</span>
             <p class="lead text-center"> "te sugerimos completar los datos de tu perfil"</p>
         </h4>
  

@@ -21,7 +21,7 @@
                      </button>
                    </div> 
                 </div>
-                <div class="dropdown-menu dropdown-menu-lgz dropdown-menu-right " id="dropdown-menu1_app">
+                <div class="dropdown-menu dropdown-menu-lgz dropdown-menu-right " id="dropdown-menu1_app"> 
                 </div>
               </form> 
               <button class="btn btn-default text-center  btn_search m-auto btn_search_in"  type="button" >
@@ -44,8 +44,8 @@
                         <span class="badge badge-danger navbar-badge d-none" id="badgeNoty">  </span>
                       @endif
                   </a>
-                  <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right dropdown-menu-notify" id="listNotify">
-                      <span class="dropdown-header">{{-- {{Auth::user()->notify()['count_notify']}}  --}}Notificaciones</span>
+                  <div class="dropdown-menu {{-- dropdown-menu-lg --}} dropdown-menu-right dropdown-menu-notify " id="listNotify">
+                      <span class="dropdown-header p-0">{{-- {{Auth::user()->notify()['count_notify']}}  --}}Notificaciones</span>
                       @if(isset(Auth::user()->notify()['listaNotify']))
                           @foreach(Auth::user()->notify()['listaNotify'] as $item)
                               <div class="dropdown-divider"></div>
@@ -56,7 +56,7 @@
                           @endforeach
                       @endif
                       <div class="dropdown-divider"></div>
-                      <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
+                      <a href="#" class="dropdown-item2 dropdown-footer text-center">Ver todas las notificaciones</a>
                   </div>
                   
               </li>
