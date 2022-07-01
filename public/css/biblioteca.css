@@ -100,7 +100,7 @@
         border-radius: 5px !important;
         width: 164px !important;
         min-width: 100% !important;
-        height: 240 !important;
+        height: 240 !important; 
     }
     .mailbox-attachment-size{
         font-family: 'Calibri' !important;
@@ -128,7 +128,7 @@
    }*/
    .fa-i{
         padding-bottom: 22px !important;
-        background: red !important;
+        /*background: red !important;*/
    }
  }
 

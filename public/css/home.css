@@ -17,7 +17,7 @@
   font-weight: 700;
   font-size: 60px;
   line-height: 61px;
-  color: #4F4F4F; 
+  color: #4F4F4F;  
 }
 .text-info-s2{
   font-family: 'Calibri';
@@ -693,12 +693,7 @@ input[type="file"] {
          margin: 0px !important;
      }
 
-     /*perfil usuario*/
-     .user_block{
-        margin-top: 15px;
-        margin-left: 15px;
-        height: 173px;
-     }
+     
      #usernamePerfil{
         margin-top: 8px !important;
         width: 142.35px !important;
@@ -821,6 +816,22 @@ input[type="file"] {
         font-size: 13px !important;
      }
      
+     .dropdown-menu-p-contact{
+       
+        transform: translate3d(-22px, -61px, 111px) !important;
+        width: 90px !important;
+        min-width: auto !important; 
+       
+     }
+     .dropdown-menu-p-share{
+
+        transform: translate3d(-40px, -41px, 1px) !important;
+        width: 90px !important;
+        min-width: auto !important; 
+     }
+     .container-fluid  {
+        padding-bottom: 111px !important;
+     }
   }
 
   /*slider de informacion */

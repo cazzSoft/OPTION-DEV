@@ -10,17 +10,33 @@
 
 
 @section('contenido')
-  
-  <div class="row justify-content-start">
-    <div class="col text-center mt-4">
-      <a href="{{asset('/')}}" class="text-leth float-left ">  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-5 mb-5 "></i></a>
+  @movil
+    <div class="row mb-4">
+      <div class="col-md-12 ">
+          <div class=" flex_titulo">
+           <a href="/">  <p class=" text-lead h2 text-info_ ">  <b class="h4"><i class="fas fa-chevron-left mr-0 text-info_ float-left "></i></b>  Gestión de Noticia  </p></a> 
+          </div>
+      </div>
+    </div>
+  @else
+    <div class="row ">
+      <div class="col text-center mt-5">
+        <a href="{{asset('/')}}" class="text-leth float-left ">  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-5 mb-5 "></i></a>
+        <span class="text-info_ h5"><b>Gestión de Noticia</b></span>
+      </div>
+    </div>
+  @endmovil
+
+  {{-- <div class="row justify-content-start">
+    <div class="col text-center mt-5">
+      <a href="{{asset('/')}}" class="text-leth float-left ">  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-1 mb-5 "></i></a>
       <span class="text-info_ h5"><b> Gestión de Noticia</b></span>
     </div>
-  </div> 
+  </div>  --}}
 
   <div class="container-fluid ">
     
-    <div class="card  collapsed-card card-control ml-5 mr-5 shadow-sm  bg-white rounded " id="card">
+    <div class="card  collapsed-card card-control  shadow-sm  bg-white rounded  " id="card">
       <div class="card-header border-0">
         <h3 class="card-title text-secondary"> <b>Ingresar nueva noticia</b> </h3>
         <div class="card-tools">
@@ -30,7 +46,7 @@
         </div>
       </div>
 
-      <div class="card-body ">
+      <div class="card-body @movil p-0 @endmovil ">
         <div class="container col-md-10 ">
           <div class="row">
             <div class=" col-md-12 col-lg-12 order-1 order-md-2 ">
@@ -172,17 +188,19 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 mt-5">
-                      <div class="form-group text-right">
-                        <button class="btn btn-outline-light pl-5 pr-5  text-info_ border border-info_" type="button" id="btn_cancelar">Cancelar</button> 
-                     
+                   
+                      <div class=" @movil col @else col-6 mt-5 @endmovil ">
+                        <div class="form-group text-right">
+                          <button class="btn btn-outline-light pl-5 pr-5  text-info_ border border-info_ @movil  btn-block @endmovil" type="button" id="btn_cancelar">Cancelar</button> 
+                       
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 mt-5">
-                      <div class="form-group text-left">
-                        <button class="btn btn-primary bgz-info pl-5 pr-5 border-0 rounded shadow-sm" type="submit" id="btnsave">Guardar</button>
+                      <div class=" @movil col @else col-6 mt-5 @endmovil">
+                        <div class="form-group text-left">
+                          <button class="btn btn-primary bgz-info pl-5 pr-5 border-0 rounded shadow-sm @movil  btn-block @endmovil" type="submit" id="btnsave">Guardar</button>
+                        </div>
                       </div>
-                    </div>
+                    
                   </div>
                 </form>
             </div>
@@ -190,20 +208,18 @@
         </div>
       </div>
     </div> 
-    <div class="card  ml-5 mr-5 shadow-sm  bg-white rounded ">
+    <div class="card   shadow-sm  bg-white rounded ">
       <div class="card-header border-0">
         <h3 class="card-title text-secondary"> <b>Lista de noticias </b></h3>
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
             <i class="fas fa-minus"></i>
           </button>
-          {{-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-            <i class="fas fa-times"></i>
-          </button> --}}
+          
         </div>
       </div>
 
-      <div class="card-body">
+      <div class="card-body @movil p-0 @endmovil ">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-12 ">
             <div class="row ">
@@ -291,29 +307,7 @@
   {{-- Seccion para insertar css--}}
   @section('include_css') 
     {{-- aqui ingrese otros stilos --}}
-    <style>
-      .select2-container--default .select2-selection--single .select2-selection__arrow b {
-        border-color: #0FADCE transparent transparent transparent !important;
-       
-      }
-      .select2-container--default .select2-selection--single {
-        border-top: 0px solid #ced4da;
-        border-right: 0px solid #ced4da;
-        border-left: 0px solid #ced4da;
-        border-bottom: 0px solid #ced4da;
-        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-      }
-      table, tr, td,thead{
-        border:none !important;
-      }
-       input[type=number]::-webkit-inner-spin-button, 
-       input[type=number]::-webkit-outer-spin-button { 
-         -webkit-appearance: none; 
-         margin: 0; 
-       }
-
-       input[type=number] { -moz-appearance:textfield; }
-    </style>
+      <link rel="stylesheet" href="{{ asset('css/gestion_noticia.css') }}">
   @stop  
 
   {{-- Seccion para insertar js--}}
@@ -325,7 +319,8 @@
        
       </script>
     @endif
-
+    {{-- controlar imagen de rotas --}}
+      <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
     {{-- Detectar cualquier error de datos al ingreso en el formulario --}}
     @if($errors->any())
       <script>

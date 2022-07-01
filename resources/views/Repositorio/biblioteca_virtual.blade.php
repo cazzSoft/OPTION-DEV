@@ -69,20 +69,20 @@
 
     <div class="col-lg-7 col-md-4 col-sm-12 col-xs-12 ">
       @if(Auth::user()->type_user()=='dr' || Auth::user()->type_user()=='ad')
-        <a href="{{url('biblioteca/repositorio')}}" class="btn btn-outline-info float-right mr-4"><b>Nuevo documento</b></a>
+        <a href="{{url('biblioteca/repositorio')}}" class="btn btn-outline-info @movil float-left @else float-right mr-4 @endmovil"><b>Ingresar Nuevo documento</b></a>
       @endif
     </div>
   </div>
 </div>  
 
 @movil
-  <div class="row   "> 
+  <div class="row  @movil mt-4 @endmovil "> 
     <div class="col-12">
       @if(isset($lista_archivo))
           <div class="row " id="contetResulFiltro">
             @foreach($lista_archivo as $item)
               <div class="col text-center m-auto">
-                  <div class="card  text-center" >
+                  <div class="card  text-center shadow-none" >
                     @if($item['tipo']=='IMG')
                      
                       <img class="card-img-top objetfit btn btn-outline-light p-0" src=" {{ $img=\Storage::disk('wasabi')->temporaryUrl( $item->ruta, now()->addMinutes(3600)) }}" alt="{{$item->titulo}} " onclick="showModal(`{{ $img }}`,'{{$item['titulo']}}')" onclick="eventDocumeto('{{$item->idbibliotecavirtual_encryp}}')" />

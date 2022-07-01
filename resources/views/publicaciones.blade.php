@@ -50,7 +50,7 @@
 			               	  <button class="btn border-0 btn-app dropdown-toggle  btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			               	  <i class=" fa fa-bookmark"></i>Guardar
 			               	  </button>
-			               	  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			               	  <div class="dropdown-menu dropdown-menu-p-contact" aria-labelledby="dropdownMenu1">
 			               	    <button class="dropdown-item" type="button" onclick="saveArtUser('{{encrypt($art['idarticulo'])}}')"> <i class="fa fa-save"></i> Guardar</button>
 			               	    <button class="dropdown-item" type="button" onclick="acctionContacOnline('{{encrypt($art['idarticulo'])}}')"><i class="fa fa-phone"></i> Contacto Online</button>
 			               	    <button class="dropdown-item" type="button" onclick="acctionContactW('{{encrypt($art['idarticulo'])}}')"><i class="fab fa-whatsapp"></i> Contacto Whatsapp</button>
@@ -60,7 +60,7 @@
 			               	  	<button class="btn btn-app border-0 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
 			               	  		<i class="fa fa-share-alt"></i>  Compartir
 			               	  	</button>
-			               	  	<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			               	  	<div class="dropdown-menu dropdown-menu-p-share" aria-labelledby="dropdownMenu1">
 			               	    	<a onclick="acctionCompartirF('{{encrypt($art['idarticulo'])}}')"  class="dropdown-item" type="button" href="https://www.facebook.com/sharer/sharer.php?u={{$art['url_video']}}" target="_blank">
 			               	      		<i class="fab fa-facebook" ></i> Facebook
 			               	    	</a>

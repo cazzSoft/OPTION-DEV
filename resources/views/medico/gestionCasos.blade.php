@@ -19,7 +19,7 @@
   @else
     <div class="row justify-content-start">
       <div class="col text-center mt-4 ">
-        <a href="{{asset('/')}}" class="text-leth float-left ">  <i class="fas fa-chevron-left mr-3 text-info_ fa-2x ml-2 mb-5 "></i></a>
+        <a href="{{asset('/')}}" class="text-leth float-left ">  <i class="fas fa-chevron-left  text-info_ fa-2x ml-2 mb-5 "></i></a>
         <p class="flex_titulo">Casos Médicos </p>
       </div>
     </div>
@@ -84,10 +84,10 @@
                <span>Número de casos ingresados el último mes por nuestors médicos especialistas.</span>
              </p>
              <div class="progress-group mt-4 ">
-              <span class="text-muted"> <b>casos :</b> </span> 0
+              <span class="text-muted"> <b>casos :</b> {{$casos_publicado}}</span> 
                <span class="float-right"><b>@if(isset($casos_publicado)) {{$casos_publicado}}@endif</b>/100</span>
                <div class="progress progress-sm">
-                 <div class="progress-bar bg-info"{{--  style="width:10%" --}}  style="width:@if(isset($porcent)) {{$porcent}}% @endif "></div>
+                 <div class="progress-bar bg-info"{{--  style="width:10%" --}}   style="width:@if(isset($porcent)) {{$porcent}}% @endif "></div>
                </div>
              </div>
            </div>
@@ -140,19 +140,23 @@
   @stop   
   {{-- Seccion para insertar js--}}
   @section('include_js')
+
+    
       {{-- controlar imagen de rotas --}}
-        <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
+    <script src="{{ asset('/js/control_img_rotas.js') }}"></script>
     <script src="{{ asset('/js/casos_ex.js') }}"></script>
-    <script >
-      var boton_p=`
-           <div class="row mt-3">
-             <div class="col-10 m-auto">
-               <button type="button" class="btn bgz-info btn-block" data-target="#modal_caso_ex">Publicar caso </button>
+     @movil
+      <script >
+        var boton_p=`
+             <div class="row mt-3">
+               <div class="col-10 m-auto">
+                 <button type="button" class="btn bgz-info btn-block modal_caso_ex" onclick="$('#modal_caso_ex').modal('show');" id="modal_caso_ex" data-target="#modal_caso_ex">Publicar caso </button>
+               </div>
              </div>
-           </div>
-      `;
-      $('.main-footer_').html(boton_p);
-    </script>
+        `;
+        $('.main-footer_').html(boton_p);
+      </script>
+    @endmovil
   @stop
 
 

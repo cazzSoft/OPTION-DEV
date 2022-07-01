@@ -119,7 +119,7 @@
     {{-- Seccion para insertar js--}}
     @section('include_js')
 	    {{-- medico js --}}
-	    <script src="{{asset('js/medico.js')}}"></script>
+	    <script src="{{asset('js/medico.js')}}"></script> 
 	    <script >
 		    $('#table_publi_').dataTable( {
 		    	  "language": {

@@ -40,7 +40,7 @@
                       @endif
                       @if( Auth::user()->type_user()=='ad')
                       <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link  {{ request()->is(['noticia/*']) ? 'text-info_' : 'text-muted' }}  " href="{{url('noticia/new')}}"><i class="fas fa-book-reader "></i> <b>Noticia</b></a>
+                        <a class="nav-link  {{ request()->is(['noticia/*'])  ? 'text-info_' : 'text-muted' }}  " href="{{url('noticia/new')}}"><i class="fas fa-book-reader "></i> <b>Noticia</b></a>
                       </li>
                       @endif
                     </ul>

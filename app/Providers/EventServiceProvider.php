@@ -225,7 +225,45 @@ class EventServiceProvider extends ServiceProvider
                }else if($consul=='ins'){
 
                }else if($consul=='ad'){
-
+                    $event->menu->add(
+                         [
+                           'text' => 'Inicio',
+                           'url'  => '/home',
+                           'icon' => 'fas fa-fw fa-home',
+                           'active' => ['home']
+                           
+                         ],
+                         [
+                           'text' => '¿Qué Somos?',
+                           'url'  => 'nosotros_',
+                           'icon' => 'fa fa-notes-medical',
+                         ],
+                         [
+                           'text' => 'Coinsults',
+                           'url'  => 'coinsult',
+                           'icon' => 'far fa-copyright',
+                         
+                         ],
+                         [
+                           'text' => 'Guardados',
+                           'url'  => 'gestion/articulo_user',
+                           'icon' => 'fas fa-fw fa-bookmark',
+                           
+                         ],
+                         [
+                           'text' => 'Biblioteca',
+                           'url'  => 'biblioteca/show',
+                           'icon' => 'fas fa-book-reader',
+                          
+                         ],
+                         [
+                           'text' => 'Noticias',
+                           'url'  => 'noticia/new',
+                           'icon' => 'fas fa-book-reader',
+                           'active'=> ['noticia/new','noticia/new']
+                         ],
+                        
+                    );
                }
                
           }else{

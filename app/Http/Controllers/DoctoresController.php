@@ -69,9 +69,11 @@ class DoctoresController extends Controller
         $listacasos=ArticuloModel::withCount(['comentarios'=>function ($q){
            $q->where('activo',1);
        }])->with('medico')->where('tipo','E')->where('estado',1)->orderBy('created_at','desc')->simplePaginate(5);
-        $counCasos=ArticuloModel::where('created_at','like','2021-12%')->where('tipo','E')->where('estado',1)->count();
+
+        $ulm_mes=date('Y-m-d');
+        $counCasos=ArticuloModel::where('created_at','like',$ulm_mes.'%')->where('tipo','E')->where('estado',1)->count();
         $casos=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','E')->where('estado',1)->count();
-        $porcet= $counCasos/100;
+        $porcet= ($counCasos/100)*100;
         //registrar evento
         event(new HomeEventPerfilUser(['page'=>'Ayudanos a ayudar','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'CAEX'])]));
         return view('medico.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos]);
