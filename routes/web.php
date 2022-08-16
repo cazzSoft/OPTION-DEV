@@ -172,13 +172,16 @@ use Illuminate\Support\Facades\Auth;
             Route::get('getNotify', 'NotificacionController@getNotificacion');
             
         });
+
         
         // RUTA PARA RECUPERAR CONTRASEÑAS
         // Route::get('/passworduser', 'PrincipalController@user_clave');
+ 
+    });
 
-       
-
-           
+    //rutas de empoderate 
+    Route::prefix('empoderate')->group(function () {
+        Route::resource('/', 'EmpoderateController');
     });
     
      // Route::get('/colas', 'Registro_ActividadController@colas');

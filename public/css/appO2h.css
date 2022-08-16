@@ -4,8 +4,9 @@
     }
  /* estilos nuevos bz */
     .bz-info {
-        background-color: #2cb5bf61!important;
-        color: #12adce!important;
+        background-color: #0FADCE!important;
+        color: #fff!important;
+        opacity: 0.5 !important;
     }
     .bz-warning {
         background-color: #ffc10766!important;
@@ -24,10 +25,11 @@
         background-color: #dc354552!important;
     }
     .bgz-info {
-        background-color: #13c6ef!important;
+        background-color: #0FADCE!important;
         color: #fff !important;
     }
     .bgz-info:hover {
+        background-color: #279db6!important;
         color: #fff !important;
     }
     .bz-secondary {
@@ -35,6 +37,43 @@
     }
     .vg{
         color: white;
+    }
+
+    /*btn-outline*/
+    .btn-outline-olive {
+        color: #3d9970;
+        border-color: #C6DE67;
+    }
+    .btn-outline-olive:hover {
+        background-color: #C6DE67;
+        color: #fff;
+    }
+
+    .btn-outline-pink {
+        color: #E2676F;
+        border-color: #E2676F;
+    }
+    .btn-outline-pink:hover {
+        background-color: #E2676F;
+        color: #fff;
+    }
+
+    .btn-outline-orange {
+        color: #E54917;
+        border-color: #ff851b;
+    }
+    .btn-outline-orange:hover {
+        background-color: #E54917;
+        color: #fff;
+    }
+
+    .btn-outline-danger-int {
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+    .btn-outline-danger-int:hover {
+        background-color: #A30A0A;
+        color: #fff;
     }
     /*.text-*/
      .text-info_{

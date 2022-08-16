@@ -71,7 +71,7 @@
     <div class=" container-fluid ml-0">
       {{-- Left sidebar toggler link --}}
       @if(request()->is(['session','log-in-medico','log-in-paciente','password_reset','password_reset*','profile/perfil','medico/info*','medico/perfil']) )
-        <a href="/"  class="navbar-brand2 ">
+        <a href="{{url('/')}}"  class="navbar-brand2 ">
             <img src="{{asset('/img/logo2.svg')}}"
                  alt="{{ config('adminlte.logo_img_alt', 'AdminLTE') }}"
                  class="ml-4 mt-2"
@@ -88,7 +88,7 @@
             @if(config('adminlte.sidebar_collapse_auto_size'))
                 data-auto-collapse-size="{{ config('adminlte.sidebar_collapse_auto_size') }}"
             @endif>
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-barss"></i>
         </a>
       @endif
      

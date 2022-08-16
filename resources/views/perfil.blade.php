@@ -319,13 +319,23 @@
 
                             </div>
                         </div> 
+                        <div class="col-lg-12 col-md-12 col-sm-12 bg-white p-3 border-top">
+                            <p class="h4"><strong>Empoderate de tu Salud</strong></p>  
+                            <p class="text-justify p-2">Una sección interactiva donde podras aprender sobre temas básicos y generales acerca de tu salud, como por ejemplo valores normales de ciertos exámenes de laboratorio, valores estándar de temperatura corporal, saturación de oxígeno, coloración de orina, peso corporal, frecuencia cardíaca y presión arterial.   </p>
+
+                            <div class=" text-center mb-5">
+                                <a href="{{url('empoderate/')}}" class="btn btn-sm bgz-info pl-5 pr-5">
+                                 Tomar el control de mi salud
+                                </a>      
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-12 col-sm-12"> 
                     <nav class="w-100 ">
                       <div class="nav nav-tabs d-flex justify-content-left tab_perfil nav nav-tabs border-0" id="product-tab" role="tablist">
-                        <a class="nav-link   mr-3 active border-0 btn-tab " id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h4 text-center" ><b>Perfil</b></p></a>
-                        <a class="nav-link  border-0 ml-3 btn-tab " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h4 text-center" ><b>Publicaciones guardadas</b></p></a>
+                        <a class="nav-link   mr-3 active border-0 btn-tab " id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="false"> <p class="h5 text-center" ><b>Perfil</b></p></a>
+                        <a class="nav-link  border-0 ml-3 btn-tab " id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"> <p class="h5 text-center" ><b>Publicaciones guardadas</b></p></a>
                       </div>
                     </nav>
                     <div class="tab-content p-0 mt-4" id="nav-tabContent">

@@ -38,7 +38,7 @@
 
 @else
     
-    <a href=""  class="navbar-brand ">
+    <a href="{{url('/')}}"  class="navbar-brand ">
 
         <img src="{{asset('/img/logo2.svg')}}"
              alt="{{ config('adminlte.logo_img_alt', 'AdminLTE') }}"

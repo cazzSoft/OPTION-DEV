@@ -91,8 +91,9 @@
 
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))
+        <script src="{{ secure_asset('vendor/fontawesome-free/webfonts/5e33dcd8b6.js') }}" crossorigin="anonymous"></script>
         {{-- <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script> --}}
-         <script src="{{ secure_asset('/js/flickity@2.3.0.js') }}"></script>
+        <script src="{{ secure_asset('/js/flickity@2.3.0.js') }}"></script>
         <script src="{{ secure_asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ secure_asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ secure_asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
@@ -119,4 +120,5 @@
 
 </body>
 <script src="{{ secure_asset('/js/global.js') }}"></script>
+
 </html>

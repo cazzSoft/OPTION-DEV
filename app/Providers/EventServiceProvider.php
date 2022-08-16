@@ -179,6 +179,12 @@ class EventServiceProvider extends ServiceProvider
                            'icon' => 'fas fa-book-reader',
                           
                          ],
+                         [
+                           'text' => 'Empoderate',
+                           'url'  => '/empoderate',
+                           'icon' => 'fa-solid fa-hands-holding-circle', 
+                          
+                         ],
                         
                     );
                }else if($consul=='dr'){
@@ -290,6 +296,12 @@ class EventServiceProvider extends ServiceProvider
                       'text' => 'Biblioteca',
                       'url'  => 'biblioteca/show',
                       'icon' => 'fas fa-book-reader',
+                     
+                    ],
+                    [
+                      'text' => 'Empoderate',
+                      'url'  => '/empoderate',
+                      'icon' => 'fa-solid fa-hands-holding-circle', 
                      
                     ],
                    

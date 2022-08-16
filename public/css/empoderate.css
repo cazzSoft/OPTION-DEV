@@ -1,0 +1,723 @@
+/*colores de los btn de temperatura corporal*/
+.btn-outline-danger-int-select {
+    background-color: #A30A0A;
+    color: #fff !important;
+}
+.btn-outline-orange-select {
+    background-color: #E54917;
+    color: #fff !important;
+}
+.btn-outline-pink-select {
+    background-color: #E2676F;
+    color: #fff !important;
+}
+.btn-outline-olive-select {
+    background-color: #C6DE67;
+    color: #fff!important;
+}
+.bgz-info-select {
+    background-color: #279db6!important;
+    color: #fff !important;
+}
+.btn-outline-success-select{
+    background-color: #28a745!important;
+    color: #fff !important;
+}
+ 
+.foot1{
+    display:none;
+} 
+.content-header  {
+    display: none;
+}
+
+.nav{
+    flex-wrap: revert !important;
+}
+.nav-tabs-emp{
+    background: #FFFFFF;
+    box-shadow: 0px 2.96px 3.85173px rgba(0, 0, 0, 0.1);
+    border-radius: 9.62932px; 
+    height: 63.55px;  
+
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+
+
+.nav-tabs-emp .nav-link{
+    margin-top: 6px;
+    width: 187.77px;
+    height: 50.07px;
+    background: #fff;
+   
+    border-radius: 9.62932px;
+    margin-left: 3px !important;
+    /*text-align: center;*/
+
+    padding-top: 14px !important;
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px !important;
+    line-height: 12px !important;
+    /*display: flex;*/
+    /*align-items: center;*/
+    text-align: center;
+    color: #495057;
+}
+
+.nav-tabs-emp::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+
+
+.nav-tabs-emp::-webkit-scrollbar-button:increment,.nav-tabs-emp::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.nav-tabs-emp::-webkit-scrollbar:horizontal {
+    height: 3px;
+}
+
+.nav-tabs-emp::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 44px;
+    border: 2px solid #fff;
+}
+.nav-tabs-emp  .nav-link.active {
+    color: #0FADCE;
+    background-color: rgba(150, 223, 238, 0.25) !important;
+    border: 0.962932px solid #E0E0E0;
+   
+}
+
+/*stilos de uroanalisis*/
+.title-tabs{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 27px;
+    color: #0FADCE;
+}
+.content-text{
+    font-family: 'Calibri';
+    font-style: normal;
+    /*font-weight: 700;*/
+    font-size: 17px;
+    line-height: 21px;
+    text-align: justify;
+    color: #606060;
+}
+
+.img-uro{
+    height: 15vw !important;
+}
+
+/*tooltip*/
+.tooltip_ {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip_ .tooltiptext {
+    width: 14vw;
+    height: 128px;
+    background-color: #FFFFFF;
+    color: #000;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 51%;
+    top: 20px;
+    margin-left: -1px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8vw;
+    line-height: 1vw;
+
+    color: #4F4F4F;
+    cursor: pointer;
+}
+
+.tile-tooltip{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1vw;
+    line-height: 20px;
+    text-align: center;
+    color: #4F4F4F;
+}
+
+.tooltip_:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*stilos de tabs temperatura corporal*/
+.img-temp{
+    height: 15vw !important;   
+}
+/*stilos de tabs IMC*/
+input[type='radio']:after {
+       width: 15px;
+       height: 15px;
+       border-radius: 15px;
+       top: -2px;
+       left: -1px;
+       position: relative;
+       background-color: #fff;
+       content: '';
+       display: inline-block;
+       visibility: visible;
+       border: 2px solid #d1d3d1;
+   }
+
+input[type='radio']:checked:after {
+   width: 15px;
+   height: 15px;
+   border-radius: 15px;
+   top: -2px;
+   left: -1px;
+   position: relative;
+   background-color: #0FADCE;
+   content: '';
+   display: inline-block;
+   visibility: visible;
+   border: 2px solid #d1d3d1;
+   padding: 2px;
+}
+.text-titulo-resultado{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4F4F4F;  
+
+}
+.text_res_fc{
+   height: 27px;
+}
+.text-info-valores{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #606060;
+}
+
+.img-infante{
+    margin-top: 50px;
+    width: 17px;
+    min-width: 80px !important;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.img-adulto{
+    margin-top: 10px;
+    width: 17px;
+    margin-left: 10px;
+    min-width: 80px !important;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/*.text-titulo-imc{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #4F4F4F;   
+}*/
+
+.text-img-imc{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #4F4F4F;
+}
+.text-img-imc-select{
+   font-family: 'Calibri';
+   font-style: normal;
+   font-weight: 700;
+   font-size: 18px;
+   line-height: 23px;
+   text-align: center;
+   text-decoration-line: underline;
+   color: #0FADCE;
+}
+
+.col-form-label{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 17px !important;
+    /*text-align: right !important;*/
+    /*color: #000000;*/
+}
+.form-check-label{
+    font-size: 14px !important;
+}
+.text-img-oxi{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    text-align: center;
+    margin-top: 22px;
+}
+.img-oxi-hand{
+    width: 40px;
+    cursor: pointer;
+}
+.img-cardiaca{
+    width: 12vw;
+    min-width: 110px;
+    /*height: 120px;*/
+}
+
+/*diseño de tabla*/
+.br{
+    border-right: 1px solid #E0E0E0; 
+}
+.bb{
+    border-bottom: 1px solid #E0E0E0; 
+}
+.bt{
+    border-top:1px solid #E0E0E0 !important ;
+}
+.title-table{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+
+    text-align: center;
+
+    /* Gray 2 */
+
+    color: #4F4F4F;
+}
+.table_{
+   border-collapse: separate; 
+   box-sizing: border-box;
+   border-spacing: 0px;
+   -webkit-border-horizontal-spacing: 0px;
+   -webkit-border-vertical-spacing: 0px;
+   width: 310px;
+   height: 249px;
+   
+   /*background: #FFFFFF;*/
+   border: 1px solid #E0E0E0;
+   
+     border-radius: 10px ;
+     -moz-border-radius: 10px ;
+     -webkit-border-radius: 10px ;
+
+   font-family: 'Calibri';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 15px;
+   /* identical to box height */
+
+   text-align: center;
+
+   /* Gray 2 */
+
+   color: #4F4F4F;
+
+}
+
+/* stylos de tabs saturacion de oxigeno */
+.text-titulo-rango{
+     height: 27px;
+}
+.content-img-ox{
+    margin: auto !important;
+    position: relative;
+    display: inline-block;
+}
+.content-img-ox .tooltiptext_ox1 {
+    visibility: hidden;
+    width: 77px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    /*margin-top: -8px;*/
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+    left: 110%;
+}
+.content-img-ox .tooltiptext_ox2 {
+    visibility: hidden;
+    width: 77px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 6px;
+    right: 110%;
+}
+.content-img-ox .tooltiptext_ox1::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #0fadceab transparent transparent;
+}
+.content-img-ox .tooltiptext_ox2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style:  solid ;
+    border-color: transparent transparent transparent #0fadceab;
+   
+}
+.tooltiptext_ox1 span{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 700;
+    font-size: 12px !important;
+    line-height: 17px;
+    text-align: center;
+    color: #4F4F4F;
+}
+.tooltiptext_ox2 span{
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+    font-weight: 700;
+    font-size: 12px !important;
+    line-height: 17px;
+    text-align: center;
+    color: #4F4F4F;
+}
+.content-img-ox:hover .tooltiptext_ox1 {
+    visibility: visible;
+    opacity: 1;
+}
+.content-img-ox:hover .tooltiptext_ox2 {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*stylos par tabs precion arterial*/
+.img-precion-art{
+    width: 14vw;
+}
+
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+    .content-header  {
+        display: none;
+    }
+    .container-fluid {
+        margin-top: 80px !important;
+        padding-bottom: 100px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .flex_titulo{
+        margin: 0px !important;
+    }
+    
+    .flex_titulo a p{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 22px;
+    }
+    
+    .nav-tabs-emp{
+        box-shadow: 0px 2.96px 3.85173px rgba(0, 0, 0, 0.1);
+        border-radius: 9.62932px; 
+        height: 64px; 
+        width: auto !important; 
+        scroll-behavior: inherit;
+    }
+    .nav-tabs {
+        border-bottom: 0px !important;
+    }
+
+    .uroanalisi_div{
+        display: flex !important;    
+        width: 100% !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-top: 0px !important;
+    }
+    .nav-tabs-emp .nav-link{
+        margin-top: 6px;
+        width:126px !important;
+        height: 50.07px;
+        background: #fff;
+       
+        border-radius: 9.62932px;
+        margin-left: 3px !important;
+        
+        padding-top: 17px !important;
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.1vw !important;
+        line-height: 12px !important;
+        text-align: center;
+        color: #495057;
+    }
+
+   
+
+    /*stilos de uroanalisis*/
+    .img-uro{
+        height: 120px !important;
+    }
+
+    .title-tabs{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 27px;
+        color: #0FADCE;
+    }
+
+    .content-text{
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .tooltiptext {
+        width: 140px  !important;
+        height: 70px !important;
+        margin-left: -22px !important;
+        font-size: 10px !important;
+        line-height: 11px !important;
+        padding: 5px !important;
+        text-align: justify;
+       
+    }
+
+   
+    .tile-tooltip{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 12px;
+        text-align: center;
+        padding-top: 11px;
+    }
+
+    /*stilos de temperatura corporal*/
+    .img-temp{
+        height: 130px !important;   
+    }
+    .descripcion-temp{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 21px;
+        color: #606060;
+    }
+    .text-btn button{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12.5821px !important;
+        line-height: 15px !important;
+        text-align: center !important;
+    }
+
+    /*stilos indise de masa corporal*/
+    .col-form-label{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 12px !important;
+    }
+    .resul-imc .table_{
+        text-align: center !important;
+        margin: auto;
+    }
+    .table_{
+        width: 100%;
+    }
+    
+    /* stylos de tabs saturacion de oxigeno */ 
+    .content-img-ox .tooltiptext_ox1 {
+        width: 50px;
+        height:auto ;
+        top: -8px;
+        left: 70%;
+    }
+    .content-img-ox .tooltiptext_ox2 {
+        width: 50px;
+        top: 6px;
+        right: 65%;
+    }
+    .tooltiptext_ox1 span{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700;
+        font-size: 10px !important;
+        line-height: 8px;
+        text-align: center;
+        color: #4F4F4F;
+    }
+    .tooltiptext_ox2 span{
+        font-family: 'Calibri' !important;
+        font-style: normal !important;
+        font-weight: 700;
+        font-size: 10px !important;
+        line-height: 8px;
+        text-align: center;
+        color: #4F4F4F;
+    }
+   
+    .text-img-oxi{
+        font-size: 10px;
+        line-height: 9px;
+        padding: 0px;
+    }
+    .img-oxi-hand{
+        width: 40%;
+    }
+
+    /* stylos frecuencia cardiaca */ 
+    .ver_fr ,.imc_ver,.pa_ver, .so_ver{
+        text-decoration: underline;
+    }
+    /*stilos precion arterial*/
+    /*.pa_ver{
+        text-decoration: underline;
+    }*/
+}
+
+
+
+@media  (max-width:1466px) { 
+
+    .nav-tabs-emp .nav-link{
+        margin-top: 1px;
+        width: 100%;
+        height: 45.07px;
+       
+        padding-top: 12px !important;
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 85% !important;
+        line-height: 85% !important;
+       
+    }
+
+    .nav-tabs-emp {
+        height: 55px;
+        width: 100%;
+    }
+}
+
+@media (min-width:767.98px) and (max-width:1098px) { 
+   
+   .tooltip_ .tooltiptext {
+       width: 14vw;
+       height: 80px;
+       background-color: #FFFFFF;
+      
+       top: 20px;
+       margin-left: -1px;
+       opacity: 0;
+       transition: opacity 0.3s;
+       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+       border-radius: 10px;
+
+       font-family: 'Calibri';
+       font-style: normal;
+       font-weight: 400;
+       font-size: 1vw;
+       line-height: 1vw;
+
+       color: #4F4F4F;
+
+       padding: 6px !important;
+   }
+
+   .tile-tooltip{
+       font-family: 'Calibri';
+       font-style: normal;
+       font-weight: 700;
+       font-size: 1vw;
+       line-height: 1vw;
+       text-align: center;
+       padding-top: 11px;
+   }
+   .overlay-wrapper .p-4{
+      padding-top: 2px !important;
+   }
+   
+}
+
+/*
+.ejemplo {
+  border: 1px solid #a7a7a7 !important;
+  border-radius: 5px 5px 0px 0px !important;
+  -moz-border-radius: 5px 5px 0px 0px !important;
+  -webkit-border-radius: 5px 5px 0px 0px !important;
+}
+
+.contenedor {
+    margin: 2rem auto;
+    border: 1px solid #aaa;
+    height: 200px;
+    width:110%;
+    max-width: 400px;
+    background: #f1f2f3;
+    overflow-x:auto;
+    overflow-y:auto;
+    box-sizing: border-box;
+    padding:0 1rem;
+    white-space:nowrap;
+}
+.contenedor p{
+    width: 100px;
+    display: inline;
+    background: red;
+}*/
