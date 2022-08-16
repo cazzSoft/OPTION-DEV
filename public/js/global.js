@@ -273,20 +273,24 @@ $('.btn_search_in').click(function (argument) {
    
 });
 
-
+// empiesa a cargar
 $(document).ready(function(){
       $("#dropdownMenuLink").css("display:none");
       $("#dropdownMenuLink").addClass("d-none");
-       // $('.history').addClass('d-none');
-
+      
+      $('.main-carousel-dr').addClass('main-carousel-dr-on');
 });
-
+// termina la carga
 window.onload = function(){
     $("#dropdownMenuLink").css("display:block");
     $("#dropdownMenuLink").removeClass("d-none");
 
     $('.footer_sidebar').removeClass('d-none');
     // $('.nav_content').removeClass('d-none');
-    $('.history').removeClass('d-none');
-     $('.history').css('height:123px');
+    // $('.history').removeClass('d-none');
+    // $('.history').css('height:123px');
+
+    // top medicos
+    
+   
 };  

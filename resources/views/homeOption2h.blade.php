@@ -105,9 +105,11 @@
         </div>
       @else
         
-        <div class="col-lg-10 col-md-12 col-sm-12  text-center  justify-content-center  history m-auto ">
-          <div class="main-carousel  text-center main-carousel-dr " data-flickity='{ "cellAlign": "center", "contain": true }' style="height:70px">
+        <div class="col-lg-10 col-md-12 col-sm-12  text-center  justify-content-center  history m-auto">
+          <div class="main-carousel  text-center main-carousel-dr " data-flickity='{ "cellAlign": "center", "contain": true }' style="height:70px"> 
+            
             @if( isset($list_top_medico) )
+            
               @foreach($list_top_medico->take(10) as $key=> $item)
                   <div class="carousel-cell text-center  align-self-end mt-2 border-0">
                     <a class="navbar-brand_ text-center mr-3"    href="#"  >
@@ -182,7 +184,12 @@
 @stop
 
  @section('js') 
- 	
+ 	{{-- top medicos img --}}
+  <script >
+    
+
+  </script>
+
   {{--  configuraciones globales js --}}
  	<script src="{{ asset('/js/confOption2h.js') }}"></script>
   

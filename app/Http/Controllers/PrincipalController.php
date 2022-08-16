@@ -39,9 +39,11 @@ class PrincipalController extends Controller
         //lista medicos
         $tipo=TipoUserModel::where('abr','dr')->first();
 
-         $list_top_medico=User::inRandomOrder()->where('idtipo_user',$tipo['idtipo_user'])->get();
+        $list_top_medico=User::inRandomOrder()->where('idtipo_user',$tipo['idtipo_user'])->get();
+        
+        
        
-
+      
         return view('home',['articulos'=>$articulo,'listaNoticia'=>$listaNoticia,'list_top_medico'=>$list_top_medico]); 
     }
 

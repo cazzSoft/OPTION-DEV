@@ -146,7 +146,7 @@ class User extends Authenticatable
         if(isset(auth()->user()->id)){
             $tipo=TipoUserModel::where('abr','dr')->first();
             $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->where('estado_registro',1)->get();
-            // $listaTopMedico=User::where('idtipo_user',$tipo['idtipo_user'])->get();
+            
             return $listaTopMedico;
         }
          
