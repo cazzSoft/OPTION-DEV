@@ -1001,7 +1001,7 @@ $('.temp').click(function (e) {
 			$('#meses_imc').prop('required',false);
 			$('#niño_imc').prop('required',false);
 			$('#niña_imc').prop('required',false);
-			console.log(activo+1);
+			// console.log(activo+1);
 		}else if(activo=='infante'){
 			$('#edad_imc').prop('required',true);
 			$('#meses_imc').prop('required',true);

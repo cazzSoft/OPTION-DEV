@@ -162,7 +162,7 @@
                         <div class="col-3 align-self-center d-flex flex-column  text-center">
                             <a href="{{url('empoderate')}}" class="m-auto text-center p-0">
                                <i class="fa-solid fa-hands-holding-circle text-muted "></i> 
-                               <span class="d-flex flex-column text_item_footer ">Empoderate</span>
+                               <span class="d-flex flex-column text_item_footer ">Check up</span>
                                <div class="linea-icon  {{  request()->is(['empoderate*']) ? 'bgz-info' : 'text-muted' }}"></div> 
                             </a>
                         </div>
@@ -205,10 +205,10 @@
                         </div>
                         @if(Auth::user()->type_user()!='dr')
                             <div class="col-3 align-self-center d-flex flex-column ">
-                                <a href="#" class="mx-auto text-center p-0">
+                                <a href="{{url('empoderate')}}" class="mx-auto text-center p-0">
                                    <i class="fas fa-hand-holding-medical text-muted"></i>
-                                   <span class="d-flex flex-column text_item_footer ">Empoderate</span>
-                                   <div class="linea-icon"></div> 
+                                   <span class="d-flex flex-column text_item_footer ">Check up</span>
+                                   <div class="linea-icon {{  request()->is(['empoderate*']) ? 'bgz-info' : 'text-muted' }}"></div> 
                                 </a>
                            </div>
                         @endif

@@ -20,7 +20,7 @@
       
     });
 
-    {/*  funcion para mostrar alertas toast - */}
+    {/*  funcion para mostrar alertas toast & sweetalert- */}
     function mostrar_toastr(msm,estado,  time=4000) {
 
         toastr.options = {
@@ -34,6 +34,19 @@
 
     }
 
+    function sweetalert(msm,estado) {
+        var Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5600
+        });
+
+        Toast.fire({
+          icon: estado,
+          title: msm
+        });
+    }
     //  funcion general para validar campo de un form
     function validarCampos(inputs,estado){//inputs=array de campos form, estado= invalid - valid - warning
         valor=false;

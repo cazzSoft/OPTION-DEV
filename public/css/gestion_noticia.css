@@ -14,6 +14,7 @@
     background-color: #0FADCE !important;
     color: #fff !important;
 }
+
 table, tr, td,thead{
   border:none !important;
 }
@@ -50,7 +51,7 @@ table, tr, td,thead{
  }
 
 
- @media (min-width:100px) and (max-width: 767.98px) { 
+@media (min-width:100px) and (max-width: 767.98px) { 
    .content-header{
      display: none;
    }

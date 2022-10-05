@@ -101,8 +101,13 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/user_casos', 'Caso_exController@get_user_casos');
             Route::get('/listaPublicaciones', 'ArticuloController@getlistaPublicaciones');
             
-            
         });
+        //GESTION MEDICO
+         Route::prefix('casos')->group(function () {
+            // Route::get('/casos_ex', 'DoctoresController@casos_ex');
+            Route::resource('', 'Caso_exController');
+            Route::get('detalle/{id}', 'Caso_exController@show');
+         });
 
         //GESTION MEDICO
          Route::prefix('medico')->group(function () {
@@ -117,7 +122,7 @@ use Illuminate\Support\Facades\Auth;
             Route::post('/update_portada', 'DoctoresController@update_photo_portada');
             Route::get('/guia', 'DoctoresController@getGuiaMedico');
             Route::get('/getMedico_filtro/{esp?}', 'DoctoresController@getGuiaMedico_esp');
-            
+            Route::get('/paciente', 'DoctoresController@getPaciente');
          });
 
         //CONSULTAS DE REGISTRO USERS
@@ -158,7 +163,7 @@ use Illuminate\Support\Facades\Auth;
 
         });
 
-        //rutas para Noticias
+        //RUTAS PARA Noticias
         Route::prefix('noticia')->group(function () {
             Route::resource('new', 'NoticiaController');
             Route::get('/lastOrden', 'NoticiaController@lastOrden');
@@ -166,14 +171,42 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/estadoNoticia/{id}/{estado}', 'NoticiaController@putEstadonoticia');
         });
 
-        //rutas para gestion de Notificacion
+        //RUTAS PARA GESTIÓN DE NOTIFICAIÓN
         Route::prefix('notify')->group(function () {
             Route::resource('estado', 'NotificacionController');
             Route::get('getNotify', 'NotificacionController@getNotificacion');
             
         });
 
-        
+        //RUTAS PARA GESTIÓN DEL CALENDARIO
+        Route::prefix('calendario')->group(function () {
+            Route::resource('/', 'CalendarioController');
+            Route::get('/citas', 'CalendarioController@getListaCitas');
+            Route::get('/getuser/{search}', 'CalendarioController@obtenerUsuarios');
+            Route::get('/form-registro/{str?}', 'CalendarioController@getFormCita');
+            Route::get('/usuario/{id}', 'CalendarioController@selectUser');
+            Route::get('/infoCalendario', 'CalendarioController@infoCalendario');
+            Route::get('/delete/{id}', 'CalendarioController@destroy');
+            Route::get('/edit/{id}', 'CalendarioController@edit');
+            Route::put('/update/{id}', 'CalendarioController@update');
+
+            Route::get('/email', 'CalendarioController@enviar');
+            Route::get('/fecha', 'CalendarioController@fecha');
+            
+        });
+
+        //RUTAS PARA ESTADISTICAS
+        Route::prefix('estadistica')->group(function () {
+            Route::resource('/', 'EstadisticaController');
+            Route::get('/datos/{anio}', 'EstadisticaController@getDatos');
+            
+        });
+
+        //RUTAS PARA GESTION BANNERS
+        Route::prefix('banner')->group(function () {
+            Route::resource('/', 'BannerController');
+            Route::get('/lastOrden', 'BannerController@lastOrden');
+        });
         // RUTA PARA RECUPERAR CONTRASEÑAS
         // Route::get('/passworduser', 'PrincipalController@user_clave');
  

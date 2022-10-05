@@ -31,12 +31,20 @@
       @if(isset($lista_casos))
         @foreach($lista_casos as $item)
           <div class="post callout clearfix callout-info shadow  bg-white ">
-            
+             
             <div class="user-block comment-text">
-              <img class="img-circle img-bordered-sm" src=" @if(isset($item['medico'][0]['img']) && $item['medico'][0]['img']!=null){{ \Storage::disk('wasabi')->temporaryUrl($item['medico'][0]['img'], now()->addMinutes(3600)  ) }} @else {{asset('ava1.png') }} @endif" alt="{{$item['medico'][0]['img']}}">
+              <img class="img-circle img-bordered-sm" 
+                  src="
+                        @if(\Storage::disk('diskDocumentosPerfilUser')->exists($item['medico'][0]['img']))  
+                            {{asset($item['medico'][0]['img'])}}
+                        @else
+                            {{ \Storage::disk('wasabi')->temporaryUrl($item['medico'][0]['img'], now()->addMinutes(3600) ) }}
+                        @endif
+                     "
+              />
               <span class="username">
 
-                <a href="{{url('gestion/caso/'.$item->idarticulo_encryp)}}" class="text-dark font-weight-bold deco-none " style="text-decoration: none;cursor: pointer;">{{$item['titulo']}}</a>
+                <a href="{{url('casos/detalle/'.$item->idarticulo_encryp)}}" class="text-dark font-weight-bold deco-none " style="text-decoration: none;cursor: pointer;">{{$item['titulo']}}</a>
                 @if(auth()->user()->id==$item['iduser'])<button class="btn btn-xs   rounded ml-2" onclick="get_caso('{{$item->idarticulo_encryp}}',this)"> <i class="fas fa-edit text-info_ fa-lg"></i> </button> @endif
               </span> 
               <span class="description ">{{$item['medico'][0]['name']}} - {{$item->created_at->isoFormat('lll')}}</span>
@@ -54,8 +62,6 @@
               {{ $lista_casos->links() }}
           </div>
 
-          
-         
       @else
         <div class="alert alert-light  " role="alert">
           Aún no tenemos ningún caso excepcional publicado. Puedes ser le primero y publicar uno.

@@ -120,7 +120,7 @@
       <div class="card-body border-bottom-0 @movil p-0 @endmovil">
         <div class="row">
           <div class="col-lg-8 col-md-12 col-sm-12 ">
-            @include('medico.lista_casos')
+            @include('medico.casos.lista_casos')
           </div>
         </div>
       </div>
@@ -128,8 +128,8 @@
   </div>
   
   
-  @include('medico.modalCaso')
-  @include('medico.modalEditCaso')
+  @include('medico.casos.modalCaso')
+  @include('medico.casos.modalEditCaso')
 
   @section('include_css') 
       <!-- Ionicons -->

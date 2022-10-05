@@ -45,13 +45,16 @@
 
 .sidebar-light-info .nav-sidebar>.nav-item>.nav-link.active {
     background-color: transparent !important;
-    color: #0FADCE;
+    color: #0FADCE !important;
     box-shadow:0px !important;
 }
 
 .nav-sidebar>.nav-item>.nav-link.active {
     border: 0px !important;
     box-shadow: 0 1px 3px rgb(0 0 0 / 1%), 0 1px 2px rgb(0 0 0 / 1%) !important; 
+}
+.nav-link{
+  background: transparent !important;
 }
 .nav-sidebar-lg li .nav-link:hover{
   color: #0FADCE !important;
@@ -263,6 +266,9 @@ a .bt_coins{
 }
 
 @media (min-width:100px) and (max-width: 767.98px) { 
+  .main-header .nav-link {
+       height: 0rem !important;
+  }
  .text-menu{
   position: absolute;
   width: 25px;

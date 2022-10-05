@@ -340,10 +340,8 @@
     <script>
       // funcion para encryptar
       function encrypt_(valorr) {
-       return valor=`{{encrypt('`${valorr}`')}}`;
-          
-        }
-      
+        return valor=`{{encrypt('`${valorr}`')}}`; 
+      }
     </script>
 
     {{-- script para la gestion de noticias --}}
@@ -352,9 +350,7 @@
     <!-- Bootstrap Switch -->
     <script src="{{asset('/vendor/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
     <script>
-      //se inicia el switch del estado del form
-      
-        // $(this).bootstrapSwitch('state', $(this).prop('checked'));
+      $('#table_publi').addClass('pull-left');
       //asigan el valor que tenia cuando ocurre un error
        var txtt='{{old('descripcion')}}'; $("textarea#descripcion").val(txtt);
        $(document).ready(function() {
@@ -364,6 +360,8 @@
          // $('#estado').bootstrapSwitch('state' , true);
          
     </script>
+   
+    
   @stop
 
 
