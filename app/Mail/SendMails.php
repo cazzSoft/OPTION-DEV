@@ -18,7 +18,7 @@ class SendMails extends Mailable
      */
     public function __construct()
     {
-        //
+        // 
     }
 
     /**

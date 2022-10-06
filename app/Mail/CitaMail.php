@@ -20,8 +20,8 @@ class CitaMail extends Mailable
          
     }
 
-    /**
-     * Build the message.
+    /** 
+     * Build the message. 
      *
      * @return $this
      */

@@ -231,7 +231,7 @@ class CalendarioController extends Controller
          } catch (\Throwable $th) {
 
             return response()->json([
-                    'resul'=> 1
+                    'resul'=> ['estado'=>'error','error'=>$th->getMessage()]
                 ]);
         }
            
@@ -446,8 +446,8 @@ class CalendarioController extends Controller
                        'email' => user::find($consul->idpaciente)->email,
                 ];
 
-               $this->envioMails($datos,'nt-delete'); 
-
+               $resul=$this->envioMails($datos,'nt-delete'); 
+                
                 return response()->json([
                     'jsontxt'=>['msm'=>'Se ha eliminado la cita','estado'=>'success'],
                 ],200);
