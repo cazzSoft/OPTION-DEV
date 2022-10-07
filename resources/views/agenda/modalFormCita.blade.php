@@ -24,7 +24,7 @@
                 <input type="hidden" id="idcita">
                 <!-- titulo -->
                 <div class="form-group @movil @else pl-4 pr-4 @endmovil">
-                  <input type="text" class="form-control"   placeholder="Agregue un título" id="titulo" name="titulo" value="" required >
+                  <input type="text" class="form-control"   placeholder="Agregue un título" id="titulo" name="titulo" value=""  >
                 </div>
 
                 <div class="row @movil @else pl-4 pr-4 @endmovil">
@@ -116,7 +116,7 @@
           
                 <div class="row  @movil mt-3 @else pl-4 pr-4 @endmovil">
                   <div class="col-12 ">
-                    <select class="form-control select2" data-placeholder="Agregar canal" value="{{old('tipo_cita')}}" id="tipo_cita" name="tipo_cita" required>
+                    <select class="form-control select2" data-placeholder="Agregar canal" value="{{old('tipo_cita')}}" id="tipo_cita" name="tipo_cita" >
                       <option></option>
                       <option value="virtual">Cita virtual</option>
                       <option value="precencial">Cita en consultorio</option>

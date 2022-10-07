@@ -28,6 +28,9 @@ class SendMails extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        // return $this->view('view.name');
+        return $url=env('APP_URL');
+        return $this->subject('Testing option2heath')
+                        ->markdown('mail.test');
     }
 }

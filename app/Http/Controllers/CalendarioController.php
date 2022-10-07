@@ -17,6 +17,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+
 use Log;
 use Mail;
 
@@ -51,6 +52,29 @@ class CalendarioController extends Controller
         $fecha= $date->isoFormat('dddd, D MMM YYYY '); 
 
        
+    }
+
+    public function enviar()
+    {
+        // $para=$datos['email'];
+        $para='notifycost@gmail.com';
+        dd(config('app.url')); 
+        // configuracion para guardar copias de los emails
+        $email_tipo=CatalogoModel::where('codigo','EMCT')->first()->idcatalogo;
+        $copia_cc=TipoCatalogoModel::where('atributo','cc')->where('idcatalogo',$email_tipo)->first();
+        $copia_bcc=TipoCatalogoModel::where('atributo','bcc')->where('idcatalogo',$email_tipo)->first();
+        return $url=env('APP_NAME');
+        try {
+            Mail::to($para)
+            ->cc($copia_cc->valor)
+            ->bcc($copia_bcc->valor)
+            ->send(new SendMails());
+            return 1;
+        } catch (\Throwable $th) {
+            return 0;
+        }
+        
+              
     }
 
     // funcion para mostrar el form registro de citas
@@ -88,13 +112,28 @@ class CalendarioController extends Controller
     }
 
     public function infoCalendario()
-    {
-        
+    {  
         return view('agenda.calendario',['info'=>'Cita agendada con éxito','estado'=>'success']);
     }
     public function store(Request $request)
     {
-      
+       
+        //validaciones requeridas y unicas de los campos
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required|string',
+            'fecha' => 'required|string',
+            'hora' => 'required',
+            'tipo_cita' => 'required',
+            'idmedio_reserva' => 'required',
+        ],['tipo_cita.required'=>'El campo agregar canal es obligatorio.']);
+
+         if ($validator->fails()) {
+             return response()->json([
+                 'jsontxt'=>['msm'=>'Campos requerido','estado'=>'error'],
+                 'request'=> $validator->errors()->all(), //msm de los campos requeridos
+
+             ],501);//Not Implemented
+         }
 
         $iduser= Auth()->User()->id;
         $tipo_us='us';
@@ -145,14 +184,36 @@ class CalendarioController extends Controller
                         'email' => $request->email,
                         'hora'  => $request->text_hora,
                 ];
-                $this->envioMails($datos,'nt-cita');
+                $resul=$this->envioMails($datos,'nt-cita');
+                
+                // verificar el envio de correo..
+                if($resul){
+                    $msm=' se le ha notificado al paciente sobre este evento.';
+                }else{
+                    $msm=' no se pudo notificar al paciente sobre este evento.';
+                }
 
                 return response()->json([
-                        'jsontxt'=> ['msm'=>'Cita agendada con éxito','estado'=>'success']
+                        'jsontxt'=> ['msm'=>'Cita agendada con éxito, '.$msm,'estado'=>'success']
                     ],200);
             }   
 
         }else{
+
+            //validación de usuarios
+            $validator = Validator::make($request->all(), [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ],['email.unique'=>'El campo email '.$request->email.' ya existe en nuestros registros.']);
+
+             if ($validator->fails()) {
+                 return response()->json([
+                     'jsontxt'=>['msm'=>'Campos requerido','estado'=>'error'],
+                     'request'=> $validator->errors()->all(), //msm de los campos requeridos
+
+                 ],501);//Not Implemented
+             }
+
             // registro de paciente
             $password_raw='o2h'.rand(100,1000);
 
@@ -195,10 +256,17 @@ class CalendarioController extends Controller
                             'password'=>$password_raw
                     ];
 
-                    $this->envioMails($datos,'nt-nuevo');
+                   $resul= $this->envioMails($datos,'nt-nuevo');
+                    
+                    // verificar el envio de correo..
+                    if($resul){
+                        $msm=' se le ha notificado al paciente sobre este evento.';
+                    }else{
+                        $msm=' no se pudo notificar al paciente sobre este evento.';
+                    }
 
-                   return response()->json([
-                           'jsontxt'=> ['msm'=>'Cita agendada con éxito','estado'=>'success']
+                    return response()->json([
+                           'jsontxt'=> ['msm'=>'Cita agendada con éxito, '.$msm,'estado'=>'success']
                        ],200);
                }   
             }
@@ -211,8 +279,8 @@ class CalendarioController extends Controller
     {   
         try {
              
-            // $para=$datos['email'];
-            $para='notifycost@gmail.com';
+            $para=$datos['email'];
+            // $para='notifycost@gmail.com';
 
             // configuracion para guardar copias de los emails
             $email_tipo=CatalogoModel::where('codigo','EMCT')->first()->idcatalogo;
@@ -225,14 +293,9 @@ class CalendarioController extends Controller
                 ->send(new CitaMail($tipo_notify,$datos));
                 // ->queue(new CitaMail($tipo_notify,$datos));
            
-            return response()->json([
-                    'resul'=> 0
-                ]);
+            return 1;
          } catch (\Throwable $th) {
-
-            return response()->json([
-                    'resul'=> ['estado'=>'error','error'=>$th->getMessage()]
-                ]);
+            return 0;
         }
            
            
@@ -351,13 +414,12 @@ class CalendarioController extends Controller
     public function update(Request $request, $id)
     {
         
-       
         $id=decrypt($id);
         $cita=CalendarioModel::find($id);
-        
+       
         $cntr=0; //controlar el envio de email si se cambia el correo del paciente
-        
-
+        $ctlr=0;
+        $msm='';
         // datos para enviar emails
         $date = Carbon::parse($request->fecha)->locale(Session::get('language'));   
         $fecha= $date->isoFormat('dddd, D MMM YYYY');
@@ -370,11 +432,18 @@ class CalendarioController extends Controller
                 'password'=>$password_raw,
                 'hora'    => $request->text_hora,
         ];
+
+        
         
         // actualizamos datos de la cita médica
         $iduser= Auth()->User()->id;
         $hora_inicio= substr($request->hora, 0, 5);
         $hora_fin= substr($request->hora, 6, 5);
+
+        
+        if($request->titulo!=$cita->titulo || $request->fecha!=$cita->fecha || $request->tipo_cita!=$cita->tipo_cita || $hora_inicio!=$cita->hora_inicio || $request->detalle!=$cita->detalle){
+            $ctlr=1;
+        }
 
         $cita->iduser= $iduser; // usuario quien hace el update
         $cita->fecha=$request->fecha;
@@ -388,6 +457,19 @@ class CalendarioController extends Controller
      
         // actualizamos datos del usuario si el medico tiene acceso
         if($cita->nuevo_paciente){
+            //validación de usuarios
+                $validator = Validator::make($request->all(), [
+                    'name' => ['required'],
+                ]);
+
+                 if ($validator->fails()) {
+                     return response()->json([
+                         'jsontxt'=>['msm'=>'Campos requerido','estado'=>'error'],
+                         'request'=> $validator->errors()->all(), //msm de los campos requeridos
+
+                     ],501);//Not Implemented
+                 }
+
             $paciente=user::find($cita->idpaciente);
             $paciente->name=$request->name;
             $paciente->telefono=$request->telefono;
@@ -395,24 +477,53 @@ class CalendarioController extends Controller
             $paciente->save();
 
             if( $paciente->email!= $request->email ){
+                //validación de usuarios
+                $validator = Validator::make($request->all(), [
+                    'email' => ['required', 'string', 'email', 'unique:users'],
+                ],['email.unique'=>'Este email "'.$request->email.'" ya existe en nuestros registros.']);
+
+                 if ($validator->fails()) {
+                     return response()->json([
+                         'jsontxt'=>['msm'=>'Campos requerido','estado'=>'error'],
+                         'request'=> $validator->errors()->all(), //msm de los campos requeridos
+
+                     ],501);//Not Implemented
+                 }
                 // enviar notificacion email
                 $paciente->password=Hash::make($password_raw);
                 $paciente->email=$request->email;
                 $paciente->save();
                 
-                $this->envioMails($datos,'nt-nuevo'); 
+                $resul=$this->envioMails($datos,'nt-nuevo'); 
+
+                // verificar el envio de correo..
+                if($resul){
+                    $msm=', se le ha notificado al paciente la actualización del evento.';
+                }else{
+                    $msm=', no se pudo notificar al paciente sobre este evento.';
+                }
                 $cntr=1;
             }
         }
 
         if($cita->save()){
+           
             // notificar paciente si no se notifico antes por cambio de email
-            if($cntr!=1){
-                $this->envioMails($datos,'nt-update');
+            if($cntr!=1 && $ctlr==1){
+                
+                $resul=$this->envioMails($datos,'nt-update');
+
+                // verificar el envio de correo..
+                if($resul){
+                    $msm=', se le ha notificado al paciente la actualización del evento.';
+                }else{
+                    $msm=', no se pudo notificar al paciente sobre este evento.';
+                }
+                
             }
 
             return response()->json([
-                    'jsontxt'=> ['msm'=>'Cita actualizada con éxito','estado'=>'success']
+                    'jsontxt'=> ['msm'=>'Cita actualizada con éxito'.$msm,'estado'=>'success']
                 ],200);
         }    
         
@@ -448,8 +559,14 @@ class CalendarioController extends Controller
 
                $resul=$this->envioMails($datos,'nt-delete'); 
                 
+                // verificar el envio de correo..
+                if($resul){
+                    $msm=' y se ha notificado al paciente la cancelación del evento.';
+                }else{
+                    $msm=' no se pudo notificar al paciente la cancelación del evento.';
+                }
                 return response()->json([
-                    'jsontxt'=>['msm'=>'Se ha eliminado la cita','estado'=>'success'],
+                    'jsontxt'=>['msm'=>'La cita se ha eliminado del calendario '.$msm,'estado'=>'success'],
                 ],200);
             }else{
                 return response()->json([

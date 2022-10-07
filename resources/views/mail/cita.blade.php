@@ -4,14 +4,23 @@
 	Se ha agendado la cita “{{$data['titulo']}}”
 </p>	
 <p class="titulo2 text-capitalize">{{$data['fecha']}} <br> <small>{{$data['hora']}}</small> </p>
+@if(isset($data['lugar']))
+<div class="text-center" data-tooltip-align='a,d'>
+	<span class="bacge">Modalidad precencial</span>
+</div>
+@else
+<div class="text-center" data-tooltip-align='a,d'>
+	<span class="bacge">Modalidad virtual</span>
+</div>
+@endif
 <p class="parrafo1">{{$data['lugar']}} </p>
+
 
 	
 @component('mail::button', ['url' =>  $url,'color'=>'info'])
 	Revisar detalles
 @endcomponent
  
-
 
 Gracias,<br>
 {{ config('app.name') }}

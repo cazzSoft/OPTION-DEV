@@ -77,6 +77,9 @@
     text-shadow: 0 1px 0 #fff !important;
     opacity: 1 !important;
 }
+.modal-dialog .overlay {
+    background-color: #d9e1e5 !important;
+}
 
 @media (min-width:100px) and (max-width: 767.98px) { 
     .content-header  {

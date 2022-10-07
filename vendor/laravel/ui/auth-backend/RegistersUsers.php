@@ -7,11 +7,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\AreaModel;
-use App\CiudadModel;
-use App\EspecialidadesModel;
-use App\TituloModel;
-
 trait RegistersUsers
 {
     use RedirectsUsers;
@@ -21,25 +16,9 @@ trait RegistersUsers
      *
      * @return \Illuminate\View\View
      */
-    public function showRegistrationForm($crt)
+    public function showRegistrationForm()
     {
-        
-        $listaciu=CiudadModel::all();
-        $listaEspe=EspecialidadesModel::all();
-        $listaTitulo=TituloModel::all();
-        $lista_area=AreaModel::all();
-        if(isset($crt)){
-            if($crt=='user'){return view('auth.register',['ciudades'=>$listaciu,'user_'=>'Usuario']);}
-            
-            if($crt=='medico'){
-              
-                return view('auth.register',['ciudades'=>$listaciu,'lista_especialidad'=>$listaEspe,'user_'=>'Médico','lista_titu'=>$listaTitulo]);
-            }
-            
-            if($crt=='emp'){
-                return view('auth.register',['ciudades'=>$listaciu,'user_'=>'empre','lista_area'=>$lista_area]);
-            }
-        } 
+        return view('auth.register');
     }
 
     /**

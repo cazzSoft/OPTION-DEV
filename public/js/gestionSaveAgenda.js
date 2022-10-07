@@ -64,11 +64,13 @@ var url=window.location.protocol+'//'+window.location.host;
   	$('#dropdownCita').addClass('d-none');
   });
 
-  //consulta usuario
-  function obtenerUsuario(user) {
+//consulta usuario
+function obtenerUsuario(user) {
+
     $('.dropdown-menu-cita').removeClass('show');
     $('#dropdownCita').addClass('d-none');
     $.get("/calendario/usuario/"+user, function (data) {
+        console.log(' trae el usuario');
         let user=data.request;
         $('#name').val(user.name);
         $('#idpaciente').val(user.id);
@@ -85,7 +87,7 @@ var url=window.location.protocol+'//'+window.location.host;
         // mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
         sweetalert(data.jsontxt.msm, data.jsontxt.estado);
     });    
-  }
+}
 
   // evento mostrar campo de direccion en el form cita 
   $('#tipo_cita').change(function (e) {
@@ -93,20 +95,17 @@ var url=window.location.protocol+'//'+window.location.host;
     if (tipo_cita=='precencial') {
       $('#detalle').removeClass('d-none');
       $('#edad_imc').prop('required',true);
+
     }else{
       $('#detalle').addClass('d-none');
       $('#edad_imc').prop('required',false);
+      $('#detalle').val('');
     }
   });
 
 // evento para registrar datos del form cita
   $("#formCita").on("submit", function (e) {
      e.preventDefault(); 
-
-    // efecto deshavilitar modal form
-    $('.atenuar-modal-form ').addClass('overlay ');
-    $('.cerrar-form').addClass('d-none');
-    $('.efect-cerrar').removeClass('d-none');
 
     if($('#method_cita').val()=='POST'){
         let paciente=$('#idpaciente').val();
@@ -125,7 +124,12 @@ var url=window.location.protocol+'//'+window.location.host;
               cancelButtonText: 'Canelar'
             }).then((result) => {
               if (result.isConfirmed) {
-                 registroCita();
+                registroCita();
+              }else{
+                // efecto deshavilitar modal form
+                $('.atenuar-modal-form ').removeClass('overlay ');
+                $('.cerrar-form').removeClass('d-none');
+                $('.efect-cerrar').addClass('d-none');
               }
             })
         }else{
@@ -135,12 +139,16 @@ var url=window.location.protocol+'//'+window.location.host;
            actualizaCita();
     }
 
-    
-
   });
 
 // funcion registro cita
 function registroCita() {
+
+    // efecto deshavilitar modal form
+    $('.atenuar-modal-form ').addClass('overlay ');
+    $('.cerrar-form').addClass('d-none');
+    $('.efect-cerrar').removeClass('d-none');
+
      $.ajaxSetup({
          headers: {
              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -187,10 +195,12 @@ function registroCita() {
             if (statusText == "Not Implemented") {
                 //error 501
                 $.each(data.request, function (i, item) {
-                    mostrar_toastr(item, data.jsontxt.estado);
+                    mostrar_toastr(item, data.jsontxt.estado,9000);
+                    // sweetalert(item, data.jsontxt.estado);
                 });
             } else {
                 mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
+
             }
 
            // efecto deshavilitar modal form
@@ -203,6 +213,12 @@ function registroCita() {
 
 // funcion actualizar cita
 function actualizaCita() {
+
+    // efecto deshavilitar modal form
+    $('.atenuar-modal-form ').addClass('overlay ');
+    $('.cerrar-form').addClass('d-none');
+    $('.efect-cerrar').removeClass('d-none');
+
      $.ajaxSetup({
          headers: {
              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -222,9 +238,10 @@ function actualizaCita() {
         tipo_cita: $("#tipo_cita").val(),
         detalle: $("#detalle").val(),
         idmedio_reserva: $("#idmedio_reserva").val(),
-        text_hora: $('#hora_select').find('option:selected').text()
+        text_hora: $('#hora').find('option:selected').text()
      };
-     
+
+
     $.ajax({
         url: "/calendario/update/"+$("#idcita").val(), 
         method: "PUT", 
@@ -247,9 +264,12 @@ function actualizaCita() {
             var statusText = data.statusText;
             var data = data.responseJSON;
             if (statusText == "Not Implemented") {
-                
+                //error 501
+                $.each(data.request, function (i, item) {
+                    mostrar_toastr(item, data.jsontxt.estado,9000);
+                    // sweetalert(item, data.jsontxt.estado);
+                });
             } else {
-              
                 sweetalert(data.jsontxt.msm, data.jsontxt.estado);
             }
             

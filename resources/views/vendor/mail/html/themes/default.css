@@ -63,6 +63,21 @@ h3 {
     text-align: left;
 }
 
+.bacge {
+    background-color: #6ab56a;
+    -webkit-border-radius: 200px;
+    border-radius: 200px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 18px;
+    margin: 0 8px 0 5px;
+    padding: 2px 8px;
+    text-align: center;
+    /*width: 200px;*/
+}
+
 p {
     font-size: 16px;
     line-height: 1.5em;

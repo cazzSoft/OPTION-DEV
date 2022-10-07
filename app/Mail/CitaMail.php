@@ -28,7 +28,7 @@ class CitaMail extends Mailable
     public function build()
     {   
       
-        $url=env('APP_URL');
+        $url=config('app.url');
         if($this->tipo_notify=='nt-nuevo'){
             return $this->subject('Invitación:  para cita médica '.$this->datos['titulo'].' '.$this->datos['fecha'].' '.$this->datos['hora'])
                         ->with(['data'=>$this->datos ,'url'=>$url])

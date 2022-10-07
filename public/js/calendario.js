@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   var initialLocaleCode = 'es';
   var calendarEl = document.getElementById('agenda');
-  
+  var fff=0;
   
 
    calendar = new FullCalendar.Calendar(calendarEl, {
@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // nowIndicator: true,
 
    
-   
-
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -24,35 +22,19 @@ document.addEventListener('DOMContentLoaded', function() {
       
     },
 
-   
-    // dayRender: function (date, cell){
-    //   cell.css("background", "red")
-    // } ,
-          
+     
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
-    selectMirror: true,
+    selectMirror: false,
     dayMaxEvents: false,
     editable: false,
 
-    // dayClick: function() { tooltip.hide() },
-    // eventResizeStart: function() { tooltip.hide() },
-    // eventDragStart: function() { tooltip.hide() },
-    // viewDisplay: function() { tooltip.hide() },
 
-    // eventRender: function(event, element) {
-    //   console.log('test');
-    //       $(element).tooltip({title: event.title});             
-    //   },
-
-
-    dateClick:function (info) {
-      console.log(info.dateStr);
-    },
     select: function(arg) {
-
+      
+       limpiarCampos();
       // validacion de fecha actual
-      moment.locale('es')
+      moment.locale('es');
       var fecha_actual=new Date();
       var fecha_select = new Date(arg.start);
      
@@ -92,14 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
       $("#fecha").val(today);
 
       $('#hora').val(`${moment(arg.start).format('HH:mm')} ${moment(arg.end).format('HH:mm')}`).trigger("change");
+      // console.log(`${moment(arg.start).format('HH:mm')} ${moment(arg.end).format('HH:mm')}`);
+       // $('#hora').val(`06:00 06:30`).trigger("change");
 
       // $('#hora_fin').val(moment(arg.end).format('HH:mm'));
 
-      limpiarCampos()
+      
       $('#modal-form-cita').modal('show');
+
     },
     
     eventClick: function(info) {
+     console.log(`entra ${fff++}`);
       var evento=info.event; 
       $('.title-cita').html("");
       $('.title-cita').html(`${evento._def.title}`);
@@ -123,8 +109,72 @@ document.addEventListener('DOMContentLoaded', function() {
       
       $('#modal-info-cita').modal('show');
 
+
+      $.ajaxSetup({
+          headers: {
+              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+          },
+      });
+
+      $.ajax({
+          url: "/calendario/edit/"+info.event.id , 
+          method: "GET", 
+          dataType: "json",
+          success: function (data) {
+            // sweetalert(data.jsontxt.estado, data.jsontxt.estado);
+            limpiarCampos();
+            $('#modal-info-cita').modal('hide');
+            $('#idcita').val(info.event.id);
+            let array=data.request;
+            if( array.length!=0){ 
+              
+              $('#fecha_text').addClass('d-none');
+              $('#hora_select').addClass('d-none');
+              $('.fecha').removeClass('d-none');
+              $('.hora').removeClass('d-none');
+              
+               // validamos si el medico puede editar datos del paciente
+               if(array.nuevo_paciente){
+                  $('#telefono').prop('readonly',false);
+                  $('#name').prop('readonly',false);
+                  $('#email').prop('readonly',false);
+               }else{
+                  $('#telefono').prop('readonly',true);
+                  $('#name').prop('readonly',true);
+                  $('#email').prop('readonly',true);
+               }
+                
+               
+                $('#idpaciente').val(array.idpaciente_encryp);
+                $('#titulo').val(array.titulo);
+                $('.search-usuario').addClass('d-none');
+                $('#name').val(array.usuario[0].name);
+                $('#telefono').val(array.usuario[0].telefono);
+                $('#email').val(array.usuario[0].email);
+                $('#detalle').val(array.detalle);
+                $('#tipo_cita').val(array.tipo_cita).trigger('change');
+                $('#idmedio_reserva').val(array.idmedio_reserva).trigger('change');
+                $('#hora').val(`${array.hora_inicio} ${array.hora_fin}`).trigger('change');
+                var today = new Date(array.fecha).toISOString().split('T')[0];
+                $("#fecha").val(today);
+
+                $("#method_cita").val('PUT');
+                $("#btn-save-cita-form").html('Guardar cambios');
+                $('#btn-cancelar-cita-form').removeClass('d-none');   
+                
+            }
+          },
+
+          error: function (data) {
+              var statusText = data.statusText;
+              var data = data.responseJSON;
+              console.log(statusText);
+          },
+      });
+
       // evento boton eliminar
       $('#btn-eliminar-cta').click(function(){
+
         //ejecucion de mensaje de advertencia
           Swal.fire({
             title: 'Eliminar cita',
@@ -143,11 +193,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 $('#btn-eliminar-cta').addClass('d-none');
                 $('.efect-eliminar').removeClass('d-none');
                 
-                $.ajaxSetup({
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                    },
-                });
+                // $.ajaxSetup({
+                //     headers: {
+                //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                //     },
+                // });
                 $.ajax({
                     url: "/calendario/delete/"+info.event.id , 
                     method: "GET", 
@@ -169,9 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log(statusText);
                     },
                 });
-
                
-                 info.event.remove();
+                 // info.event.remove();
                 
             }
           })
@@ -180,61 +229,11 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // evento boton editar
       $('#btn-editar-cita').click(function(){
-        //ejecucion de mensaje de advertencia
-          $.get("/calendario/edit/"+info.event.id, function (data) {
-              $('#modal-info-cita').modal('hide');
-              $('#idcita').val(info.event.id);
-              let array=data.request;
-              if( array.length!=0){ 
-                limpiarCampos();
-                $('#fecha_text').addClass('d-none');
-                $('#hora_select').addClass('d-none');
-                $('.fecha').removeClass('d-none');
-                $('.hora').removeClass('d-none');
-                // $('#hora_select').html(hora);
-                 // validamos si el medico puede editar datos del paciente
-                 if(array.nuevo_paciente){
-                    $('#telefono').prop('readonly',false);
-                    $('#name').prop('readonly',false);
-                    $('#email').prop('readonly',false);
-                 }else{
-                    $('#telefono').prop('readonly',true);
-                    $('#name').prop('readonly',true);
-                    $('#email').prop('readonly',true);
-                 }
-                  
-                 
-                  $('#idpaciente').val(array.idpaciente_encryp);
-                  $('#titulo').val(array.titulo);
-                  $('.search-usuario').addClass('d-none');
-                  $('#name').val(array.usuario[0].name);
-                  $('#telefono').val(array.usuario[0].telefono);
-                  $('#email').val(array.usuario[0].email);
-                  $('#detalle').val(array.detalle);
-                  $('#tipo_cita').val(array.tipo_cita).trigger('change');
-                  $('#idmedio_reserva').val(array.idmedio_reserva).trigger('change');
-                  $('#hora').val(`${array.hora_inicio} ${array.hora_fin}`).trigger('change');
-                  var today = new Date(array.fecha).toISOString().split('T')[0];
-                  $("#fecha").val(today);
-
-                  $("#method_cita").val('PUT');
-                  $("#btn-save-cita-form").html('Guardar cambios');
-                  $('#btn-cancelar-cita-form').removeClass('d-none');   
-                  $('#modal-form-cita').modal('show');
-              }
-               
-
-          }).fail(function (data) {
-              var data = data.responseJSON;
-              console.log(data.jsontxt.msm);
-             
-          });
+        $('#modal-info-cita').modal('hide');
+        $('#modal-form-cita').modal('show');
         
       });
     },
-
-    editable: false,
-    // dayMaxEvents: false, // allow "more" link when too many events
 
     events:`${url}/calendario/citas`,
     eventColor: '#0FADCE',
