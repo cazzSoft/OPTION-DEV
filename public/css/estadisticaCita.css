@@ -1,0 +1,107 @@
+.content-header  {
+    display: none;
+}
+/*input del modal update datos user*/
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #0FADCE transparent transparent transparent !important;
+}
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #0FADCE !important;
+}
+
+.select2-container--default .select2-selection--single {
+  border-top: 1px solid #ced4da;
+  border-right: 1px solid #ced4da;
+  border-left: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #0FADCE; 
+    color: #fff;
+}
+.select2-selection__rendered{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+}
+
+.text-title{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 21px;
+    /*color: #000000;*/
+}
+.text-num{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 55px;
+    color: #000000;
+}
+
+.text-perceng{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36.9751px;
+    line-height: 45px;
+    color: #000000;
+}
+
+.title-content .description-increment{
+
+    background: #E0F7F4;
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 11px;
+    align-items: center;
+    color: #0FADCE;
+    border-radius: 2.95801px;
+}
+
+.progress-sm {
+    height: 39.93px !important;
+}
+
+.progress {
+    border-radius: 9px !important;
+    
+}
+.progress-bar{
+    background: #87d6e6 !important;
+    overflow: visible !important;
+    color: #000 !important;
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+.text-por{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+}
+@media (min-width:100px) and (max-width: 767.98px) { 
+    .content-header  {
+        display: none;
+    }
+    .container-fluid {
+        margin-top: 80px !important;
+        padding-bottom: 100px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

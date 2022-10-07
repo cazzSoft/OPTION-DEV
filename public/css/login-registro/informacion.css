@@ -12,7 +12,7 @@
   background: url('/img/fondo.png') center center; background-repeat: repeat; background-size: 100% auto;
 }
 .navbar-brand  {
-  background: #fff !important;
+  /*background: transparent !important;*/
 }
 .nav_content {
   display: none;

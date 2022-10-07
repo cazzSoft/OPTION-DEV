@@ -60,7 +60,7 @@ class DocumentRepository extends Controller
             'img' => 'required',
             'titulo' => 'required',
             'idespecialidades' => 'required',
-        ],$messages);
+        ],$messages); 
 
         try {
             
@@ -70,7 +70,7 @@ class DocumentRepository extends Controller
                 $name=$img->getClientOriginalName();
                 $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
 
-                if($extension=='pdf'){
+                if($extension=='pdf'){ 
                     $tipo="PDF";
                 }else if($extension=='jpeg' || $extension=='png' || $extension=='jpg'){
                     $tipo="IMG";

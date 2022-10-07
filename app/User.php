@@ -24,7 +24,7 @@ class User extends Authenticatable
         'id', 'name', 'email','password','telefono' ,'fecha_nacimiento','genero','idciudad', 'nom_referido' ,
             'tine_hijo',
             'termino' ,
-            'idtipo_user' ,'social_id','social_name','social_avatar',
+            'idtipo_user' ,'social_id','social_name','social_avatar','medio_register',
     ];
 
     /**

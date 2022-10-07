@@ -85,7 +85,7 @@
                       @if(isset($item['img'] ) && $item['img']!=null )
                         <img 
                             src="
-                                  @if(\Storage::disk('diskDocumentosPerfilUser')->exists($item->img)) 
+                                  @if(\Storage::disk('diskDocumentosPerfilUser')->exists($item->img))  
                                       {{asset($item->img)}}
                                   @else
                                       {{$img=\Storage::disk('wasabi')->temporaryUrl($item->img, now()->addMinutes(3600)  )}}

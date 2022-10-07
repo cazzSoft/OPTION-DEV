@@ -6,7 +6,12 @@
 /public/PortadaNoticia
 
 /storage/*.key
+<<<<<<< HEAD
 /vendor
+=======
+vendor
+
+>>>>>>> developing
 .env
 .env.backup
 .phpunit.result.cache

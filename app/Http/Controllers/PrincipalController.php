@@ -349,7 +349,7 @@ class PrincipalController extends Controller
          return response()->json($data);
     }
 
-    // funcion para encritar clave de los usuarios
+    // funcion para encriptar clave de los usuarios
     public function user_clave()
     {
 
@@ -379,13 +379,10 @@ class PrincipalController extends Controller
     // funcion para enviar email de contacto
     public function send_email(Request $request)
     {
-      
-       
        try {
             
             $recived=config_email_receiverModel::first();
             $para=$recived->email;
-
 
                Mail::send('mail.send-mail-contact', ['array'=>$request,'name_user'=>'cazz'], function ($m) use ($para) {
                    $m->to($para)

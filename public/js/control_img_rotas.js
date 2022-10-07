@@ -20,4 +20,4 @@
         }
     }
    
-   window.onload=RevisarImagenesRotas();
+   window.onload=RevisarImagenesRotas(); 

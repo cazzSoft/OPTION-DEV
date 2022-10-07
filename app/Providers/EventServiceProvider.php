@@ -180,7 +180,7 @@ class EventServiceProvider extends ServiceProvider
                           
                          ],
                          [
-                           'text' => 'Empoderate',
+                           'text' => 'Check up',
                            'url'  => '/empoderate',
                            'icon' => 'fa-solid fa-hands-holding-circle', 
                           
@@ -196,11 +196,11 @@ class EventServiceProvider extends ServiceProvider
                            'active' => ['home']
                            
                          ],
-                         [
-                           'text' => '¿Qué Somos?',
-                           'url'  => 'nosotros_',
-                           'icon' => 'fa fa-notes-medical',
-                         ],
+                         // [
+                         //   'text' => '¿Qué Somos?',
+                         //   'url'  => 'nosotros_',
+                         //   'icon' => 'fa fa-notes-medical',
+                         // ],
                          [
                            'text' => 'Coinsults',
                            'url'  => 'coinsult',
@@ -219,12 +219,38 @@ class EventServiceProvider extends ServiceProvider
                            'icon' => 'fas fa-book-reader',
                           
                          ],
+                         
+                         [
+                           'text' => 'Calendario',
+                           'url'  => 'calendario',
+                           'icon' => 'fas fa-calendar-week',
+                           'active'=> ['calendario*']
+                         ],
+                         [
+                           'text' => 'Pacientes',
+                           'url'  => 'medico/paciente',
+                           'icon' => 'fas fa-users',
+                           
+                         ],
+                         [
+                           'text' => 'Estadisticas',
+                           'url'  => 'estadistica',
+                           'icon' => 'fas fa-chart-bar',
+                           'active'=> ['estadistica/']
+                         ],
+                         [
+                           'text' => 'Publicaciones',
+                           'url'  => 'gestion/listaPublicaciones',
+                           'icon' => 'fas fa-paste',
+                           'active'=> ['gestion/articulo']
+                         ],
                          [
                            'text' => 'Casos',
-                           'url'  => 'gestion/user_casos',
+                           'url'  => 'casos',
                            'icon' => 'fas fa-briefcase-medical',
                            'active'=> ['gestion/user_casos*','medico/casos_ex*','gestion/search_caso*','gestion/caso*']
                          ],
+                         
                         
                     );
 
@@ -299,7 +325,7 @@ class EventServiceProvider extends ServiceProvider
                      
                     ],
                     [
-                      'text' => 'Empoderate',
+                      'text' => 'Check up',
                       'url'  => '/empoderate',
                       'icon' => 'fa-solid fa-hands-holding-circle', 
                      

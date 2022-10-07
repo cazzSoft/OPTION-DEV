@@ -1,0 +1,94 @@
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0FADCE !important;
+    border-color: #0FADCE !important;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #12c1e6 !important;
+    border-color: #12c1e6 !important;
+    box-shadow: none;
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end,
+.fc-direction-rtl .fc-daygrid-event.fc-event-start {
+  background-color: #c3eaf3 !important; 
+  color: #4F4F4F !important;
+  cursor: pointer;
+  padding-top: 5px !important;
+  height: 41.91px !important;
+
+  font-family: 'Calibri' !important;
+  font-style: normal !important;
+  
+  font-size: 12px !important;
+  line-height: 17px !important;
+}
+.fc-v-event .fc-event-main-frame {
+    color: #4F4F4F !important;
+    cursor: pointer;
+    font-size: 12px !important;
+}
+.fc-daygrid-event-dot {
+    border: 2px solid transparent !important;
+}
+.table-bordered thead td, .table-bordered thead th {
+    background: #fff !important;
+}
+.fc-day  {
+     background-color: #F2F2F2 !important ;
+}
+.fc-day-today{
+    background-color: #fff !important 
+}
+
+/*dimencion de la celda del calendar*/
+.fc .fc-timegrid-slot {
+    height: 2.5em !important;
+}
+.fc .fc-scroller-harness-liquid {
+    height: 100% !important;
+}
+
+#modal-info-cita .modal-sm {
+    max-width: 433px !important;
+}
+.title-cita{
+
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 24px;
+    color: #4F4F4F;
+}
+.content-header  {
+    display: none;
+}
+
+/*efecto de modal*/
+.modal-backdrop {
+    background-color: #22272d70 !important;
+   
+}
+.close, .mailbox-attachment-close {
+  
+    text-shadow: 0 1px 0 #fff !important;
+    opacity: 1 !important;
+}
+.modal-dialog .overlay {
+    background-color: #d9e1e5 !important;
+}
+
+@media (min-width:100px) and (max-width: 767.98px) { 
+    .content-header  {
+        display: none;
+    }
+    .container-fluid {
+        margin-top: 80px !important;
+        padding-bottom: 100px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

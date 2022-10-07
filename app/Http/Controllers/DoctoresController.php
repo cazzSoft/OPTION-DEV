@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actividad_userModel;
 use App\AportacionesModel;
 use App\ArticuloModel;
+use App\CalendarioModel;
 use App\CiudadModel;
 use App\EspecialidadesModel;
 use App\Events\HomeEventInfoMedico;
@@ -61,7 +62,12 @@ class DoctoresController extends Controller
 
         return view('medico.perfil_medico',['seguidores'=>$countSeguid,'listaArt'=>$listaArt,'datos_p'=>$datosPersonales,'listaCiudad'=>$listaCiudad,'especialidad'=>$especialidad,'lista_especialidad'=>$listaEspeci,'lista_titu'=>$listaTitulo,'publicaciones'=>$countArt,'seguidores'=>$countSeguid]);
     }
-
+    // lista de pacientes
+    public function getPaciente()
+    {
+        $lista=CalendarioModel::with('usuario')->where('estado','AT')->get();
+        return view('medico.listaPaciente',['listaPaciente'=>$lista]);
+    }
     //casos execionales
     public function casos_ex()
     {

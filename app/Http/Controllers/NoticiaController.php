@@ -12,7 +12,7 @@ use Storage;
 
 class NoticiaController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -31,11 +31,11 @@ class NoticiaController extends Controller
      */
     public function lastOrden()
     {
-        $noticia=  NoticiaModel::get()->last();
+        $noticia=  NoticiaModel::where('activo',1)->max('orden');
         if(isset($noticia)){
           return response()->json([
               'jsontxt'=>['msm'=>'success','estado'=>'success'],
-              'request'=>$noticia->orden+1
+              'request'=>$noticia+1
           ],200);
         }else{
          return response()->json([

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ArticuloModel;
+use App\Events\HomeEventPerfilUser;
 use App\Events\MedicoEventCasoEx;
 use App\Events\MedicoEventCasoExFiltroSearch;
 use Illuminate\Http\Request;
@@ -16,7 +17,17 @@ class Caso_exController extends Controller
      */
     public function index()
     {
-        //
+        $listacasos=ArticuloModel::withCount(['comentarios'=>function ($q){
+            $q->where('activo',1);
+        }])->with('medico')->where('tipo','E')->where('estado',1)->orderBy('created_at','desc')->simplePaginate(5);
+
+         $ulm_mes=date('Y-m-d');
+         $counCasos=ArticuloModel::where('created_at','like',$ulm_mes.'%')->where('tipo','E')->where('estado',1)->count();
+         $casos=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','E')->where('estado',1)->count();
+         $porcet= ($counCasos/100)*100;
+         //registrar evento
+         // event(new HomeEventPerfilUser(['page'=>'Ayudanos a ayudar','iduser'=>auth()->user()->id,'session'=>session(['seccion_tipo'=>'CAEX'])]));
+         return view('medico.casos.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos]);
     }
 
     /**
@@ -156,7 +167,7 @@ class Caso_exController extends Controller
         $casos=ArticuloModel::where('iduser',auth()->user()->id)->where('tipo','E')->where('estado',1)->count();
         $porcet= $counCasos/100;
          //registrar evento al filtrar
-        event(new MedicoEventCasoExFiltroSearch(['tipo'=>'filtro','nameFiltro'=>'Mis casos','iduser'=>auth()->user()->id,'seccion'=>'CAEX','sep'=> session(['seccion_tipo'=>'FLT'])]));
+        event(new MedicoEventCasoExFiltroSearch(['tipo'=>'filtro','nameFiltro'=>'Mis casos','iduser'=>auth()->user()->id,'seccion'=>'CAEX','sep'=> session(['seccion_tipo'=>'FLT'])])); 
         return view('medico.gestionCasos',['lista_casos'=>$listacasos,'casos_publicado'=>$counCasos,'porcent'=>$porcet,'casos'=>$casos]);
     }
 
@@ -176,7 +187,7 @@ class Caso_exController extends Controller
         }
         //registrar evento obtener caso ex
         event(new MedicoEventCasoEx(['tipo'=>'comment','caso'=>$consul,'iduser'=>auth()->user()->id,'seccion'=>'COM']));
-        return view('medico.casoComent',['caso'=>$consul]);
+        return view('medico.casos.casoComent',['caso'=>$consul]);
     }
 
     /**
