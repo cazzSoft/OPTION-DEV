@@ -63,8 +63,11 @@
         <div class="col">
           <div class="row ">
             <div class="col-9">
+              
+              
               <div class="progress progress-sm">
-                <div class="progress-bar " role="progressbar" style="width: {{$prct_o2h}}%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">O2H</div> 
+                <div class="progress-bar " role="progressbar" style="width: {{$prct_o2h}}%;" aria-valuenow="{{$prct_o2h}}" aria-valuemin="0" aria-valuemax="100">
+                  O2H </div> 
               </div>
             </div>
             <div class="col text-center m-auto text-por">@if(isset($prct_o2h)) {{$prct_o2h}} @else 0 @endif %</div>
@@ -72,7 +75,7 @@
           <div class="row mt-2">
             <div class="col-9">
               <div class="progress progress-sm">
-                <div class="progress-bar " role="progressbar" style="width: {{$prct_cnsl}}%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Su consultorio</div> 
+                <div class="progress-bar " role="progressbar" style="width: {{$prct_cnsl}}%;" aria-valuenow="{{$prct_cnsl}}" aria-valuemin="0" aria-valuemax="100">Su consultorio</div> 
               </div>
             </div>
             <div class="col- text-center m-auto text-por">@if(isset($prct_cnsl)) {{$prct_cnsl}} @else 0 @endif %</div>
@@ -80,7 +83,7 @@
           <div class="row mt-2">
             <div class="col-9">
               <div class="progress progress-sm">
-                <div class="progress-bar " role="progressbar" style="width: {{$prct_bzn}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Buzón de voz</div> 
+                <div class="progress-bar " role="progressbar" style="width: {{$prct_bzn}}%;" aria-valuenow=" {{$prct_bzn}}" aria-valuemin="0" aria-valuemax="100">Buzón de voz</div> 
               </div>
             </div>
             <div class="col text-center m-auto text-por">@if(isset($prct_bzn)) {{$prct_bzn}} @else 0 @endif %</div>
@@ -88,7 +91,7 @@
           <div class="row mt-2">
             <div class="col-9">
               <div class="progress progress-sm">
-                <div class="progress-bar " role="progressbar" style="width: {{$prct_cmp}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Campañas</div> 
+                <div class="progress-bar " role="progressbar" style="width: {{$prct_cmp}}%;" aria-valuenow="{{$prct_cmp}}" aria-valuemin="0" aria-valuemax="100">Campañas</div> 
               </div>
             </div>
             <div class="col text-center m-auto text-por">@if(isset($prct_cmp)) {{$prct_cmp}} @else 0 @endif %</div>

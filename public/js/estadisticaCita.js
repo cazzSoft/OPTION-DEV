@@ -12,7 +12,9 @@ $(function () {
   //--------------
   //- AREA CHART -
   //--------------
-  var labels_=data_['labels'];
+
+  
+  var labels_= data_['labels'];
   var dataOnline=data_['dataVirtual'];
   var dataPresencial=data_['dataPrecen'];
 

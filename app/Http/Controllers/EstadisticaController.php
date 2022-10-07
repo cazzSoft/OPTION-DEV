@@ -23,79 +23,113 @@ class EstadisticaController extends Controller
         $citas=CalendarioModel::where('fecha','LIKE',$anio.'%')->where('estado','AT')
                                                     ->where('activo','1')->orderBy('fecha', 'asc')->get();
 
-        $citas_reservadas_actual=$citas->count();
-        $citas_reservadas_anterior=CalendarioModel::where('fecha','LIKE',$anio_anterior.'%')->where('estado','AT')
-                                                    ->where('activo','1')->count();
-        $tipo_pacinete=TipoUserModel::where('abr','us')->first()->idtipo_user;
-        $citas_reservadas_paciente= DB::table('agenda')
-                        ->join('users','agenda.iduser','=','users.id')
-                        ->where('users.idtipo_user',$tipo_pacinete)
-                        ->where('fecha','LIKE',$anio.'%')
-                        ->where('estado','AT')
-                        ->where('activo','1')
-                        ->count();
-        
-        $incremento_prgt=(($citas_reservadas_actual-$citas_reservadas_anterior) / $citas_reservadas_anterior)*100;
+        if(isset($citas)&& $citas!='[]'){
 
-        // citas reservada dentro y fuera del horario de trabajo
-        $fuera_h=0;
-        $dentro_h=0;
-        
-        foreach ($citas as $key => $value) {
+            $citas_reservadas_actual=$citas->count();
+            $citas_reservadas_anterior=CalendarioModel::where('fecha','LIKE',$anio_anterior.'%')->where('estado','AT')
+                                                        ->where('activo','1')->count();
+            $tipo_pacinete=TipoUserModel::where('abr','us')->first()->idtipo_user;
+            $citas_reservadas_paciente= DB::table('agenda')
+                            ->join('users','agenda.iduser','=','users.id')
+                            ->where('users.idtipo_user',$tipo_pacinete)
+                            ->where('fecha','LIKE',$anio.'%')
+                            ->where('estado','AT')
+                            ->where('activo','1')
+                            ->count();
+            $incremento_prgt=(($citas_reservadas_actual - $citas_reservadas_anterior) /  $citas_reservadas_anterior)*100;
+
+
+            // citas reservada dentro y fuera del horario de trabajo
+            $fuera_h=0;
+            $dentro_h=0;
             
-            $date = Carbon::parse($value->created_at);
-            $hora= $date->toTimeString();
-            $dia= $date->format('N');
-            
-            if($dia!=6 && $dia!=7){
+            foreach ($citas as $key => $value) {
                 
-                if($hora >= '08:00:00' && $hora <= '17:00:00'){
-                    $dentro_h++; 
-               }else{
+                $date = Carbon::parse($value->created_at);
+                $hora= $date->toTimeString();
+                $dia= $date->format('N');
+                
+                if($dia!=6 && $dia!=7){
+                    
+                    if($hora >= '08:00:00' && $hora <= '17:00:00'){
+                        $dentro_h++; 
+                   }else{
+                        $fuera_h++;
+                   }
+                }else{
                     $fuera_h++;
-               }
-            }else{
-                $fuera_h++;
+                }
+                   
             }
-               
+            
+            $fuera_h= number_format(($fuera_h/$citas_reservadas_actual)*100,2);
+            $dentro_h=number_format(($dentro_h/$citas_reservadas_actual)*100,2);
+
+            
+            // lugar de reservación de citas
+            $m_o2h=Medio_reserva_citaModel::where('codigo','O2H')->first()->idmedio_reserva;
+            $num_o2h=$citas->where('idmedio_reserva',$m_o2h)->count();
+            $prct_o2h=number_format(($num_o2h/$citas_reservadas_actual)*100,1);
+
+            $m_consultorio=Medio_reserva_citaModel::where('codigo','CTO')->first()->idmedio_reserva;
+            $num_consultorio=$citas->where('idmedio_reserva',$m_consultorio)->count();
+            $prct_consultorio=number_format(($num_consultorio/$citas_reservadas_actual)*100,1);
+
+            $m_buzon=Medio_reserva_citaModel::where('codigo','BZV')->first()->idmedio_reserva;
+            $num_buzon=$citas->where('idmedio_reserva',$m_buzon)->count();
+            $prct_buzon=number_format(($num_buzon/$citas_reservadas_actual)*100,1);
+
+            $m_campania=Medio_reserva_citaModel::where('codigo','CMP')->first()->idmedio_reserva;
+            $num_campania=$citas->where('idmedio_reserva',$m_campania)->count();
+            $prct_campania=number_format(($num_campania/$citas_reservadas_actual)*100,1);
+
+            
+            $data=$this->getDatos($anio);
+
+            return view('estadistica.estadisticaCitas',[
+                'total_citas'=>$citas_reservadas_actual,
+                'crecimiento'=>$incremento_prgt,
+                'citas_online'=>$citas_reservadas_paciente,
+                'cita_dentro_horario'=>$dentro_h,
+                'cita_fuera_horario'=>$fuera_h,
+                'prct_o2h'=>$prct_o2h,
+                'prct_cnsl'=>$prct_consultorio,
+                'prct_bzn'=>$prct_buzon,
+                'prct_cmp'=>$prct_campania,
+                'areaChartData'=>$data
+            ]);
+
+
+        }else{
+            // return [
+            //     'total_citas'=>null,
+            //     'crecimiento'=>0,
+            //     'citas_online'=>null,
+            //     'cita_dentro_horario'=>0,
+            //     'cita_fuera_horario'=>0,
+            //     'prct_o2h'=>null,
+            //     'prct_cnsl'=>null,
+            //     'prct_bzn'=>null,
+            //     'prct_cmp'=>null,
+            //     'areaChartData'=>null
+            // ];
+            return view('estadistica.estadisticaCitas',[
+                'total_citas'=>0,
+                'crecimiento'=>0,
+                'citas_online'=>0,
+                'cita_dentro_horario'=>0,
+                'cita_fuera_horario'=>0,
+                'prct_o2h'=>0,
+                'prct_cnsl'=>0,
+                'prct_bzn'=>0,
+                'prct_cmp'=>0,
+                'areaChartData'=>'[]'
+            ]);  
         }
-        
-        $fuera_h= number_format(($fuera_h/$citas_reservadas_actual)*100,2);
-        $dentro_h=number_format(($dentro_h/$citas_reservadas_actual)*100,2);
-
-      
-        // lugar de reservación de citas
-        $m_o2h=Medio_reserva_citaModel::where('codigo','O2H')->first()->idmedio_reserva;
-        $num_o2h=$citas->where('idmedio_reserva',$m_o2h)->count();
-        $prct_o2h=number_format(($num_o2h/$citas_reservadas_actual)*100,1);
-
-        $m_consultorio=Medio_reserva_citaModel::where('codigo','CTO')->first()->idmedio_reserva;
-        $num_consultorio=$citas->where('idmedio_reserva',$m_consultorio)->count();
-        $prct_consultorio=number_format(($num_consultorio/$citas_reservadas_actual)*100,1);
-
-        $m_buzon=Medio_reserva_citaModel::where('codigo','BZV')->first()->idmedio_reserva;
-        $num_buzon=$citas->where('idmedio_reserva',$m_buzon)->count();
-        $prct_buzon=number_format(($num_buzon/$citas_reservadas_actual)*100,1);
-
-        $m_campania=Medio_reserva_citaModel::where('codigo','CMP')->first()->idmedio_reserva;
-        $num_campania=$citas->where('idmedio_reserva',$m_campania)->count();
-        $prct_campania=number_format(($num_campania/$citas_reservadas_actual)*100,1);
-
-        
-        $data=$this->getDatos($anio);
        
-        return view('estadistica.estadisticaCitas',[
-            'total_citas'=>$citas_reservadas_actual,
-            'crecimiento'=>$incremento_prgt,
-            'citas_online'=>$citas_reservadas_paciente,
-            'cita_dentro_horario'=>$dentro_h,
-            'cita_fuera_horario'=>$fuera_h,
-            'prct_o2h'=>$prct_o2h,
-            'prct_cnsl'=>$prct_consultorio,
-            'prct_bzn'=>$prct_buzon,
-            'prct_cmp'=>$prct_campania,
-            'areaChartData'=>$data
-        ]);
+       
+       
+       
     }
 
     // obtener datos graficas
