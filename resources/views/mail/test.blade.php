@@ -15,7 +15,7 @@ Gracias,<br>
  
 Your order has been shipped!
  
-@component('mail::button', ['url' => $url])
+@component('mail::button', ['url' => 'http://option2healt-devp.herokuapp.com/calendario/'])
 View Order
 @endcomponent
  
