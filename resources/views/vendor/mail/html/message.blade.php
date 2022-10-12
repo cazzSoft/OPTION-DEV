@@ -11,7 +11,7 @@
 
 @slot('header_2')
 @component('mail::header_2', ['url' => config('app.url')])
-{{ config('app.name') }}
+{{-- {{ config('app.name') }} --}}
 @endcomponent
 @endslot
 {{-- Subcopy --}}

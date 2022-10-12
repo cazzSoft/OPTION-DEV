@@ -62,7 +62,7 @@ class CalendarioController extends Controller
         // configuracion para guardar copias de los emails
         $email_tipo=CatalogoModel::where('codigo','EMCT')->first()->idcatalogo;
         $copia_cc=TipoCatalogoModel::where('atributo','cc')->where('idcatalogo',$email_tipo)->first();
-       $copia_bcc=TipoCatalogoModel::where('atributo','bcc')->where('idcatalogo',$email_tipo)->first();
+        $copia_bcc=TipoCatalogoModel::where('atributo','bcc')->where('idcatalogo',$email_tipo)->first();
       
         
             Mail::to($para)
