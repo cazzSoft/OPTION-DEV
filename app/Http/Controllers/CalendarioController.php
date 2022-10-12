@@ -64,15 +64,13 @@ class CalendarioController extends Controller
         $copia_cc=TipoCatalogoModel::where('atributo','cc')->where('idcatalogo',$email_tipo)->first();
         $copia_bcc=TipoCatalogoModel::where('atributo','bcc')->where('idcatalogo',$email_tipo)->first();
       
-        try {
+        
             Mail::to($para)
             ->cc($copia_cc->valor)
             ->bcc($copia_bcc->valor)
             ->send(new SendMails());
             return 1;
-        } catch (\Throwable $th) {
-            return 0;
-        }
+        
         
               
     }
