@@ -58,7 +58,7 @@ class CalendarioController extends Controller
     {
         // $para=$datos['email'];
         $para='notifycost@gmail.com';
-        dd(config('app.url')); 
+        
         // configuracion para guardar copias de los emails
         $email_tipo=CatalogoModel::where('codigo','EMCT')->first()->idcatalogo;
         $copia_cc=TipoCatalogoModel::where('atributo','cc')->where('idcatalogo',$email_tipo)->first();
