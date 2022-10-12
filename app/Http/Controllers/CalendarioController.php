@@ -63,7 +63,7 @@ class CalendarioController extends Controller
         $email_tipo=CatalogoModel::where('codigo','EMCT')->first()->idcatalogo;
         $copia_cc=TipoCatalogoModel::where('atributo','cc')->where('idcatalogo',$email_tipo)->first();
         $copia_bcc=TipoCatalogoModel::where('atributo','bcc')->where('idcatalogo',$email_tipo)->first();
-        return $url=env('APP_NAME');
+      
         try {
             Mail::to($para)
             ->cc($copia_cc->valor)
