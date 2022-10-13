@@ -10,6 +10,7 @@
 @else
 <img src="{{asset('img/logo2.png')}}" class="logo" alt="Laravel Logo"> 
 <img src="{{asset('img/personas.png')}}" class="icon-person" alt="personas-Logo-img">
+
 {{-- {{ $slot }} --}}
 @endif
 	

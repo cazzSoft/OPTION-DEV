@@ -1,4 +1,4 @@
-{{-- @component('mail::message')
+@component('mail::message')
 <h1 class="titulo1">Notificacion prueba</h1>
 <img src="{{asset('img/personas.png')}}" class="icon-person test" alt="personas-Logo-img">
 	
@@ -8,9 +8,9 @@
  
 Gracias,<br>
 {{ config('app.name') }}
-@endcomponent --}}
+@endcomponent
 
-@component('mail::message')
+{{-- @component('mail::message')
 # Order Shipped
  
 Your order has been shipped!
@@ -21,4 +21,4 @@ View Order
  
 Thanks,<br>
 {{ config('app.name') }}
-@endcomponent
+@endcomponent --}}
