@@ -2,16 +2,11 @@
 /public/hot
 /public/storage
 /public/FotoPortada
-
+/public/FotoPerfil
 /public/PortadaNoticia
+/public/Receta_medica
 
-/storage/*.key
-<<<<<<< HEAD
-/vendor
-=======
 vendor
-
->>>>>>> developing
 .env
 .env.backup
 .phpunit.result.cache

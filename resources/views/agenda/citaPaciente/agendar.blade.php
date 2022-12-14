@@ -182,7 +182,7 @@
   		<link rel="stylesheet" href="{{secure_asset('vendor/datepicker/css/bootstrap-datepicker.css')}}">
 
 		<!-- BS Stepper -->
-		<link rel="stylesheet" href="{{secure_asset('../vendor/bs-stepper/css/bs-stepper.min.css')}}">
+		<link rel="stylesheet" href="{{secure_asset('vendor/bs-stepper/css/bs-stepper.min.css')}}">
 
 		{{-- gestion de cita paciente --}}
 		<link rel="stylesheet" href="{{ asset('css/agendar.css') }}">
