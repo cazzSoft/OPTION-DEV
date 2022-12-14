@@ -71,7 +71,16 @@
 
 }
 
-
+/*stilos sidebar left*/
+.text-pie-app{
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+  /* Gris 3 */
+  color: #C7C7C7;
+}
 
 .text-menu{
   position: absolute;

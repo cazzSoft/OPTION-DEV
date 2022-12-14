@@ -60,6 +60,11 @@ return [
             'root' => public_path('DocumentosBiblioteca'),
         ], 
 
+        'diskDocumentos_medicos' => [
+            'driver' => 'local',
+            'root' => public_path('/'),
+        ], 
+
         'diskFtp' => [
             'driver' => 'sftp',
             'host' => 'sparkling-sea-10352.sftptogo.com',
@@ -87,6 +92,10 @@ return [
         'diskPortadaNoticia' => [
             'driver' => 'local',
             'root' => public_path('PortadaNoticia'),
+        ],
+         'diskRecetamedica' => [
+            'driver' => 'local',
+            'root' => public_path('Receta_medica'),
         ],
         
         'diskDocumentosPerfilUser' => [

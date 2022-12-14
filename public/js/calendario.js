@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
     headerToolbar: {
       left: 'prev,next today',
-      center: 'title',
+      // center: 'title',
       right: 'dayGridMonth,timeGridWeek',
       
     },
@@ -62,6 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const h_ini = moment(arg.start, ["h:mm A"]).format("HH:mm A");
       const h_fin = moment(arg.end, ["h:mm A"]).format("HH:mm A");
 
+      $('#fecha_text').addClass('d-none');
+      $('#hora_select').addClass('d-none');
+      $('.fecha').removeClass('d-none');
+      $('.hora').removeClass('d-none');
       
       $('#fecha_text').html(`
           <small class="text-capitalize" > <i class="fa-regular fa-clock mr-2"></i> ${text_dia}, ${num_dia} de</small> 
@@ -81,11 +85,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
       
       $('#modal-form-cita').modal('show');
+      var fecha=$('#fecha').val();
+      get_horarios(fecha);
 
     },
     
     eventClick: function(info) {
-     console.log(`entra ${fff++}`);
+     
+      // actualizar select de horarios
+      const fecha = moment(info.event.start, ["Y-m-d"]).format('Y-M-D');
+      get_horarios(fecha);
+      
+
+
       var evento=info.event; 
       $('.title-cita').html("");
       $('.title-cita').html(`${evento._def.title}`);
@@ -100,21 +112,29 @@ document.addEventListener('DOMContentLoaded', function() {
       const h_fin = moment(info.event.end, ["h:mm A"]).format("HH:mm A");
 
       
+      
       $('#text-fecha-info').html(`
           <small class="text-capitalize" > <i class="fa-regular fa-clock mr-2"></i> ${text_dia}, ${num_dia} de</small> 
           <small class="text-capitalize" >${text_mes} </small>
         `);
 
-      $('#text-hora-info').html(` <small>${h_ini} - ${h_fin}  </small>`);
+      
       
       $('#modal-info-cita').modal('show');
 
+      // cargamos datos al boton iniciar cita
+      $('#btn-iniciar-cita').attr('onclick',`iniciar_cita("${info.event.id}")`);
 
+
+      
+      
       $.ajaxSetup({
           headers: {
               "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
           },
       });
+
+
 
       $.ajax({
           url: "/calendario/edit/"+info.event.id , 
@@ -125,9 +145,22 @@ document.addEventListener('DOMContentLoaded', function() {
             limpiarCampos();
             $('#modal-info-cita').modal('hide');
             $('#idcita').val(info.event.id);
+
+            
+
+
             let array=data.request;
             if( array.length!=0){ 
               
+              const h_ini = moment(array.hora_inicio, ["h:mm A"]).format("HH:mm A");
+              const h_fin = moment(array.hora_fin, ["h:mm A"]).format("HH:mm A");
+              
+              $('#text-hora-info').html(` <small>${h_ini} - ${h_fin}  </small>`);
+
+              setTimeout(function(){
+                $('#hora').val(`${array.hora_inicio} ${array.hora_fin}`).trigger('change');
+              }, 1000);
+
               $('#fecha_text').addClass('d-none');
               $('#hora_select').addClass('d-none');
               $('.fecha').removeClass('d-none');
@@ -154,14 +187,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 $('#detalle').val(array.detalle);
                 $('#tipo_cita').val(array.tipo_cita).trigger('change');
                 $('#idmedio_reserva').val(array.idmedio_reserva).trigger('change');
-                $('#hora').val(`${array.hora_inicio} ${array.hora_fin}`).trigger('change');
+                
+
+               
                 var today = new Date(array.fecha).toISOString().split('T')[0];
                 $("#fecha").val(today);
 
                 $("#method_cita").val('PUT');
                 $("#btn-save-cita-form").html('Guardar cambios');
                 $('#btn-cancelar-cita-form').removeClass('d-none');   
-                
+
+
             }
           },
 
@@ -233,6 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#modal-form-cita').modal('show');
         
       });
+
+      
     },
 
     events:`${url}/calendario/citas`,
@@ -253,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
   calendar.render();
   // calendar.setOption('locale',initialLocaleCode );
   calendar.setOption('themeSystem', 'bootstrap');
-  calendar.setOption('timeZone','local');
+  // calendar.setOption('timeZone','local');
 
  
 });

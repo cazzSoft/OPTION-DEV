@@ -58,11 +58,17 @@ var url=window.location.protocol+'//'+window.location.host;
   });
 
   
-
-  $('#search-user').click(function (e) {
+$('#search-user').click(function (e) {
   	$('.dropdown-menu-cita').removeClass('show');
   	$('#dropdownCita').addClass('d-none');
-  });
+});
+
+
+// evento para obtener horario de acuerdo a la fecha
+$('#fecha').change(function (e) {
+    const fecha=$('#fecha').val();
+    get_horarios(fecha);
+});
 
 //consulta usuario
 function obtenerUsuario(user) {
@@ -70,7 +76,6 @@ function obtenerUsuario(user) {
     $('.dropdown-menu-cita').removeClass('show');
     $('#dropdownCita').addClass('d-none');
     $.get("/calendario/usuario/"+user, function (data) {
-        console.log(' trae el usuario');
         let user=data.request;
         $('#name').val(user.name);
         $('#idpaciente').val(user.id);
@@ -89,8 +94,34 @@ function obtenerUsuario(user) {
     });    
 }
 
-  // evento mostrar campo de direccion en el form cita 
-  $('#tipo_cita').change(function (e) {
+// funcion para obtener horarios de acuerdo a la fecha seleccionada
+function get_horarios(fecha) {
+   
+    // $("#hora").empty();
+    $('#hora').html('').select2({data: [{id: '', text: ''}]})
+    $.get("/calendario/get_horario/"+fecha, function (data) {
+
+        // actualizacion de select hora
+        const dat=[];
+        $.each(data.request, function (i, item) {
+            
+            $items={'id':item['valor_h'],'text':item['text_h']}; 
+             dat.push( $items);
+        });
+       
+        $("#hora").select2({
+          data: dat
+        });
+
+    }).fail(function (data) {
+        var data = data.responseJSON;
+        sweetalert(data.jsontxt.msm, data.jsontxt.estado);
+    });    
+}
+
+
+// evento mostrar campo de direccion en el form cita 
+$('#tipo_cita').change(function (e) {
     var tipo_cita=$('#tipo_cita').val();
     if (tipo_cita=='precencial') {
       $('#detalle').removeClass('d-none');
@@ -101,7 +132,7 @@ function obtenerUsuario(user) {
       $('#edad_imc').prop('required',false);
       $('#detalle').val('');
     }
-  });
+});
 
 // evento para registrar datos del form cita
   $("#formCita").on("submit", function (e) {
@@ -168,9 +199,9 @@ function registroCita() {
         tipo_cita: $("#tipo_cita").val(),
         detalle: $("#detalle").val(),
         idmedio_reserva: $("#idmedio_reserva").val(),
-        text_hora: $('#hora_select').html()
+        text_hora:  $('select[name="hora"] option:selected').text()
      };
-     
+      
     $.ajax({
         url: "/calendario", 
         method: "POST", 
@@ -181,7 +212,12 @@ function registroCita() {
           // mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
           calendar.refetchEvents();
           sweetalert(data.jsontxt.msm, data.jsontxt.estado);
-          $('#modal-form-cita').modal('hide');
+          
+
+          // en caso que registre una cita en la misma fecha en la misma hora
+          if(data.jsontxt.estado!='error'){
+            $('#modal-form-cita').modal('hide');
+          }
 
           // efecto deshavilitar modal form
           $('.atenuar-modal-form ').removeClass('overlay ');
@@ -192,15 +228,18 @@ function registroCita() {
         error: function (data) {
             var statusText = data.statusText;
             var data = data.responseJSON;
+            console.log(data.jsontxt.msm);
+
             if (statusText == "Not Implemented") {
                 //error 501
                 $.each(data.request, function (i, item) {
                     mostrar_toastr(item, data.jsontxt.estado,9000);
                     // sweetalert(item, data.jsontxt.estado);
                 });
+                sweetalert(data.jsontxt.msm, data.jsontxt.estado);
             } else {
                 mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
-
+                
             }
 
            // efecto deshavilitar modal form
@@ -215,7 +254,7 @@ function registroCita() {
 function actualizaCita() {
 
     // efecto deshavilitar modal form
-    $('.atenuar-modal-form ').addClass('overlay ');
+    $('.atenuar-modal-form').addClass('overlay ');
     $('.cerrar-form').addClass('d-none');
     $('.efect-cerrar').removeClass('d-none');
 
@@ -252,7 +291,11 @@ function actualizaCita() {
           // mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
           calendar.refetchEvents();
           sweetalert(data.jsontxt.msm, data.jsontxt.estado);
-          $('#modal-form-cita').modal('hide');
+          
+          // en caso que registre una cita en la misma fecha en la misma hora
+          if(data.jsontxt.estado!='error'){
+            $('#modal-form-cita').modal('hide');
+          }
 
           // efecto deshavilitar modal form
           $('.atenuar-modal-form ').removeClass('overlay ');
@@ -302,9 +345,10 @@ function limpiarCampos() {
 
 
   $('#fecha_text').removeClass('d-none');
-  $('#hora_select').removeClass('d-none');
+  // $('#hora_select').removeClass('d-none');
   $('.fecha').addClass('d-none');
-  $('.hora').addClass('d-none');
+  // $('.hora').addClass('d-none');
+  $('#hora_select').addClass('d-none');
   $('.search-usuario').removeClass('d-none');
   $("#method_cita").val('POST');
   $("#btn-save-cita-form").html('Guardar cita');
@@ -314,4 +358,9 @@ function limpiarCampos() {
   $('#telefono').prop('readonly',false,);
   $('#name').prop('readonly',false);
   $('#email').prop('readonly',false);
+}
+
+// funcion para iniciar cita
+function iniciar_cita(id) { 
+    window.location.href = `${url}/cita/get/${id}`;
 }

@@ -6,6 +6,7 @@
 @section('plugins.Sweetalert2',true)
 
 
+
 {{-- cuerpo de la pagina --}}
 @section('contenido')
     <div class="row ">
@@ -54,17 +55,14 @@
   <script src="{{ secure_asset('vendor/moment/moment.min.js') }}"></script>
   <script src="{{ secure_asset('vendor/moment/moment-with-locales.js') }}"></script>
     @if(session()->has('info'))
-
-       <script >
-        alert()
-         mostrar_toastr('{{session('info')}}','{{session('estado')}}')
-       </script>
+      <script >
+         sweetalert('{{session('info')}}','{{session('estado')}}')
+      </script>
     @endif
 
     {{-- Mensaje de informacion --}}
     @if(isset($info))
       <script >
-         // mostrar_toastr('{{$info}}','{{$estado}}');
          sweetalert('{{$info}}','{{$estado}}');
       </script>
     @endif
@@ -72,6 +70,7 @@
   {{-- gestion js calendario --}}
   <script src="{{ asset('/js/calendario.js') }}"></script>
    <script src="{{ asset('/js/gestionSaveAgenda.js') }}"></script>
+  
   {{-- jquery-ui --}}
   <script src="{{ asset('/js/jquery-ui.js') }}"></script>
   <script >
@@ -86,6 +85,6 @@
     });
 
    
-  </script>
+  </script> 
   
 @stop

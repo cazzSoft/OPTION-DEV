@@ -39,6 +39,7 @@ use Illuminate\Support\Facades\Auth;
             // Route::get('/edit-email', 'PasswordResetController@reset');
         //RUTA DE ENVIO DE CONTACTO
         Route::post('/send_email_contac', 'PrincipalController@send_email');   
+
     });
    
    
@@ -62,6 +63,7 @@ use Illuminate\Support\Facades\Auth;
          Route::post('register', 'Auth\RegisterController@register'); 
      });
 
+     
 
 //RUTAS PERMITIDAS  DENTRO DE SESSION
     Route::group(['middleware'=>'auth'],function (){
@@ -189,12 +191,37 @@ use Illuminate\Support\Facades\Auth;
             Route::get('/delete/{id}', 'CalendarioController@destroy');
             Route::get('/edit/{id}', 'CalendarioController@edit');
             Route::put('/update/{id}', 'CalendarioController@update');
-
             Route::get('/email', 'CalendarioController@enviar');
+            Route::get('/get_horario/{fecha?}', 'CalendarioController@get_horario_dia');
+
             Route::get('/fecha', 'CalendarioController@fecha');
             
+
         });
 
+         //RUTAS PARA GESTION DE INICIAR CITA MEDICAS
+        Route::prefix('cita')->group(function () {
+            Route::resource('/save', 'CitaMedicaController');
+            Route::get('/get/{id}', 'CitaMedicaController@iniciar_cita');
+            Route::post('/pacienteUpdate', 'CitaMedicaController@updatePaciente');
+            Route::post('/pacienteUpdate_dm', 'CitaMedicaController@updatePaciente_datosMedicos');
+            Route::get('/get_ps/{id}/{idcita}', 'CitaMedicaController@getPreguntasSeccion');
+            Route::get('/get_pregunta/{id}', 'CitaMedicaController@getPreguntas');
+            Route::post('/savePreguntas', 'CitaMedicaController@save_pregunta');
+             Route::get('/get_datos_paciente/{id}', 'CitaMedicaController@obtenerPaciente');
+        });
+
+         //RUTAS PARA GESTION DE HORARIOS MEDICOS
+        Route::prefix('horario')->group(function () {
+            Route::resource('/gestion', 'GestionHorarioMedicoController');
+            Route::get('/estado/{id}/{est}', 'GestionHorarioMedicoController@estado_horario');
+           
+        });
+         //RUTAS PARA GESTION DE PREFERENCIA DE CUENTA MEDICOS
+        Route::prefix('preferencia')->group(function () {
+            Route::resource('/gestion', 'PreferenciaCuentaMedicoController');
+            
+        });
         //RUTAS PARA ESTADISTICAS
         Route::prefix('estadistica')->group(function () {
             Route::resource('/', 'EstadisticaController');
@@ -207,6 +234,18 @@ use Illuminate\Support\Facades\Auth;
             Route::resource('/', 'BannerController');
             Route::get('/lastOrden', 'BannerController@lastOrden');
         });
+
+         //RUTAS PARA GESTION CITAS PACIENTE AGENDAMIENTO
+        Route::prefix('agenda')->group(function () {
+            Route::resource('cita/', 'AgendaCitaPaciente');
+            Route::get('/form_cita/{idtp}', 'AgendaCitaPaciente@datos_agendamiento');
+            Route::post('/save', 'CalendarioController@save_cita_paciente');
+            Route::get('/horario_cita/{fecha?}', 'AgendaCitaPaciente@get_horario_citas_fechas');
+            // Route::get('cita_nueva/{id?}', 'AgendaCitaPaciente@show');
+
+        });
+
+
         // RUTA PARA RECUPERAR CONTRASEÑAS
         // Route::get('/passworduser', 'PrincipalController@user_clave');
  

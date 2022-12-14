@@ -441,7 +441,7 @@ $('#file-upload').change(function () {
 	     	// mostrar_toastr(data.jsontxt.msm, data.jsontxt.estado);
     	    if(img){
 	        	  Swal.fire({
-	        			title: 'Aptualizacion de foto de perfil',
+	        			title: 'Actualización de foto de perfil',
 	        		    text: "Estas seguro que deseas ejecutar los cambios",
 	        		    icon: 'question', //question ,info, warning, success, error
 	        		    showCancelButton: true,

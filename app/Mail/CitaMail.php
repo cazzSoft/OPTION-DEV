@@ -46,6 +46,10 @@ class CitaMail extends Mailable
                             ->with(['data'=>$this->datos ,'url'=>$url])
                             ->markdown('mail.cita-update');
             }else if($this->tipo_notify=='nt-cita'){
+        }else if($this->tipo_notify=='nt-medico'){
+           return $this->subject('Invitación:  para cita médica '.$this->datos['titulo'].' '.$this->datos['fecha'].' '.$this->datos['hora'])
+                       ->with(['data'=>$this->datos ,'url'=>$url])
+                       ->markdown('mail.medico'); 
         }
        
 

@@ -1,0 +1,14 @@
+[class*=icheck-]>input[type=radio]:first-child+label::before {
+    border-radius: 0% !important;
+    background: #fff;
+}
+
+.icheck-info>input:first-child:checked+label::before {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.select2-selection--multiple .select2-selection__choice {
+    background-color: #5cc6f1 !important;
+}
+

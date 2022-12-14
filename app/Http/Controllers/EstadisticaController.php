@@ -36,7 +36,12 @@ class EstadisticaController extends Controller
                             ->where('estado','AT')
                             ->where('activo','1')
                             ->count();
-            $incremento_prgt=(($citas_reservadas_actual - $citas_reservadas_anterior) /  $citas_reservadas_anterior)*100;
+            try {
+                    $incremento_prgt=(($citas_reservadas_actual - $citas_reservadas_anterior) /  $citas_reservadas_anterior)*100;           
+             } catch (\Throwable $e) {
+                  $incremento_prgt=0;
+             }             
+          
 
 
             // citas reservada dentro y fuera del horario de trabajo

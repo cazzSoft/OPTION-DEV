@@ -1,0 +1,104 @@
+.content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+	margin-left: 0px !important;
+}
+
+.sidebar_{
+     margin-left: -250px;
+}
+
+.nav_content{
+ 	display: none;
+}
+
+.content-header {
+ padding: 3px .5rem !important; 
+}
+
+/*sidebar horarios*/
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-right: 1px solid #BDBDBD;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  display: block;
+
+  font-family: 'Calibri';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #4F4F4F;
+}
+
+.sidenav h3{
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+
+	/* Gray 2 */
+
+	color: #4F4F4F;
+}
+
+.sidenav a:hover {
+  color: #0FADCE;
+
+}
+
+.main {
+  margin-left: 250px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+  font-family: 'Calibri';
+  font-style: normal;
+  color: #606060;
+}
+
+#navbarCollapse{
+  display: none !important;
+}
+
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #0FADCE transparent transparent transparent !important;
+}
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #0FADCE !important;
+}
+
+.select2-container--default .select2-selection--single {
+  border-top: 1px solid #ced4da;
+  border-right: 1px solid #ced4da;
+  border-left: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #0FADCE; 
+    color: #fff;
+}
+.select2-selection__rendered{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: left;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

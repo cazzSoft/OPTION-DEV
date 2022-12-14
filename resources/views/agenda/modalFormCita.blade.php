@@ -39,35 +39,18 @@
                   </div>
                   <div class="col-6">
                     <div class="form-group fecha d-none" >
-                      <input type="date" class="form-control" id="fecha">
+                      <input type="date" class="form-control" id="fecha" required>
                     </div>
                   </div>
                   <div class="col">
-                    <div class="form-group hora d-none" >
-                      <select class="form-control select2 " data-placeholder="Seleccione un horario" value="" id="hora" >
+                    <div class="form-group hora d-none2" >
+                      <select class="form-control select2 " data-placeholder="Seleccione un horario" value="" name="hora" id="hora"  >
                         <option></option>
-                        <option  value="06:00 06:30">06:00am - 06:30am</option>
-                        <option  value="06:30 07:00">06:30am - 07:00am</option>
-                        <option  value="07:00 07:30">07:00am - 07:30am</option>
-                        <option  value="07:30 08:00">07:30am - 08:00am</option>
-                        <option  value="08:00 08:30">08:00am - 08:30am</option>
-                        <option  value="08:30 09:00">08:30am - 09:00am</option>
-                        <option  value="09:00 09:30">09:00am - 09:30am</option>
-                        <option  value="09:30 10:00">09:30am - 10:00am</option>
-                        <option  value="10:00 10:30">10:00am - 10:30am</option>
-                        <option  value="10:30 11:00">10:30am - 11:00am</option>
-                        <option  value="11:00 11:30">11:00am - 11:30am</option>
-                        <option  value="11:30 12:00">11:30am - 12:00pm</option>
-                        <option  value="12:00 12:30">12:00pm - 12:30pm</option>
-                        <option  value="12:30 13:00">12:30pm - 13:00pm</option>
-                        <option  value="13:00 13:30">13:00pm - 13:30pm</option>
-                        <option  value="13:30 14:00">13:30pm - 14:00pm</option>
-                        <option  value="14:00 14:30">14:00pm - 14:30pm</option>
-                        <option  value="14:30 15:00">14:30pm - 15:00pm</option>
-                        <option  value="15:00 15:30">15:00pm - 15:30pm</option>
-                        <option  value="15:30 16:00">15:30pm - 16:00pm</option>
-                        <option  value="16:00 16:30">16:00pm - 16:30pm</option>
-                        <option  value="16:30 17:00">16:30pm - 17:00pm</option>
+                        @if(isset($horario_cita))
+                          @foreach($horario_cita as $key=>$item)
+                            <option  value="{{$item['valor_h']}}">{{$item['text_h']}}</option>
+                          @endforeach
+                        @endif
                       </select>
                      {{--  <input type="hidden" class="form-control" id="hora_inicio">
                       <input type="hidden" class="form-control" id="hora_fin"> --}}

@@ -1,0 +1,16 @@
+.img-h{
+	width: 174px;
+	height: 174px;
+}
+.text_{
+	font-family: 'Calibri';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+	color: #BDBDBD;
+}
+.text-light_{
+	color: #E0E0E0;
+}

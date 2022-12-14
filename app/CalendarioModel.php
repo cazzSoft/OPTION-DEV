@@ -17,6 +17,11 @@ class CalendarioModel extends Model
         return $this->hasMany('App\User', 'id', 'idpaciente');
     }
 
+    public function detalle_cita()
+    {
+        return $this->hasMany('App\Detalle_cita_medicaModel', 'idagenda', 'idagenda');
+    }
+
     //encritamos el idpaciente
     public function getIdpacienteencrypAttribute()
     {

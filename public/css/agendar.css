@@ -1,0 +1,183 @@
+input[type="file"] {
+    display: none;
+}
+
+.text-lead {
+  font-family: 'Calibri' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  line-height: 24px !important;
+  /*text-align: center !important;*/
+} 
+
+.active .bs-stepper-circle {
+    background-color: #fff !important;
+    color: #0FADCE;
+    border: 2px solid #0FADCE !important;
+}
+
+.active .bs-stepper-label {
+    color: #0FADCE;
+}
+.bs-stepper .line, .bs-stepper-line {
+    /* Gris Bajo */
+    background: #F1F1F1 !important;
+    border-radius: 14px !important;
+    height: 8px !important;
+}
+.bs-stepper-circle {
+    background-color: #F1F1F1;
+    color: #A2A2A2;
+}
+
+.bs-stepper .step-trigger {
+   
+    flex-direction: column !important;
+    padding: 10px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: #0FADCE transparent transparent transparent !important;
+ 
+}
+.select2-container--default .select2-selection--single {
+  border-top: 0px solid #ced4da;
+  border-right: 0px solid #ced4da;
+  border-left: 0px solid #ced4da;
+  border-bottom: 0px solid #ced4da;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #0FADCE !important;
+    color: #fff !important;
+}
+
+
+.text-mes{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5vw;
+    line-height: 37px;
+    color: #0FADCE;
+}
+
+.text-year{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5vw;
+    line-height: 31px;
+    color: #4F4F4F;
+}
+.text-semana{
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4vw;
+    line-height: 24px;
+    color: #4F4F4F;
+}
+
+/*mini calendario*/
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover {
+    background-color: #0FADCE !important;
+    background-image: -moz-linear-gradient(to bottom, #0FADCE, #0FADCE);
+    background-image: -ms-linear-gradient(to bottom, #0FADCE, #0FADCE);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0FADCE), to(#0FADCE));
+    background-image: -webkit-linear-gradient(to bottom, #08c, #0FADCE);
+    background-image: -o-linear-gradient(to bottom, #08c, #0FADCE);
+    background-image: linear-gradient(to bottom, #0FADCE, #0FADCE);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#08c', endColorstr='#0FADCE', GradientType=0);
+    border-radius: 8px; 
+}
+.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td.active.disabled, .datepicker table tr td:hover {
+    background-color: #0FADCE !important;
+    background-image: -moz-linear-gradient(to bottom, #0FADCE, #0FADCE);
+    background-image: -ms-linear-gradient(to bottom, #0FADCE, #0FADCE);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0FADCE), to(#0FADCE));
+    background-image: -webkit-linear-gradient(to bottom, #08c, #0FADCE);
+    background-image: -o-linear-gradient(to bottom, #08c, #0FADCE);
+    background-image: linear-gradient(to bottom, #0FADCE, #0FADCE);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#08c', endColorstr='#0FADCE', GradientType=0);
+    border-radius: 33px;
+   color: #fff;
+}
+.no_d>input:first-child:checked+label::before {
+    background-color: #E0E0E0 !important;
+    border: 1px solid #E0E0E0 !important;
+    color: #E0E0E0 ;
+}
+
+[class*=icheck-]>input:first-child:checked+input[type=hidden]+label::after, [class*=icheck-]>input:first-child:checked+label::after {
+    border: 2px solid transparent;
+}
+
+[class*=icheck-]>input:first-child+label::before {
+  
+    border: 1px solid #BDBDBD !important;
+}
+
+.bz-desactiva {
+    background-color: #E0E0E0!important;
+    color: #4F4F4F !important;
+}
+
+.selected_ {
+    background-color: #c3eaf3!important;
+    color: #fff !important;
+}
+
+.disponible:hover{
+    background-color: #c3eaf3!important;
+    color: #fff !important;
+}
+
+.font-msm {
+    font-family: 'Calibri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height:1vw;;
+    display: flex;
+    color: #BDBDBD;
+}
+.img_gris{
+    width: 20%;
+    max-width:25% ;
+    min-width:25%  ;
+}
+.list-file{
+     list-style: none;
+     
+}
+@media (min-width:100px) and (max-width: 767.98px) { 
+  .content-header{
+    /*display: none;*/
+  }
+  .content{
+    margin-bottom: 40px;
+    padding-right: 5px !important; 
+    /*padding-left: 5px !important;*/
+    /*margin-top: 60px  !important;*/
+    font-family: 'Calibri' !important;
+    font-style: normal !important;
+  }
+  .container-fluid {
+    padding: 0px !important;
+  }
+  
+  .font-msm {
+   
+    font-weight: 400;
+    font-size: 14px;
+    line-height:15px;;
+    text-align: center;
+    color: #BDBDBD;
+    }
+
+}

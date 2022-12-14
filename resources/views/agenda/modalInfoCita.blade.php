@@ -21,7 +21,7 @@
             <div class="col mt-3" id="text-fecha-info"><i class="fa-regular fa-clock"></i> Lunes, 26 de Septiembre</div>
             <div class="col mt-3" id="text-hora-info"> 9:00 am - 10:00 am</div>
             <div class="col-12 row mt-3">
-              <div class="col"> <button class="btn btn-info btn-block btn-sm">Iniciar cita</button></div>
+              <div class="col"> <button class="btn btn-info btn-block btn-sm" id="btn-iniciar-cita" onclick="iniciar_cita()">Iniciar cita</button></div>
               <div class="col"> <button class="btn btn-default btn-block btn-sm border border-info text-info_ " id="btn-editar-cita">Editar cita</button></div> 
             </div>
           </div>

@@ -338,7 +338,7 @@
                     <div class="form-group">
                         <label for="idespecialidades" class="text-muted">Seleccione Áreas o especialidades de su interés <span class="text-red">*</span></label>
                         <select multiple class="form-control  select2 border border-white shadow-sm @error('idespecialidades') is-invalid @enderror" style="width: 100%;"
-                            data-placeholder="Seleccione su ciudad" name="idespecialidades[]" id="idespecialidades" >
+                            data-placeholder="Seleccione" name="idespecialidades[]" id="idespecialidades" >
                             <option></option>
                             @if(isset($lista_especialidad))
                                 @foreach($lista_especialidad as $espe)

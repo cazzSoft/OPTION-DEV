@@ -39,9 +39,18 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
 </li> --}}
+@if(Auth::user()->type_user()=='dr')
+    <li class="nav-item dropdown ml-1">
+        <a class="nav-link"  href="{{url('horario/gestion')}}"> 
+           <i class="fa-solid fa-gear fa-lg"></i>
+          
+        </a>
+    </li>
+@endif
+
 <li class="nav-item dropdown">
     <a class="nav-link mr-1" data-toggle="dropdown" href="#" onclick="notyfyEstado()">
-        <i class="far fa-bell "></i>
+        <i class="far fa-bell fa-lg"></i>
         @if(Auth::user()->notify()['count_notify']!=0)
             <span class="badge badge-danger navbar-badge" id="badgeNoty"> {{Auth::user()->notify()['count_notify']}} </span>
         @else

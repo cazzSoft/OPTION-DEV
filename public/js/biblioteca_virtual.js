@@ -45,7 +45,7 @@ function editar_archivo(id) {
  		$("#idespecialidades").val(data.request.idespecialidades).trigger("change");
  		
  		$('.file_txt').removeClass('d-none');
- 		$('.file_img').addClass('d-none');
+ 		$('.file_img').addClass('d-none'); 
 		$('#method_bibli').val('PUT'); // decimo que sea un metodo put Actualizar
 		$('#for_archivo').attr('action','/biblioteca/show/'+id);
 		$('#btnsave').html(`<i class="fa fa-save"></i> Actualizar`); // cambiamos nombre del boton

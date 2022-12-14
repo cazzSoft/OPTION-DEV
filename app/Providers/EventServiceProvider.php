@@ -185,6 +185,13 @@ class EventServiceProvider extends ServiceProvider
                            'icon' => 'fa-solid fa-hands-holding-circle', 
                           
                          ],
+                         [
+                           'text' => 'Agendar cita',
+                           'url'  => '/agenda/cita',
+                           'icon' => 'fas fa-calendar-plus', 
+                           'active' => ['agenda/form_cita/*','agenda/cita_nueva/*']
+                          
+                         ],
                         
                     );
                }else if($consul=='dr'){

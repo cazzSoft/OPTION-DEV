@@ -10,5 +10,8 @@ class CatalogoModel extends Model
     protected $primaryKey  = 'idcatalogo';
     public $timestamps = false;
 
-    
+    public function tipo_catalogo()
+    {
+        return $this->hasMany('App\TipoCatalogoModel', 'idcatalogo', 'idcatalogo');
+    }
 }

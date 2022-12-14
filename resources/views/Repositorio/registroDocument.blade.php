@@ -41,7 +41,7 @@
           <div class=" col-md-12 col-lg-12 order-1 order-md-2 ">
               <form method="POST" action="{{ url('biblioteca/show') }}" enctype="multipart/form-data" id="for_archivo" >
                 @csrf
-                <input  type="hidden" name="_method" id="method_bibli" value="POST">
+                <input  type="hidden" name="_method" id="method_bibli" value="POST"> 
                 <div class="row">
 
                   <div class="col-xs-12 col-sm-12 col-md-6 mt-3">

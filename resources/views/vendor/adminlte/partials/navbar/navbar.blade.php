@@ -70,7 +70,7 @@
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white p-0  navbar_lg ">
     <div class=" container-fluid ml-0">
       {{-- Left sidebar toggler link --}}
-      @if(request()->is(['session','log-in-medico','log-in-paciente','password_reset','password_reset*','profile/perfil','medico/info*','medico/perfil']) )
+      @if(request()->is(['session','log-in-medico','log-in-paciente','password_reset','password_reset*','profile/perfil','medico/info*','medico/perfil','horario/gestion','preferencia/gestion']) )
         <a href="{{url('/')}}"  class="navbar-brand2 ">
             <img src="{{asset('/img/logo2.svg')}}"
                  alt="{{ config('adminlte.logo_img_alt', 'AdminLTE') }}"

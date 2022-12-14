@@ -32,7 +32,7 @@
                 <img class="img-circle img-fluid p-1 bg-light" id="preViewImg" src="{{auth()->user()->adminlte_image()}}" alt="{{$datos_p->img}}" >
                 <div class="ribbon-wrapper ">
                   <div class="ribbon border-0 " > 
-                    <span  onclick="menu_perfil()" class="fas fa-plus elevation-1 p-1  img-circle text-info bz-white @movil fa-sm @endmovil "  style="cursor: pointer;" ></span>
+                    <span  onclick="menu_perfil()" class="fas fa-plus elevation-1 p-1  img-circle text-info bz-white @movil fa @endmovil "  style="cursor: pointer;" ></span>
                   </div>
                 </div>
                 <div class="dropdown-menu  " id="myDropdown" style="margin-left: 110px; position: absolute;" >
