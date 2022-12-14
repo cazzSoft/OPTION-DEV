@@ -6,7 +6,6 @@
 /public/PortadaNoticia
 /public/Receta_medica
 
-vendor
 .env
 .env.backup
 .phpunit.result.cache
