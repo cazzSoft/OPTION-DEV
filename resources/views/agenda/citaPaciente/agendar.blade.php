@@ -174,15 +174,15 @@
     @section('include_css') 
 
     	<!-- icheck -->
-    	<link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    	<link rel="stylesheet" href="{{ secure_asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     	
     	<!-- Tempusdominus Bootstrap 4 -->
-  		<link rel="stylesheet" href="{{asset('vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+  		<link rel="stylesheet" href="{{secure_asset('vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
 		
-  		<link rel="stylesheet" href="{{asset('vendor/datepicker/css/bootstrap-datepicker.css')}}">
+  		<link rel="stylesheet" href="{{secure_asset('vendor/datepicker/css/bootstrap-datepicker.css')}}">
 
 		<!-- BS Stepper -->
-		<link rel="stylesheet" href="{{asset('../vendor/bs-stepper/css/bs-stepper.min.css')}}">
+		<link rel="stylesheet" href="{{secure_asset('../vendor/bs-stepper/css/bs-stepper.min.css')}}">
 
 		{{-- gestion de cita paciente --}}
 		<link rel="stylesheet" href="{{ asset('css/agendar.css') }}">
@@ -197,13 +197,13 @@
 	    <script src="{{ secure_asset('vendor/moment/moment-with-locales.js') }}"></script>
 
 	    <!-- Tempusdominus Bootstrap 4 -->
-	   	<script src="{{asset('vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+	   	<script src="{{secure_asset('vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 
 	   	{{-- datepicker --}}
-	   	<script src="{{asset('vendor/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-	   	<script src="{{asset('vendor/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
+	   	<script src="{{secure_asset('vendor/datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+	   	<script src="{{secure_asset('vendor/datepicker/locales/bootstrap-datepicker.es.min.js')}}"></script>
 	     <!-- BS-Stepper -->
-    	<script src="{{asset('../vendor/bs-stepper/js/bs-stepper.min.js')}}"></script>
+    	<script src="{{secure_asset('vendor/bs-stepper/js/bs-stepper.min.js')}}"></script>
 		
 		
 

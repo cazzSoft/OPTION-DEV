@@ -84,8 +84,10 @@ class AgendaCitaPaciente extends Controller
 
 
         // horarios medicos disponibles
-        // $lista_horarios=Horario_medicoModel::with('horario_dias')->where('activo',1)->where('estado',1)->orderBy('hora_inicio','asc')->get();
-
+        $lista_horarios=Horario_medicoModel::where('activo',1)->where('estado',1)->orderBy('hora_inicio','asc')->get();
+        if($lista_horarios=="[]" ){
+            return back()->with(['info'=>'Lo sentimos por ahora no tenemos horarios disponibles..','estado'=>'info']);
+        }
         
        
         // numero de citas asignada para este horario de este medico

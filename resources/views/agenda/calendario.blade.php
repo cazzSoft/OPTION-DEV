@@ -32,7 +32,7 @@
 @section('include_css') 
  
   {{-- fullcalendario css --}}
-  <link rel="stylesheet" href="{{ asset('vendor/lib/main.css') }}">
+  <link rel="stylesheet" href="{{ secure_asset('vendor/lib/main.css') }}">
 
   <link rel="stylesheet" href="{{ asset('css/calendario.css') }}">
   <link rel="stylesheet" href="{{ asset('css/FormCitasRegistro.css') }}">
