@@ -11,10 +11,10 @@
 
 @section('contenido')
   @movil
-    <div class="row mb-4">
+    <div class="row mb-2">
       <div class="col-md-12 ">
           <div class="flex_titulo">
-           <a href="/">  <p class=" text-lead h2 text-info_ ">  <b class="h4"><i class="fas fa-chevron-left mr-0 text-info_ float-left "></i></b>  Agendar cita </p></a> 
+           <a href="/" class="text-info_">  <p class=" text-lead h2 text-info_ ">  <b class="h4"><i class="fas fa-chevron-left mr-0 text-info_ float-left "></i></b>  Agendar cita </p></a> 
           </div>
       </div>
     </div>

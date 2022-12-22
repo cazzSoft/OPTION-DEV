@@ -12,3 +12,37 @@
     background-color: #5cc6f1 !important;
 }
 
+@media (min-width:100px) and (max-width: 767.98px) {
+    .text-decoration {
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 12px;
+    }
+    .text-seccion{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    textarea{
+        font-size: 12px !important;
+    }
+    label{
+         font-size: 14px !important;
+    }
+    .prengunta-text{
+         font-size: 70% !important;
+    }
+    .col-xs-d{
+        width: 70% !important;
+    }
+    .col-xs-p{
+        width: 30px !important;
+    }
+}
+
+
+

@@ -20615,7 +20615,7 @@ html.maximized-card {
 @media (max-width: 575.98px) {
   .fc-toolbar {
     -ms-flex-direction: column;
-    flex-direction: column;
+    flex-direction: none;
   }
   .fc-toolbar .fc-left {
     -ms-flex-order: 1;

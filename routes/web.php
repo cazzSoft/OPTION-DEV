@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes 
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -214,6 +214,7 @@ use Illuminate\Support\Facades\Auth;
          //RUTAS PARA GESTION DE HORARIOS MEDICOS
         Route::prefix('horario')->group(function () {
             Route::resource('/gestion', 'GestionHorarioMedicoController');
+            Route::get('/horarios_app', 'GestionHorarioMedicoController@getHorarios');
             Route::get('/estado/{id}/{est}', 'GestionHorarioMedicoController@estado_horario');
            
         });

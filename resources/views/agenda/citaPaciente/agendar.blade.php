@@ -14,7 +14,7 @@
    	  <div class="row">
    	    <div class="col-md-12 ">
    	        <div class="flex_titulo">
-   	         <a href="{{url('agenda/cita')}}">  <p class=" text-lead h5 text-dark ">  <i class="fas fa-chevron-left mr-3 text-info_"></i>  Agendar cita  </p></a>    
+   	         <a href="{{url('agenda/cita')}}">  <p class=" text-lead h5 text-info_ ">  <i class="fas fa-chevron-left mr-3 text-info_"></i>  Agendar cita  </p></a>    
    	        </div>
    	    </div>
    	  </div>
@@ -34,7 +34,6 @@
 			<div class="col-md-12">
 	            <div class="card card-default shadow-none @movil p-0 ml-0 @else p-4 ml-4 @endmovil">
 	            	<div class=" atenuar-horarios">
-	            		
 	            	</div>
 	            	<div class="card-body p-0">
 	            			
@@ -61,11 +60,11 @@
 			                  	<div class="bs-stepper-content">
 			                    	<div id="sintomas" class="content " role="tabpanel" aria-labelledby="logins-part-trigger">
 			                       		
-			                       		<div class="row">
+			                       		<div class="row p-1 m-0">
 			                       			<div class="col-md-12 mt-4">
-			                       				<label for="exampleInputEmail1" class="h5 text-info_ col-12">Motivo de consulta</label>
+			                       				<label for="exampleInputEmail1" class=" @movil h6 @else h5 @endmovil text-info_ col-12">Motivo de consulta</label>
 			                       			</div>
-		                       				<div class="col-md-6 col-sm-12">
+		                       				<div class="col-md-6 col-sm-12 p-1">
 	                       					  	<div class="form-group row">
 	                       					    	<label class="text-muted col-form-label col-12" for="detalle">¿Cual es la molestia que tiene?</label>
 	                       					    	<textarea class="form-control shadow-sm border border-white col-md-10 col-sm-12"  rows="4" placeholder="Ingrese texto..."  name="detalle"  id="detalle"  autofocus  ></textarea>
@@ -75,7 +74,7 @@
 			                       				<div class="col-md-6 col-sm-12">
 		                       					  	<div class="form-group row">
 		                       					    	<label class="text-muted col-form-label col-12" for="detalle">Adjuntar examenes complementarios:</label>
-		                       					    	<div class="form-group p-2 ">
+		                       					    	<div class="form-group  @movil p-0 m-0 @else p-2 @endmovil">
 		                       					    	  <label for="img_examenes" class="custom-img_examenes text-left text-muted btn border-dark p-2">
 		                       					    	    <i class="fas fa-image text-info_ fa-lg mr-2"></i> Adjuntar 
 		                       					    	    <i class="fa-solid fa-circle-arrow-up text-info_ fa-lg ml-5 pl-4"></i>
@@ -88,31 +87,29 @@
 			                       			@endif
 			                       		</div>
 
-				                    	
-
 				                       	<div class="form-group row">
-				                        	<label for="exampleInputEmail1" class="h5 text-info_ col-12">Datos personales</label>
+				                        	<label for="exampleInputEmail1" class="@movil h6  @else h5  @endmovil text-info_ col-12">Datos personales</label>
 				                      	</div>
 
 				                      	{{-- datos personales user --}}
-				                      	<div class="form-group row ">
+				                      	<div class="form-group row m-0">
 				                      		<input type="hidden" id="idp" value="{{ encrypt(auth()->user()->id)}}">
 				                        	<label class=" col-md-2 col-sm-12 text-muted col-form-label @movil @else text-right @endmovil" for="name">Nombres:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="name" name="name" value="{{auth()->user()->name}}">
 				                      	</div>
-				                      	<div class="form-group row">
+				                      	<div class="form-group row m-0">
 				                        	<label class="col-md-2 col-sm-12 text-muted col-form-label @movil @else text-right @endmovil" for="apellido">Apellidos:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="apellido" name="apellido" value="{{auth()->user()->apellido}}">
 				                      	</div>
-				                      	<div class="form-group row">
+				                      	<div class="form-group row m-0">
 				                        	<label class=" col-md-2 text-muted   @movil @else text-right @endmovil" for="cedula">Cedula o Pasaporte:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="cedula" name="cedula" value="{{auth()->user()->cedula}}">
 				                      	</div>
-				                      	<div class="form-group row">
+				                      	<div class="form-group row m-0">
 				                        	<label class=" col-md-2 text-muted col-form-label  @movil @else text-right @endmovil" for="edad">Edad:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="edad" name="cedula" value="{{ \Carbon\Carbon::parse(auth()->user()->fecha_nacimiento)->age}}">
 				                      	</div>
-				                      	<div class="form-group row">
+				                      	<div class="form-group row m-0">
 				                        	<label class=" col-md-2 text-muted col-form-label  @movil @else text-right @endmovil" for="sexo">Sexo:</label>
 				                        	<div class="col-md-3 col-sm-12 p-0">
 				                        		<select class="form-control select2 form-control-sm shadow-sm "  data-placeholder="Seleccione sexo" style="width: 100%;"  name="sexo" id="sexo">
@@ -131,12 +128,12 @@
 				                        	<input type="number" placeholder="1.70 m" step="0.01" class="form-control shadow-sm col-md-3 col-sm-12 border-white " id="talla" name="talla" value="@if($datos_medicos['talla']>0){{$datos_medicos['talla']}}@endif">
 				                      	</div> --}}
 				                      	
-
 				                      	<div class="row col-12 m-auto">
-				                      		<div class="form-group  text-center m-auto">
+
+				                      		<div class="form-group  text-center m-auto @movil col @endmovil">
 					                      		<div class="mt-4 text-center">
-					                      			 <a href="{{url('agenda/cita')}}" class="card-link  btn btn-white border-info pr-5 pl-5">Cancelar</a>
-					                      			 <button type="button" class="btn btn-secondary  pr-5 pl-5" id="sig_cp" disabled onclick="siguiente()">Siguiente</button>
+					                      			 <a href="{{url('agenda/cita')}}" class="card-link  btn btn-white border-info pr-5 pl-5 mt-2 @movil btn-block @endmovil">Cancelar</a>
+					                      			 <button type="button" class="btn btn-secondary mt-2 pr-5 pl-5 @movil btn-block @endmovil" id="sig_cp" disabled onclick="siguiente()">Siguiente</button>
 					                      		</div>
 					                      	</div>
 			                      		</div>
@@ -148,11 +145,10 @@
 			                    	@include('agenda.citaPaciente.fecha_hora')
 			                      	
 			                      	<div class="row col-12 m-auto">
-			                      		<div class="form-group  text-center m-auto">
+			                      		<div class="form-group  text-center m-auto  @movil col @endmovil">
 				                      		<div class="mt-4 text-center">
-				                      			 
-				                      			 <button type="button" class="btn btn btn-white border-info pr-5 pl-5" onclick="stepper.previous()">Regresar</button>
-				                      			 <button type="submit" class="btn btn-info  pr-5 pl-5"  id="btn_save_cita" >
+				                      			 <button type="button" class="btn btn btn-white border-info pr-5 pl-5  @movil btn-block order-12 @endmovil " onclick="stepper.previous()">Regresar</button>
+				                      			 <button type="submit" class="btn btn-info  pr-5 pl-5 @movil btn-block order-1 @endmovil"  id="btn_save_cita" >
 					                      			 Guardar cita
 				                      			</button>
 				                      		</div>

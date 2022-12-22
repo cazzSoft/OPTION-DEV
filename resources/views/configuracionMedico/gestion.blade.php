@@ -9,16 +9,23 @@
 {{-- cuerpo de la pagina --}}
 
 @section('contenido')
-  	<div class="sidenav sidebar sidebar-mini">
-	  	<h3 class="p-1 mt-4 mb-4">Configuraciones</h3>
-	    <a href="{{url('preferencia/gestion')}}" class="mt-2 d-none  {{ request()->is(['preferencia/gestion']) ? 'text-info_' : '' }}"><i class="fas fa-user-md"></i> Preferencias de la cuenta </a>
-	    <a href="{{url('horario/gestion')}}" class="mt-2 {{ request()->is(['horario/gestion']) ? 'text-info_' : '' }}"><i class="far fa-calendar-check"></i> Horarios</a>
-   
-  	</div>
+	@movil
+    <div class="sidenav sidebar sidebar-mini ">
+      <h3 class="p-1 mt-4 mb-2">Configuraciones</h3>
+      <a href="#" class="mt-2 d-none1  {{ request()->is(['preferencia/gestion']) ? 'text-info_' : '' }}"><i class="fas fa-user-md"></i> Preferencias de la cuenta </a>
+      <a href="{{url('horario/horarios_app')}}" class="mt-2"><i class="far fa-calendar-check"></i> Horarios</a>
+    </div>
+  @else
+    <div class="sidenav sidebar sidebar-mini">
+      <h3 class="p-1 mt-4 mb-4">Configuraciones</h3>
+      <a href="{{url('preferencia/gestion')}}" class="mt-2 d-none  {{ request()->is(['preferencia/gestion']) ? 'text-info_' : '' }}"><i class="fas fa-user-md"></i> Preferencias de la cuenta </a>
+      <a href="{{url('horario/gestion')}}" class="mt-2 {{ request()->is(['horario/gestion']) ? 'text-info_' : '' }}"><i class="far fa-calendar-check"></i> Horarios</a>
+    </div>
+    <div class="main  @movil p-0 m-0 @else mt-3 @endmovil">
+      @yield('contenido-configiracion')
+    </div>
+  @endmovil
 
-	<div class="main  @movil @else mt-3 @endmovil">
-		@yield('contenido-configiracion')
-	</div>
 
 @stop
 
@@ -36,11 +43,10 @@
  {{-- Seccion para insertar js--}}
  @section('include_js')
 
-    {{-- gestion de horarios --}}
- 	 <script src="{{ asset('/js/horario_medico.js') }}"></script>
+  {{-- gestion de horarios --}}
+ 	<script src="{{ asset('/js/horario_medico.js') }}"></script>
 
    {{-- libreria moment --}}
- {{--   <script src="{{ secure_asset('vendor/moment/moment.min.js') }}"></script> --}}
    <script src="{{ secure_asset('https://momentjs.com/downloads/moment.min.js') }}"></script>
 
  	 {{-- Mensaje de informacion --}}

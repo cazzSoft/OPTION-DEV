@@ -10,9 +10,19 @@
 
 @section('content_header')
     <div class="row ">
-	    <div class="col text-center  @movil @else mt-5 @endmovil">
-	        <a href="javascript: history.go(-1)" class="text-leth float-left ">  <i class="fas fa-chevron-left  text-info_ fa-2x ml-1 mb-1 "></i></a>
-	    </div>
+	    @movil
+		    <div class="col text-center mt-1">
+		        <a href="javascript: history.go(-1)" class="text-leth float-left ">  <i class="fas fa-chevron-left  text-info_ fa-lg ml-1 mb-1 "></i> 
+		        	<span class="text-info_ h5 ml-3">Pacientes</span>
+		        </a>
+		    </div>
+	    @else
+	    	<div class="col text-center  @movil @else mt-5 @endmovil">
+	    	    <a href="javascript: history.go(-1)" class="text-leth float-left ">  <i class="fas fa-chevron-left  text-info_ fa-2x ml-1 mb-1 "></i> 
+	    	    	<span class="text-info_ h3 ml-3">Pacientes</span>
+	    	    </a>
+	    	</div>
+	    @endmovil
     </div>
 @stop
 {{-- cuerpo de la pagina --}}
@@ -29,26 +39,27 @@
 						      		<div class="table-responsive pb-2">
 						      			<table id="table_publi_" class=" table table-sm border-0 text-center">
 						      			    <thead>
-						      			        <tr class="text-info">
-						      			           
-						      			            <th width="180px">Nombres </th>
-						      			            <th>Télefono</th>
+						      			        <tr class=" @movil @else text-info_ @endmovil">
+						      			            <th >Nombres </th>
 						      			            <th>Email</th>
+						      			            <th>Télefono</th>
 						      			            <th>Ultima Cita</th>
 						      			        </tr>
 						      			    </thead>
 						      			    <tbody>
-						      			        @if (isset($listaPaciente))
+						      			        @if (isset($listaPaciente) && $listaPaciente!='[]' )
 						      			            @foreach ($listaPaciente as $key => $item)
 						      			                <tr >
-						      			                    
 						      			                    <td>{{ $item->usuario[0]['name'] }}</td>
-						      			                    <td>{{ $item->usuario[0]['telefono'] }}</td>
 						      			                    <td>{{ $item->usuario[0]['email'] }}</td>
+						      			                    <td>{{ $item->usuario[0]['telefono'] }}</td>
 						      			                   	<td>{{$item->fecha }}</td>
-						      			                    
 						      			                </tr>
 						      			            @endforeach
+						      			        @else
+							      			        <tr>
+							      			            <td colspan='4'>No se encontraron datos para mostrar</td>
+							      			        </tr>
 						      			        @endif
 						      			    </tbody>
 						      			</table>		
@@ -66,8 +77,6 @@
     @include('medico.modalAyudaUrl')
     
     @section('include_css') 
-		<!-- BS Stepper -->
-		{{-- <link rel="stylesheet" href="{{asset('../vendor/bs-stepper/css/bs-stepper.min.css')}}"> --}}
 		 <link rel="stylesheet" href="{{ asset('css/lista_publicacion.css') }}">
     @stop  
 
@@ -113,4 +122,4 @@
 		 
     @stop
     
- @stop
+@stop

@@ -48,7 +48,21 @@ class CalendarioController extends Controller
         // horario laboral del medico 
         $lista_horario= $this->horario_de_cita(auth()->user()->id,date('w'),date('Y-m-d'));
        
-        return view('agenda.calendario',['lista_medio'=>$lista_medios,'horario_cita'=>$lista_horario]);
+
+       // datos de fecha header
+       $date = date('Y-m-d');
+       $fecha_formato_str= strtotime($date);
+       $fecha_formato_par=Carbon::parse($date);
+       // $fecha= $fecha_formato_par->format('Y-m-d');
+       $mes_text=$fecha_formato_par->monthName;
+       $año= $fecha_formato_par->format('Y');
+       $num_semana=$fecha_formato_par->format('Y-m-01');
+
+       $semana_del_mes= date('W',$fecha_formato_str) - date("W",strtotime($fecha_formato_par->format('Y-m-01'))) + 1;
+
+       $fecha_ac= ['año'=>$año,'mes'=>$mes_text,'semana'=>$semana_del_mes];
+
+        return view('agenda.calendario',['lista_medio'=>$lista_medios,'horario_cita'=>$lista_horario,'dato_fecha'=>$fecha_ac]);
     }
 
     // obtener horario laboral de citas del medico

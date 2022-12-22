@@ -71,7 +71,6 @@ class DoctoresController extends Controller
     //casos execionales
     public function casos_ex()
     {
-        
         $listacasos=ArticuloModel::withCount(['comentarios'=>function ($q){
            $q->where('activo',1);
        }])->with('medico')->where('tipo','E')->where('estado',1)->orderBy('created_at','desc')->simplePaginate(5);

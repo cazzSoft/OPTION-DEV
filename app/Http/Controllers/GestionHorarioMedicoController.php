@@ -32,6 +32,17 @@ class GestionHorarioMedicoController extends Controller
         return view('configuracionMedico.horario',['lista_dias'=>$lista_dias,'lista_horarios'=>$lista_horarios,'horas_laboral'=>$horas_laboral['horas']]);
     }
 
+    // vista horarios para app
+    public function getHorarios()
+    {
+        $lista_dias=DiasModel::where('activo',1)->get();
+        $lista_horarios=Horario_medicoModel::with('horario_dias')->where('activo',1)->where('idmedico',auth()->user()->id)->get();
+
+        // consulta horario laboral definico
+        $horas_laboral=$this->horas_laborales();
+        return view('configuracionMedico.horario_app',['lista_dias'=>$lista_dias,'lista_horarios'=>$lista_horarios,'horas_laboral'=>$horas_laboral['horas']]);
+    }
+
     // funcion para opbtener horario laboral configurado por Option2healt
     public function horas_laborales()
     {

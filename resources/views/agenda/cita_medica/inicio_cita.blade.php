@@ -33,8 +33,8 @@
 {{-- cuerpo de la pagina --}}
 @section('contenido')
  
-    <div class="row justify-content-md-left @movil @else p-3 @endmovil">
-      <div class=" @movil col-12 @else col-11 @endmovil">
+    <div class="row justify-content-md-left @movil p-0 @else p-3 @endmovil">
+      <div class=" @movil col-12 @else col-md-11 col-sm-12 @endmovil">
         <div class="card shadow-none  rounded">
           <div class="atenuar-datos">
                    
@@ -49,11 +49,11 @@
               </li>
             </ul>
           </div>
-          <div class="card-body border-top-0 border border-light shadow-sm rounded" >
+          <div class="card-body border-top-0 border border-light shadow-sm rounded @movil m-0 p-0 @endmovil" >
 
             <div class="tab-content" id="custom-tabs-three-tabContent">
               <div class="tab-pane active show " id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-paciente">
-                <div class="post clearfix">
+                <div class="post clearfix  p-0 m-0">
                   
                   {{-- datos del paciente --}}
                   @include('agenda.cita_medica.datos_paciente')
@@ -64,7 +64,7 @@
                     <input type="hidden" id="idcita_medica" name="idcita_medica" value="{{encrypt($idcita)}}">
                     
                     {{-- motivo consulta --}}
-                    <div class="row">
+                    <div class="row m-0 ">
                       <dt class="col-sm-12">
                         @if(isset($fecha)) <span class="text-capitalize">Cita {{$fecha}} </span> <input type="hidden" value="{{$fecha}}" name="fecha_inicio_cita">  @endif
                       </dt>
@@ -98,7 +98,7 @@
                     @include('agenda.cita_medica.secciones_pregunta_cita')
                     
                     {{-- Seccion Diagnóstico presuntivo --}}
-                    <div class="row">
+                    <div class="row p-1">
                       <dd class="col-sm-12 mt-3" >
                         <div class="form-group">
                           <label class="text-muted" for="diagnostico_presuntivo" >Diagnóstico presuntivo: <span class="text-red">*</span></label>
@@ -115,12 +115,12 @@
                     </div>
 
                     {{-- Sección Receta que se va a administrar al paciente --}}
-                    <div class="row">
-                      <dd class="col-sm-12 mt-3">
-                        <div class="form-group">
+                    <div class="row m-0 ">
+                      <dd class="col-sm-12 mt-2">
+                        <div class="form-group p-0">
                           <label class="text-muted" for="img_receta">Receta que se va a administrar al paciente: <span class="text-red">*</span> </label>
                         </div>
-                        <div class="form-group p-2 ">
+                        <div class="form-group  @movil p-0 m-0 @else p-2 @endmovil ">
                           <label for="img_receta" class="custom-img_receta text-left text-muted btn border-dark p-2">
                             <i class="fas fa-image text-info_ fa-lg mr-2"></i> Adjuntar 
                             <i class="fa-solid fa-circle-arrow-up text-info_ fa-lg ml-5 pl-4"></i>
@@ -162,7 +162,7 @@
                       <input type="hidden" id="idcita_medica_last" name="idcita_medica_last" value="{{encrypt($datos_sgd['datos_cita_last']['idcita'])}}">
                      
                       {{-- motivo consulta --}}
-                      <div class="row">
+                      <div class="row m-0">
                         <dt class="col-sm-12">
                           @if(isset($datos_sgd['datos_cita_last']['fecha'])) 
                             <span class="text-capitalize">Cita {{$datos_sgd['datos_cita_last']['fecha']}} </span>  
@@ -197,7 +197,7 @@
                       @include('agenda.cita_medica.secciones_pregunta_historial')
                       
                       {{-- Seccion Diagnóstico presuntivo --}}
-                      <div class="row">
+                      <div class="row m-0">
                         <dd class="col-sm-12 mt-3" >
                           <div class="form-group">
                             <label class="text-muted" for="diagnostico_presuntivo_h" >Diagnóstico presuntivo: <span class="text-red">*</span></label>
@@ -214,8 +214,8 @@
                       </div>
                     </form>
                     {{-- boton --}}
-                    <div class="row ">
-                       <div class=" col-3 m-auto">
+                    <div class="row m-0">
+                       <div class=" col-md-3 m-auto col-sm-8">
                          <div class="form-group p-2 ">
                             <button type="button" class="btn btn-block bgz-info  rounded" id="btn_historial">Guardar cambios</button>
                          </div>

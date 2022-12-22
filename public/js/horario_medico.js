@@ -153,3 +153,17 @@ $('#btn_horario_cancelar').click(function(){
     $('#btn_horario_save').html(` Guardar`);
     $('.cancel').addClass('d-none');
 });
+
+
+function ver_menos() {
+  $('.parrafo_h').html(`
+    Para configurar un horario, tan solo selecciona los días marcando en el recuadro, <span class="text-info_"  onclick="ver_mas()"><u>ver más.</u></span>
+  `);
+}
+function ver_mas(argument) {
+    $('.parrafo_h').html(`
+     Para configurar un horario, tan solo selecciona los días marcando en el recuadro, posteriormente selecciona el intervalo de horas que trabajarás los días seleccionados y dale a guardar. <br>
+      <br><span class="font-italic">Nota: Puedes crear varias configuraciones para cada día.</span>
+      <span class="text-info_ " onclick="ver_menos()"> <u>Mostrar menos</u></span>
+    `);
+}

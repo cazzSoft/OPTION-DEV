@@ -28,16 +28,16 @@
                 </div>
 
                 <div class="row @movil @else pl-4 pr-4 @endmovil">
-                  <div class="col-sm-6  ">
+                  <div class="col-sm-6  col-sm-12">
                     <!-- fecha text-->
                     <div class="form-group " id="fecha_text">
                     </div>  
                   </div>
-                  <div class=" col-sm-6 ">
+                  <div class=" col-sm-6 col-sm-12">
                      <!-- hora text-->
                     <small class=" border border-white" id="hora_select">{{date('h:m:A')}} - {{date('h:m:A')}} </small>
                   </div>
-                  <div class="col-6">
+                  <div class="col-sm-6 col-sm-12">
                     <div class="form-group fecha d-none" >
                       <input type="date" class="form-control" id="fecha" required>
                     </div>
@@ -120,9 +120,9 @@
                       <option></option>
                       @if(isset($lista_medio))
                         @foreach($lista_medio as $item)
-                          @if($item->codigo!='O2H') 
+                          {{-- @if($item->codigo!='O2H')  --}}
                             <option  value="{{$item->idmedio_reserva}}">{{$item->descripcion}}</option>
-                          @endif
+                          {{-- @endif --}}
                           
                         @endforeach
                       @endif

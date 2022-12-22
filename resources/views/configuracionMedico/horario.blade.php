@@ -27,7 +27,7 @@
 					                    @if(isset($lista_dias))
 					                      	<div class="row m-auto secction_dia"> 
 						                      	@foreach( $lista_dias as $key=>$item)
-						                      		<div class="col m-auto text-center">
+						                      		<div class="col m-auto text-center text-truncate">
 						                      			<span class="text-info_ text-center mr-1"><strong>{{$item['descripcion']}}</strong></span>
 						                      			<div class="icheck-info">
 				                            				<input type="checkbox" id="{{$item['iddias']}}_dia"  value="{{$item['iddias']}}"  name="dias[]">
@@ -128,7 +128,7 @@
 		                <table class="table text-center border-top border-left border-right border-bottom " >
 		                  	<thead >
 			                    <tr >
-			                      <th>Dia de la semana</th>
+			                      <th>Día de la semana</th>
 			                      <th>Horas</th>
 			                      <th style="width: 40px">Estado</th>
 			                      <th >Acciones</th>

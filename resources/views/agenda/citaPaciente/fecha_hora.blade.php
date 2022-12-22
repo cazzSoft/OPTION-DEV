@@ -4,7 +4,7 @@
 		 <i class="fas fa-angle-down text-info_ mr-2 fa-lg"></i> 
 		  <span class="text-info_ text-mes text-capitalize">@if(isset($dato_fecha)) {{$dato_fecha['mes']}} @endif </span> 
 		  <span class="text-muted text-year ml-2">@if(isset($dato_fecha)) {{$dato_fecha['año']}} @endif</span> 
-		  <span class="text-semana ml-5"> <i class="fas fa-angle-left fa-md"></i> Semana @if(isset($dato_fecha)) {{$dato_fecha['semana']}} @endif <i class="fas fa-angle-right fa-md"></i> </span>
+		  <span class="text-semana  @movil @else ml-5 @endmovil"> <i class="fas fa-angle-left fa-md"></i> Semana @if(isset($dato_fecha)) {{$dato_fecha['semana']}} @endif <i class="fas fa-angle-right fa-md"></i> </span>
 		</p>
 	</div>
 </div>
@@ -15,7 +15,7 @@
 		{{-- mini calendario --}}
 		
 		<!-- Calendar -->
-		<div class="card m-auto shadow-sm p-1" style="width: 15rem;">
+		<div class="card m-auto shadow-sm p-1 " style="width: 15rem;">
 		  <div class="card-body ">
 		    <!--The calendar -->
 		    {{-- <div id="calendar" class="datepicker datepicker-inline " data-toggle="calendar" data-target="#calendar"></div> --}}
@@ -26,11 +26,11 @@
 		</div> 
 		
 		{{-- semaforos --}}
-		<div class="form-group mt-3">
+		<div class="form-group mt-3 @movil p-0 @endmovil">
 			{{-- <div class="atenuar-horarios overlay"></div> --}}
 			<div class="card card-success shadow-none m-auto" style="width: 15rem;">
 
-	          <div class="card-body ">
+	          <div class="card-body @movil pl-0 mb-0 @endmovil">
 
 	            <!-- Minimal style -->
 	            <div class="row">
@@ -42,7 +42,7 @@
 	                    <input type="radio" id="dispo" name="dispo" checked>
 	                    <label class="text-muted mb-3" for="dispo">Disponible
 	                    </label>
-	                  </div>
+	                  </div> 
 	                  <div class="icheck-info d-inline p-2">
 	                    <input type="radio" id="select" name="select" checked>
 	                    <label class="text-muted mb-3"  for="select">Selecionada

@@ -32,7 +32,6 @@ input[type="file"] {
 }
 
 .bs-stepper .step-trigger {
-   
     flex-direction: column !important;
     padding: 10px !important;
 }
@@ -142,7 +141,7 @@ input[type="file"] {
     font-style: normal;
     font-weight: 400;
     font-size: 1vw;
-    line-height:1vw;;
+    line-height:1vw;
     display: flex;
     color: #BDBDBD;
 }
@@ -152,8 +151,7 @@ input[type="file"] {
     min-width:25%  ;
 }
 .list-file{
-     list-style: none;
-     
+    list-style: none; 
 }
 @media (min-width:100px) and (max-width: 767.98px) { 
   .content-header{
@@ -178,6 +176,40 @@ input[type="file"] {
     line-height:15px;;
     text-align: center;
     color: #BDBDBD;
+    }
+    .step button{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px !important;
+        line-height:11px;;
+    }
+    .col-form-label{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-size: 12px !important;
+    }
+    .text-mes, .text-year{
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 12px;
+    }
+    .text-semana{
+        font-family: 'Calibri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px;
+    }
+    .seccion_horarios{
+        font-style: normal;
+        font-size: 12px !important;
+    }
+
+    .bz-desactiva {
+        width: 45% !important;
+    }
+    .disponible{
+         width: 45% !important;
     }
 
 }

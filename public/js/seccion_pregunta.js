@@ -143,5 +143,6 @@ function sub_pregunta(class_ ,idp) {
 // para ocultar sub seccion
 function sub_pregunta_hide(class_) {
 	$('.'+class_).addClass('d-none');
+	$('.'+class_).html('');
 }
 

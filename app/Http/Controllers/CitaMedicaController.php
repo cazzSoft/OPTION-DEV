@@ -42,6 +42,7 @@ class CitaMedicaController extends Controller
 
     public function iniciar_cita($idcita)
     {
+
         // try {
             $fecha_actual=Carbon::now()->toDateString();
            
@@ -309,8 +310,8 @@ class CitaMedicaController extends Controller
                                 $funcion_class=$action_save;
                             }
 
-                            $opc_='<dt class=" col-md-'.$col_c.' col-sm-3 text-info_ text-center">'.$op['opciones'][0]['descripcion'].'</dt>'; 
-                            $opc_c='<dt class="col-md-'.$col_c.' col-sm-3 '.$bg_color.' text-info_ text-center"> 
+                            $opc_='<dt class=" col-sm-'.$col_c.' col-xs-p text-info_ text-center">'.$op['opciones'][0]['descripcion'].'</dt>'; 
+                            $opc_c='<dt class="col-sm-'.$col_c.' col-xs-p '.$bg_color.' text-info_ text-center"> 
                                         <div class="icheck-info">
                                             <input type="radio" '.$selected.'  value="'.$op['opciones'][0]['valor'].'" id="'.$id.'_'.$z.'" '.$funcion_class.'   name="'.$name.'" '.$required.' />
                                             <label for="'.$id.'_'.$z.'"></label>
@@ -324,7 +325,7 @@ class CitaMedicaController extends Controller
 
                         // se verifica si tiene sub pregunta para reservar el espacio
                         if(isset($sub_prgt) && $sub_prgt!=null &&  $sub_prgt!='[]'){
-                            $sub_pregunta='<div class="row '.$class_sub_p.' d-none col-6"> </div>';
+                            $sub_pregunta='<div class="row '.$class_sub_p.' d-none "> </div>';
                             if(isset($respuesta_p['respuesta'])){
                                 // solo obtenermos pregunta si tiene respuesta de sub pregunta
                                 $array_prgta=[]; 
@@ -347,11 +348,11 @@ class CitaMedicaController extends Controller
                                     }
                                 }
                                 if($sub_pregunta_res!=null){
-                                    $sub_pregunta='<div class="row '.$class_sub_p.' col-6"> '.$sub_pregunta_res.' </div>';
+                                    $sub_pregunta='<div class="row '.$class_sub_p.' "> '.$sub_pregunta_res.' </div>';
                                 }  
                            
                            }else{
-                               $sub_pregunta='<div class="row '.$class_sub_p.' d-none col-6"> </div>';
+                               $sub_pregunta='<div class="row '.$class_sub_p.' d-none "> </div>';
                            }
                             // $sub_pregunta='<div class="row '.$class_sub_p.' d-none  col-6">  </div>';
                             
@@ -362,11 +363,11 @@ class CitaMedicaController extends Controller
 
                         // preguntas
                         $item_pregunta='<dl class="row">
-                                            <dd class="col-md-'.$col_p.' col-sm-12 text-info_">'.$value['pregunta'][0]['descripcion'].' '.$txt_require.'</dd>
+                                            <dd class="col-lg-'.$col_p.' col-xs-d  text-info_">'.$value['pregunta'][0]['descripcion'].' '.$txt_require.'</dd>
                                                 '.implode($opciones_text).'
                                             </dl> 
                                         <dl class="row">
-                                        <dt class="col-md-'.$col_p.' col-sm-6 '.$bg_color.' p-1"><span class="ml-2">'.$value['pregunta'][0]['pregunta'].'</span></dt>
+                                        <dt class="col-md-'.$col_p.' col-xs-d '.$bg_color.' p-1"><span class="ml-2">'.$value['pregunta'][0]['pregunta'].'</span></dt>
                                             '.implode($opciones_comp).'
                                         </dl>
                                         '.$sub_pregunta;
@@ -414,7 +415,7 @@ class CitaMedicaController extends Controller
                                 }
                              }
 
-                            $opc_c='<dt class="col-md-'.$col_c.' col-sm-2  text-info_ text-center"> 
+                            $opc_c='<dt class="col-'.$col_c.'  text-info_ text-center"> 
                                         <span class="mr-1">'.$op['opciones'][0]['descripcion'].'</span>
                                         <div class="icheck-info">
                                             <input type="radio" '.$selected.' value="'.$op['opciones'][0]['valor'].'" id="'.$id.'_'.$z.'" '.$funcion_class.'  name="'.$name.'" '.$required.' />
@@ -454,7 +455,7 @@ class CitaMedicaController extends Controller
 
                             // preguntas
                         $item_pregunta='<dl class="row">
-                                            <dd class="col-md-'.$col_p.' col-sm-6  '.$bg_color.' ">'.$value['pregunta'][0]['pregunta'].' '.$txt_require.'</dd>
+                                            <dd class="col-md-'.$col_p.'  col-sm-6 col-xs-12 '.$bg_color.' ">'.$value['pregunta'][0]['pregunta'].' '.$txt_require.'</dd>
                                         </dl>
                                         <dl class="row">
                                             '.implode($opciones_comp).'
@@ -616,8 +617,8 @@ class CitaMedicaController extends Controller
             // pregunta
             $item_pregunta='<div class="col-md-'.$col_p.' col-sm-12">
                             <dl class="row" >
-                                <dd  class="col col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
-                                <dl class="col-'.$col_c.' col-sm-12  text-info_ "> 
+                                <dd  class="col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
+                                <dl class="col-md-'.$col_c.' col-sm-12  text-info_ "> 
                                     <select  class="form-control select2 form-control-sm " '.$action_save.'  '.$op_multiple.' data-placeholder="'.$value['texto_placeholder'].'" style="width: 100%;" id="'.$id.'"  name="'.$name_.'" '.$required.'>
                                         <option ></option>
                                         '.implode($opciones_comp).'
@@ -662,9 +663,9 @@ class CitaMedicaController extends Controller
 
 
                 // validadmos el tamaño de las columna de los div col
-                $col_=$col_c;
+                $col_= 'col-xs-'.$col_c;
                 if(strlen($op['opciones'][0]['descripcion'])>3){
-                    $col_='col-3';
+                    $col_='col-xs-3';
                 }
                 $checked='';
                 
@@ -677,7 +678,7 @@ class CitaMedicaController extends Controller
 
                 //se crea las opciones 
                 $opc_c='
-                    <dt class="col-'.$col_.' text-info_ text-center"> 
+                    <dt class="'.$col_.'   text-info_ text-center"> 
                         <span class="mr-1">'.$op['opciones'][0]['descripcion'].'</span>
                         <div class="icheck-info">
                             <input type="radio" id="'.$id.'_'.$z.'" '.$funcion_class.' '.$checked.' value="'.$op['opciones'][0]['valor'].'"  name="'.$name.'" />
@@ -713,10 +714,10 @@ class CitaMedicaController extends Controller
             }
 
             // se crea la pregunta
-            $item_pregunta='<div class="col-'.$col_p.' ">
-                                <dl class="row" >
-                                    <dd  class="col col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
-                                    <dl class="row col-'.$col_p.'   text-info_ ">
+            $item_pregunta='<div class="col-md-'.$col_p.' ">
+                                <dl class="row " >
+                                    <dd  class="col-md-'.$col_p.' col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
+                                    <dl class="row col-md-'.$col_p.'   text-info_ ml-2">
                                         '.implode($opciones_comp).'
                                     </dl>   
                                 </dl> 
@@ -741,8 +742,8 @@ class CitaMedicaController extends Controller
             // pregunta
             $item_pregunta='<div class="col-md-'.$col_p.' col-sm-12">
                                 <dl class="row" >
-                                    <dd  class="col col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
-                                    <dl class="col-'.$col_c.' col-sm-12  text-info_ "> 
+                                    <dd  class="col-md-'.$col_p.' col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
+                                    <dl class="col-md-'.$col_c.' col-sm-12  text-info_ "> 
                                         <textarea '.$action_save.' name="'.$name.'" id="'.$id.'" rows="4" class="form-control form-control-sm shadow-sm border-white"  placeholder="'.$value['texto_placeholder'].'" value="111'.$valor.'" '.$required.' >'.$valor.'</textarea>
                                     </dl>   
                                 </dl> 
@@ -778,8 +779,8 @@ class CitaMedicaController extends Controller
             // pregunta
             $item_pregunta='<div class="col-md-'.$col_p.' col-sm-12">
                                <dl class="row" >
-                                   <dd  class="col col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
-                                   <dl class="col-'.$col_c.' col-sm-12  text-info_ "> 
+                                   <dd  class="col-md-'.$col_p.' col-sm-12 text-info_ '.$bg_color.'">'.$value['pregunta'].' '.$txt_require.'</dd>
+                                   <dl class="col-md-'.$col_c.' col-sm-12  text-info_ "> 
                                    <input type="'.$componente.'" '.$step.' name="'.$name.'" '.$action_save.'  id="'.$id.'" class="form-control form-control-sm shadow-sm border-white"  placeholder="'.$value['texto_placeholder'].'" value="'.$valor.'"  autocomplete="off" '.$action_resultado.'  '.$required.' >
                                    </dl>   
                                </dl> 

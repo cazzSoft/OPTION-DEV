@@ -41,6 +41,11 @@
                             <a href="{{url('nosotros')}}" class="text-pie-app text-muted d-block">ACERCA DE NOSOTROS </a>
                             <a href="{{url('info-coinsults')}}" class="text-pie-app text-muted d-block">COINSULTS </a>
                             <a href="#" onclick="openInfoTermiCondiciones()" class="text-pie-app text-muted d-block">TÉRMINOS Y CONDICIONES </a>
+                            @auth
+                                @if(Auth::user()->type_user()=='dr')
+                                    <a href="{{url('horario/gestion')}}"  class="text-pie-app text-muted d-block">CONFIGURACIONES </a>
+                                @endif
+                            @endauth
                             @auth  
                                 <a href="#" onclick="logout_session()" class=" text-muted d-block mt-3 logut-btn d-none">Cerrar sesión </a> 
                             @endauth                    
