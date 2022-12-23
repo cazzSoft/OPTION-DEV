@@ -19,7 +19,7 @@
 
 
 	
-@component('mail::button', ['url' =>  $url.'/profile/perfil','color'=>'info'])
+@component('mail::button', ['url' =>  $url.'profile/perfil','color'=>'info'])
 	Revisar detalles
 @endcomponent
  

@@ -12,13 +12,13 @@
 
 
 	
-@component('mail::button', ['url' =>  $url.'/calendario','color'=>'info'])
+@component('mail::button', ['url' =>  $url.'calendario','color'=>'info'])
 	Revisar cita
 @endcomponent
  
 
 <p class="parrafo1"><small>Para atender la cita usa este link</small></p>
-<p class="parrafo1"><a href="{{$url.'/calendario'}}">(<u>{{$url.'/calendario'}}</u>)</a></p>
+<p class="parrafo1"><a href="{{$url.'calendario'}}">(<u>{{$url.'calendario'}}</u>)</a></p>
 
 
 
