@@ -143,7 +143,7 @@ class CitaMedicaController extends Controller
             $grupo=$this->obtenerGrupoCita($num_cita);
             if($grupo!=null){
                 // obtener secciones por grupo
-                $secciones=$this->obtenerSecciones($grupo,$consul->id);
+                $secciones=$this->obtenerSecciones($grupo,$consul->sexo);
             }else{
                 $secciones=[];
             }
