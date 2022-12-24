@@ -43,7 +43,7 @@ class CitaMedicaController extends Controller
     public function iniciar_cita($idcita)
     {
 
-        // try {
+        try {
             $fecha_actual=Carbon::now()->toDateString();
            
             $idcita=decrypt($idcita);
@@ -67,17 +67,22 @@ class CitaMedicaController extends Controller
                                             ->where('estado','AT')
                                             ->where('activo',1)
                                             ->count();
-            
+            // sexo del paciente
+            $sexo=null;
+            if(isset($consulta->usuario[0]->sexo)){
+                $sexo= $consulta->usuario[0]->sexo;
+            }
+
             // obtener grupo 
             $grupo=$this->obtenerGrupoCita($num_cita);
 
             if($grupo!=null){
                 // obtener secciones por grupo
-                $secciones=$this->obtenerSecciones($grupo);
+                $secciones=$this->obtenerSecciones($grupo,$sexo);
             }else{
                 $secciones=[];
             }
-           
+            
             $data_segunda_cita=null;
             if($num_cita>=1){
                 // obtener archivo para esta cita
@@ -113,10 +118,10 @@ class CitaMedicaController extends Controller
                     'idcita'=>$idcita,
                     'datos_sgd'=>$data_segunda_cita
                 ]);
-        // } catch (\Throwable $th) {
-        //     Log::error("CitaMedicaController Error iniciar_cita, " . $th->getMessage());
-        //     return back();
-        // }
+        } catch (\Throwable $th) {
+            Log::error("CitaMedicaController Error iniciar_cita, " . $th->getMessage());
+            return back();
+        }
     }
 
     // funcion para obtener datos de la ultima cita
@@ -125,6 +130,7 @@ class CitaMedicaController extends Controller
         try {
             $consul=DB::table('agenda')
                             ->leftJoin('cita_medica','agenda.idagenda','=','cita_medica.idagenda')
+                            ->leftJoin('users','agenda.idpaciente','=','users.id')
                             ->where('agenda.estado','AT')
                             ->where('agenda.activo',1)
                             ->where('agenda.idpaciente',$idpaciente)
@@ -137,7 +143,7 @@ class CitaMedicaController extends Controller
             $grupo=$this->obtenerGrupoCita($num_cita);
             if($grupo!=null){
                 // obtener secciones por grupo
-                $secciones=$this->obtenerSecciones($grupo);
+                $secciones=$this->obtenerSecciones($grupo,$consul->id);
             }else{
                 $secciones=[];
             }
@@ -171,19 +177,34 @@ class CitaMedicaController extends Controller
           }  
     }
     // funcion para obtener las secciones
-    public function obtenerSecciones($grupo)
+    public function obtenerSecciones($grupo,$sexo=null)
     {
         try {
-            $secciones=DB::table('grupo_seccion')
-                            ->leftJoin('secciones','grupo_seccion.idsecciones','=','secciones.idsecciones')
-                            ->leftJoin('grupo','grupo_seccion.idgrupo','=','grupo.idgrupo')
-                            ->where('secciones.activo',1)
-                            ->where('secciones.estado',1)
-                            ->where('grupo_seccion.activo',1)
-                            ->where('grupo_seccion.idgrupo',$grupo)
-                            ->orderBy('grupo_seccion.orden','asc')
-                            ->get();
-            return $secciones;   
+            if($sexo!=null && $sexo==1){
+
+                $secciones=DB::table('grupo_seccion')
+                                ->leftJoin('secciones','grupo_seccion.idsecciones','=','secciones.idsecciones')
+                                ->leftJoin('grupo','grupo_seccion.idgrupo','=','grupo.idgrupo')
+                                ->where('secciones.activo',1)
+                                ->where('secciones.estado',1)
+                                ->where('secciones.codigo_seccion','<>', 'AGO') 
+                                ->where('grupo_seccion.activo',1)
+                                ->where('grupo_seccion.idgrupo',$grupo)
+                                ->orderBy('grupo_seccion.orden','asc')
+                                ->get();
+                return $secciones; 
+            }else{
+                $secciones=DB::table('grupo_seccion')
+                                ->leftJoin('secciones','grupo_seccion.idsecciones','=','secciones.idsecciones')
+                                ->leftJoin('grupo','grupo_seccion.idgrupo','=','grupo.idgrupo')
+                                ->where('secciones.activo',1)
+                                ->where('secciones.estado',1)
+                                ->where('grupo_seccion.activo',1)
+                                ->where('grupo_seccion.idgrupo',$grupo)
+                                ->orderBy('grupo_seccion.orden','asc')
+                                ->get();
+                return $secciones; 
+            }  
         } catch (\Throwable $th) {
             Log::error("CitaMedicaController Error obtenerSecciones, " . $th->getMessage());
             return [];

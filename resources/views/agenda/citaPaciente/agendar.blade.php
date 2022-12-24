@@ -35,7 +35,7 @@
 	            <div class="card card-default shadow-none @movil p-0 ml-0 @else p-4 ml-4 @endmovil">
 	            	<div class=" atenuar-horarios">
 	            	</div>
-	            	<div class="card-body p-0">
+	            	<div class="card-body ">
 	            			
 			            <form id="form_cita_paciente" action="" enctype="multipart/form-data" method="POST">
 			                <div class="bs-stepper linear">
@@ -60,11 +60,11 @@
 			                  	<div class="bs-stepper-content">
 			                    	<div id="sintomas" class="content " role="tabpanel" aria-labelledby="logins-part-trigger">
 			                       		
-			                       		<div class="row p-1 m-0">
+			                       		<div class="row   @movil p-1 m-0 @endmovil">
 			                       			<div class="col-md-12 mt-4">
 			                       				<label for="exampleInputEmail1" class=" @movil h6 @else h5 @endmovil text-info_ col-12">Motivo de consulta</label>
 			                       			</div>
-		                       				<div class="col-md-6 col-sm-12 p-1">
+		                       				<div class="col-md-6 col-sm-12 p-1 ">
 	                       					  	<div class="form-group row">
 	                       					    	<label class="text-muted col-form-label col-12" for="detalle">¿Cual es la molestia que tiene?</label>
 	                       					    	<textarea class="form-control shadow-sm border border-white col-md-10 col-sm-12"  rows="4" placeholder="Ingrese texto..."  name="detalle"  id="detalle"  autofocus  ></textarea>
@@ -92,24 +92,24 @@
 				                      	</div>
 
 				                      	{{-- datos personales user --}}
-				                      	<div class="form-group row m-0">
+				                      	<div class="form-group row m-1">
 				                      		<input type="hidden" id="idp" value="{{ encrypt(auth()->user()->id)}}">
 				                        	<label class=" col-md-2 col-sm-12 text-muted col-form-label @movil @else text-right @endmovil" for="name">Nombres:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="name" name="name" value="{{auth()->user()->name}}">
 				                      	</div>
-				                      	<div class="form-group row m-0">
+				                      	<div class="form-group row m-1">
 				                        	<label class="col-md-2 col-sm-12 text-muted col-form-label @movil @else text-right @endmovil" for="apellido">Apellidos:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="apellido" name="apellido" value="{{auth()->user()->apellido}}">
 				                      	</div>
-				                      	<div class="form-group row m-0">
+				                      	<div class="form-group row m-1">
 				                        	<label class=" col-md-2 text-muted   @movil @else text-right @endmovil" for="cedula">Cedula o Pasaporte:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="cedula" name="cedula" value="{{auth()->user()->cedula}}">
 				                      	</div>
-				                      	<div class="form-group row m-0">
+				                      	<div class="form-group row m-1">
 				                        	<label class=" col-md-2 text-muted col-form-label  @movil @else text-right @endmovil" for="edad">Edad:</label>
 				                        	<input type="text" class="form-control shadow-sm col-md-3 col-sm-12 border-white" id="edad" name="cedula" value="{{ \Carbon\Carbon::parse(auth()->user()->fecha_nacimiento)->age}}">
 				                      	</div>
-				                      	<div class="form-group row m-0">
+				                      	<div class="form-group row m-1">
 				                        	<label class=" col-md-2 text-muted col-form-label  @movil @else text-right @endmovil" for="sexo">Sexo:</label>
 				                        	<div class="col-md-3 col-sm-12 p-0">
 				                        		<select class="form-control select2 form-control-sm shadow-sm "  data-placeholder="Seleccione sexo" style="width: 100%;"  name="sexo" id="sexo">

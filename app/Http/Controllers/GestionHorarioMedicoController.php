@@ -30,7 +30,7 @@ class GestionHorarioMedicoController extends Controller
         $horas_laboral=$this->horas_laborales();
        
         return view('configuracionMedico.horario',['lista_dias'=>$lista_dias,'lista_horarios'=>$lista_horarios,'horas_laboral'=>$horas_laboral['horas']]);
-    }
+    } 
 
     // vista horarios para app
     public function getHorarios()
@@ -324,15 +324,37 @@ class GestionHorarioMedicoController extends Controller
     public function verificar_cita($idhorario)
     {
         $iduser=auth()->user()->id;
-        $horario=Horario_medicoModel::find($idhorario);
+
+        // horario medico
+        $horario=Horario_medicoModel::where('estado',1)->where('activo',1)->find($idhorario);
+
+        // lista de citas del médico
         $citas=CalendarioModel::where('idmedico',$iduser)->where('estado','AG')->where('activo',1)->get();
+        
+        // si no se encuentra el horario
+        if(!isset($horario)){
+            return null;
+        }
 
         $array=[];
-        if($citas!=null || $citas!='[]'){
+        if($citas!=null || $citas!='[]'  ){
             foreach ($citas as $key => $value) {
-                if($horario['hora_inicio'] <= $value['hora_inicio'] && $horario['hora_fin']>= $value['hora_inicio']){
-                    array_push($array,$value['titulo']);
-                }
+              $dia_agenda=Carbon::parse($value['fecha'])->format('w');
+              $consulta=DB::table('horario_medico')
+                      ->leftJoin('horario_dias','horario_medico.idhorario_medico','=','horario_dias.idhorario_medico')
+                      ->leftJoin('dias','horario_dias.iddias','=','dias.iddias')
+                      ->where('horario_medico.estado',1)
+                      ->where('horario_medico.activo',1)
+                      ->where('horario_medico.idhorario_medico',$idhorario)
+                      ->where('dias.valor',$dia_agenda)
+                      ->first();
+              if(isset($consulta )){
+                  array_push($array,$value['titulo']);
+              }
+               // return date(format) $value['fecha'];
+                // if($horario['hora_inicio'] <= $value['hora_inicio'] && $horario['hora_fin']>= $value['hora_inicio']){
+                //     array_push($array,$value['titulo']);
+                // }
             }
         }else{
             return null;
